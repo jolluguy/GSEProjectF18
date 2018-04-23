@@ -41,7 +41,6 @@ public class SemesterLogin extends Application implements IGUI {
         stage.setTitle("VUM+");
         
         Scene scene = new Scene(root);
-//        stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();
     }
