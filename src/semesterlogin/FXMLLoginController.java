@@ -32,10 +32,6 @@ import javafx.stage.Stage;
 public class FXMLLoginController implements Initializable {
     
     @FXML
-    private Label username;
-    @FXML
-    private Label password;
-    @FXML
     private TextField usernameField;
     @FXML
     private PasswordField passwordField;

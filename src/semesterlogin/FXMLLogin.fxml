@@ -14,22 +14,25 @@
             <Font name="Arial Bold" size="45.0" />
          </font>
       </Label>
-      <Label fx:id="username" layoutX="183.0" layoutY="220.0" prefHeight="40.0" prefWidth="116.0" text="Username">
+      <TextField fx:id="usernameField" alignment="CENTER" layoutX="245.0" layoutY="196.0" prefHeight="40.0" prefWidth="309.0" promptText="Username">
          <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Label>
-      <Label fx:id="password" layoutX="183.0" layoutY="321.0" prefHeight="53.0" prefWidth="116.0" text="Password">
+            <Font size="20.0" />
+         </font></TextField>
+      <PasswordField fx:id="passwordField" alignment="CENTER" layoutX="245.0" layoutY="300.0" prefHeight="40.0" prefWidth="309.0" promptText="Password">
          <font>
-            <Font name="System Bold" size="24.0" />
-         </font></Label>
-      <TextField fx:id="usernameField" layoutX="354.0" layoutY="220.0" prefHeight="40.0" prefWidth="309.0" />
-      <PasswordField fx:id="passwordField" layoutX="354.0" layoutY="328.0" prefHeight="40.0" prefWidth="309.0" />
+            <Font size="20.0" />
+         </font></PasswordField>
       <Label layoutX="14.0" layoutY="559.0" prefHeight="40.0" prefWidth="131.0" text="Gruppe 3 A/S">
          <font>
             <Font size="20.0" />
          </font></Label>
-      <Button fx:id="loginButton" layoutX="299.0" layoutY="427.0" mnemonicParsing="false" onAction="#login" prefHeight="40.0" prefWidth="73.0" text="Login" />
-      <Button fx:id="cancelButton" layoutX="430.0" layoutY="427.0" mnemonicParsing="false" onAction="#quit" prefHeight="40.0" prefWidth="73.0" text="Quit" />
+      <Button fx:id="loginButton" defaultButton="true" layoutX="294.0" layoutY="427.0" mnemonicParsing="false" onAction="#login" prefHeight="40.0" prefWidth="82.0" style="-fx-background-color: #696231; -fx-background-radius: 5; -fx-border-color: #C9AE34; -fx-border-radius: 5;" text="Log ind" textFill="#fff3f7">
+         <font>
+            <Font name="Georgia" size="16.0" />
+         </font></Button>
+      <Button fx:id="cancelButton" cancelButton="true" layoutX="425.0" layoutY="427.0" mnemonicParsing="false" onAction="#quit" prefHeight="40.0" prefWidth="82.0" style="-fx-background-color: #696231; -fx-background-radius: 5; -fx-border-color: #C9AE34; -fx-border-radius: 5;" text="Afslut" textFill="#fff3f7">
+         <font>
+            <Font name="Georgia" size="16.0" />
+         </font></Button>
    </children>
 </AnchorPane>
