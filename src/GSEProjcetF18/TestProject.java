@@ -18,6 +18,8 @@ public class TestProject {
         // TODO code application logic here
         System.out.println("Hello world");
         System.out.println("test commit");
+        System.out.println("Potte on");
+        System.out.println("something");
     }
     
 }
