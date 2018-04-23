@@ -66,35 +66,34 @@ public class UserManager {
     public String changePw(String oldPw, String newPw1, String newPw2) {
 
         if (!currentUser.checkPassWord(oldPw)) {
-            return "Password is incorrect!";
+            return "Password er forkert!";
         }
         if (!newPw1.equals(newPw2)) {
-            return "New password not repeated";
+            return "Password matcher ikke!";
         }
         currentUser.changePassWord(newPw2);
         UserOperations.getInstance().saveUser(currentUser);
-        return "Password updated";
+        return "Password opdateret";
     }
 
     public String changeLevel(String name, String pw, int level) {
         User user = UserOperations.getInstance().getUser(name, pw);
 
         if (!UserOperations.getInstance().userExists(name)) {
-            return "Error: Invalid entry";
+            return "Bruger eksisterer ikke!";
         }
 
         if (user == currentUser) {
-            return "Permission Not granted";
+            return "Ændring ikke tilladt!";
         }
         
         if(level == user.getLevel()){
-            return ("User already has level " + level);
+            return ("Bruger " + user.getUser() + " har allerede level " + level);
         }
 
         user.setLevel(level);
         UserOperations.getInstance().saveUser(user);
-        System.out.println("UserLevel has been changed");
 
-        return ("Level has been changed");
+        return (user.getUser() + " har nu level " + user.getLevel());
     }
 }

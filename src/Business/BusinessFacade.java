@@ -45,11 +45,11 @@ public class BusinessFacade implements IBusiness {
             boolean succes = manager.addUser(name, pw1, level);
             
             if (succes) {
-                return "User " + name + " added.";
+                return "Bruger " + name + " tilføjet.";
             } else {
-                return "Error: " + name + " already registered!";
+                return "Fejl: " + name + " eksisterer allerede!";
             }
-        } else return "Passwords do not match!";
+        } else return "Passwords matcher ikke!";
 
     }
 

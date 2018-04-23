@@ -110,7 +110,7 @@ public class AdminController implements Initializable {
         int level = 0;
 
         if (!(lvl1Radio.isSelected() || lvl2Radio.isSelected())) {
-            warningLabel.setText("No level selected");
+            warningLabel.setText("Level skal vælges før ændring");
         } else {
             if (lvl1Radio.isSelected()) {
                 level = 1;
@@ -143,7 +143,7 @@ public class AdminController implements Initializable {
         int level = 0;
 
         if (!(jobCaseRadio.isSelected() || jobAdminRadio.isSelected())) {
-            jobWarningLabel.setText("No level selected");
+            jobWarningLabel.setText("Level skal vælges før ændring");
         } else {
             if (jobCaseRadio.isSelected()) {
                 level = 1;
