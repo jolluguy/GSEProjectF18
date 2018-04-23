@@ -136,7 +136,6 @@ public class AdminController implements Initializable {
         business.logOut();
     }
 
-    @FXML
     public void changeJob(ActionEvent event) {
         String username = jobUsernameField.getText();
         String password = jobPasswordField.getText();
@@ -157,7 +156,6 @@ public class AdminController implements Initializable {
         }
     }
     
-    @FXML
     public void jobCancel(ActionEvent event){
         jobUsernameField.clear();
         jobPasswordField.clear();
