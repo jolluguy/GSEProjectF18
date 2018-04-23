@@ -29,6 +29,7 @@ public class Starter {
         gui.injectBusiness(business);
         
         System.out.println("Ready to start system");
+        System.out.println("Not");
         gui.startApplication(args);
     }
     
