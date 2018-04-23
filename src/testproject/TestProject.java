@@ -19,6 +19,7 @@ public class TestProject {
         System.out.println("Hello world");
         System.out.println("test commit");
         System.out.println("Potte on");
+        System.out.println("something");
     }
     
 }
