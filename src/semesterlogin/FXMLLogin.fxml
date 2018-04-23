@@ -41,6 +41,6 @@
          </font></Button>
    </children>
    <cursor>
-      <Cursor fx:constant="WAIT" />
+      <Cursor fx:constant="DEFAULT" />
    </cursor>
 </AnchorPane>
