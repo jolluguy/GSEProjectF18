@@ -38,10 +38,10 @@ public class SemesterLogin extends Application implements IGUI {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
-        stage.setTitle("Test");
+        stage.setTitle("VUM+");
         
         Scene scene = new Scene(root);
-        
+//        stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();
     }
