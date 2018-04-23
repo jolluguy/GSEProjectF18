@@ -86,6 +86,10 @@ public class UserManager {
         if (user == currentUser) {
             return "Permission Not granted";
         }
+        
+        if(level == user.getLevel()){
+            return ("User already has level " + level);
+        }
 
         user.setLevel(level);
         UserOperations.getInstance().saveUser(user);

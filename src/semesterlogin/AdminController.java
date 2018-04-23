@@ -9,7 +9,6 @@ import Business.BusinessFacade;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,7 +25,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
-import jdk.nashorn.internal.ir.BreakNode;
 
 /**
  * FXML Controller class
@@ -34,7 +32,7 @@ import jdk.nashorn.internal.ir.BreakNode;
  * @author Alexa
  */
 public class AdminController implements Initializable {
-    
+
     private Business.BusinessFacade business = BusinessFacade.getInstance();
 
     @FXML
@@ -57,7 +55,7 @@ public class AdminController implements Initializable {
     private ListView<String> userListview;
     @FXML
     private Label listviewLabel;
-    
+
     private ObservableList<String> obsList;
     @FXML
     private Button refreshButton;
@@ -69,53 +67,103 @@ public class AdminController implements Initializable {
     private RadioButton lvl2Radio;
     @FXML
     private Label warningLabel;
+    @FXML
+    private Label jobUsername;
+    @FXML
+    private Label jobPassword;
+    @FXML
+    private TextField jobUsernameField;
+    @FXML
+    private PasswordField jobPasswordField;
+    @FXML
+    private RadioButton jobCaseRadio;
+    @FXML
+    private ToggleGroup jobRadio;
+    @FXML
+    private RadioButton jobAdminRadio;
+    @FXML
+    private Button jobSavechangeButton;
+    @FXML
+    private Button jobCancelButton;
+    @FXML
+    private Label jobWarningLabel;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         warningLabel.setText("");
-                  
+
 //        //Load listview
 //        obsList = FXCollections.observableArrayList();
 //        userListview.setItems(obsList);
 //        obsList.addAll(business.getUserList());
-    } 
-    
+    }
+
     @FXML
     public void addUser(ActionEvent event) {
         String userName = usernameField.getText();
         String password1 = password1Field.getText();
         String password2 = password2Field.getText();
         int level = 0;
-        
-        if(!(lvl1Radio.isSelected() || lvl2Radio.isSelected())){
+
+        if (!(lvl1Radio.isSelected() || lvl2Radio.isSelected())) {
             warningLabel.setText("No level selected");
-        } else{
-        if(lvl1Radio.isSelected()){
-            level = 1; 
-        } else if(lvl2Radio.isSelected()){
-            level = 2;
-        }
-            
-        String statusmessage = business.addUser(userName, password1, password2, level);
-        warningLabel.setText(statusmessage);
-        
+        } else {
+            if (lvl1Radio.isSelected()) {
+                level = 1;
+            } else if (lvl2Radio.isSelected()) {
+                level = 2;
+            }
+
+            String statusmessage = business.addUser(userName, password1, password2, level);
+            warningLabel.setText(statusmessage);
+
         }
     }
-    
+
     @FXML
     public void logout(ActionEvent event) throws IOException {
         Parent loginScreen = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
-        
+
         Scene newScene = new Scene(loginScreen);
         Stage appstage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         appstage.setScene(newScene);
         appstage.show();
-        
+
         business.logOut();
     }
+
+    @FXML
+    public void changeJob(ActionEvent event) {
+        String username = jobUsernameField.getText();
+        String password = jobPasswordField.getText();
+        int level = 0;
+
+        if (!(jobCaseRadio.isSelected() || jobAdminRadio.isSelected())) {
+            jobWarningLabel.setText("No level selected");
+        } else {
+            if (jobCaseRadio.isSelected()) {
+                level = 1;
+            } else if (jobAdminRadio.isSelected()) {
+                level = 2;
+            }
+
+            String StatusMessage = business.changeLevel(username, password, level);
+            jobWarningLabel.setText(StatusMessage);
+
+        }
+    }
     
+    @FXML
+    public void jobCancel(ActionEvent event){
+        jobUsernameField.clear();
+        jobPasswordField.clear();
+        jobAdminRadio.setSelected(false);
+        jobCaseRadio.setSelected(false);
+        jobWarningLabel.setText("");
+    }
+
 }

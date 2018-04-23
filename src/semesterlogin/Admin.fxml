@@ -11,7 +11,7 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="semesterlogin.AdminController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="semesterlogin.AdminController">
    <children>
       <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="751.0" prefWidth="911.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -39,13 +39,28 @@
           </Tab>
             <Tab text="Change user jobstatus">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="jobUsername" layoutX="52.0" layoutY="43.0" text="Username" />
+                        <Label fx:id="jobPassword" layoutX="52.0" layoutY="83.0" text="Password" />
+                        <TextField fx:id="jobUsernameField" layoutX="129.0" layoutY="38.0" />
+                        <PasswordField fx:id="jobPasswordField" layoutX="129.0" layoutY="78.0" />
+                        <RadioButton fx:id="jobCaseRadio" layoutX="142.0" layoutY="137.0" mnemonicParsing="false" text="Case worker">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="jobRadio" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="jobAdminRadio" layoutX="142.0" layoutY="182.0" mnemonicParsing="false" text="Admin" toggleGroup="$jobRadio" />
+                        <Button fx:id="jobSavechangeButton" layoutX="53.0" layoutY="635.0" mnemonicParsing="false" onAction="#changeJob" text="Save changes" />
+                        <Button fx:id="jobCancelButton" layoutX="196.0" layoutY="635.0" mnemonicParsing="false" onAction="#jobCancel" text="Cancel" />
+                        <Label fx:id="jobWarningLabel" layoutX="53.0" layoutY="599.0" prefHeight="21.0" prefWidth="484.0" />
+                     </children></AnchorPane>
                </content>
             </Tab>
         </tabs>
       </TabPane>
-      <Label layoutX="14.0" layoutY="769.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="75.0" text="Gruppe 3 A/S" />
-      <Button fx:id="logoutButton" layoutX="1234.0" layoutY="765.0" mnemonicParsing="false" onAction="#logout" text="Log out" />
+      <Label layoutX="14.0" layoutY="769.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="21.0" prefWidth="142.0" text="Gruppe 3 A/S" />
+      <Button fx:id="logoutButton" layoutX="1223.0" layoutY="764.0" mnemonicParsing="false" onAction="#logout" text="Log out" />
       <Label fx:id="listviewLabel" layoutX="1082.0" layoutY="26.0" text="Listview" />
       <Button fx:id="refreshButton" layoutX="912.0" layoutY="706.0" mnemonicParsing="false" text="Refresh" />
       <ListView fx:id="userListview" layoutX="912.0" layoutY="61.0" prefHeight="638.0" prefWidth="383.0" />
