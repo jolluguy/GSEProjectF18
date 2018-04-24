@@ -27,7 +27,7 @@ public class UserManager {
             user.setLastLoginTime(new Date());
             currentUser = user;
             UserOperations.getInstance().saveUser(currentUser);
-            System.out.println("Current user is " + currentUser.getUser());
+            System.out.println("Current user is " + currentUser.getUserName());
             System.out.println(currentUser);
             return user.getLevel();
         }
@@ -88,12 +88,12 @@ public class UserManager {
         }
 
         if (level == user.getLevel()) {
-            return ("Bruger " + user.getUser() + " har allerede level " + level);
+            return ("Bruger " + user.getUserName() + " har allerede level " + level);
         }
 
         user.setLevel(level);
         UserOperations.getInstance().saveUser(user);
 
-        return (user.getUser() + " har nu level " + user.getLevel());
+        return (user.getUserName() + " har nu level " + user.getLevel());
     }
 }

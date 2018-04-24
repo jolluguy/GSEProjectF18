@@ -101,7 +101,7 @@ public class UserOperations {
     }
 
     public void addUserToMap(User user) {
-        userMap.put(user.getUser(), user);
+        userMap.put(user.getUserName(), user);
         saveMap();
     }
     
@@ -110,7 +110,7 @@ public class UserOperations {
     }
 
     public void saveUser(User user) {
-        userMap.put(user.getUser(), user);
+        userMap.put(user.getUserName(), user);
         saveMap();
     }
     

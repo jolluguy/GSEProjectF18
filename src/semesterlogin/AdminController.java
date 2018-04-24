@@ -97,7 +97,6 @@ public class AdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        warningLabel.setText("");
 
         //Load listview
         obsList = FXCollections.observableArrayList();
@@ -153,10 +152,10 @@ public class AdminController implements Initializable {
             } else if (jobAdminRadio.isSelected()) {
                 level = 2;
             }
-
+            
             String StatusMessage = business.changeLevel(username, password, level);
             jobWarningLabel.setText(StatusMessage);
-
+            
         }
     }
     
@@ -174,5 +173,5 @@ public class AdminController implements Initializable {
         obsList.clear();
         obsList.addAll(business.getUserList());
     }
-
+    
 }

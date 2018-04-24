@@ -82,6 +82,14 @@ public class BusinessFacade implements IBusiness {
     public User getUser(String UserName, String pw) {
         return operations.getUser(UserName, pw);
     }
+    
+    public User getUserName(){
+        return getUserName();
+    }
+    
+    public User checkPassword(){
+        return checkPassword();
+    }
 
     public void addUserToMap(User user) {
         operations.addUserToMap(user);
