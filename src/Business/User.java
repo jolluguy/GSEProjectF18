@@ -7,6 +7,7 @@ package Business;
 
 import java.io.Serializable;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -14,7 +15,7 @@ import java.util.Date;
  * @author erso
  */
 public class User implements Serializable {
-
+    
     private String user;
     private String pw;
     private int level;
@@ -26,7 +27,7 @@ public class User implements Serializable {
         this.pw = pw;
         this.level = level;
         this.createdTime = new Date();
-        this.lastLoginTime = null;
+        this.lastLoginTime = new Date();
     }
 
     public String getUser() {
@@ -59,8 +60,9 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        String str = String.format("%1$-16s\t%2$d\t%3$s\t%4$s", user, level, df.format(createdTime), df.format(lastLoginTime));
-        return str;
+//        String str = String.format("%1$-16s\t%2$d\t%3$s\t%4$s", user, level, df.format(createdTime), df.format(lastLoginTime));
+        
+        return (user + "\t" + level + "\t" + df.format(createdTime) + "\t" + df.format(lastLoginTime));
     }
 
 }

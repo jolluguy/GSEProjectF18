@@ -39,11 +39,11 @@ public class UserManager {
         currentUser = null;
     }
 
-    public boolean addUser(String name, String pw1, int level) {
+    public boolean addUser(String name, String pw, int level) {
         // Hvis der allerede er en user med brugernavnet 'name' returneres 'false'
         // Ellers oprettes ny bruger som gemmes og der returneres 'true'
         if (!UserOperations.getInstance().userExists(name)) {
-            UserOperations.getInstance().addUserToMap(new User(name, pw1, level));
+            UserOperations.getInstance().addUserToMap(new User(name, pw, level));
             return true;
         } else {
             return false;

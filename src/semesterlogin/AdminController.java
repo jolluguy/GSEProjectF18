@@ -9,6 +9,7 @@ import Business.BusinessFacade;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -96,10 +97,10 @@ public class AdminController implements Initializable {
 
         warningLabel.setText("");
 
-//        //Load listview
-//        obsList = FXCollections.observableArrayList();
-//        userListview.setItems(obsList);
-//        obsList.addAll(business.getUserList());
+        //Load listview
+        obsList = FXCollections.observableArrayList();
+        userListview.setItems(obsList);
+        obsList.addAll(business.getUserList());
     }
 
     @FXML
@@ -136,6 +137,7 @@ public class AdminController implements Initializable {
         business.logOut();
     }
 
+    @FXML
     public void changeJob(ActionEvent event) {
         String username = jobUsernameField.getText();
         String password = jobPasswordField.getText();
@@ -156,12 +158,19 @@ public class AdminController implements Initializable {
         }
     }
     
+    @FXML
     public void jobCancel(ActionEvent event){
         jobUsernameField.clear();
         jobPasswordField.clear();
         jobAdminRadio.setSelected(false);
         jobCaseRadio.setSelected(false);
         jobWarningLabel.setText("");
+    }
+    
+    @FXML
+    public void refreshListview(ActionEvent event){
+        obsList.clear();
+        obsList.addAll(business.getUserList());
     }
 
 }

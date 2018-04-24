@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="semesterlogin.AdminController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="semesterlogin.AdminController">
    <children>
       <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="751.0" prefWidth="911.0" style="-fx-background-color: white;" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -83,12 +83,12 @@
                               <Font size="15.0" />
                            </font></RadioButton>
                         <Label fx:id="jobWarningLabel" layoutX="53.0" layoutY="628.0" prefHeight="21.0" prefWidth="484.0" />
-                        <Button fx:id="jobSavechangeButton" layoutX="27.0" layoutY="661.0" mnemonicParsing="false" style="-fx-background-color: F3F3F3; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Gem ændringer">
+                        <Button fx:id="jobSavechangeButton" layoutX="27.0" layoutY="661.0" mnemonicParsing="false" onAction="#changeJob" style="-fx-background-color: F3F3F3; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Gem ændringer">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Button>
-                        <Button fx:id="jobCancelButton" layoutX="186.0" layoutY="661.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: F3F3F3; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Annuller">
+                        <Button fx:id="jobCancelButton" layoutX="186.0" layoutY="661.0" mnemonicParsing="false" onAction="#jobCancel" style="-fx-background-color: F3F3F3; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Annuller">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -107,7 +107,7 @@
          <font>
             <Font size="15.0" />
          </font></Label>
-      <Button fx:id="refreshButton" layoutX="912.0" layoutY="706.0" mnemonicParsing="false" style="-fx-background-color: F3F3F3; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Genindlæs">
+      <Button fx:id="refreshButton" layoutX="912.0" layoutY="706.0" mnemonicParsing="false" onAction="#refreshListview" style="-fx-background-color: F3F3F3; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Genindlæs">
          <font>
             <Font size="15.0" />
          </font></Button>
