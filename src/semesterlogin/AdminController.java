@@ -88,6 +88,8 @@ public class AdminController implements Initializable {
     private Button jobCancelButton;
     @FXML
     private Label jobWarningLabel;
+    @FXML
+    private Button removeUserButton;
 
     /**
      * Initializes the controller class.

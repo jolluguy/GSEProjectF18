@@ -51,7 +51,7 @@ public class UserManager {
 
     }
 
-    public List<String> getUserList() {
+      public List<String> getUserList() {
 
         Collection<User> users = UserOperations.getInstance().getAllUsers();
         List<String> list = new LinkedList<>();
@@ -86,8 +86,8 @@ public class UserManager {
         if (user == currentUser) {
             return "Ændring ikke tilladt!";
         }
-        
-        if(level == user.getLevel()){
+
+        if (level == user.getLevel()) {
             return ("Bruger " + user.getUser() + " har allerede level " + level);
         }
 
