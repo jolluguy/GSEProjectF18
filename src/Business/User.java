@@ -44,7 +44,7 @@ public class User implements Serializable {
     
     
 
-    public boolean checkPassWord(String pw) {
+    public boolean checkPassword(String pw) {
         return this.pw.equals(pw);
     }
 
