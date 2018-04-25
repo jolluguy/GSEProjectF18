@@ -71,7 +71,7 @@ public class UserManager {
         if (!newPw1.equals(newPw2)) {
             return "Password matcher ikke!";
         }
-        currentUser.changePassWord(newPw2);
+        currentUser.changePassword(newPw2);
         UserOperations.getInstance().saveUser(currentUser);
         return "Password opdateret";
     }

@@ -48,7 +48,7 @@ public class User implements Serializable {
         return this.pw.equals(pw);
     }
 
-    public void changePassWord(String pw) {
+    public void changePassword(String pw) {
         this.pw = pw;
     }
 
