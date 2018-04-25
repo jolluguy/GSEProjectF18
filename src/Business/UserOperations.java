@@ -94,7 +94,7 @@ public class UserOperations {
     
     public User getUser(String userName, String pw) {
         User user = userMap.get(userName);
-        if(user != null && user.checkPassWord(pw)){
+        if(user != null && user.checkPassword(pw)){
             return user;
         }
         return null;

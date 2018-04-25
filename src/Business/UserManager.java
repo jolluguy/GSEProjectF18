@@ -65,7 +65,7 @@ public class UserManager {
 
     public String changePw(String oldPw, String newPw1, String newPw2) {
 
-        if (!currentUser.checkPassWord(oldPw)) {
+        if (!currentUser.checkPassword(oldPw)) {
             return "Password er forkert!";
         }
         if (!newPw1.equals(newPw2)) {
