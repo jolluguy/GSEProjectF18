@@ -7,7 +7,10 @@ package semesterlogin;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -15,6 +18,27 @@ import javafx.fxml.Initializable;
  * @author Alexa
  */
 public class CaseworkerController implements Initializable {
+
+    @FXML
+    private TextField cprTextField;
+    @FXML
+    private TextField phoneNumberPrefixTextField;
+    @FXML
+    private TextField phoneNumberTextField;
+    @FXML
+    private TextField firstNameTextField;
+    @FXML
+    private TextField lastNameTextField;
+    @FXML
+    private TextField streetNameTextField;
+    @FXML
+    private TextField streetNumberTextField;
+    @FXML
+    private TextField floorTextField;
+    @FXML
+    private TextField postalCodeTextField;
+    @FXML
+    private Button cprInfoButton;
 
     /**
      * Initializes the controller class.
