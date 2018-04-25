@@ -101,6 +101,11 @@
                      </children></AnchorPane>
                </content>
             </Tab>
+            <Tab text="Sæt bruger inaktiv">
+               <content>
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="722.0" prefWidth="1292.0" style="-fx-background-color: white;" />
+               </content>
+            </Tab>
         </tabs>
       </TabPane>
       <Label layoutX="14.0" layoutY="769.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="21.0" prefWidth="142.0" text="Gruppe 3" />
