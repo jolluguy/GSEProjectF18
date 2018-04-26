@@ -24,21 +24,13 @@ public class BusinessFacade implements IBusiness {
         this.data = data;
     }
 
-    private static BusinessFacade instance = null;
-
     public BusinessFacade() {
         manager = new UserManager();
     }
 
-    public static BusinessFacade getInstance() {
-        if (instance == null) {
-            instance = new BusinessFacade();
-        }
-        return instance;
-    }
-
     private UserManager manager; // Delegate all calls conserning users to the manager.
 
+    @Override
     public String addUser(String name, String pw1, String pw2, int level) {
         if (pw1.equals(pw2)) {
             
@@ -53,48 +45,61 @@ public class BusinessFacade implements IBusiness {
 
     }
 
+    @Override
     public int login(String name, String pw) {
         return manager.login(name, pw);
     }
 
+    @Override
     public void logOut() {
         manager.logOut();
     }
 
+    @Override
     public List<String> getUserList() {
         return manager.getUserList();
     }
 
+    @Override
     public String changePassword(String old, String new1, String new2) {
         return manager.changePw(old, new1, new2);
     }
 
+    @Override
     public String changeLevel(String name, String pw, int level) {
         return manager.changeLevel(name, pw, level);
     }
 
     private UserOperations operations;
 
+    @Override
     public boolean userExists(String userName) {
         return operations.userExists(userName);
     }
 
+    @Override
     public User getUser(String UserName, String pw) {
         return operations.getUser(UserName, pw);
     }
     
-    public User getUserName(){
-        return getUserName();
+    private User user;
+    
+    @Override
+    public String getUserName(){
+        return user.getUserName();
     }
     
-    public User checkPassword(){
-        return checkPassword();
+    @Override
+    public boolean checkPassword(String pw){
+        return user.checkPassword(pw);
     }
 
+    @Override
     public void addUserToMap(User user) {
         operations.addUserToMap(user);
     }
 
+    @Override
     public Collection<User> getAllUsers() {
         return operations.getAllUsers();
     }
