@@ -15,6 +15,7 @@ import java.util.Date;
  * @author erso
  */
 public class User implements Serializable {
+   
     
     private String userName;
     private String pw;
