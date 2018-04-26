@@ -14,23 +14,24 @@ import java.util.Date;
  * @author erso
  */
 public class User implements Serializable {
-
-    private String user;
+   
+    
+    private String userName;
     private String pw;
     private int level;
     private Date createdTime;
     private Date lastLoginTime;
 
     public User(String user, String pw, int level) {
-        this.user = user;
+        this.userName = user;
         this.pw = pw;
         this.level = level;
         this.createdTime = new Date();
-        this.lastLoginTime = null;
+        this.lastLoginTime = new Date();
     }
 
-    public String getUser() {
-        return user;
+    public String getUserName() {
+        return userName;
     }
 
     public int getLevel() {
@@ -43,11 +44,11 @@ public class User implements Serializable {
     
     
 
-    public boolean checkPassWord(String pw) {
+    public boolean checkPassword(String pw) {
         return this.pw.equals(pw);
     }
 
-    public void changePassWord(String pw) {
+    public void changePassword(String pw) {
         this.pw = pw;
     }
 
@@ -59,8 +60,9 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        String str = String.format("%1$-16s\t%2$d\t%3$s\t%4$s", user, level, df.format(createdTime), df.format(lastLoginTime));
-        return str;
+//        String str = String.format("%1$-16s\t%2$d\t%3$s\t%4$s", user, level, df.format(createdTime), df.format(lastLoginTime));
+        
+        return (userName + "\t" + level + "\t" + df.format(createdTime) + "\t" + df.format(lastLoginTime));
     }
 
 }

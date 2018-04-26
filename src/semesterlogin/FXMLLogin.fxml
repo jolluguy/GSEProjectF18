@@ -8,19 +8,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #C7C7C7;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="semesterlogin.FXMLLoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #C7C7C7; -fx-border-width: 2; -fx-border-color: black;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="semesterlogin.FXMLLoginController">
    <children>
-      <Label layoutX="234.0" layoutY="51.0" prefHeight="72.0" prefWidth="330.0" text="Sensum Udred">
+      <Label layoutX="245.0" layoutY="47.0" prefHeight="72.0" prefWidth="330.0" text="Sensum Udred">
          <font>
-            <Font name="Arial Bold" size="45.0" />
+            <Font name="Cambria Bold" size="45.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="559.0" prefHeight="40.0" prefWidth="131.0" text="Gruppe 3 A/S">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <TextField fx:id="usernameField" alignment="CENTER" layoutX="245.0" layoutY="196.0" prefHeight="40.0" prefWidth="309.0" promptText="Brugernavn" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-radius: 3; -fx-background-color: F3F3F3;">
+      <Label layoutX="14.0" layoutY="559.0" prefHeight="40.0" prefWidth="131.0" text="Gruppe 3" />
+      <TextField fx:id="usernameField" alignment="CENTER" layoutX="245.0" layoutY="199.0" prefHeight="40.0" prefWidth="309.0" promptText="Brugernavn" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-radius: 3; -fx-background-color: F3F3F3;">
          <font>
             <Font size="20.0" />
          </font></TextField>

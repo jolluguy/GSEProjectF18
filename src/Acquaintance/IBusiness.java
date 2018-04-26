@@ -37,5 +37,9 @@ public interface IBusiness {
    public void addUserToMap(User user);
    
    public Collection<User> getAllUsers();
+   
+   public String getUserName();
+   
+   public boolean checkPassword(String pw);
     
 }

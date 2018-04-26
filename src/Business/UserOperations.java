@@ -94,14 +94,14 @@ public class UserOperations {
     
     public User getUser(String userName, String pw) {
         User user = userMap.get(userName);
-        if(user != null && user.checkPassWord(pw)){
+        if(user != null && user.checkPassword(pw)){
             return user;
         }
         return null;
     }
 
     public void addUserToMap(User user) {
-        userMap.put(user.getUser(), user);
+        userMap.put(user.getUserName(), user);
         saveMap();
     }
     
@@ -110,7 +110,7 @@ public class UserOperations {
     }
 
     public void saveUser(User user) {
-        userMap.put(user.getUser(), user);
+        userMap.put(user.getUserName(), user);
         saveMap();
     }
     

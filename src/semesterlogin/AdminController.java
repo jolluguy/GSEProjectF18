@@ -5,10 +5,11 @@
  */
 package semesterlogin;
 
-import Business.BusinessFacade;
+import Acquaintance.IBusiness;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,8 +33,8 @@ import javafx.stage.Stage;
  * @author Alexa
  */
 public class AdminController implements Initializable {
-
-    private Business.BusinessFacade business = BusinessFacade.getInstance();
+    
+    private IBusiness business = SemesterLogin.getInstance().getBusiness();
 
     @FXML
     private Label usernameLabel;
@@ -87,6 +88,8 @@ public class AdminController implements Initializable {
     private Button jobCancelButton;
     @FXML
     private Label jobWarningLabel;
+    @FXML
+    private Button removeUserButton;
 
     /**
      * Initializes the controller class.
@@ -94,12 +97,11 @@ public class AdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        warningLabel.setText("");
 
-//        //Load listview
-//        obsList = FXCollections.observableArrayList();
-//        userListview.setItems(obsList);
-//        obsList.addAll(business.getUserList());
+        //Load listview
+        obsList = FXCollections.observableArrayList();
+        userListview.setItems(obsList);
+        obsList.addAll(business.getUserList());
     }
 
     @FXML
@@ -120,6 +122,7 @@ public class AdminController implements Initializable {
 
             String statusmessage = business.addUser(userName, password1, password2, level);
             warningLabel.setText(statusmessage);
+            refreshListview(event);
 
         }
     }
@@ -150,10 +153,10 @@ public class AdminController implements Initializable {
             } else if (jobAdminRadio.isSelected()) {
                 level = 2;
             }
-
+            
             String StatusMessage = business.changeLevel(username, password, level);
             jobWarningLabel.setText(StatusMessage);
-
+            
         }
     }
     
@@ -165,5 +168,11 @@ public class AdminController implements Initializable {
         jobCaseRadio.setSelected(false);
         jobWarningLabel.setText("");
     }
-
+    
+    @FXML
+    public void refreshListview(ActionEvent event){
+        obsList.clear();
+        obsList.addAll(business.getUserList());
+    }
+    
 }

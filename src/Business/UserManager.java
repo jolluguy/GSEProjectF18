@@ -27,7 +27,7 @@ public class UserManager {
             user.setLastLoginTime(new Date());
             currentUser = user;
             UserOperations.getInstance().saveUser(currentUser);
-            System.out.println("Current user is " + currentUser.getUser());
+            System.out.println("Current user is " + currentUser.getUserName());
             System.out.println(currentUser);
             return user.getLevel();
         }
@@ -39,11 +39,11 @@ public class UserManager {
         currentUser = null;
     }
 
-    public boolean addUser(String name, String pw1, int level) {
+    public boolean addUser(String name, String pw, int level) {
         // Hvis der allerede er en user med brugernavnet 'name' returneres 'false'
         // Ellers oprettes ny bruger som gemmes og der returneres 'true'
         if (!UserOperations.getInstance().userExists(name)) {
-            UserOperations.getInstance().addUserToMap(new User(name, pw1, level));
+            UserOperations.getInstance().addUserToMap(new User(name, pw, level));
             return true;
         } else {
             return false;
@@ -51,7 +51,7 @@ public class UserManager {
 
     }
 
-    public List<String> getUserList() {
+      public List<String> getUserList() {
 
         Collection<User> users = UserOperations.getInstance().getAllUsers();
         List<String> list = new LinkedList<>();
@@ -65,13 +65,13 @@ public class UserManager {
 
     public String changePw(String oldPw, String newPw1, String newPw2) {
 
-        if (!currentUser.checkPassWord(oldPw)) {
+        if (!currentUser.checkPassword(oldPw)) {
             return "Password er forkert!";
         }
         if (!newPw1.equals(newPw2)) {
             return "Password matcher ikke!";
         }
-        currentUser.changePassWord(newPw2);
+        currentUser.changePassword(newPw2);
         UserOperations.getInstance().saveUser(currentUser);
         return "Password opdateret";
     }
@@ -86,14 +86,14 @@ public class UserManager {
         if (user == currentUser) {
             return "Ændring ikke tilladt!";
         }
-        
-        if(level == user.getLevel()){
-            return ("Bruger " + user.getUser() + " har allerede level " + level);
+
+        if (level == user.getLevel()) {
+            return ("Bruger " + user.getUserName() + " har allerede level " + level);
         }
 
         user.setLevel(level);
         UserOperations.getInstance().saveUser(user);
 
-        return (user.getUser() + " har nu level " + user.getLevel());
+        return (user.getUserName() + " har nu level " + user.getLevel());
     }
 }
