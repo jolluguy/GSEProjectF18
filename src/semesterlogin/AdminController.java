@@ -122,6 +122,7 @@ public class AdminController implements Initializable {
 
             String statusmessage = business.addUser(userName, password1, password2, level);
             warningLabel.setText(statusmessage);
+            refreshListview(event);
 
         }
     }
