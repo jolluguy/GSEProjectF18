@@ -6,11 +6,13 @@
 package Starter;
 
 import Acquaintance.IBusiness;
-import Acquaintance.IData;
 import Acquaintance.IGUI;
 import Business.BusinessFacade;
-import Data.DataFacade;
+import DataPersistens.DataFacade;
 import semesterlogin.SemesterLogin;
+import Acquaintance.IDataPersistens;
+import Acquaintance.ILoginPersistens;
+import LoginPersistens.LoginFacade;
 
 /**
  *
@@ -24,8 +26,10 @@ public class Starter {
     public static void main(String[] args) {
         IGUI gui = new SemesterLogin();
         IBusiness business = new BusinessFacade();
-        IData data = new DataFacade();
-        business.injectionData(data);
+        IDataPersistens dataPersistens = new DataFacade();
+        ILoginPersistens loginPersistens = new LoginFacade();
+        business.injectLoginPersistens(loginPersistens);
+        business.injectionDataPersistens(dataPersistens);
         gui.injectBusiness(business);
         
         System.out.println("Ready to start system");

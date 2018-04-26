@@ -3,14 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Acquaintance;
+package LoginPersistens;
+
+import Acquaintance.ILoginPersistens;
+
+
 
 /**
  *
- * @author Alexa
+ * @author Rol's studie PC
  */
-public interface IData {
-    
-    
+public class LoginFacade implements ILoginPersistens {
     
 }

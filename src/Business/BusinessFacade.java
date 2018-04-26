@@ -6,9 +6,10 @@
 package Business;
 
 import Acquaintance.IBusiness;
-import Acquaintance.IData;
 import java.util.Collection;
 import java.util.List;
+import Acquaintance.IDataPersistens;
+import Acquaintance.ILoginPersistens;
 
 /**
  *
@@ -16,12 +17,18 @@ import java.util.List;
  */
 public class BusinessFacade implements IBusiness {
 
-    private IData data;
+    private IDataPersistens dataPersistens;
+    private ILoginPersistens loginPersistens;
 
     //Data layer injection
     @Override
-    public void injectionData(IData data) {
-        this.data = data;
+    public void injectionDataPersistens(IDataPersistens dataPersistens) {
+        this.dataPersistens = dataPersistens;
+    }
+    
+    @Override
+    public void injectLoginPersistens(ILoginPersistens loginPersistens) {
+        this.loginPersistens = loginPersistens;
     }
 
     public BusinessFacade() {

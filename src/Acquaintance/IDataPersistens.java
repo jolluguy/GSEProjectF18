@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Data;
-
-import Acquaintance.IData;
+package Acquaintance;
 
 /**
  *
  * @author Alexa
  */
-public class DataFacade implements IData {
+public interface IDataPersistens {
+    
     
     
 }
