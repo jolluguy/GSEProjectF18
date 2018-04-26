@@ -31,6 +31,8 @@ import javafx.stage.Stage;
  */
 public class FXMLLoginController implements Initializable {
     
+    private IBusiness business = SemesterLogin.getInstance().getBusiness();
+    
     @FXML
     private TextField usernameField;
     @FXML
@@ -62,7 +64,7 @@ public class FXMLLoginController implements Initializable {
         String userName = usernameField.getText();
         String password = passwordField.getText();
         
-        int result = Business.BusinessFacade.getInstance().login(userName, password);
+        int result = business.login(userName, password);
         
         if(result == 1){
             

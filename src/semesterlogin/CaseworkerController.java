@@ -5,6 +5,7 @@
  */
 package semesterlogin;
 
+import Acquaintance.IBusiness;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -18,6 +19,8 @@ import javafx.scene.control.TextField;
  * @author Alexa
  */
 public class CaseworkerController implements Initializable {
+    
+    private IBusiness business = SemesterLogin.getInstance().getBusiness();
 
     @FXML
     private TextField cprTextField;

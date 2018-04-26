@@ -5,6 +5,7 @@
  */
 package semesterlogin;
 
+import Acquaintance.IBusiness;
 import Business.BusinessFacade;
 import java.io.IOException;
 import java.net.URL;
@@ -33,8 +34,8 @@ import javafx.stage.Stage;
  * @author Alexa
  */
 public class AdminController implements Initializable {
-
-    private Business.BusinessFacade business = BusinessFacade.getInstance();
+    
+    private IBusiness business = SemesterLogin.getInstance().getBusiness();
 
     @FXML
     private Label usernameLabel;
