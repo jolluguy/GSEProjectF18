@@ -17,64 +17,6 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="76.0" layoutY="57.0" text="Borgeroplysninger" underline="true">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="cprTextField" layoutX="325.0" layoutY="167.0" prefHeight="26.0" prefWidth="240.0" />
-                        <TextField fx:id="phoneNumberPrefixTextField" layoutX="325.0" layoutY="440.0" prefHeight="26.0" prefWidth="44.0" text="+45" />
-                        <Label layoutX="174.0" layoutY="167.0" text="CPR">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="386.0" layoutY="146.0" text="Eks.: 123456-1234" textFill="#949494" />
-                        <TextField fx:id="phoneNumberTextField" layoutX="374.0" layoutY="440.0" prefHeight="26.0" prefWidth="191.0" />
-                        <Label layoutX="175.0" layoutY="439.0" text="Telefonnummer">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="174.0" layoutY="213.0" text="Fornavn">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="175.0" layoutY="259.0" text="Efternavn">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="175.0" layoutY="304.0" text="Vejnavn &amp; nr.">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="firstNameTextField" layoutX="325.0" layoutY="213.0" prefHeight="26.0" prefWidth="240.0" />
-                        <TextField fx:id="lastNameTextField" layoutX="325.0" layoutY="260.0" prefHeight="26.0" prefWidth="240.0" />
-                        <Label layoutX="175.0" layoutY="395.0" prefHeight="27.0" prefWidth="107.0" text="Postnummer">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="streetNameTextField" layoutX="325.0" layoutY="305.0" prefHeight="26.0" prefWidth="178.0" />
-                        <TextField fx:id="streetNumberTextField" layoutX="514.0" layoutY="305.0" prefHeight="26.0" prefWidth="50.0" />
-                        <Label layoutX="174.0" layoutY="349.0" text="Evt. etage">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="floorTextField" layoutX="325.0" layoutY="350.0" prefHeight="26.0" prefWidth="240.0" />
-                        <TextField fx:id="postalCodeTextField" layoutX="325.0" layoutY="395.0" prefHeight="26.0" prefWidth="240.0" />
-                        <Button fx:id="cprInfoButton" layoutX="577.0" layoutY="167.0" mnemonicParsing="false" text="Hent info" />
-                     </children></AnchorPane>
-            </content>
-          </Tab>
-          <Tab text="Henvendelse">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
                         <ScrollPane hmax="722.0" prefHeight="762.0" prefViewportHeight="1000.0" prefViewportWidth="771.0" prefWidth="1300.0" vmax="1080.0">
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2000.0" prefWidth="1299.0">
@@ -94,7 +36,54 @@
                                           <Font size="28.0" />
                                        </font>
                                     </Label>
-                                    <TextField alignment="TOP_LEFT" layoutX="118.0" layoutY="687.0" prefHeight="445.0" prefWidth="1050.0" />
+                                    <TextField fx:id="descriptionTextField" alignment="TOP_LEFT" layoutX="118.0" layoutY="687.0" prefHeight="445.0" prefWidth="1050.0" />
+                                    <Label layoutX="192.0" layoutY="257.0" text="CPR">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="192.0" layoutY="309.0" text="Fornavn">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="191.0" layoutY="361.0" text="Efternavn">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="192.0" layoutY="416.0" text="Vejnavn &amp; nr.">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="192.0" layoutY="470.0" text="Evt. etage">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="193.0" layoutY="527.0" text="Postnummer &amp; by">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="193.0" layoutY="582.0" text="Telefonnummer">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="cprTextField" layoutX="440.0" layoutY="255.0" prefHeight="31.0" prefWidth="300.0" />
+                                    <TextField fx:id="firstNameTextField" layoutX="440.0" layoutY="307.0" prefHeight="31.0" prefWidth="300.0" />
+                                    <TextField fx:id="lastNameTextField" layoutX="440.0" layoutY="359.0" prefHeight="31.0" prefWidth="300.0" />
+                                    <TextField fx:id="streetNameTextField" layoutX="440.0" layoutY="414.0" prefHeight="31.0" prefWidth="235.0" />
+                                    <TextField fx:id="streetNumberTextField" layoutX="696.0" layoutY="414.0" prefHeight="31.0" prefWidth="45.0" />
+                                    <TextField fx:id="floorTextField" layoutX="440.0" layoutY="468.0" prefHeight="31.0" prefWidth="300.0" />
+                                    <TextField fx:id="postalCodeTextField" layoutX="440.0" layoutY="525.0" prefHeight="31.0" prefWidth="74.0" />
+                                    <TextField fx:id="cityTextField" layoutX="545.0" layoutY="525.0" prefHeight="31.0" prefWidth="195.0" />
+                                    <TextField fx:id="phoneNumberPrefixTextField" layoutX="440.0" layoutY="580.0" prefHeight="31.0" prefWidth="45.0" text="+45" />
+                                    <TextField fx:id="phoneNumberTextField" layoutX="506.0" layoutY="580.0" prefHeight="31.0" prefWidth="235.0" />
+                                    <Button fx:id="cprInfoButton" layoutX="763.0" layoutY="255.0" mnemonicParsing="false" text="Hent info" />
+                                    <Label layoutX="532.0" layoutY="224.0" text="Eks: 123456-1234" textFill="#bfbfbf" />
                                  </children></AnchorPane>
                           </content>
                         </ScrollPane>

@@ -39,6 +39,10 @@ public class CaseworkerController implements Initializable {
     private TextField postalCodeTextField;
     @FXML
     private Button cprInfoButton;
+    @FXML
+    private TextField descriptionTextField;
+    @FXML
+    private TextField cityTextField;
 
     /**
      * Initializes the controller class.
