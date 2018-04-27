@@ -28,6 +28,10 @@ public class BusinessController {
         
         if  (returnMessage == false) { //Pseudo code
             DBConnectionError();
+            return false;
+        }
+        else{
+            return true;
         }
     }    
     public void DBConnectionError(){
