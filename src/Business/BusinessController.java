@@ -12,17 +12,24 @@ package Business;
 public class BusinessController {
     
     
-    public boolean sendToDB(){
-        
-    }
     public boolean createInquiry(int cprNumber, String problemDescription, String firstname, String surname, String roadName, String houseNumber, String floor, int postNumber, String city, String tlfNumber){
         Inquiry inquiry = new Inquiry(cprNumber, problemDescription, firstname, surname, roadName, houseNumber, floor, postNumber, city, tlfNumber);
         
-        if () {
-            
+        if (true) {
+            return true;
         }
-        
+        else{
+            return false;
+        }
     }
+    public boolean sendToDB(Inquiry inquiry){
+        
+        
+        
+        if  (returnMessage == false) { //Pseudo code
+            DBConnectionError();
+        }
+    }    
     public void DBConnectionError(){
         
     }

@@ -1,20 +1,18 @@
+package Business;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business;
-
-import Acquaintance.IInquiry;
 
 /**
  *
  * @author goope
  */
-public class Inquiry implements IInquiry{
+public class Citizen {
     
     private int cprNumber;
-    private String problemDescription;
     private String firstname;
     private String surname;
     private String roadName;
@@ -24,9 +22,8 @@ public class Inquiry implements IInquiry{
     private String city;
     private String tlfNumber;
     
-    Inquiry (int cprNumber, String problemDescription, String firstname, String surname, String roadName, String houseNumber, String floor, int postNumber, String city, String tlfNumber) {
+    Citizen (int cprNumber, String firstname, String surname, String roadName, String houseNumber, String floor, int postNumber, String city, String tlfNumber) {
         this.cprNumber = cprNumber;
-        this.problemDescription = problemDescription;
         this.firstname = firstname;
         this.surname = surname;
         this.roadName = roadName;
@@ -36,7 +33,6 @@ public class Inquiry implements IInquiry{
         this.city = city;
         this.tlfNumber = tlfNumber;
         
-        Citizen citizen = new Citizen(cprNumber, firstname, surname, roadName, houseNumber, floor, postNumber, city, tlfNumber);
+        CPR cpr = new CPR(cprNumber);
     }
-    
 }
