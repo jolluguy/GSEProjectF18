@@ -96,7 +96,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ScrollPane hmax="722.0" prefHeight="766.0" prefWidth="1300.0" vmax="1080.0" vvalue="198.0">
+                        <ScrollPane hmax="722.0" prefHeight="766.0" prefWidth="1300.0" vmax="1080.0" vvalue="659.0">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1800.0" prefWidth="1299.0">
                                  <children>
@@ -119,7 +119,7 @@
                                     <TextField layoutX="162.0" layoutY="298.0" prefHeight="250.0" prefWidth="1000.0" />
                                     <Label layoutX="162.0" layoutY="609.0" text="Er det klart hvad borgeren søger om?">
                                        <font>
-                                          <Font size="18.0" />
+                                          <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
                                     <CheckBox fx:id="inquiryYesCheckBox" layoutX="495.0" layoutY="615.0" mnemonicParsing="false" text="Ja" />
@@ -131,6 +131,14 @@
                                        </font>
                                     </Label>
                                     <CheckBox fx:id="activity104CheckBox" layoutX="161.0" layoutY="777.0" mnemonicParsing="false" text="Aktivitets- og samværsydelse (§104)" />
+                                    <CheckBox fx:id="carriageCheckBox" layoutX="161.0" layoutY="819.0" mnemonicParsing="false" text="Befordring" />
+                                    <CheckBox fx:id="carriage105CheckBox" layoutX="186.0" layoutY="850.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (§105)" />
+                                    <CheckBox fx:id="carriage25CheckBox" layoutX="186.0" layoutY="879.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (Hjælpemiddelbekendtgørelsen §25)" />
+                                    <CheckBox fx:id="carriage5CheckBox" layoutX="186.0" layoutY="909.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (Lov om specialundervisning til voksne §5)" />
+                                    <CheckBox fx:id="carriage10CheckBox" layoutX="186.0" layoutY="939.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (Lov om ungdomsuddannelse for unge med særlige behov §10)" />
+                                    <CheckBox fx:id="carriage170CheckBox" layoutX="186.0" layoutY="970.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (SUL §170)" />
+                                    <CheckBox fx:id="carriage172CheckBox" layoutX="186.0" layoutY="1000.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (SUL §172)" />
+                                    <CheckBox fx:id="individualCarriageCheckBox" layoutX="186.0" layoutY="1029.0" mnemonicParsing="false" text="Individuel befordring (§117)" />
                                  </children></AnchorPane>
                            </content>
                         </ScrollPane>
