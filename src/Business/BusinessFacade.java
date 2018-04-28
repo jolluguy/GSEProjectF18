@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.List;
 import Acquaintance.IDataPersistens;
 import Acquaintance.ILoginPersistens;
+import Acquaintance.IUser;
 
 /**
  *
@@ -103,8 +104,8 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public void addUserToMap(User user) {
-        operations.addUserToMap(user);
+    public void addUser(IUser user) {
+        loginPersistens.addUser((User) user);
     }
 
     @Override
