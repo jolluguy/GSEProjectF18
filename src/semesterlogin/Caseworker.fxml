@@ -96,7 +96,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ScrollPane hmax="722.0" prefHeight="766.0" prefWidth="1300.0" vmax="1080.0" vvalue="659.0">
+                        <ScrollPane hmax="722.0" prefHeight="766.0" prefWidth="1300.0" vmax="1080.0" vvalue="1080.0">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1800.0" prefWidth="1299.0">
                                  <children>
@@ -145,6 +145,11 @@
                                     <CheckBox fx:id="treatmentTherapyCheckBox" layoutX="186.0" layoutY="1162.0" mnemonicParsing="false" text="Terapi (§102)" />
                                     <CheckBox fx:id="treatmentPsykCheckBox" layoutX="186.0" layoutY="1192.0" mnemonicParsing="false" text="Psykologisk behandling (§102)" />
                                     <CheckBox fx:id="treamentSpecialDrCheckBox" layoutX="186.0" layoutY="1221.0" mnemonicParsing="false" text="Speciallæge behandling (§102)" />
+                                    <CheckBox fx:id="protectedEmploymentCheckBox" layoutX="166.0" layoutY="1262.0" mnemonicParsing="false" text="Beskyttet beskæftigelsesydelse (§103)" />
+                                    <CheckBox fx:id="dayReliefCheckBox" layoutX="166.0" layoutY="1299.0" mnemonicParsing="false" text="Dagaflastning (§84)" />
+                                    <CheckBox fx:id="cashBenefitCheckBox" layoutX="166.0" layoutY="1340.0" mnemonicParsing="false" text="Kontantydelse" />
+                                    <CheckBox fx:id="remunerationCheckBox" layoutX="186.0" layoutY="1369.0" mnemonicParsing="false" text="Arbejdsvederlag (§105)" />
+                                    <CheckBox fx:id="additionalCostCheckBox" layoutX="186.0" layoutY="1400.0" mnemonicParsing="false" text="Dækning af merudgift (§100)" />
                                  </children></AnchorPane>
                            </content>
                         </ScrollPane>
