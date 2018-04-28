@@ -5,6 +5,8 @@
  */
 package Business;
 
+import Acquaintance.IInquiry;
+
 /**
  *
  * @author goope
@@ -22,7 +24,7 @@ public class BusinessController {
             return false;
         }
     }
-    public boolean sendToDB(Inquiry inquiry){
+    public boolean sendToDB(IInquiry inquiry){
         
         
         
