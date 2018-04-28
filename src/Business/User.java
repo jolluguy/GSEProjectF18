@@ -5,6 +5,7 @@
  */
 package Business;
 
+import Acquaintance.IUser;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.Date;
@@ -13,7 +14,7 @@ import java.util.Date;
  *
  * @author erso
  */
-public class User implements Serializable {
+public class User implements IUser, Serializable{
    
     
     private String userName;

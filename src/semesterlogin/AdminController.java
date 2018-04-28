@@ -34,8 +34,6 @@ import javafx.stage.Stage;
  */
 public class AdminController implements Initializable {
     
-    private IBusiness business = GUIFacade.getInstance().getBusiness();
-
     @FXML
     private Label usernameLabel;
     @FXML
@@ -90,6 +88,9 @@ public class AdminController implements Initializable {
     private Label jobWarningLabel;
     @FXML
     private Button removeUserButton;
+    
+    
+    private IBusiness business = GUIFacade.getInstance().getBusiness();
 
     /**
      * Initializes the controller class.
@@ -105,7 +106,7 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    public void addUser(ActionEvent event) {
+    public void createUser(ActionEvent event) {
         String userName = usernameField.getText();
         String password1 = password1Field.getText();
         String password2 = password2Field.getText();
@@ -120,7 +121,7 @@ public class AdminController implements Initializable {
                 level = 2;
             }
 
-            String statusmessage = business.addUser(userName, password1, password2, level);
+            String statusmessage = business.createUser(userName, password1, password2);
             warningLabel.setText(statusmessage);
             refreshListview(event);
 

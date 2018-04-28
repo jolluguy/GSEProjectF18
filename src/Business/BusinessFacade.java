@@ -21,6 +21,8 @@ public class BusinessFacade implements IBusiness {
 
     private IDataPersistens dataPersistens;
     private ILoginPersistens loginPersistens;
+    
+    private UserOperations userOperations;
 
     //Data layer injection
     @Override
@@ -40,18 +42,9 @@ public class BusinessFacade implements IBusiness {
     private UserManager manager; // Delegate all calls conserning users to the manager.
 
     @Override
-    public String addUser(String name, String pw1, String pw2, int level) {
-        if (pw1.equals(pw2)) {
-            
-            boolean succes = manager.addUser(name, pw1, level);
-            
-            if (succes) {
-                return "Bruger " + name + " tilføjet.";
-            } else {
-                return "Fejl: " + name + " eksisterer allerede!";
-            }
-        } else return "Passwords matcher ikke!";
-
+    public String createUser(String userName, String password1, String password2) {
+        userOperations.createUser(userName, password1, password2);
+        return "Complete";
     }
 
     @Override
@@ -87,7 +80,7 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public User getUser(String UserName, String pw) {
+    public IUser getUser(String UserName, String pw) {
         return operations.getUser(UserName, pw);
     }
     
@@ -104,8 +97,8 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public void addUser(IUser user) {
-        loginPersistens.addUser((User) user);
+    public void addUser(String userName, String password) {
+        loginPersistens.addUser(userName, password);
     }
 
     @Override

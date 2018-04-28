@@ -22,7 +22,7 @@ public interface ILoginPersistens {
     
     Collection<User> getAllUsers();
 
-    void addUser(User user);
+    void addUser(String userName, String password);
     
     void saveUser(User user);
 }

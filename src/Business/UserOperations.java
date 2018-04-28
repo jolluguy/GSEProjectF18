@@ -13,7 +13,7 @@ import Acquaintance.IUser;
  */
 public class UserOperations {
     
-    private ILoginPersistens loginPersistens;
+    BusinessFacade business;
     
     private static UserOperations instance = null;
 
@@ -26,8 +26,19 @@ public class UserOperations {
 
     // private methods to read and write a whole Map.
 
-    private void addUser(IUser user){
-        loginPersistens.addUser((User) user);
+    protected String createUser(String userName, String password1, String password2) {
+        if (password1.equals(password2)) {
+            
+            boolean succes = !userExists(userName);
+            
+            if (succes) {
+                business.addUser(userName, password1);
+                return "Bruger " + userName + " tilføjet.";
+            } else {
+                return "Fejl: " + userName + " eksisterer allerede!";
+            }
+        } else return "Passwords matcher ikke!";
+        
     } 
 
     
