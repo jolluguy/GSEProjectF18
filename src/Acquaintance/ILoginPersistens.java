@@ -5,7 +5,6 @@
  */
 package Acquaintance;
 
-import Business.User;
 import java.util.Collection;
 
 /**
@@ -18,11 +17,11 @@ public interface ILoginPersistens {
     
     void saveMap();
     
-    User getUser(String userName, String pw);
+    IUser getUser(String userName, String pw);
     
-    Collection<User> getAllUsers();
+    Collection<IUser> getAllUsers();
 
     void addUser(String userName, String password);
     
-    void saveUser(User user);
+    void saveUser(IUser user);
 }

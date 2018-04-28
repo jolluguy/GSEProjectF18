@@ -5,6 +5,7 @@
  */
 package LoginPersistens;
 
+import Acquaintance.IUser;
 import Business.User;
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,7 +24,7 @@ import java.util.Map;
  */
 public class Operations {
 
-    protected Map<String, User> userMap;
+    protected Map<String, IUser> userMap;
     private File file = new File("UserSetFile.obj");
 
     protected void readMap() {
@@ -36,7 +37,7 @@ public class Operations {
             try {
                 ois = new ObjectInputStream(new FileInputStream(file));
                 Object obj = ois.readObject();
-                userMap = (Map<String, User>) obj;
+                userMap = (Map<String, IUser>) obj;
 
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
@@ -73,15 +74,15 @@ public class Operations {
         }
     }
 
-    protected User getUser(String userName, String pw) {
-        User user = userMap.get(userName);
+    protected IUser getUser(String userName, String pw) {
+        IUser user = userMap.get(userName);
         if (user != null && user.checkPassword(pw)) {
             return user;
         }
         return null;
     }
 
-    public Collection<User> getAllUsers() {
+    public Collection<IUser> getAllUsers() {
         readMap(); //Updates userMap before sending info
         return userMap.values();
     }
@@ -92,7 +93,7 @@ public class Operations {
     }
 
 
-    public void saveUser(User user) {
+    public void saveUser(IUser user) {
         userMap.put(user.getUserName(), user);
         saveMap();
     }

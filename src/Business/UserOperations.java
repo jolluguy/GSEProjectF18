@@ -7,6 +7,9 @@ package Business;
 
 import Acquaintance.ILoginPersistens;
 import Acquaintance.IUser;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 /**
  *
  * @author Alexa
@@ -16,6 +19,8 @@ public class UserOperations {
     BusinessFacade business;
     
     private static UserOperations instance = null;
+    
+    private Map users = new HashMap<>();
 
     public static UserOperations getInstance() {
         if (instance == null) {
@@ -40,6 +45,10 @@ public class UserOperations {
         } else return "Passwords matcher ikke!";
         
     } 
+    
+    protected Collection<IUser> getAllUsers() {
+        business.getAllUsers();
+    }
 
     
 

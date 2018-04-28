@@ -21,7 +21,7 @@ public class BusinessFacade implements IBusiness {
 
     private IDataPersistens dataPersistens;
     private ILoginPersistens loginPersistens;
-    
+
     private UserOperations userOperations;
 
     //Data layer injection
@@ -29,7 +29,7 @@ public class BusinessFacade implements IBusiness {
     public void injectionDataPersistens(IDataPersistens dataPersistens) {
         this.dataPersistens = dataPersistens;
     }
-    
+
     @Override
     public void injectLoginPersistens(ILoginPersistens loginPersistens) {
         this.loginPersistens = loginPersistens;
@@ -43,8 +43,7 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public String createUser(String userName, String password1, String password2) {
-        userOperations.createUser(userName, password1, password2);
-        return "Complete";
+        return userOperations.createUser(userName, password1, password2);
     }
 
     @Override
@@ -83,16 +82,16 @@ public class BusinessFacade implements IBusiness {
     public IUser getUser(String UserName, String pw) {
         return operations.getUser(UserName, pw);
     }
-    
+
     private User user;
-    
+
     @Override
-    public String getUserName(){
+    public String getUserName() {
         return user.getUserName();
     }
-    
+
     @Override
-    public boolean checkPassword(String pw){
+    public boolean checkPassword(String pw) {
         return user.checkPassword(pw);
     }
 
@@ -102,8 +101,8 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public Collection<User> getAllUsers() {
-        return operations.getAllUsers();
+    public Collection<IUser> getAllUsers() {
+        return loginPersistens.getAllUsers();
     }
 
 }
