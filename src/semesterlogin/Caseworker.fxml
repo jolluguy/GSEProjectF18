@@ -150,6 +150,18 @@
                                     <CheckBox fx:id="cashBenefitCheckBox" layoutX="166.0" layoutY="1340.0" mnemonicParsing="false" text="Kontantydelse" />
                                     <CheckBox fx:id="remunerationCheckBox" layoutX="186.0" layoutY="1369.0" mnemonicParsing="false" text="Arbejdsvederlag (§105)" />
                                     <CheckBox fx:id="additionalCostCheckBox" layoutX="186.0" layoutY="1400.0" mnemonicParsing="false" text="Dækning af merudgift (§100)" />
+                                    <CheckBox fx:id="controlCheckBoX" layoutX="164.0" layoutY="1441.0" mnemonicParsing="false" text="Kontrolordning" />
+                                    <CheckBox fx:id="control126CheckBox" layoutX="184.0" layoutY="1468.0" mnemonicParsing="false" text="Fastholdelse (§126)" />
+                                    <CheckBox fx:id="control127CheckBox" layoutX="184.0" layoutY="1498.0" mnemonicParsing="false" text="Fastholdelse (§127)" />
+                                    <CheckBox fx:id="control128CheckBox" layoutX="184.0" layoutY="1528.0" mnemonicParsing="false" text="Fastholdelse (§128)" />
+                                    <CheckBox fx:id="control125CheckBox" layoutX="184.0" layoutY="1558.0" mnemonicParsing="false" text="Kontrol med færden (§125)" />
+                                    <Separator layoutX="148.0" layoutY="1785.0" prefHeight="1.0" prefWidth="1003.0" style="-fx-background-color: black;" />
+                                    <CheckBox fx:id="institutioningCheckBox" layoutX="164.0" layoutY="1598.0" mnemonicParsing="false" text="Ophold" />
+                                    <CheckBox fx:id="_24HourReliefCheckBox" layoutX="184.0" layoutY="1627.0" mnemonicParsing="false" text="Døgnaflastning (§84)" />
+                                    <CheckBox fx:id="longInstitutionalisingCheckBox" layoutX="184.0" layoutY="1655.0" mnemonicParsing="false" text="Længerevarende ophold (§108)" />
+                                    <CheckBox fx:id="temporaryInstitutionalising80CheckBox" layoutX="184.0" layoutY="1683.0" mnemonicParsing="false" text="Midlertidigt ophold (§80)" />
+                                    <CheckBox fx:id="temporaryInstitutionalising107CheckBox" layoutX="184.0" layoutY="1712.0" mnemonicParsing="false" text="Midlertidigt ophold (§107)" />
+                                    <CheckBox fx:id="temporaryInstitutionalising109CheckBox" layoutX="184.0" layoutY="1739.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="164.0" text="Midlertidigt ophold (§109)" />
                                  </children></AnchorPane>
                            </content>
                         </ScrollPane>
