@@ -6,14 +6,14 @@
 package Business;
 
 import Acquaintance.ILoginPersistens;
-
+import Acquaintance.IUser;
 /**
  *
  * @author Alexa
  */
 public class UserOperations {
     
-    private ILoginPersistens loginPersistens = 
+    private ILoginPersistens loginPersistens;
     
     private static UserOperations instance = null;
 
@@ -26,7 +26,9 @@ public class UserOperations {
 
     // private methods to read and write a whole Map.
 
-    private void addUser()
+    private void addUser(IUser user){
+        loginPersistens.addUser((User) user);
+    } 
 
     
 
