@@ -20,7 +20,7 @@ import javafx.scene.control.TextField;
  */
 public class CaseworkerController implements Initializable {
     
-    private IBusiness business = SemesterLogin.getInstance().getBusiness();
+    private IBusiness business = GUIFacade.getInstance().getBusiness();
 
     @FXML
     private TextField cprTextField;

@@ -31,7 +31,7 @@ import javafx.stage.Stage;
  */
 public class FXMLLoginController implements Initializable {
     
-    private IBusiness business = SemesterLogin.getInstance().getBusiness();
+    private IBusiness business = GUIFacade.getInstance().getBusiness();
     
     @FXML
     private TextField usernameField;

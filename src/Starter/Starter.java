@@ -9,7 +9,7 @@ import Acquaintance.IBusiness;
 import Acquaintance.IGUI;
 import Business.BusinessFacade;
 import DataPersistens.DataFacade;
-import semesterlogin.SemesterLogin;
+import semesterlogin.GUIFacade;
 import Acquaintance.IDataPersistens;
 import Acquaintance.ILoginPersistens;
 import LoginPersistens.LoginFacade;
@@ -24,7 +24,7 @@ public class Starter {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        IGUI gui = new SemesterLogin();
+        IGUI gui = new GUIFacade();
         IBusiness business = new BusinessFacade();
         IDataPersistens dataPersistens = new DataFacade();
         ILoginPersistens loginPersistens = new LoginFacade();

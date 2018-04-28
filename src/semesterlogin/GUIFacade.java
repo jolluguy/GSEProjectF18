@@ -17,10 +17,10 @@ import javafx.stage.Stage;
  *
  * @author Alexa
  */
-public class SemesterLogin extends Application implements IGUI {
+public class GUIFacade extends Application implements IGUI {
     
     private IBusiness business;
-    private static SemesterLogin ui;
+    private static GUIFacade guiFacade;
     
     @Override
     public void injectBusiness(IBusiness business) {
@@ -31,7 +31,7 @@ public class SemesterLogin extends Application implements IGUI {
     public void startApplication(String[] args) {
         System.out.println("UI initializing");
         //Because of static method.
-        ui = this;
+        guiFacade = this;
         launch(args);
     }
 
@@ -45,8 +45,8 @@ public class SemesterLogin extends Application implements IGUI {
         stage.show();
     }
     
-    public static SemesterLogin getInstance(){
-        return ui;
+    public static GUIFacade getInstance(){
+        return guiFacade;
     }
     
     public IBusiness getBusiness(){
