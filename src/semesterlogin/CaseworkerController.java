@@ -71,6 +71,18 @@ public class CaseworkerController implements Initializable {
     private CheckBox carriage172CheckBox;
     @FXML
     private CheckBox individualCarriageCheckBox;
+    @FXML
+    private CheckBox treatmentCheckBox;
+    @FXML
+    private CheckBox treatment101CheckBox;
+    @FXML
+    private CheckBox treatment141CheckBox;
+    @FXML
+    private CheckBox treatmentTherapyCheckBox;
+    @FXML
+    private CheckBox treatmentPsykCheckBox;
+    @FXML
+    private CheckBox treamentSpecialDrCheckBox;
 
     /**
      * Initializes the controller class.

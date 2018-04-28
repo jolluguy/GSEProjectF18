@@ -139,6 +139,12 @@
                                     <CheckBox fx:id="carriage170CheckBox" layoutX="186.0" layoutY="970.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (SUL §170)" />
                                     <CheckBox fx:id="carriage172CheckBox" layoutX="186.0" layoutY="1000.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (SUL §172)" />
                                     <CheckBox fx:id="individualCarriageCheckBox" layoutX="186.0" layoutY="1029.0" mnemonicParsing="false" text="Individuel befordring (§117)" />
+                                    <CheckBox fx:id="treatmentCheckBox" layoutX="166.0" layoutY="1071.0" mnemonicParsing="false" text="Behandling" />
+                                    <CheckBox fx:id="treatment101CheckBox" layoutX="186.0" layoutY="1102.0" mnemonicParsing="false" text="Misbrugsbehandling (§101)" />
+                                    <CheckBox fx:id="treatment141CheckBox" layoutX="186.0" layoutY="1132.0" mnemonicParsing="false" text="Misbrugsbehandling (SUL §141)" />
+                                    <CheckBox fx:id="treatmentTherapyCheckBox" layoutX="186.0" layoutY="1162.0" mnemonicParsing="false" text="Terapi (§102)" />
+                                    <CheckBox fx:id="treatmentPsykCheckBox" layoutX="186.0" layoutY="1192.0" mnemonicParsing="false" text="Psykologisk behandling (§102)" />
+                                    <CheckBox fx:id="treamentSpecialDrCheckBox" layoutX="186.0" layoutY="1221.0" mnemonicParsing="false" text="Speciallæge behandling (§102)" />
                                  </children></AnchorPane>
                            </content>
                         </ScrollPane>
