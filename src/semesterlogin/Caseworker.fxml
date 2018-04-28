@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="semesterlogin.CaseworkerController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="semesterlogin.CaseworkerController">
    <children>
       <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
@@ -94,9 +96,42 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ScrollPane prefHeight="766.0" prefWidth="1300.0">
+                        <ScrollPane hmax="722.0" prefHeight="766.0" prefWidth="1300.0" vmax="1080.0" vvalue="198.0">
                            <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="771.0" prefWidth="1299.0" />
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1800.0" prefWidth="1299.0">
+                                 <children>
+                                    <Label layoutX="122.0" layoutY="69.0" text="Opret ny sag">
+                                       <font>
+                                          <Font size="36.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="162.0" layoutY="169.0" text="CPR">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="287.0" layoutY="170.0" prefHeight="25.0" prefWidth="200.0" />
+                                    <Label layoutX="162.0" layoutY="242.0" text="Problembeskrivelse">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="162.0" layoutY="298.0" prefHeight="250.0" prefWidth="1000.0" />
+                                    <Label layoutX="162.0" layoutY="609.0" text="Er det klart hvad borgeren søger om?">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <CheckBox fx:id="inquiryYesCheckBox" layoutX="495.0" layoutY="615.0" mnemonicParsing="false" text="Ja" />
+                                    <CheckBox fx:id="inquiryNoCheckBox" layoutX="495.0" layoutY="647.0" mnemonicParsing="false" text="Nej" />
+                                    <Separator layoutX="162.0" layoutY="694.0" prefHeight="0.0" prefWidth="1000.0" style="-fx-background-color: black;" />
+                                    <Label layoutX="162.0" layoutY="717.0" text="Hvis ja, angiv ydelse [afkrydsning af ydelser/§]">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <CheckBox fx:id="activity104CheckBox" layoutX="161.0" layoutY="777.0" mnemonicParsing="false" text="Aktivitets- og samværsydelse (§104)" />
+                                 </children></AnchorPane>
                            </content>
                         </ScrollPane>
                      </children>
