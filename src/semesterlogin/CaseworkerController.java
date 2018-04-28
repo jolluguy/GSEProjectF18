@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 
 /**
@@ -46,6 +47,30 @@ public class CaseworkerController implements Initializable {
     private TextField descriptionTextField;
     @FXML
     private TextField cityTextField;
+    @FXML
+    private CheckBox inquiryYesCheckBox;
+    @FXML
+    private CheckBox inquiryNoCheckBox;
+    @FXML
+    private CheckBox acitivty104CheckBox;
+    @FXML
+    private CheckBox carriageCheckBox;
+    @FXML
+    private CheckBox carriage105CheckBox;
+    @FXML
+    private CheckBox carriage25CheckBox;
+    @FXML
+    private CheckBox carriage5CheckBox;
+    @FXML
+    private CheckBox carriage10CheckBox;
+    @FXML
+    private CheckBox carriage170CheckBox;
+    @FXML
+    private CheckBox carriage172CheckBox;
+    @FXML
+    private CheckBox individualCarriageCheckBox;
+    @FXML
+    private Button logOutButton;
 
     /**
      * Initializes the controller class.
