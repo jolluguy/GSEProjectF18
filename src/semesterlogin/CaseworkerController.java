@@ -115,6 +115,20 @@ public class CaseworkerController implements Initializable {
     private CheckBox temporaryInstitutionalising107CheckBox;
     @FXML
     private CheckBox temporaryInstitutionalising109CheckBox;
+    @FXML
+    private CheckBox personalHelp83CheckBox;
+    @FXML
+    private CheckBox personalHelp95CheckBox;
+    @FXML
+    private CheckBox practicalHelp83CheckBox;
+    @FXML
+    private CheckBox practicalhelp95CheckBox;
+    @FXML
+    private CheckBox socialSupportCheckBox;
+    @FXML
+    private CheckBox administrationSupportCheckBox;
+    @FXML
+    private CheckBox temporaryInstitutionalising110CheckBox;
 
     /**
      * Initializes the controller class.
