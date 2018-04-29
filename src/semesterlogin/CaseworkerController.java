@@ -129,6 +129,72 @@ public class CaseworkerController implements Initializable {
     private CheckBox administrationSupportCheckBox;
     @FXML
     private CheckBox temporaryInstitutionalising110CheckBox;
+    @FXML
+    private CheckBox shoppingSupportCheckBox;
+    @FXML
+    private CheckBox contactSupportCheckBox;
+    @FXML
+    private CheckBox medicinalSupportCheckBox;
+    @FXML
+    private CheckBox personalCareCheckBox;
+    @FXML
+    private CheckBox practicalSupportCheckBox;
+    @FXML
+    private CheckBox educationSupportCheckBox;
+    @FXML
+    private CheckBox parentingSupportCheckBox;
+    @FXML
+    private CheckBox supportPersonCheckBox;
+    @FXML
+    private CheckBox temporaryReplacement84CheckBox;
+    @FXML
+    private CheckBox temporaryReplacement95CheckBox;
+    @FXML
+    private CheckBox personalAssistanceCheckBox;
+    @FXML
+    private CheckBox contactForDeafblindCheckBox;
+    @FXML
+    private CheckBox companionCheckBox;
+    @FXML
+    private CheckBox kinCare118CheckBox;
+    @FXML
+    private CheckBox kinCare119CheckBox;
+    @FXML
+    private CheckBox supportToolCheckBox;
+    @FXML
+    private CheckBox aidCheckBox;
+    @FXML
+    private CheckBox carAidCheckBox;
+    @FXML
+    private CheckBox furnishingAidCheckBox;
+    @FXML
+    private CheckBox goodsAidCheckBox;
+    @FXML
+    private CheckBox trainingCheckBox;
+    @FXML
+    private CheckBox rehabilitation85CheckBox;
+    @FXML
+    private CheckBox rehabilitation86CheckBox;
+    @FXML
+    private CheckBox rehabilitation102CheckBox;
+    @FXML
+    private CheckBox maintainingAbility85CheckBox;
+    @FXML
+    private CheckBox maintainingAbility86CheckBox;
+    @FXML
+    private CheckBox maintainingAbility102CheckBox;
+    @FXML
+    private CheckBox educationCheckBox;
+    @FXML
+    private CheckBox compensatingSpecialEducationCheckBox;
+    @FXML
+    private CheckBox youthEducationSpecialNeedsCheckBox;
+    @FXML
+    private CheckBox nonSearchedServicesCheckBox;
+    @FXML
+    private CheckBox counselingCheckBox;
+    @FXML
+    private CheckBox supportOrContactPersonCheckBox;
 
     /**
      * Initializes the controller class.
