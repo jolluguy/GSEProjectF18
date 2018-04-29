@@ -96,7 +96,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ScrollPane hmax="722.0" prefHeight="766.0" prefWidth="1300.0" vmax="3000.0" vvalue="2086.0">
+                        <ScrollPane hmax="722.0" prefHeight="766.0" prefWidth="1300.0" vmax="3000.0" vvalue="3000.0">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="3000.0" prefWidth="1299.0">
                                  <children>
@@ -203,6 +203,35 @@
                                     <CheckBox fx:id="nonSearchedServicesCheckBox" layoutX="495.0" layoutY="1923.0" mnemonicParsing="false" text="Ikke visiterede ydelser" />
                                     <CheckBox fx:id="counselingCheckBox" layoutX="519.0" layoutY="1952.0" mnemonicParsing="false" text="Rådgivning (§10)" />
                                     <CheckBox fx:id="supportOrContactPersonCheckBox" layoutX="520.0" layoutY="1979.0" mnemonicParsing="false" text="Støtte- og kontaktperson (§99)" />
+                                    <Label layoutX="152.0" layoutY="2044.0" text="Hvis ja, angiv tilbud [afkrydsning af tilbud]" />
+                                    <Label layoutX="152.0" layoutY="2100.0" text="Ambulant tilbud til voksne" />
+                                    <CheckBox layoutX="174.0" layoutY="2128.0" mnemonicParsing="false" text="Ambulant behandlingstilbud til voksne" />
+                                    <Label layoutX="152.0" layoutY="2175.0" text="Dagtilbud til voksne" />
+                                    <CheckBox layoutX="174.0" layoutY="2204.0" mnemonicParsing="false" text="Aktivitets- og samværstilbud" />
+                                    <CheckBox layoutX="174.0" layoutY="2229.0" mnemonicParsing="false" text="Beskyttet beskæftigelsestilbud" />
+                                    <CheckBox layoutX="174.0" layoutY="2255.0" mnemonicParsing="false" text="Dagbehandlingstilbud til voksne" />
+                                    <CheckBox layoutX="174.0" layoutY="2281.0" mnemonicParsing="false" text="Uddannelsestilbud" />
+                                    <Label layoutX="662.0" layoutY="2100.0" text="Botilbud til voksne" />
+                                    <CheckBox layoutX="682.0" layoutY="2128.0" mnemonicParsing="false" text="Almen plejebolig" />
+                                    <CheckBox layoutX="682.0" layoutY="2153.0" mnemonicParsing="false" text="Almen ældrebolig/handicapvenlig bolig" />
+                                    <CheckBox layoutX="682.0" layoutY="2177.0" mnemonicParsing="false" text="Bofællesskab" />
+                                    <CheckBox layoutX="682.0" layoutY="2203.0" mnemonicParsing="false" text="Døgnbehandlingstilbud til voksne" />
+                                    <CheckBox layoutX="682.0" layoutY="2228.0" mnemonicParsing="false" text="Forsorgshjem/herberg" />
+                                    <CheckBox layoutX="682.0" layoutY="2254.0" mnemonicParsing="false" text="Krisecenter" />
+                                    <Label layoutX="701.0" layoutY="2281.0" text="Længerevarende botilbud til voksne" />
+                                    <CheckBox layoutX="725.0" layoutY="2307.0" mnemonicParsing="false" text="Sikret botilbud" />
+                                    <CheckBox layoutX="726.0" layoutY="2335.0" mnemonicParsing="false" text="Andet længerevarende botilbud til voksne" />
+                                    <CheckBox layoutX="683.0" layoutY="2369.0" mnemonicParsing="false" text="Midlertidigt botilbud" />
+                                    <CheckBox layoutX="684.0" layoutY="2397.0" mnemonicParsing="false" text="Plejehjem" />
+                                    <CheckBox layoutX="684.0" layoutY="2423.0" mnemonicParsing="false" text="Rehabiliteringstilbud" />
+                                    <CheckBox layoutX="665.0" layoutY="2467.0" mnemonicParsing="false" text="Udgående tilbud til voksne" />
+                                    <CheckBox layoutX="665.0" layoutY="2502.0" mnemonicParsing="false" text="Tilbud med myndighedsbeføjelse" />
+                                    <Separator layoutX="148.0" layoutY="2555.0" prefHeight="1.0" prefWidth="1003.0" style="-fx-background-color: black;" />
+                                    <Label layoutX="150.0" layoutY="2572.0" text="Henvendelse">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
                                  </children></AnchorPane>
                            </content>
                         </ScrollPane>
