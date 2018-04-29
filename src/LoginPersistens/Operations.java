@@ -6,7 +6,6 @@
 package LoginPersistens;
 
 import Acquaintance.IUser;
-import Business.User;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -30,7 +29,7 @@ public class Operations {
     protected void readMap() {
         if (!file.exists()) {
             userMap = new HashMap<>();
-            addUser(new User("Admin", "Super", 2));// Default SuperUser
+            addUser(new IUser("Admin", "Super", 2));// Default SuperUser
             saveMap();
         } else {
             ObjectInputStream ois = null;

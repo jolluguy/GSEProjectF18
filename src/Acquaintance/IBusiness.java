@@ -37,5 +37,7 @@ public interface IBusiness {
     String createUser(String userName, String password1, String password2);
     
     void addUser(String userName, String password);
+    
+    Collection<IUser> getAllUsers();
 
 }
