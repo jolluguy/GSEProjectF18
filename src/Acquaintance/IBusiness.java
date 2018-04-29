@@ -43,5 +43,6 @@ public interface IBusiness {
    public String getUserName();
    
    public boolean checkPassword(String pw);
-    
+   
+   public void sendToDB(IInquiry inquiry);
 }

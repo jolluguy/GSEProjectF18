@@ -14,27 +14,11 @@ import Acquaintance.IInquiry;
 public class BusinessController {
     
     
-    public boolean createInquiry(int cprNumber, String problemDescription, String firstname, String surname, String roadName, String houseNumber, String floor, int postNumber, String city, String tlfNumber){
+    public void createInquiry(int cprNumber, String problemDescription, String firstname, String surname, String roadName, String houseNumber, String floor, int postNumber, String city, String tlfNumber){
         Inquiry inquiry = new Inquiry(cprNumber, problemDescription, firstname, surname, roadName, houseNumber, floor, postNumber, city, tlfNumber);
-        
-        if (true) {
-            return true;
-        }
-        else{
-            return false;
-        }
     }
-    public boolean sendToDB(IInquiry inquiry){
+    public void sendToDB(IInquiry inquiry){
         
-        
-        
-        if  (returnMessage == false) { //Pseudo code
-            DBConnectionError();
-            return false;
-        }
-        else{
-            return true;
-        }
     }    
     public void DBConnectionError(){
         
