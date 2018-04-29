@@ -3,15 +3,17 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="semesterlogin.CaseworkerController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="semesterlogin.CaseworkerController">
    <children>
       <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
@@ -96,7 +98,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ScrollPane hmax="722.0" prefHeight="766.0" prefWidth="1300.0" vmax="3000.0" vvalue="3000.0">
+                        <ScrollPane hmax="722.0" prefHeight="766.0" prefWidth="1300.0" vmax="3000.0" vvalue="877.0">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="3000.0" prefWidth="1299.0">
                                  <children>
@@ -122,116 +124,120 @@
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <CheckBox fx:id="inquiryYesCheckBox" layoutX="495.0" layoutY="615.0" mnemonicParsing="false" text="Ja" />
-                                    <CheckBox fx:id="inquiryNoCheckBox" layoutX="495.0" layoutY="647.0" mnemonicParsing="false" text="Nej" />
                                     <Separator layoutX="162.0" layoutY="694.0" prefHeight="0.0" prefWidth="1000.0" style="-fx-background-color: black;" />
                                     <Label layoutX="162.0" layoutY="717.0" text="Hvis ja, angiv ydelse [afkrydsning af ydelser/§]">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <CheckBox fx:id="activity104CheckBox" layoutX="161.0" layoutY="777.0" mnemonicParsing="false" text="Aktivitets- og samværsydelse (§104)" />
-                                    <CheckBox fx:id="carriageCheckBox" layoutX="161.0" layoutY="819.0" mnemonicParsing="false" text="Befordring" />
-                                    <CheckBox fx:id="carriage105CheckBox" layoutX="186.0" layoutY="850.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (§105)" />
-                                    <CheckBox fx:id="carriage25CheckBox" layoutX="186.0" layoutY="879.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (Hjælpemiddelbekendtgørelsen §25)" />
-                                    <CheckBox fx:id="carriage5CheckBox" layoutX="186.0" layoutY="909.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (Lov om specialundervisning til voksne §5)" />
-                                    <CheckBox fx:id="carriage10CheckBox" layoutX="186.0" layoutY="939.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (Lov om ungdomsuddannelse for unge med særlige behov §10)" />
-                                    <CheckBox fx:id="carriage170CheckBox" layoutX="186.0" layoutY="970.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (SUL §170)" />
-                                    <CheckBox fx:id="carriage172CheckBox" layoutX="186.0" layoutY="1000.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (SUL §172)" />
-                                    <CheckBox fx:id="individualCarriageCheckBox" layoutX="186.0" layoutY="1029.0" mnemonicParsing="false" text="Individuel befordring (§117)" />
-                                    <CheckBox fx:id="treatmentCheckBox" layoutX="166.0" layoutY="1071.0" mnemonicParsing="false" text="Behandling" />
-                                    <CheckBox fx:id="treatment101CheckBox" layoutX="186.0" layoutY="1102.0" mnemonicParsing="false" text="Misbrugsbehandling (§101)" />
-                                    <CheckBox fx:id="treatment141CheckBox" layoutX="186.0" layoutY="1132.0" mnemonicParsing="false" text="Misbrugsbehandling (SUL §141)" />
-                                    <CheckBox fx:id="treatmentTherapyCheckBox" layoutX="186.0" layoutY="1162.0" mnemonicParsing="false" text="Terapi (§102)" />
-                                    <CheckBox fx:id="treatmentPsykCheckBox" layoutX="186.0" layoutY="1192.0" mnemonicParsing="false" text="Psykologisk behandling (§102)" />
-                                    <CheckBox fx:id="treamentSpecialDrCheckBox" layoutX="186.0" layoutY="1221.0" mnemonicParsing="false" text="Speciallæge behandling (§102)" />
-                                    <CheckBox fx:id="protectedEmploymentCheckBox" layoutX="166.0" layoutY="1262.0" mnemonicParsing="false" text="Beskyttet beskæftigelsesydelse (§103)" />
-                                    <CheckBox fx:id="dayReliefCheckBox" layoutX="166.0" layoutY="1299.0" mnemonicParsing="false" text="Dagaflastning (§84)" />
-                                    <CheckBox fx:id="cashBenefitCheckBox" layoutX="166.0" layoutY="1340.0" mnemonicParsing="false" text="Kontantydelse" />
-                                    <CheckBox fx:id="remunerationCheckBox" layoutX="186.0" layoutY="1369.0" mnemonicParsing="false" text="Arbejdsvederlag (§105)" />
-                                    <CheckBox fx:id="additionalCostCheckBox" layoutX="186.0" layoutY="1400.0" mnemonicParsing="false" text="Dækning af merudgift (§100)" />
-                                    <CheckBox fx:id="controlCheckBoX" layoutX="164.0" layoutY="1441.0" mnemonicParsing="false" text="Kontrolordning" />
-                                    <CheckBox fx:id="control126CheckBox" layoutX="184.0" layoutY="1468.0" mnemonicParsing="false" text="Fastholdelse (§126)" />
-                                    <CheckBox fx:id="control127CheckBox" layoutX="184.0" layoutY="1498.0" mnemonicParsing="false" text="Fastholdelse (§127)" />
-                                    <CheckBox fx:id="control128CheckBox" layoutX="184.0" layoutY="1528.0" mnemonicParsing="false" text="Fastholdelse (§128)" />
-                                    <CheckBox fx:id="control125CheckBox" layoutX="184.0" layoutY="1558.0" mnemonicParsing="false" text="Kontrol med færden (§125)" />
+                                    <CheckBox fx:id="activity104CheckBox" disable="true" layoutX="161.0" layoutY="787.0" mnemonicParsing="false" text="Aktivitets- og samværsydelse (§104)" />
+                                    <CheckBox fx:id="carriageCheckBox" disable="true" layoutX="161.0" layoutY="829.0" mnemonicParsing="false" onAction="#updateCarrigeStatus" text="Befordring" />
+                                    <CheckBox fx:id="carriage105CheckBox" disable="true" layoutX="186.0" layoutY="853.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (§105)" />
+                                    <CheckBox fx:id="carriage25CheckBox" disable="true" layoutX="186.0" layoutY="882.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (Hjælpemiddelbekendtgørelsen §25)" />
+                                    <CheckBox fx:id="carriage5CheckBox" disable="true" layoutX="186.0" layoutY="909.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (Lov om specialundervisning til voksne §5)" />
+                                    <CheckBox fx:id="carriage10CheckBox" disable="true" layoutX="186.0" layoutY="939.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (Lov om ungdomsuddannelse for unge med særlige behov §10)" />
+                                    <CheckBox fx:id="carriage170CheckBox" disable="true" layoutX="186.0" layoutY="968.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (SUL §170)" />
+                                    <CheckBox fx:id="carriage172CheckBox" disable="true" layoutX="186.0" layoutY="997.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (SUL §172)" />
+                                    <CheckBox fx:id="individualCarriageCheckBox" disable="true" layoutX="186.0" layoutY="1026.0" mnemonicParsing="false" text="Individuel befordring (§117)" />
+                                    <CheckBox fx:id="treatmentCheckBox" disable="true" layoutX="166.0" layoutY="1071.0" mnemonicParsing="false" onAction="#updateTreatmentStatus" text="Behandling" />
+                                    <CheckBox fx:id="treatment101CheckBox" disable="true" layoutX="186.0" layoutY="1102.0" mnemonicParsing="false" text="Misbrugsbehandling (§101)" />
+                                    <CheckBox fx:id="treatment141CheckBox" disable="true" layoutX="186.0" layoutY="1132.0" mnemonicParsing="false" text="Misbrugsbehandling (SUL §141)" />
+                                    <CheckBox fx:id="treatmentTherapyCheckBox" disable="true" layoutX="186.0" layoutY="1162.0" mnemonicParsing="false" text="Terapi (§102)" />
+                                    <CheckBox fx:id="treatmentPsykCheckBox" disable="true" layoutX="186.0" layoutY="1192.0" mnemonicParsing="false" text="Psykologisk behandling (§102)" />
+                                    <CheckBox fx:id="treamentSpecialDrCheckBox" disable="true" layoutX="186.0" layoutY="1221.0" mnemonicParsing="false" text="Speciallæge behandling (§102)" />
+                                    <CheckBox fx:id="protectedEmploymentCheckBox" disable="true" layoutX="166.0" layoutY="1262.0" mnemonicParsing="false" text="Beskyttet beskæftigelsesydelse (§103)" />
+                                    <CheckBox fx:id="dayReliefCheckBox" disable="true" layoutX="166.0" layoutY="1299.0" mnemonicParsing="false" text="Dagaflastning (§84)" />
+                                    <CheckBox fx:id="cashBenefitCheckBox" disable="true" layoutX="166.0" layoutY="1340.0" mnemonicParsing="false" onAction="#updateCashBennefitStatus" text="Kontantydelse" />
+                                    <CheckBox fx:id="remunerationCheckBox" disable="true" layoutX="186.0" layoutY="1369.0" mnemonicParsing="false" text="Arbejdsvederlag (§105)" />
+                                    <CheckBox fx:id="additionalCostCheckBox" disable="true" layoutX="186.0" layoutY="1400.0" mnemonicParsing="false" text="Dækning af merudgift (§100)" />
+                                    <CheckBox fx:id="controlCheckBox" disable="true" layoutX="164.0" layoutY="1441.0" mnemonicParsing="false" onAction="#updateControlStatus" text="Kontrolordning" />
+                                    <CheckBox fx:id="control126CheckBox" disable="true" layoutX="184.0" layoutY="1468.0" mnemonicParsing="false" text="Fastholdelse (§126)" />
+                                    <CheckBox fx:id="control127CheckBox" disable="true" layoutX="184.0" layoutY="1498.0" mnemonicParsing="false" text="Fastholdelse (§127)" />
+                                    <CheckBox fx:id="control128CheckBox" disable="true" layoutX="184.0" layoutY="1528.0" mnemonicParsing="false" text="Fastholdelse (§128)" />
+                                    <CheckBox fx:id="control125CheckBox" disable="true" layoutX="184.0" layoutY="1558.0" mnemonicParsing="false" text="Kontrol med færden (§125)" />
                                     <Separator layoutX="148.0" layoutY="2027.0" prefHeight="1.0" prefWidth="1003.0" style="-fx-background-color: black;" />
-                                    <CheckBox fx:id="institutioningCheckBox" layoutX="164.0" layoutY="1598.0" mnemonicParsing="false" text="Ophold" />
-                                    <CheckBox fx:id="_24HourReliefCheckBox" layoutX="184.0" layoutY="1627.0" mnemonicParsing="false" text="Døgnaflastning (§84)" />
-                                    <CheckBox fx:id="longInstitutionalisingCheckBox" layoutX="184.0" layoutY="1655.0" mnemonicParsing="false" text="Længerevarende ophold (§108)" />
-                                    <CheckBox fx:id="temporaryInstitutionalising80CheckBox" layoutX="184.0" layoutY="1683.0" mnemonicParsing="false" text="Midlertidigt ophold (§80)" />
-                                    <CheckBox fx:id="temporaryInstitutionalising107CheckBox" layoutX="184.0" layoutY="1712.0" mnemonicParsing="false" text="Midlertidigt ophold (§107)" />
-                                    <CheckBox fx:id="temporaryInstitutionalising109CheckBox" layoutX="184.0" layoutY="1739.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="164.0" text="Midlertidigt ophold (§109)" />
-                                    <CheckBox fx:id="personalHelp83CheckBox" layoutX="774.0" layoutY="777.0" mnemonicParsing="false" text="Personlig hjælp og pleje (§83)" />
+                                    <CheckBox fx:id="institutioningCheckBox" disable="true" layoutX="164.0" layoutY="1598.0" mnemonicParsing="false" onAction="#updateInstitutioningStaus" text="Ophold" />
+                                    <CheckBox fx:id="_24HourReliefCheckBox" disable="true" layoutX="184.0" layoutY="1627.0" mnemonicParsing="false" text="Døgnaflastning (§84)" />
+                                    <CheckBox fx:id="longInstitutionalisingCheckBox" disable="true" layoutX="184.0" layoutY="1655.0" mnemonicParsing="false" text="Længerevarende ophold (§108)" />
+                                    <CheckBox fx:id="temporaryInstitutionalising80CheckBox" disable="true" layoutX="184.0" layoutY="1683.0" mnemonicParsing="false" text="Midlertidigt ophold (§80)" />
+                                    <CheckBox fx:id="temporaryInstitutionalising107CheckBox" disable="true" layoutX="184.0" layoutY="1712.0" mnemonicParsing="false" text="Midlertidigt ophold (§107)" />
+                                    <CheckBox fx:id="temporaryInstitutionalising109CheckBox" disable="true" layoutX="184.0" layoutY="1739.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="164.0" text="Midlertidigt ophold (§109)" />
+                                    <CheckBox fx:id="personalHelp83CheckBox" disable="true" layoutX="774.0" layoutY="777.0" mnemonicParsing="false" text="Personlig hjælp og pleje (§83)" />
                                     <Separator layoutX="712.0" layoutY="767.0" orientation="VERTICAL" prefHeight="1030.0" />
-                                    <CheckBox fx:id="personalHelp95CheckBox" layoutX="774.0" layoutY="800.0" mnemonicParsing="false" text="Personlig hjælp og pleje (§95)" />
-                                    <CheckBox fx:id="practicalHelp83CheckBox" layoutX="774.0" layoutY="836.0" mnemonicParsing="false" text="Praktisk hjælp (§83)" />
-                                    <CheckBox fx:id="practicalhelp95CheckBox" layoutX="774.0" layoutY="857.0" mnemonicParsing="false" text="Praktisk hjælp (§95)" />
-                                    <CheckBox fx:id="socialSupportCheckBox" layoutX="774.0" layoutY="892.0" mnemonicParsing="false" text="Socialpædagogisk støtte" />
-                                    <CheckBox fx:id="administrationSupportCheckBox" layoutX="800.0" layoutY="918.0" mnemonicParsing="false" text="Støtte til administration (§85)" />
-                                    <CheckBox fx:id="shoppingSupportCheckBox" layoutX="800.0" layoutY="945.0" mnemonicParsing="false" text="Støtte til indkøb og kost (§85)" />
-                                    <CheckBox fx:id="contactSupportCheckBox" layoutX="800.0" layoutY="971.0" mnemonicParsing="false" text="Støtte til kontakt og nærvær (§85)" />
-                                    <CheckBox fx:id="medicinalSupportCheckBox" layoutX="800.0" layoutY="997.0" mnemonicParsing="false" text="Støtte til medicinhåndtering (§85)" />
-                                    <CheckBox fx:id="personalCareCheckBox" layoutX="800.0" layoutY="1023.0" mnemonicParsing="false" text="Støtte til personlig pleje (§85)" />
-                                    <CheckBox fx:id="practicalSupportCheckBox" layoutX="800.0" layoutY="1049.0" mnemonicParsing="false" text="Støtte til praktiske opgaver i hjemmet (§85)" />
-                                    <CheckBox fx:id="educationSupportCheckBox" layoutX="800.0" layoutY="1074.0" mnemonicParsing="false" text="Støtte til uddannelse og beskæftigelse (§85)" />
-                                    <CheckBox fx:id="parentingSupportCheckBox" layoutX="800.0" layoutY="1100.0" mnemonicParsing="false" text="Støtte til varetagelse af forældrerollen (§85)" />
-                                    <CheckBox fx:id="temporaryInstitutionalising110CheckBox" layoutX="184.0" layoutY="1766.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="164.0" text="Midlertidigt ophold (§110)" />
-                                    <CheckBox fx:id="supportPersonCheckBox" layoutX="774.0" layoutY="1154.0" mnemonicParsing="false" text="Støttepersonordning" />
-                                    <CheckBox fx:id="temporaryReplacement84CheckBox" layoutX="790.0" layoutY="1184.0" mnemonicParsing="false" text="Afløsning (§84)" />
-                                    <CheckBox fx:id="temporaryReplacement95CheckBox" layoutX="790.0" layoutY="1209.0" mnemonicParsing="false" text="Afløsning (§95)" />
-                                    <CheckBox fx:id="personalAssistanceCheckBox" layoutX="792.0" layoutY="1237.0" mnemonicParsing="false" text="Borgerstyret personlig assistance (§96)" />
-                                    <CheckBox fx:id="contactForDeafblindCheckBox" layoutX="792.0" layoutY="1266.0" mnemonicParsing="false" text="Kontaktperson for døvblinde (§98)" />
-                                    <CheckBox fx:id="companionCheckBox" layoutX="792.0" layoutY="1295.0" mnemonicParsing="false" text="Ledsageordning (§97)" />
-                                    <CheckBox fx:id="kinCare118CheckBox" layoutX="793.0" layoutY="1319.0" mnemonicParsing="false" text="Pasning af pårørende (§118)" />
-                                    <CheckBox fx:id="kinCare119CheckBox" layoutX="793.0" layoutY="1341.0" mnemonicParsing="false" text="Pasning af pårørende (§119)" />
-                                    <CheckBox fx:id="supportToolCheckBox" layoutX="764.0" layoutY="1392.0" mnemonicParsing="false" text="Støtteredskab" />
-                                    <CheckBox fx:id="aidCheckBox" layoutX="785.0" layoutY="1419.0" mnemonicParsing="false" text="Hjælpemiddel (§112)" />
-                                    <CheckBox fx:id="carAidCheckBox" layoutX="786.0" layoutY="1447.0" mnemonicParsing="false" text="Støtte til bil (§114)" />
-                                    <CheckBox fx:id="furnishingAidCheckBox" layoutX="787.0" layoutY="1477.0" mnemonicParsing="false" text="Støtte til boligindretning (§116)" />
-                                    <CheckBox fx:id="goodsAidCheckBox" layoutX="789.0" layoutY="1502.0" mnemonicParsing="false" text="Forbrugsgoder (§113)" />
-                                    <CheckBox fx:id="trainingCheckBox" layoutX="764.0" layoutY="1550.0" mnemonicParsing="false" text="Træning" />
-                                    <CheckBox fx:id="rehabilitation85CheckBox" layoutX="788.0" layoutY="1574.0" mnemonicParsing="false" text="Genoptræning (§85)" />
-                                    <CheckBox fx:id="rehabilitation86CheckBox" layoutX="791.0" layoutY="1600.0" mnemonicParsing="false" text="Genoptræning (§86)" />
-                                    <CheckBox fx:id="rehabilitation102CheckBox" layoutX="791.0" layoutY="1627.0" mnemonicParsing="false" text="Genoptræning (§102)" />
-                                    <CheckBox fx:id="maintainingAbility85CheckBox" layoutX="790.0" layoutY="1655.0" mnemonicParsing="false" text="Vedligeholdelsestræning (§85)" />
-                                    <CheckBox fx:id="maintainingAbility86CheckBox" layoutX="791.0" layoutY="1683.0" mnemonicParsing="false" text="Vedligeholdelsestræning (§86)" />
-                                    <CheckBox fx:id="maintainingAbility102CheckBox" layoutX="791.0" layoutY="1709.0" mnemonicParsing="false" text="Vedligeholdelsestræning (§102)" />
-                                    <CheckBox fx:id="educationCheckBox" layoutX="495.0" layoutY="1827.0" mnemonicParsing="false" text="Undervisning" />
-                                    <CheckBox fx:id="compensatingSpecialEducationCheckBox" layoutX="527.0" layoutY="1857.0" mnemonicParsing="false" text="Kompenserende specialundervisning (Lov om specialundervisning til voksne (§1)" />
-                                    <CheckBox fx:id="youthEducationSpecialNeedsCheckBox" layoutX="527.0" layoutY="1887.0" mnemonicParsing="false" text="Ungdomsuddannelse for unge med særlige behov (ungdomsuddannelse for unge med særlige behov §2)" />
-                                    <CheckBox fx:id="nonSearchedServicesCheckBox" layoutX="495.0" layoutY="1923.0" mnemonicParsing="false" text="Ikke visiterede ydelser" />
-                                    <CheckBox fx:id="counselingCheckBox" layoutX="519.0" layoutY="1952.0" mnemonicParsing="false" text="Rådgivning (§10)" />
-                                    <CheckBox fx:id="supportOrContactPersonCheckBox" layoutX="520.0" layoutY="1979.0" mnemonicParsing="false" text="Støtte- og kontaktperson (§99)" />
+                                    <CheckBox fx:id="personalHelp95CheckBox" disable="true" layoutX="774.0" layoutY="800.0" mnemonicParsing="false" text="Personlig hjælp og pleje (§95)" />
+                                    <CheckBox fx:id="practicalHelp83CheckBox" disable="true" layoutX="774.0" layoutY="836.0" mnemonicParsing="false" text="Praktisk hjælp (§83)" />
+                                    <CheckBox fx:id="practicalhelp95CheckBox" disable="true" layoutX="774.0" layoutY="857.0" mnemonicParsing="false" text="Praktisk hjælp (§95)" />
+                                    <CheckBox fx:id="socialSupportCheckBox" disable="true" layoutX="774.0" layoutY="892.0" mnemonicParsing="false" onAction="#updateSocialSupportStatus" text="Socialpædagogisk støtte" />
+                                    <CheckBox fx:id="administrationSupportCheckBox" disable="true" layoutX="800.0" layoutY="918.0" mnemonicParsing="false" text="Støtte til administration (§85)" />
+                                    <CheckBox fx:id="shoppingSupportCheckBox" disable="true" layoutX="800.0" layoutY="945.0" mnemonicParsing="false" text="Støtte til indkøb og kost (§85)" />
+                                    <CheckBox fx:id="contactSupportCheckBox" disable="true" layoutX="800.0" layoutY="971.0" mnemonicParsing="false" text="Støtte til kontakt og nærvær (§85)" />
+                                    <CheckBox fx:id="medicinalSupportCheckBox" disable="true" layoutX="800.0" layoutY="997.0" mnemonicParsing="false" text="Støtte til medicinhåndtering (§85)" />
+                                    <CheckBox fx:id="personalCareCheckBox" disable="true" layoutX="800.0" layoutY="1023.0" mnemonicParsing="false" text="Støtte til personlig pleje (§85)" />
+                                    <CheckBox fx:id="practicalSupportCheckBox" disable="true" layoutX="800.0" layoutY="1049.0" mnemonicParsing="false" text="Støtte til praktiske opgaver i hjemmet (§85)" />
+                                    <CheckBox fx:id="educationSupportCheckBox" disable="true" layoutX="800.0" layoutY="1074.0" mnemonicParsing="false" text="Støtte til uddannelse og beskæftigelse (§85)" />
+                                    <CheckBox fx:id="parentingSupportCheckBox" disable="true" layoutX="800.0" layoutY="1100.0" mnemonicParsing="false" text="Støtte til varetagelse af forældrerollen (§85)" />
+                                    <CheckBox fx:id="temporaryInstitutionalising110CheckBox" disable="true" layoutX="184.0" layoutY="1766.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="164.0" text="Midlertidigt ophold (§110)" />
+                                    <CheckBox fx:id="supportPersonCheckBox" disable="true" layoutX="774.0" layoutY="1154.0" mnemonicParsing="false" onAction="#updateSupportPersonStatus" text="Støttepersonordning" />
+                                    <CheckBox fx:id="temporaryReplacement84CheckBox" disable="true" layoutX="790.0" layoutY="1184.0" mnemonicParsing="false" text="Afløsning (§84)" />
+                                    <CheckBox fx:id="temporaryReplacement95CheckBox" disable="true" layoutX="790.0" layoutY="1209.0" mnemonicParsing="false" text="Afløsning (§95)" />
+                                    <CheckBox fx:id="personalAssistanceCheckBox" disable="true" layoutX="792.0" layoutY="1237.0" mnemonicParsing="false" text="Borgerstyret personlig assistance (§96)" />
+                                    <CheckBox fx:id="contactForDeafblindCheckBox" disable="true" layoutX="792.0" layoutY="1266.0" mnemonicParsing="false" text="Kontaktperson for døvblinde (§98)" />
+                                    <CheckBox fx:id="companionCheckBox" disable="true" layoutX="792.0" layoutY="1295.0" mnemonicParsing="false" text="Ledsageordning (§97)" />
+                                    <CheckBox fx:id="kinCare118CheckBox" disable="true" layoutX="793.0" layoutY="1319.0" mnemonicParsing="false" text="Pasning af pårørende (§118)" />
+                                    <CheckBox fx:id="kinCare119CheckBox" disable="true" layoutX="793.0" layoutY="1341.0" mnemonicParsing="false" text="Pasning af pårørende (§119)" />
+                                    <CheckBox fx:id="supportToolCheckBox" disable="true" layoutX="764.0" layoutY="1392.0" mnemonicParsing="false" onAction="#updateSupportToolStatus" text="Støtteredskab" />
+                                    <CheckBox fx:id="aidCheckBox" disable="true" layoutX="785.0" layoutY="1419.0" mnemonicParsing="false" text="Hjælpemiddel (§112)" />
+                                    <CheckBox fx:id="carAidCheckBox" disable="true" layoutX="786.0" layoutY="1447.0" mnemonicParsing="false" text="Støtte til bil (§114)" />
+                                    <CheckBox fx:id="furnishingAidCheckBox" disable="true" layoutX="787.0" layoutY="1477.0" mnemonicParsing="false" text="Støtte til boligindretning (§116)" />
+                                    <CheckBox fx:id="goodsAidCheckBox" disable="true" layoutX="789.0" layoutY="1502.0" mnemonicParsing="false" text="Forbrugsgoder (§113)" />
+                                    <CheckBox fx:id="trainingCheckBox" disable="true" layoutX="764.0" layoutY="1550.0" mnemonicParsing="false" onAction="#updateTrainingStatus" text="Træning" />
+                                    <CheckBox fx:id="rehabilitation85CheckBox" disable="true" layoutX="788.0" layoutY="1574.0" mnemonicParsing="false" text="Genoptræning (§85)" />
+                                    <CheckBox fx:id="rehabilitation86CheckBox" disable="true" layoutX="791.0" layoutY="1600.0" mnemonicParsing="false" text="Genoptræning (§86)" />
+                                    <CheckBox fx:id="rehabilitation102CheckBox" disable="true" layoutX="791.0" layoutY="1627.0" mnemonicParsing="false" text="Genoptræning (§102)" />
+                                    <CheckBox fx:id="maintainingAbility85CheckBox" disable="true" layoutX="790.0" layoutY="1655.0" mnemonicParsing="false" text="Vedligeholdelsestræning (§85)" />
+                                    <CheckBox fx:id="maintainingAbility86CheckBox" disable="true" layoutX="791.0" layoutY="1683.0" mnemonicParsing="false" text="Vedligeholdelsestræning (§86)" />
+                                    <CheckBox fx:id="maintainingAbility102CheckBox" disable="true" layoutX="791.0" layoutY="1709.0" mnemonicParsing="false" text="Vedligeholdelsestræning (§102)" />
+                                    <CheckBox fx:id="educationCheckBox" disable="true" layoutX="164.0" layoutY="1825.0" mnemonicParsing="false" onAction="#updateEducationStatus" text="Undervisning" />
+                                    <CheckBox fx:id="compensatingSpecialEducationCheckBox" disable="true" layoutX="184.0" layoutY="1852.0" mnemonicParsing="false" text="Kompenserende specialundervisning (Lov om specialundervisning til voksne (§1)" />
+                                    <CheckBox fx:id="youthEducationSpecialNeedsCheckBox" disable="true" layoutX="184.0" layoutY="1882.0" mnemonicParsing="false" text="Ungdomsuddannelse for unge med særlige behov (ungdomsuddannelse for unge med særlige behov §2)" />
+                                    <CheckBox fx:id="nonSearchedServicesCheckBox" disable="true" layoutX="764.0" layoutY="1761.0" mnemonicParsing="false" onAction="#updateNonSearchedServices" text="Ikke visiterede ydelser" />
+                                    <CheckBox fx:id="counselingCheckBox" disable="true" layoutX="788.0" layoutY="1790.0" mnemonicParsing="false" text="Rådgivning (§10)" />
+                                    <CheckBox fx:id="supportOrContactPersonCheckBox" disable="true" layoutX="789.0" layoutY="1817.0" mnemonicParsing="false" text="Støtte- og kontaktperson (§99)" />
                                     <Label layoutX="152.0" layoutY="2044.0" text="Hvis ja, angiv tilbud [afkrydsning af tilbud]" />
                                     <Label layoutX="152.0" layoutY="2100.0" text="Ambulant tilbud til voksne" />
-                                    <CheckBox layoutX="174.0" layoutY="2128.0" mnemonicParsing="false" text="Ambulant behandlingstilbud til voksne" />
+                                    <CheckBox fx:id="adultMedicalTreatmentCheckBox" disable="true" layoutX="174.0" layoutY="2128.0" mnemonicParsing="false" text="Ambulant behandlingstilbud til voksne" />
                                     <Label layoutX="152.0" layoutY="2175.0" text="Dagtilbud til voksne" />
-                                    <CheckBox layoutX="174.0" layoutY="2204.0" mnemonicParsing="false" text="Aktivitets- og samværstilbud" />
-                                    <CheckBox layoutX="174.0" layoutY="2229.0" mnemonicParsing="false" text="Beskyttet beskæftigelsestilbud" />
-                                    <CheckBox layoutX="174.0" layoutY="2255.0" mnemonicParsing="false" text="Dagbehandlingstilbud til voksne" />
-                                    <CheckBox layoutX="174.0" layoutY="2281.0" mnemonicParsing="false" text="Uddannelsestilbud" />
+                                    <CheckBox fx:id="activityAndSocialOfferCheckBox" disable="true" layoutX="174.0" layoutY="2204.0" mnemonicParsing="false" text="Aktivitets- og samværstilbud" />
+                                    <CheckBox fx:id="protectedEmploymentOfferCheckBox" disable="true" layoutX="174.0" layoutY="2229.0" mnemonicParsing="false" text="Beskyttet beskæftigelsestilbud" />
+                                    <CheckBox fx:id="adultDailyTreatmentCheckBoc" disable="true" layoutX="174.0" layoutY="2255.0" mnemonicParsing="false" text="Dagbehandlingstilbud til voksne" />
+                                    <CheckBox fx:id="educationOfferCheckBox" disable="true" layoutX="174.0" layoutY="2281.0" mnemonicParsing="false" text="Uddannelsestilbud" />
                                     <Label layoutX="662.0" layoutY="2100.0" text="Botilbud til voksne" />
-                                    <CheckBox layoutX="682.0" layoutY="2128.0" mnemonicParsing="false" text="Almen plejebolig" />
-                                    <CheckBox layoutX="682.0" layoutY="2153.0" mnemonicParsing="false" text="Almen ældrebolig/handicapvenlig bolig" />
-                                    <CheckBox layoutX="682.0" layoutY="2177.0" mnemonicParsing="false" text="Bofællesskab" />
-                                    <CheckBox layoutX="682.0" layoutY="2203.0" mnemonicParsing="false" text="Døgnbehandlingstilbud til voksne" />
-                                    <CheckBox layoutX="682.0" layoutY="2228.0" mnemonicParsing="false" text="Forsorgshjem/herberg" />
-                                    <CheckBox layoutX="682.0" layoutY="2254.0" mnemonicParsing="false" text="Krisecenter" />
+                                    <CheckBox fx:id="standardCareHomeCheckBox" disable="true" layoutX="682.0" layoutY="2128.0" mnemonicParsing="false" text="Almen plejebolig" />
+                                    <CheckBox fx:id="standardElderCareHomeCheckBox" disable="true" layoutX="682.0" layoutY="2153.0" mnemonicParsing="false" text="Almen ældrebolig/handicapvenlig bolig" />
+                                    <CheckBox fx:id="communityHomeCheckBox" disable="true" layoutX="682.0" layoutY="2177.0" mnemonicParsing="false" text="Bofællesskab" />
+                                    <CheckBox fx:id="adultDayCareCheckBox" disable="true" layoutX="682.0" layoutY="2203.0" mnemonicParsing="false" text="Døgnbehandlingstilbud til voksne" />
+                                    <CheckBox fx:id="hostelryCheckBox" disable="true" layoutX="682.0" layoutY="2228.0" mnemonicParsing="false" text="Forsorgshjem/herberg" />
+                                    <CheckBox fx:id="crisisCenterCheckBox" disable="true" layoutX="682.0" layoutY="2254.0" mnemonicParsing="false" text="Krisecenter" />
                                     <Label layoutX="701.0" layoutY="2281.0" text="Længerevarende botilbud til voksne" />
-                                    <CheckBox layoutX="725.0" layoutY="2307.0" mnemonicParsing="false" text="Sikret botilbud" />
-                                    <CheckBox layoutX="726.0" layoutY="2335.0" mnemonicParsing="false" text="Andet længerevarende botilbud til voksne" />
-                                    <CheckBox layoutX="683.0" layoutY="2369.0" mnemonicParsing="false" text="Midlertidigt botilbud" />
-                                    <CheckBox layoutX="684.0" layoutY="2397.0" mnemonicParsing="false" text="Plejehjem" />
-                                    <CheckBox layoutX="684.0" layoutY="2423.0" mnemonicParsing="false" text="Rehabiliteringstilbud" />
-                                    <CheckBox layoutX="665.0" layoutY="2467.0" mnemonicParsing="false" text="Udgående tilbud til voksne" />
-                                    <CheckBox layoutX="665.0" layoutY="2502.0" mnemonicParsing="false" text="Tilbud med myndighedsbeføjelse" />
+                                    <CheckBox fx:id="safeHousingCheckBox" disable="true" layoutX="725.0" layoutY="2307.0" mnemonicParsing="false" text="Sikret botilbud" />
+                                    <CheckBox fx:id="longTermSafeHousingCheckBox" disable="true" layoutX="726.0" layoutY="2335.0" mnemonicParsing="false" text="Andet længerevarende botilbud til voksne" />
+                                    <CheckBox fx:id="temporaryHousingCheckBox" disable="true" layoutX="683.0" layoutY="2369.0" mnemonicParsing="false" text="Midlertidigt botilbud" />
+                                    <CheckBox fx:id="nursingHomeCheckBox" disable="true" layoutX="684.0" layoutY="2397.0" mnemonicParsing="false" text="Plejehjem" />
+                                    <CheckBox fx:id="rehabilitationgOfferCheckBox" disable="true" layoutX="684.0" layoutY="2423.0" mnemonicParsing="false" text="Rehabiliteringstilbud" />
+                                    <CheckBox fx:id="adultOutboundOffersCheckBox" disable="true" layoutX="665.0" layoutY="2467.0" mnemonicParsing="false" text="Udgående tilbud til voksne" />
+                                    <CheckBox fx:id="governmentApprovedOfferCheckBox" disable="true" layoutX="665.0" layoutY="2502.0" mnemonicParsing="false" text="Tilbud med myndighedsbeføjelse" />
                                     <Separator layoutX="148.0" layoutY="2555.0" prefHeight="1.0" prefWidth="1003.0" style="-fx-background-color: black;" />
-                                    <Label layoutX="150.0" layoutY="2572.0" text="Henvendelse">
+                                    <Label disable="true" layoutX="150.0" layoutY="2572.0" text="Henvendelse">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </Label>
+                                    <RadioButton fx:id="inquiryYesRadioButton" layoutX="492.0" layoutY="614.0" mnemonicParsing="false" onAction="#updateYesNoStatus" text="Ja">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="YesNoGroup" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                    <RadioButton fx:id="inquiryNoRadioButton" layoutX="492.0" layoutY="647.0" mnemonicParsing="false" onAction="#updateYesNoStatus" text="Nej" toggleGroup="$YesNoGroup" />
                                  </children></AnchorPane>
                            </content>
                         </ScrollPane>
