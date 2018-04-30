@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 
@@ -46,8 +47,6 @@ public class CaseworkerController implements Initializable {
     private TextField postalCodeTextField;
     @FXML
     private Button cprInfoButton;
-    @FXML
-    private TextField descriptionTextField;
     @FXML
     private TextField cityTextField;
     @FXML
@@ -236,6 +235,10 @@ public class CaseworkerController implements Initializable {
     private RadioButton inquiryNoRadioButton;
     @FXML
     private CheckBox controlCheckBox;
+    @FXML
+    private TextArea descriptionTextAreaInquiry;
+    @FXML
+    private TextArea descriptionTextAreaCase;
 
     /**
      * Initializes the controller class.

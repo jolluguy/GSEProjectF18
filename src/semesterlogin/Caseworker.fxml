@@ -22,7 +22,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ScrollPane hmax="722.0" prefHeight="762.0" prefViewportHeight="1000.0" prefViewportWidth="771.0" prefWidth="1300.0" vmax="1080.0">
+                        <ScrollPane hmax="722.0" prefHeight="762.0" prefViewportHeight="1000.0" prefViewportWidth="771.0" prefWidth="1300.0" vmax="1080.0" vvalue="469.0">
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2000.0" prefWidth="1299.0">
                                  <children>
@@ -41,7 +41,6 @@
                                           <Font size="28.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="descriptionTextField" alignment="TOP_LEFT" layoutX="118.0" layoutY="687.0" prefHeight="445.0" prefWidth="1050.0" />
                                     <Label layoutX="192.0" layoutY="257.0" text="CPR">
                                        <font>
                                           <Font size="18.0" />
@@ -89,6 +88,7 @@
                                     <TextField fx:id="phoneNumberTextField" layoutX="506.0" layoutY="580.0" prefHeight="31.0" prefWidth="235.0" />
                                     <Button fx:id="cprInfoButton" layoutX="763.0" layoutY="255.0" mnemonicParsing="false" text="Hent info" />
                                     <Label layoutX="532.0" layoutY="224.0" text="Eks: 123456-1234" textFill="#bfbfbf" />
+                                    <TextArea fx:id="descriptionTextAreaInquiry" layoutX="125.0" layoutY="702.0" prefHeight="445.0" prefWidth="1050.0" />
                                  </children></AnchorPane>
                           </content>
                         </ScrollPane>
@@ -238,7 +238,7 @@
                                        </toggleGroup>
                                     </RadioButton>
                                     <RadioButton fx:id="inquiryNoRadioButton" layoutX="492.0" layoutY="647.0" mnemonicParsing="false" onAction="#updateYesNoStatus" text="Nej" toggleGroup="$YesNoGroup" />
-                                    <TextArea layoutX="160.0" layoutY="287.0" prefHeight="299.0" prefWidth="1017.0" />
+                                    <TextArea fx:id="descriptionTextAreaCase" layoutX="160.0" layoutY="287.0" prefHeight="299.0" prefWidth="1017.0" />
                                  </children></AnchorPane>
                            </content>
                         </ScrollPane>
