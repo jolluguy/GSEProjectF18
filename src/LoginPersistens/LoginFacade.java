@@ -17,6 +17,19 @@ import Acquaintance.IUser;
 public class LoginFacade implements ILoginPersistens {
     
     Operations operations;
+
+    public LoginFacade() {
+        operations = new Operations();
+    }
+    
+    private static LoginFacade instance = null;
+    public static LoginFacade getInstance(){
+        if(instance == null) {
+            instance = new LoginFacade();
+        }
+        return instance;
+    }
+
     
     @Override
     public void getMap() {
@@ -25,8 +38,11 @@ public class LoginFacade implements ILoginPersistens {
     
     @Override
     public IUser getUser(String userName) {
+        System.out.println("Login loginfacade entered");
         return operations.getUser(userName);
     }
+
+
 
     @Override
     public boolean addUser(IUser user) {

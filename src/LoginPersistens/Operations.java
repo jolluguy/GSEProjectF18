@@ -13,7 +13,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +24,7 @@ import java.util.Map;
 public class Operations {
 
     protected Map<String, DataUser> userMap; //String = IUser.getUserName;
-    private File file = new File("UserSetFile.obj");
+    private final File file = new File("UserSetFile.obj");
     private DataUser user;
 
     Map getMap() {

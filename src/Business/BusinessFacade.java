@@ -7,8 +7,6 @@
 package Business;
 
 import Acquaintance.IBusiness;
-import java.util.Collection;
-import java.util.List;
 import Acquaintance.IDataPersistens;
 import Acquaintance.ILoginPersistens;
 import Acquaintance.IUser;
@@ -24,6 +22,14 @@ public class BusinessFacade implements IBusiness {
 
     private UserOperations userOperations;
 
+    private static BusinessFacade instance = null;
+    static BusinessFacade getInstance(){
+        if(instance == null){
+            instance = new BusinessFacade();
+        } 
+        return instance;
+    }
+    
     //Data layer injection
     @Override
     public void injectionDataPersistens(IDataPersistens dataPersistens) {
@@ -36,73 +42,43 @@ public class BusinessFacade implements IBusiness {
     }
 
     public BusinessFacade() {
-        manager = new UserManager();
+        manager = new AccessManager();
     }
 
-    private UserManager manager; // Delegate all calls conserning users to the manager.
+    private AccessManager manager; // Delegate all calls conserning users to the manager.
 
+    
     @Override
-    public String createUser(String userName, String password1, String password2) {
-        return userOperations.createUser(userName, password1, password2);
-    }
-
-    @Override
-    public int login(String name, String pw) {
-        return manager.login(name, pw);
+    public int login(String userName, String pw) {
+        System.out.println("login businessfacade entered after gui");
+        return manager.login(userName, pw);
     }
 
     @Override
-    public void logOut() {
+    public void logOut() { //later: Need to return true before scenechange
         manager.logOut();
     }
-
+    
     @Override
-    public List<String> getUserList() {
-        return manager.getUserList();
+    public void getMap() {
+        loginPersistens.getMap();
+    }
+
+    public IUser getUser(String userName) {
+        System.out.println("getUser entered businessfacade");
+        return loginPersistens.getUser(userName);
     }
 
     @Override
-    public String changePassword(String old, String new1, String new2) {
-        return manager.changePw(old, new1, new2);
+    public boolean addUser(IUser user) {
+        return loginPersistens.addUser(user);
     }
 
     @Override
-    public String changeLevel(String name, String pw, int level) {
-        return manager.changeLevel(name, pw, level);
+    public boolean updateUser(IUser user) {
+        return loginPersistens.updateUser(user);
     }
 
-    private UserOperations operations;
-
-    @Override
-    public boolean userExists(String userName) {
-        return operations.userExists(userName);
-    }
-
-    @Override
-    public IUser getUser(String UserName, String pw) {
-        return operations.getUser(UserName, pw);
-    }
-
-    private User user;
-
-    @Override
-    public String getUserName() {
-        return user.getUserName();
-    }
-
-    @Override
-    public boolean checkPassword(String pw) {
-        return user.checkPassword(pw);
-    }
-
-    @Override
-    public void addUser(String userName, String password) {
-        loginPersistens.addUser(userName, password);
-    }
-
-    @Override
-    public Collection<IUser> getAllUsers() {
-        return loginPersistens.getAllUsers();
-    }
+    
 
 }

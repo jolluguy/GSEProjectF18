@@ -50,10 +50,10 @@ public class DataUser implements IUser {
         this.password = password;
     }
 
-    @Override
-    public void setLastLoginTime(Date lastLoginTime) {
-        this.lastLoginTime = lastLoginTime;
-    }
+    
+//    public void setLastLoginTime(Date lastLoginTime) {
+//        this.lastLoginTime = lastLoginTime;
+//    }
     
     void updateUser(String password, int level, Date lastLoginTime){
         this.password = password;

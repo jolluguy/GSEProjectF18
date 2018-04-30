@@ -5,8 +5,6 @@
  */
 package Acquaintance;
 
-import java.util.Collection;
-
 /**
  *
  * @author Rol's studie PC

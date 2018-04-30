@@ -5,9 +5,6 @@
  */
 package Business;
 
-import Acquaintance.ILoginPersistens;
-import Acquaintance.IUser;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 /**
@@ -31,30 +28,19 @@ public class UserOperations {
 
     // private methods to read and write a whole Map.
 
-    protected String createUser(String userName, String password1, String password2) {
-        if (password1.equals(password2)) {
-            
-            boolean succes = !userExists(userName);
-            
-            if (succes) {
-                business.addUser(userName, password1);
-                return "Bruger " + userName + " tilføjet.";
-            } else {
-                return "Fejl: " + userName + " eksisterer allerede!";
-            }
-        } else return "Passwords matcher ikke!";
-        
-    } 
-    
-    protected Collection<IUser> getAllUsers() {
-        business.getAllUsers();
-    }
-
-    
-
-    // public I/O operations:
-    public boolean userExists(String userName){
-        return userMap.containsKey(userName);
-    }
+//    protected String createUser(String userName, String password1, String password2) {
+//        if (password1.equals(password2)) {
+//            
+//            boolean succes = !userExists(userName);
+//            
+//            if (succes) {
+//                business.addUser(userName, password1);
+//                return "Bruger " + userName + " tilføjet.";
+//            } else {
+//                return "Fejl: " + userName + " eksisterer allerede!";
+//            }
+//        } else return "Passwords matcher ikke!";
+//        
+//    }
     
 }

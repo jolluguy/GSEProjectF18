@@ -60,11 +60,14 @@ public class FXMLLoginController implements Initializable {
     }
     
     @FXML
-    public void login(ActionEvent event) throws IOException {       
+    public void login(ActionEvent event) throws IOException {
+        System.out.println("Login entered");
         String userName = usernameField.getText();
         String password = passwordField.getText();
         
+        System.out.println("requesting result");
         int result = business.login(userName, password);
+        System.out.println("return from result login");
         
         if(result == 1){
             
@@ -77,7 +80,7 @@ public class FXMLLoginController implements Initializable {
             
             
         } else if(result == 2){
-            
+            System.out.println("Admin detected");
             Parent adminScene = FXMLLoader.load(getClass().getResource("Admin.fxml"));
             
             Scene newScene = new Scene(adminScene);

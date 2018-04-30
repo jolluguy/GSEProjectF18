@@ -5,11 +5,6 @@
  */
 package Acquaintance;
 
-import Business.User;
-import Business.UserOperations;
-import java.util.Collection;
-import java.util.List;
-
 /**
  *
  * @author Alexa
@@ -24,20 +19,11 @@ public interface IBusiness {
 
     void logOut();
 
-    List<String> getUserList();
-
-    String changePassword(String old, String new1, String new2);
-
-    String changeLevel(String name, String pw, int level);
-
-    String getUserName();
-
-    boolean checkPassword(String pw);
+    public void getMap();
     
-    String createUser(String userName, String password1, String password2);
-    
-    void addUser(String userName, String password);
-    
-    Collection<IUser> getAllUsers();
+    public boolean addUser(IUser user);
+
+    public boolean updateUser(IUser user);
+
 
 }

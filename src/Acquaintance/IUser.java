@@ -20,7 +20,5 @@ public interface IUser {
     void setLevel(int level);
 
     void setPassword(String pw);
-
-    void setLastLoginTime(Date lastLoginTime);
     
 }

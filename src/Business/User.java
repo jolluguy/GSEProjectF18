@@ -56,8 +56,8 @@ public class User implements IUser, Serializable{
         this.pw = pw;
     }
 
-    public void setLastLoginTime(Date lastLoginTime) {
-        this.lastLoginTime = lastLoginTime;
+    public void setLastLoginTime() {
+        this.lastLoginTime = new Date();
     }
     
     DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);

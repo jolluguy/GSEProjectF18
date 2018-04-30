@@ -99,34 +99,34 @@ public class AdminController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
 
-        //Load listview
-        obsList = FXCollections.observableArrayList();
-        userListview.setItems(obsList);
-        obsList.addAll(business.getUserList());
+//        //Load listview
+//        obsList = FXCollections.observableArrayList();
+//        userListview.setItems(obsList);
+//        obsList.addAll(business.getUserList());
     }
 
-    @FXML
-    public void createUser(ActionEvent event) {
-        String userName = usernameField.getText();
-        String password1 = password1Field.getText();
-        String password2 = password2Field.getText();
-        int level = 0;
-
-        if (!(lvl1Radio.isSelected() || lvl2Radio.isSelected())) {
-            warningLabel.setText("Level skal vælges før ændring");
-        } else {
-            if (lvl1Radio.isSelected()) {
-                level = 1;
-            } else if (lvl2Radio.isSelected()) {
-                level = 2;
-            }
-
-            String statusmessage = business.createUser(userName, password1, password2);
-            warningLabel.setText(statusmessage);
-            refreshListview(event);
-
-        }
-    }
+//    @FXML
+//    public void createUser(ActionEvent event) {
+//        String userName = usernameField.getText();
+//        String password1 = password1Field.getText();
+//        String password2 = password2Field.getText();
+//        int level = 0;
+//
+//        if (!(lvl1Radio.isSelected() || lvl2Radio.isSelected())) {
+//            warningLabel.setText("Level skal vælges før ændring");
+//        } else {
+//            if (lvl1Radio.isSelected()) {
+//                level = 1;
+//            } else if (lvl2Radio.isSelected()) {
+//                level = 2;
+//            }
+//
+//            String statusmessage = business.createUser(userName, password1, password2);
+//            warningLabel.setText(statusmessage);
+//            refreshListview(event);
+//
+//        }
+//    }
 
     @FXML
     public void logout(ActionEvent event) throws IOException {
@@ -140,26 +140,26 @@ public class AdminController implements Initializable {
         business.logOut();
     }
 
-    @FXML
-    public void changeJob(ActionEvent event) {
-        String username = jobUsernameField.getText();
-        String password = jobPasswordField.getText();
-        int level = 0;
-
-        if (!(jobCaseRadio.isSelected() || jobAdminRadio.isSelected())) {
-            jobWarningLabel.setText("Level skal vælges før ændring");
-        } else {
-            if (jobCaseRadio.isSelected()) {
-                level = 1;
-            } else if (jobAdminRadio.isSelected()) {
-                level = 2;
-            }
-            
-            String StatusMessage = business.changeLevel(username, password, level);
-            jobWarningLabel.setText(StatusMessage);
-            
-        }
-    }
+//    @FXML
+//    public void changeJob(ActionEvent event) {
+//        String username = jobUsernameField.getText();
+//        String password = jobPasswordField.getText();
+//        int level = 0;
+//
+//        if (!(jobCaseRadio.isSelected() || jobAdminRadio.isSelected())) {
+//            jobWarningLabel.setText("Level skal vælges før ændring");
+//        } else {
+//            if (jobCaseRadio.isSelected()) {
+//                level = 1;
+//            } else if (jobAdminRadio.isSelected()) {
+//                level = 2;
+//            }
+//            
+//            String StatusMessage = business.changeLevel(username, password, level);
+//            jobWarningLabel.setText(StatusMessage);
+//            
+//        }
+//    }
     
     @FXML
     public void jobCancel(ActionEvent event){
@@ -170,10 +170,10 @@ public class AdminController implements Initializable {
         jobWarningLabel.setText("");
     }
     
-    @FXML
-    public void refreshListview(ActionEvent event){
-        obsList.clear();
-        obsList.addAll(business.getUserList());
-    }
+//    @FXML
+//    public void refreshListview(ActionEvent event){
+//        obsList.clear();
+//        obsList.addAll(business.getUserList());
+//    }
     
 }
