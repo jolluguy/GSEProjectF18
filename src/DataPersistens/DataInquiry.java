@@ -19,32 +19,38 @@ public class DataInquiry implements IInquiry {
     private DataCitizen citizen;
     private String problemDescription;
 
-    public DataInquiry(DataCPR cpr, DataCitizen citizen, String problemDescription) {
+    public DataInquiry(DataCitizen citizen, String problemDescription) {
         this.cpr = cpr;
         this.citizen = citizen;
         this.problemDescription = problemDescription;
     }
 
+    @Override
     public ICPR getCpr() {
         return cpr;
     }
 
+    @Override
     public void setCpr(ICPR cpr) {
         this.cpr = new DataCPR(cpr.getCprNumber());
     }
 
+    @Override
     public ICitizen getCitizen() {
         return citizen;
     }
 
+    @Override
     public void setCitizen(ICitizen citizen) {
-        this.citizen = new DataCitizen(citizen.getFirstname(), citizen.getSurname(), citizen.getRoadName(), citizen.getHouseNumber(), citizen.getFloor(), citizen.getPostNumber(), citizen.getCity(), citizen.getTlfNumber());
+        this.citizen = new DataCitizen(citizen.getCprNumber(), citizen.getFirstname(), citizen.getSurname(), citizen.getRoadName(), citizen.getHouseNumber(), citizen.getFloor(), citizen.getPostNumber(), citizen.getCity(), citizen.getTlfNumber());
     }
 
+    @Override
     public String getProblemDescription() {
         return problemDescription;
     }
 
+    @Override
     public void setProblemDescription(String problemDescription) {
         this.problemDescription = problemDescription;
     }

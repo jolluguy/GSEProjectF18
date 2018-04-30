@@ -26,25 +26,25 @@ public class BusinessController {
         
         returnMessage = BusinessFacade.saveInq(inquiry);
         
-        if  (returnMessage == false) { //Pseudo code
+        if  (!returnMessage) {
             
-            // Display errormessage (GUI-kald)
+            // Display errormessage (snak med GUI)
             
-            while (DBConnectionError()) {
-                DBConnectionError();
+            while (!returnMessage) {
+                returnMessage = BusinessFacade.saveInq(inquiry);
             }
             
-            // Remove errormessage (GUI-kald)
+            // Remove errormessage (snak med GUI)
         }
         return true;
     }    
     
     
-    public boolean DBConnectionError(){
-        boolean dbConnection = false;
-        
-        // ping DB
-        
-        return !dbConnection;
-    }
+//    public boolean DBConnectionError(){
+//        boolean dbConnection = false;
+//        
+//        // ping DB
+//        
+//        return !dbConnection;
+//    }
 }

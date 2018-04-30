@@ -5,6 +5,7 @@
  */
 package DataPersistens;
 
+import Acquaintance.ICPR;
 import Acquaintance.ICitizen;
 
 /**
@@ -21,8 +22,9 @@ class DataCitizen implements ICitizen {
     private int postNumber;
     private String city;
     private String tlfNumber;
+    private ICPR cpr;
 
-    public DataCitizen(String firstname, String surname, String roadName, String houseNumber, String floor, int postNumber, String city, String tlfNumber) {
+    public DataCitizen(long cprNumber, String firstname, String surname, String roadName, String houseNumber, String floor, int postNumber, String city, String tlfNumber) {
         this.firstname = firstname;
         this.surname = surname;
         this.roadName = roadName;
@@ -31,6 +33,8 @@ class DataCitizen implements ICitizen {
         this.postNumber = postNumber;
         this.city = city;
         this.tlfNumber = tlfNumber;
+        
+        this.cpr = new DataCPR(cprNumber);
     }
 
     
@@ -50,6 +54,7 @@ class DataCitizen implements ICitizen {
     public void setSurname(String surname) {
         this.surname = surname;
     }
+    @Override
     public String getRoadName() {
         return roadName;
     }
@@ -97,6 +102,26 @@ class DataCitizen implements ICitizen {
     @Override
     public void setTlfNumber(String tlfNumber) {
         this.tlfNumber = tlfNumber;
+    }
+    
+    @Override
+    public ICPR getCpr() {
+        return this.cpr;
+    }
+    
+    @Override
+    public void setCpr(ICPR cpr) {
+        this.cpr = cpr;
+    }
+
+    @Override
+    public long getCprNumber() {
+        return this.cpr.getCprNumber();
+    }
+
+    @Override
+    public void setCprNumber(long cpr) {
+        this.cpr.setCprNumber(cpr);
     }
 
 }
