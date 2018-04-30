@@ -43,7 +43,10 @@ public class User implements IUser, Serializable{
         this.level = level;
     }
     
-    
+    @Override
+    public void setPassword(String pw) {
+        this.pw = pw;
+    }
 
     public boolean checkPassword(String pw) {
         return this.pw.equals(pw);

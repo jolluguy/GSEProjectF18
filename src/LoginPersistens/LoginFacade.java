@@ -7,7 +7,6 @@ package LoginPersistens;
 
 import Acquaintance.ILoginPersistens;
 import Acquaintance.IUser;
-import java.util.Collection;
 
 
 
@@ -20,33 +19,25 @@ public class LoginFacade implements ILoginPersistens {
     Operations operations;
     
     @Override
-    public void readMap() {
-        operations.readMap();
+    public void getMap() {
+        operations.getMap();
     }
     
     @Override
-    public void saveMap() {  // Called every time a user is created/updated/deleted
-        operations.saveMap();
-    }
-    
-    @Override
-    public IUser getUser(String userName, String pw) {
-        return operations.getUser(userName, pw);
-    }
-    
-    @Override
-    public Collection<IUser> getAllUsers(){
-        return operations.userMap.values();
+    public IUser getUser(String userName) {
+        return operations.getUser(userName);
     }
 
     @Override
-    public void saveUser(IUser user) {
-        operations.saveUser(user);
+    public boolean addUser(IUser user) {
+        return operations.addUser(user);
     }
 
     @Override
-    public void addUser(String userName, String password) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean updateUser(IUser user) {
+        return operations.updateUser(user);
     }
+    
+    
     
 }

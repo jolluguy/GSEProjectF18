@@ -18,10 +18,8 @@ public interface IUser {
     int getLevel();
 
     void setLevel(int level);
-    
-    boolean checkPassword(String pw);
 
-    void changePassword(String pw);
+    void setPassword(String pw);
 
     void setLastLoginTime(Date lastLoginTime);
     

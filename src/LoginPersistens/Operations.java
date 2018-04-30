@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,20 +24,19 @@ import java.util.Map;
  */
 public class Operations {
 
-    protected Map<String, IUser> userMap;
+    protected Map<String, DataUser> userMap; //String = IUser.getUserName;
     private File file = new File("UserSetFile.obj");
+    private DataUser user;
 
-    protected void readMap() {
+    Map getMap() {
         if (!file.exists()) {
             userMap = new HashMap<>();
-            addUser(new IUser("Admin", "Super", 2));// Default SuperUser
+            addUser(new DataUser("Admin", "Super", 2, new Date(), new Date())); // Default SuperUser
             saveMap();
         } else {
-            ObjectInputStream ois = null;
-            try {
-                ois = new ObjectInputStream(new FileInputStream(file));
+            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
                 Object obj = ois.readObject();
-                userMap = (Map<String, IUser>) obj;
+                userMap = (Map<String, DataUser>) obj;
 
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
@@ -44,57 +44,48 @@ public class Operations {
                 ex.printStackTrace();
             } catch (ClassNotFoundException ex) {
                 ex.printStackTrace();
-            } finally {
-                try {
-                    ois.close();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
             }
         }
-
+        return userMap;
     }
 
-    protected void saveMap() {  // Called every time a user is created/updated/deleted
-        ObjectOutputStream oos = null;
-        try {
-            oos = new ObjectOutputStream(new FileOutputStream(file));
+    private void saveMap() {  // Called every time a user is created/updated/deleted
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
             oos.writeObject(userMap);
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         } catch (IOException ex) {
             ex.printStackTrace();
-        } finally {
-            try {
-                oos.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
         }
     }
 
-    protected IUser getUser(String userName, String pw) {
-        IUser user = userMap.get(userName);
-        if (user != null && user.checkPassword(pw)) {
+    public boolean addUser(IUser user) {
+        userMap.put(user.getUserName(), (DataUser) user);
+        saveMap();
+        return true;
+    }
+
+    private void saveUser(IUser user) {
+        getMap();
+        userMap.put(user.getUserName(), (DataUser) user);
+        saveMap();
+    }
+
+    boolean updateUser(IUser user) {
+        getMap();
+        userMap.remove(user.getUserName());
+        userMap.put(user.getUserName(), (DataUser) user);
+        saveMap();
+        return true;
+    }
+
+    protected IUser getUser(String userName) {
+        getMap();
+        DataUser user = userMap.get(userName);
+        if (userName != null) {
             return user;
         }
         return null;
-    }
-
-    public Collection<IUser> getAllUsers() {
-        readMap(); //Updates userMap before sending info
-        return userMap.values();
-    }
-    
-    public void addUser(User user) {
-        userMap.put(user.getUserName(), user);
-        saveMap();
-    }
-
-
-    public void saveUser(IUser user) {
-        userMap.put(user.getUserName(), user);
-        saveMap();
     }
 
 }

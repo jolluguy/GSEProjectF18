@@ -13,15 +13,11 @@ import java.util.Collection;
  */
 public interface ILoginPersistens {
     
-    void readMap();
+    void getMap();
     
-    void saveMap();
-    
-    IUser getUser(String userName, String pw);
-    
-    Collection<IUser> getAllUsers();
+    IUser getUser(String userName);
 
-    void addUser(String userName, String password);
+    boolean addUser(IUser user);
     
-    void saveUser(IUser user);
+    boolean updateUser(IUser user);
 }
