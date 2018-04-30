@@ -404,7 +404,6 @@ public class CaseworkerController implements Initializable {
 
     @FXML
     public void updateCarriageStatus(ActionEvent event) {
-        System.out.println("test" + event);
         if (carriageCheckBox.isSelected()) {
             carriage105CheckBox.setDisable(false);
             carriage25CheckBox.setDisable(false);
