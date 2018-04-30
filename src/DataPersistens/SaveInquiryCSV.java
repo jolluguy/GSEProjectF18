@@ -18,21 +18,23 @@ import java.io.PrintWriter;
 public class SaveInquiryCSV {
 
     IInquiry inq;
+    public static DataFacade dataFacade = DataFacade.getInstance();
 
-    SaveInquiryCSV(DataInquiry inq) {
-        this.inq = new DataInquiry(new DataCPR(inq.getCpr().getCprNumber()), new DataCitizen(inq.getCitizen().getFirstname(), inq.getCitizen().getSurname(), inq.getCitizen().getRoadName(), inq.getCitizen().getHouseNumber(), inq.getCitizen().getFloor(), inq.getCitizen().getPostNumber(), inq.getCitizen().getCity(), inq.getCitizen().getCity()), inq.getProblemDescription());
-    saveInq();
-    
+    SaveInquiryCSV(IInquiry inq) {
+        this.inq = new DataInquiry(new DataCitizen(inq.getCitizen().getCprNumber(), inq.getCitizen().getFirstname(), 
+                inq.getCitizen().getSurname(), inq.getCitizen().getRoadName(), inq.getCitizen().getHouseNumber(), 
+                inq.getCitizen().getFloor(), inq.getCitizen().getPostNumber(), inq.getCitizen().getCity(), 
+                inq.getCitizen().getCity()), inq.getProblemDescription());
     }
     
-    void saveInq(){
+    boolean saveInq(){
         final String SEPPERATOR = "<";
         
         try (FileWriter fw = new FileWriter("InquiryDB.txt", true); // true betyder at den appender filen i stedet for at overrite den
                 BufferedWriter bw = new BufferedWriter(fw);
                 PrintWriter writer = new PrintWriter(bw)) {
             writer.println(
-                    inq.getCpr().getCprNumber()+
+                    inq.getCitizen().getCprNumber()+
                     SEPPERATOR+
                     inq.getCitizen().getFirstname()+
                     SEPPERATOR+
@@ -54,5 +56,7 @@ public class SaveInquiryCSV {
         } catch (IOException ex) {
             System.out.println(ex.toString());
         }
+
+        return true;
     }
 }

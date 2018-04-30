@@ -6,6 +6,7 @@
 package DataPersistens;
 
 import Acquaintance.IDataPersistens;
+import Acquaintance.IInquiry;
 
 /**
  *
@@ -13,5 +14,19 @@ import Acquaintance.IDataPersistens;
  */
 public class DataFacade implements IDataPersistens {
     
+    private static DataFacade instance = null;
+    public static DataFacade getInstance(){
+        if (instance == null){
+            instance = new DataFacade();
+        }
+        return instance;
+    }
+    
+    @Override
+    public boolean saveInq(IInquiry inq) {
+        SaveInquiryCSV save = new SaveInquiryCSV(inq);
+                System.out.println("test");
+        return save.saveInq();
+    }
     
 }

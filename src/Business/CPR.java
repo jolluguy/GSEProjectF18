@@ -12,20 +12,29 @@ import Acquaintance.ICPR;
  *
  * @author goope
  */
-public class CPR implements ICPR{
-    private int CPRNumber;
+public class CPR implements ICPR {
+    private long CPRNumber;
     
-    CPR (int CPRNumber) {
+    CPR (long CPRNumber) {
         this.CPRNumber = CPRNumber;
     }
 
     @Override
-    public int getCprNumber() {
+    public long getCprNumber() {
         return CPRNumber;
     }
 
     @Override
-    public void setCprNumber(int cprNumber) {
+    public void setCprNumber(long cprNumber) {
         this.CPRNumber = cprNumber;
+    }
+    
+    @Override
+    public boolean validateCPR() {
+        long elevenDigitMin, tenDigitMin;
+        elevenDigitMin = (long)Math.pow(10, 10);
+        tenDigitMin = 1000000000;
+        
+        return (this.CPRNumber < elevenDigitMin && this.CPRNumber >= tenDigitMin);
     }
 }

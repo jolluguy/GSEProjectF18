@@ -11,6 +11,7 @@ import java.util.List;
 import Acquaintance.IDataPersistens;
 import Acquaintance.IInquiry;
 import Acquaintance.ILoginPersistens;
+import DataPersistens.DataFacade;
 
 /**
  *
@@ -20,7 +21,16 @@ public class BusinessFacade implements IBusiness {
 
     private IDataPersistens dataPersistens;
     private ILoginPersistens loginPersistens;
+    private static DataFacade dataFacade = DataFacade.getInstance();
 
+    private static BusinessFacade instance = null;
+    public static BusinessFacade getInstance(){
+        if (instance == null){
+            instance = new BusinessFacade();
+        }
+        return instance;
+    }
+    
     //Data layer injection
     @Override
     public void injectionDataPersistens(IDataPersistens dataPersistens) {
@@ -113,13 +123,17 @@ public class BusinessFacade implements IBusiness {
     }
 
     private BusinessController controller = new BusinessController();
-    
+      
     @Override
-    public void sendToDB(IInquiry inquiry){
-        controller.sendToDB(inquiry);
+    public boolean sendToDB(IInquiry inquiry) {
+        return controller.sendToDB(inquiry); // kaldt fra GUI
     }
-    @Override
-    public void DBConnectionError(){
-        controller.DBConnectionError();
+    
+    public boolean saveInq(IInquiry inq) {
+        return dataFacade.saveInq(inq); // kaldt fra Controller
+    }
+    
+    public void testSave(){
+        controller.testSave();
     }
 }

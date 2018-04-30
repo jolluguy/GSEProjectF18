@@ -10,8 +10,6 @@ package Acquaintance;
  * @author Rasmus
  */
 public interface IInquiry {
-public ICPR getCpr();
-public void setCpr(ICPR cpr);
 public ICitizen getCitizen();
 public void setCitizen(ICitizen citizen);
 public String getProblemDescription();

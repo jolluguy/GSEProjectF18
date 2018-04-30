@@ -10,7 +10,8 @@ package Acquaintance;
  * @author Rasmus
  */
 public interface ICPR {
-   public int getCprNumber();
-   public void setCprNumber(int cprNumber);
+   public long getCprNumber();
+   public void setCprNumber(long cprNumber);
+   public boolean validateCPR();
    
 }

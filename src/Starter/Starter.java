@@ -19,19 +19,24 @@ import LoginPersistens.LoginFacade;
  * @author Alexa
  */
 public class Starter {
-
+    
+    public static BusinessFacade facade = BusinessFacade.getInstance();
+    
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) {          
         IGUI gui = new SemesterLogin();
         IBusiness business = new BusinessFacade();
         IDataPersistens dataPersistens = new DataFacade();
         ILoginPersistens loginPersistens = new LoginFacade();
         business.injectLoginPersistens(loginPersistens);
         business.injectionDataPersistens(dataPersistens);
-        gui.injectBusiness(business);
         
+        facade.testSave();
+        
+        gui.injectBusiness(business);
+                
         System.out.println("Ready to start system");
         gui.startApplication(args);
     }
