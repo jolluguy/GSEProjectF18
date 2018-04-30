@@ -239,6 +239,18 @@ public class CaseworkerController implements Initializable {
     private TextArea descriptionTextAreaInquiry;
     @FXML
     private TextArea descriptionTextAreaCase;
+    @FXML
+    private ToggleGroup inquiryOriginGroup;
+    @FXML
+    private ToggleGroup inquiryYesOrNoGroup;
+    @FXML
+    private ToggleGroup guardianshipGroup;
+    @FXML
+    private ToggleGroup rightsYesOrNoGroup;
+    @FXML
+    private ToggleGroup consentYesOrNoGroup;
+    @FXML
+    private ToggleGroup consentGroup;
 
     /**
      * Initializes the controller class.

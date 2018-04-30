@@ -99,7 +99,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ScrollPane hmax="722.0" prefHeight="766.0" prefWidth="1300.0" vmax="5000.0" vvalue="3395.0">
+                        <ScrollPane hmax="722.0" prefHeight="766.0" prefWidth="1300.0" vmax="5000.0" vvalue="3855.0">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="5000.0" prefWidth="1299.0">
                                  <children>
@@ -291,6 +291,32 @@
                                        </toggleGroup>
                                     </RadioButton>
                                     <RadioButton layoutX="579.0" layoutY="3291.0" mnemonicParsing="false" text="Nej" toggleGroup="$rightsYesOrNoGroup" />
+                                    <Separator layoutX="138.0" layoutY="3342.0" prefHeight="1.0" prefWidth="1003.0" style="-fx-background-color: black;" />
+                                    <Label layoutX="147.0" layoutY="3369.0" text="Aftaler om det videre forløb">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font></Label>
+                                    <TextArea layoutX="167.0" layoutY="3397.0" prefHeight="200.0" prefWidth="950.0" />
+                                    <Separator layoutX="139.0" layoutY="3644.0" prefHeight="1.0" prefWidth="1003.0" style="-fx-background-color: black;" />
+                                    <Label layoutX="150.0" layoutY="3669.0" text="Samtykke">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font></Label>
+                                    <Label layoutX="162.0" layoutY="3698.0" text="Er det relevant at indhente samtykke?" />
+                                    <RadioButton layoutX="575.0" layoutY="3698.0" mnemonicParsing="false" text="Ja">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="consentYesOrNoGroup" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                    <RadioButton layoutX="575.0" layoutY="3724.0" mnemonicParsing="false" text="Nej" toggleGroup="$consentYesOrNoGroup" />
+                                    <Label layoutX="162.0" layoutY="3774.0" text="Hvis ja, angiv hvordan samtykke er modtaget" />
+                                    <RadioButton layoutX="575.0" layoutY="3800.0" mnemonicParsing="false" text="Mundtligt samtykke">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="consentGroup" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                    <RadioButton layoutX="575.0" layoutY="3823.0" mnemonicParsing="false" text="Skriftligt samtykke" toggleGroup="$consentGroup" />
+                                    <Separator layoutX="140.0" layoutY="3870.0" prefHeight="1.0" prefWidth="1003.0" style="-fx-background-color: black;" />
                                  </children></AnchorPane>
                            </content>
                         </ScrollPane>
