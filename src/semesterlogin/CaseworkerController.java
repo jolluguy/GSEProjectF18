@@ -290,6 +290,17 @@ public class CaseworkerController implements Initializable {
         } else if (inquiryNoRadioButton.isSelected()) {
 
             //set disable
+            carriageCheckBox.fire();
+            treatmentCheckBox.fire();
+            cashBenefitCheckBox.fire();
+            controlCheckBox.fire();
+            institutioningCheckBox.fire();
+            educationCheckBox.fire();
+            socialSupportCheckBox.fire();
+            supportPersonCheckBox.fire();
+            supportToolCheckBox.fire();
+            trainingCheckBox.fire();
+            nonSearchedServicesCheckBox.fire();
             activity104CheckBox.setDisable(true);
             carriageCheckBox.setDisable(true);
             treatmentCheckBox.setDisable(true);
@@ -369,7 +380,8 @@ public class CaseworkerController implements Initializable {
     }
 
     @FXML
-    public void updateCarrigeStatus(ActionEvent event) {
+    public void updateCarriageStatus(ActionEvent event) {
+        System.out.println("test" + event);
         if (carriageCheckBox.isSelected()) {
             carriage105CheckBox.setDisable(false);
             carriage25CheckBox.setDisable(false);
@@ -425,7 +437,7 @@ public class CaseworkerController implements Initializable {
     }
     
     @FXML
-    public void updateCashBennefitStatus(ActionEvent event){
+    public void updateCashBenefitStatus(ActionEvent event){
         if(cashBenefitCheckBox.isSelected()){
             remunerationCheckBox.setDisable(false);
             additionalCostCheckBox.setDisable(false);
@@ -464,7 +476,7 @@ public class CaseworkerController implements Initializable {
     }
     
     @FXML
-    public void updateInstitutioningStaus(ActionEvent event){
+    public void updateInstitutioningStatus(ActionEvent event){
         if(institutioningCheckBox.isSelected()){
             _24HourReliefCheckBox.setDisable(false);
             longInstitutionalisingCheckBox.setDisable(false);
@@ -628,7 +640,7 @@ public class CaseworkerController implements Initializable {
     }
     
     @FXML
-    public void updateNonSearchedServices (ActionEvent event) {
+    public void updateNonSearchedServicesStatus (ActionEvent event) {
         if(nonSearchedServicesCheckBox.isSelected()){
             
             counselingCheckBox.setDisable(false);
@@ -644,6 +656,7 @@ public class CaseworkerController implements Initializable {
 
         }
     }
+
     
     
     

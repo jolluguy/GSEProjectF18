@@ -98,7 +98,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ScrollPane hmax="722.0" prefHeight="766.0" prefWidth="1300.0" vmax="3000.0" vvalue="877.0">
+                        <ScrollPane hmax="722.0" prefHeight="766.0" prefWidth="1300.0" vmax="3000.0">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="3000.0" prefWidth="1299.0">
                                  <children>
@@ -131,7 +131,7 @@
                                        </font>
                                     </Label>
                                     <CheckBox fx:id="activity104CheckBox" disable="true" layoutX="161.0" layoutY="787.0" mnemonicParsing="false" text="Aktivitets- og samværsydelse (§104)" />
-                                    <CheckBox fx:id="carriageCheckBox" disable="true" layoutX="161.0" layoutY="829.0" mnemonicParsing="false" onAction="#updateCarrigeStatus" text="Befordring" />
+                                    <CheckBox fx:id="carriageCheckBox" disable="true" layoutX="161.0" layoutY="829.0" mnemonicParsing="false" onAction="#updateCarriageStatus" text="Befordring" />
                                     <CheckBox fx:id="carriage105CheckBox" disable="true" layoutX="186.0" layoutY="853.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (§105)" />
                                     <CheckBox fx:id="carriage25CheckBox" disable="true" layoutX="186.0" layoutY="882.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (Hjælpemiddelbekendtgørelsen §25)" />
                                     <CheckBox fx:id="carriage5CheckBox" disable="true" layoutX="186.0" layoutY="909.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (Lov om specialundervisning til voksne §5)" />
@@ -147,7 +147,7 @@
                                     <CheckBox fx:id="treamentSpecialDrCheckBox" disable="true" layoutX="186.0" layoutY="1221.0" mnemonicParsing="false" text="Speciallæge behandling (§102)" />
                                     <CheckBox fx:id="protectedEmploymentCheckBox" disable="true" layoutX="166.0" layoutY="1262.0" mnemonicParsing="false" text="Beskyttet beskæftigelsesydelse (§103)" />
                                     <CheckBox fx:id="dayReliefCheckBox" disable="true" layoutX="166.0" layoutY="1299.0" mnemonicParsing="false" text="Dagaflastning (§84)" />
-                                    <CheckBox fx:id="cashBenefitCheckBox" disable="true" layoutX="166.0" layoutY="1340.0" mnemonicParsing="false" onAction="#updateCashBennefitStatus" text="Kontantydelse" />
+                                    <CheckBox fx:id="cashBenefitCheckBox" disable="true" layoutX="166.0" layoutY="1340.0" mnemonicParsing="false" onAction="#updateCashBenefitStatus" text="Kontantydelse" />
                                     <CheckBox fx:id="remunerationCheckBox" disable="true" layoutX="186.0" layoutY="1369.0" mnemonicParsing="false" text="Arbejdsvederlag (§105)" />
                                     <CheckBox fx:id="additionalCostCheckBox" disable="true" layoutX="186.0" layoutY="1400.0" mnemonicParsing="false" text="Dækning af merudgift (§100)" />
                                     <CheckBox fx:id="controlCheckBox" disable="true" layoutX="164.0" layoutY="1441.0" mnemonicParsing="false" onAction="#updateControlStatus" text="Kontrolordning" />
@@ -156,7 +156,7 @@
                                     <CheckBox fx:id="control128CheckBox" disable="true" layoutX="184.0" layoutY="1528.0" mnemonicParsing="false" text="Fastholdelse (§128)" />
                                     <CheckBox fx:id="control125CheckBox" disable="true" layoutX="184.0" layoutY="1558.0" mnemonicParsing="false" text="Kontrol med færden (§125)" />
                                     <Separator layoutX="148.0" layoutY="2027.0" prefHeight="1.0" prefWidth="1003.0" style="-fx-background-color: black;" />
-                                    <CheckBox fx:id="institutioningCheckBox" disable="true" layoutX="164.0" layoutY="1598.0" mnemonicParsing="false" onAction="#updateInstitutioningStaus" text="Ophold" />
+                                    <CheckBox fx:id="institutioningCheckBox" disable="true" layoutX="164.0" layoutY="1598.0" mnemonicParsing="false" onAction="#updateInstitutioningStatus" text="Ophold" />
                                     <CheckBox fx:id="_24HourReliefCheckBox" disable="true" layoutX="184.0" layoutY="1627.0" mnemonicParsing="false" text="Døgnaflastning (§84)" />
                                     <CheckBox fx:id="longInstitutionalisingCheckBox" disable="true" layoutX="184.0" layoutY="1655.0" mnemonicParsing="false" text="Længerevarende ophold (§108)" />
                                     <CheckBox fx:id="temporaryInstitutionalising80CheckBox" disable="true" layoutX="184.0" layoutY="1683.0" mnemonicParsing="false" text="Midlertidigt ophold (§80)" />
@@ -200,7 +200,7 @@
                                     <CheckBox fx:id="educationCheckBox" disable="true" layoutX="164.0" layoutY="1825.0" mnemonicParsing="false" onAction="#updateEducationStatus" text="Undervisning" />
                                     <CheckBox fx:id="compensatingSpecialEducationCheckBox" disable="true" layoutX="184.0" layoutY="1852.0" mnemonicParsing="false" text="Kompenserende specialundervisning (Lov om specialundervisning til voksne (§1)" />
                                     <CheckBox fx:id="youthEducationSpecialNeedsCheckBox" disable="true" layoutX="184.0" layoutY="1882.0" mnemonicParsing="false" text="Ungdomsuddannelse for unge med særlige behov (ungdomsuddannelse for unge med særlige behov §2)" />
-                                    <CheckBox fx:id="nonSearchedServicesCheckBox" disable="true" layoutX="764.0" layoutY="1761.0" mnemonicParsing="false" onAction="#updateNonSearchedServices" text="Ikke visiterede ydelser" />
+                                    <CheckBox fx:id="nonSearchedServicesCheckBox" disable="true" layoutX="764.0" layoutY="1761.0" mnemonicParsing="false" onAction="#updateNonSearchedServicesStatus" text="Ikke visiterede ydelser" />
                                     <CheckBox fx:id="counselingCheckBox" disable="true" layoutX="788.0" layoutY="1790.0" mnemonicParsing="false" text="Rådgivning (§10)" />
                                     <CheckBox fx:id="supportOrContactPersonCheckBox" disable="true" layoutX="789.0" layoutY="1817.0" mnemonicParsing="false" text="Støtte- og kontaktperson (§99)" />
                                     <Label layoutX="152.0" layoutY="2044.0" text="Hvis ja, angiv tilbud [afkrydsning af tilbud]" />
