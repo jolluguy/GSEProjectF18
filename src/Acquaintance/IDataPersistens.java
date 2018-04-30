@@ -11,6 +11,6 @@ package Acquaintance;
  */
 public interface IDataPersistens {
     
-    
+    public boolean saveInq(IInquiry inq);
     
 }

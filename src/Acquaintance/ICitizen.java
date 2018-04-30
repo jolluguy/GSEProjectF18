@@ -10,9 +10,9 @@ package Acquaintance;
  * @author Rasmus
  */
 public interface ICitizen {
-  public String getFirstname();  
-  public void setFirstname(String firstname);
-  public String getSurname();
+   public String getFirstname();  
+   public void setFirstname(String firstname);
+   public String getSurname();
    public void setSurname(String surname);
    public String getRoadName();
    public void setRoadName(String roadName);
@@ -25,5 +25,10 @@ public interface ICitizen {
    public String getCity();
    public void setCity(String city);
    public String getTlfNumber();
-    public void setTlfNumber(String tlfNumber);
+   public void setTlfNumber(String tlfNumber);
+   
+   public long getCprNumber();
+   public void setCprNumber(long cpr);
+   public ICPR getCpr();
+   public void setCpr(ICPR cpr);
 }

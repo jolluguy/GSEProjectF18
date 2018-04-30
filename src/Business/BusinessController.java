@@ -5,6 +5,8 @@
  */
 package Business;
 
+import Acquaintance.IInquiry;
+
 /**
  *
  * @author goope
@@ -12,29 +14,37 @@ package Business;
 public class BusinessController {
     
     
-    public boolean createInquiry(int cprNumber, String problemDescription, String firstname, String surname, String roadName, String houseNumber, String floor, int postNumber, String city, String tlfNumber){
+    public Inquiry createInquiry(long cprNumber, String problemDescription, String firstname, String surname, String roadName, String houseNumber, String floor, int postNumber, String city, String tlfNumber) {
         Inquiry inquiry = new Inquiry(cprNumber, problemDescription, firstname, surname, roadName, houseNumber, floor, postNumber, city, tlfNumber);
-        
-        if (true) {
-            return true;
-        }
-        else{
-            return false;
-        }
+        return inquiry;        
     }
-    public boolean sendToDB(Inquiry inquiry){
+    
+    
+    // Kan vi sørge for at denne metode kan bruges til at gemme både Inquiry og Case, nu hvor de arver?
+    public boolean sendToDB(IInquiry inquiry){
+        boolean returnMessage;
         
-        
+        returnMessage = BusinessFacade.saveInq(inquiry);
         
         if  (returnMessage == false) { //Pseudo code
-            DBConnectionError();
-            return false;
+            
+            // Display errormessage (GUI-kald)
+            
+            while (DBConnectionError()) {
+                DBConnectionError();
+            }
+            
+            // Remove errormessage (GUI-kald)
         }
-        else{
-            return true;
-        }
+        return true;
     }    
-    public void DBConnectionError(){
+    
+    
+    public boolean DBConnectionError(){
+        boolean dbConnection = false;
         
+        // ping DB
+        
+        return !dbConnection;
     }
 }

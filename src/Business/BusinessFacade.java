@@ -9,6 +9,7 @@ import Acquaintance.IBusiness;
 import java.util.Collection;
 import java.util.List;
 import Acquaintance.IDataPersistens;
+import Acquaintance.IInquiry;
 import Acquaintance.ILoginPersistens;
 
 /**
@@ -111,4 +112,14 @@ public class BusinessFacade implements IBusiness {
         return operations.getAllUsers();
     }
 
+    private BusinessController controller = new BusinessController();
+    
+    @Override
+    public boolean sendToDB(IInquiry inquiry) {
+        return controller.sendToDB(inquiry); // kaldt fra GUI
+    }
+    
+    public boolean saveInq(IInquiry inq) {
+        return dataPersistens.saveInq(inq); // kaldt fra Controller
+    }
 }

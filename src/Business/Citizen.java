@@ -15,7 +15,7 @@ import Acquaintance.ICitizen;
  */
 public class Citizen implements ICitizen{
     
-    private int cprNumber;
+    private long cprNumber;
     private String firstname;
     private String surname;
     private String roadName;
@@ -25,9 +25,9 @@ public class Citizen implements ICitizen{
     private String city;
     private String tlfNumber;
     
-    private CPR cpr;
+    private ICPR cpr;
     
-    Citizen (int cprNumber, String firstname, String surname, String roadName, String houseNumber, String floor, int postNumber, String city, String tlfNumber) {
+    Citizen (long cprNumber, String firstname, String surname, String roadName, String houseNumber, String floor, int postNumber, String city, String tlfNumber) {
         this.cprNumber = cprNumber;
         this.firstname = firstname;
         this.surname = surname;
@@ -41,83 +41,103 @@ public class Citizen implements ICitizen{
         cpr = new CPR(cprNumber);
     }
 
-    public int getCprNumber() {
+    @Override
+    public long getCprNumber() {
         return cprNumber;
     }
+    
+    @Override
+    public void setCprNumber(long cpr) {
+        this.cpr.setCprNumber(cpr);
+    }
 
+    @Override
     public String getFirstname() {
         return firstname;
     }
 
+    @Override
     public String getSurname() {
         return surname;
     }
 
+    @Override
     public String getRoadName() {
         return roadName;
     }
 
+    @Override
     public String getHouseNumber() {
         return houseNumber;
     }
 
+    @Override
     public String getFloor() {
         return floor;
     }
 
+    @Override
     public int getPostNumber() {
         return postNumber;
     }
 
+    @Override
     public String getCity() {
         return city;
     }
 
+    @Override
     public String getTlfNumber() {
         return tlfNumber;
     }
 
-    public CPR getCpr() {
+    @Override
+    public ICPR getCpr() {
         return cpr;
+    }
+    
+    @Override
+    public void setCpr(ICPR cpr) {
+        this.cpr = cpr;
     }
 
     @Override
     public void setFirstname(String firstname) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.firstname = firstname;
     }
 
     @Override
     public void setSurname(String surname) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.surname = surname;
     }
 
     @Override
     public void setRoadName(String roadName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.roadName = roadName;
     }
 
     @Override
     public void setHouseNumber(String houseNumber) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.houseNumber = houseNumber;
     }
 
     @Override
     public void setFloor(String floor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.floor = floor;
     }
 
     @Override
     public void setPostNumber(int postNumber) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.postNumber = postNumber;
     }
 
     @Override
     public void setCity(String city) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.city = city;
     }
 
     @Override
     public void setTlfNumber(String tlfNumber) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.tlfNumber = tlfNumber;
     }
 }

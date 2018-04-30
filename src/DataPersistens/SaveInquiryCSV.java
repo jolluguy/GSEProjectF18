@@ -19,13 +19,17 @@ public class SaveInquiryCSV {
 
     IInquiry inq;
 
-    SaveInquiryCSV(DataInquiry inq) {
+    SaveInquiryCSV(IInquiry inq) {
         this.inq = new DataInquiry(new DataCPR(inq.getCpr().getCprNumber()), new DataCitizen(inq.getCitizen().getFirstname(), inq.getCitizen().getSurname(), inq.getCitizen().getRoadName(), inq.getCitizen().getHouseNumber(), inq.getCitizen().getFloor(), inq.getCitizen().getPostNumber(), inq.getCitizen().getCity(), inq.getCitizen().getCity()), inq.getProblemDescription());
     saveInq();
     
     }
+
+    SaveInquiryCSV() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
-    void saveInq(){
+    boolean saveInq(){
         final String SEPPERATOR = "<";
         
         try (FileWriter fw = new FileWriter("InquiryDB.txt", true); // true betyder at den appender filen i stedet for at overrite den
@@ -54,5 +58,6 @@ public class SaveInquiryCSV {
         } catch (IOException ex) {
             System.out.println(ex.toString());
         }
+        return true;
     }
 }

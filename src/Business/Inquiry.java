@@ -16,9 +16,9 @@ import Acquaintance.IInquiry;
 public class Inquiry implements IInquiry{
     
     private String problemDescription;
-    private Citizen citizen;
+    private ICitizen citizen;
     
-    Inquiry (int cprNumber, String problemDescription, String firstname, String surname, String roadName, String houseNumber, String floor, int postNumber, String city, String tlfNumber) {
+    Inquiry (long cprNumber, String problemDescription, String firstname, String surname, String roadName, String houseNumber, String floor, int postNumber, String city, String tlfNumber) {
         this.problemDescription = problemDescription;
         
         citizen = new Citizen(cprNumber, firstname, surname, roadName, houseNumber, floor, postNumber, city, tlfNumber);
@@ -31,7 +31,7 @@ public class Inquiry implements IInquiry{
 
     @Override
     public void setCpr(ICPR cpr) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.citizen.setCpr(cpr);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class Inquiry implements IInquiry{
 
     @Override
     public void setCitizen(ICitizen citizen) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.citizen = citizen;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class Inquiry implements IInquiry{
 
     @Override
     public void setProblemDescription(String problemDescription) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.problemDescription = problemDescription;
     }
     
 }
