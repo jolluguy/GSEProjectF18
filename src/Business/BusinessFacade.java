@@ -118,4 +118,8 @@ public class BusinessFacade implements IBusiness {
     public void sendToDB(IInquiry inquiry){
         controller.sendToDB(inquiry);
     }
+    @Override
+    public void DBConnectionError(){
+        controller.DBConnectionError();
+    }
 }
