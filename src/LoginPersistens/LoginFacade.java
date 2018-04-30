@@ -7,6 +7,7 @@ package LoginPersistens;
 
 import Acquaintance.ILoginPersistens;
 import Acquaintance.IUser;
+import java.io.Serializable;
 
 
 
@@ -14,7 +15,7 @@ import Acquaintance.IUser;
  *
  * @author Rol's studie PC
  */
-public class LoginFacade implements ILoginPersistens {
+public class LoginFacade implements ILoginPersistens, Serializable {
     
     Operations operations;
 

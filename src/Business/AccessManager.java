@@ -5,13 +5,14 @@
  */
 package Business;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class AccessManager {
+public class AccessManager{
 
     private static BusinessFacade facade = BusinessFacade.getInstance();
     
@@ -23,7 +24,8 @@ public class AccessManager {
 
     public int login(String userName, String pw) {
         System.out.println("Accessmanager login entered");
-        User checkUser = (User) facade.getUser(userName); //Parsing User due to IUser return
+        User checkUser = (User) LoginPersistens.LoginFacade.getInstance().getUser(userName);
+//        User checkUser = (User) facade.getUser(userName); //Parsing User due to IUser return
         if (userOne == null) {
             if(checkUser.checkPassword(pw)){
                 userOne = checkUser;

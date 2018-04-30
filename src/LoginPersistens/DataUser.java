@@ -6,6 +6,7 @@
 package LoginPersistens;
 
 import Acquaintance.IUser;
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.Date;
 
@@ -13,12 +14,12 @@ import java.util.Date;
  *
  * @author Rol's studie PC
  */
-public class DataUser implements IUser {
+public class DataUser implements IUser, Serializable {
     
-    private String userName;
+    private final String userName;
     private String password;
     private int level;
-    private Date createdTime;
+    private final Date createdTime;
     private Date lastLoginTime;
 
     public DataUser(String userName, String password, int level, Date createdTime, Date lastLoginTime) {
@@ -51,9 +52,9 @@ public class DataUser implements IUser {
     }
 
     
-//    public void setLastLoginTime(Date lastLoginTime) {
-//        this.lastLoginTime = lastLoginTime;
-//    }
+    public void setLastLoginTime(Date lastLoginTime) {
+        this.lastLoginTime = lastLoginTime;
+    }
     
     void updateUser(String password, int level, Date lastLoginTime){
         this.password = password;

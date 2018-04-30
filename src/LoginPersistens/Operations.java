@@ -13,6 +13,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +22,7 @@ import java.util.Map;
  *
  * @author Alexa
  */
-public class Operations {
+public class Operations implements Serializable{
 
     protected Map<String, DataUser> userMap; //String = IUser.getUserName;
     private final File file = new File("UserSetFile.obj");
@@ -81,10 +82,8 @@ public class Operations {
     protected IUser getUser(String userName) {
         getMap();
         DataUser user = userMap.get(userName);
-        if (userName != null) {
-            return user;
-        }
-        return null;
+        
+        return user;
     }
 
 }

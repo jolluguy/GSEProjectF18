@@ -22,6 +22,7 @@ public class BusinessFacade implements IBusiness {
 
     private UserOperations userOperations;
 
+    //BusinessLayer instance
     private static BusinessFacade instance = null;
     static BusinessFacade getInstance(){
         if(instance == null){
@@ -30,12 +31,12 @@ public class BusinessFacade implements IBusiness {
         return instance;
     }
     
-    //Data layer injection
+    //Data-layer injection
     @Override
     public void injectionDataPersistens(IDataPersistens dataPersistens) {
         this.dataPersistens = dataPersistens;
     }
-
+    //Data-layer injection
     @Override
     public void injectLoginPersistens(ILoginPersistens loginPersistens) {
         this.loginPersistens = loginPersistens;
