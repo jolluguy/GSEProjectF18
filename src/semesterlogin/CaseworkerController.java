@@ -290,17 +290,40 @@ public class CaseworkerController implements Initializable {
         } else if (inquiryNoRadioButton.isSelected()) {
 
             //set disable
-            carriageCheckBox.fire();
-            treatmentCheckBox.fire();
-            cashBenefitCheckBox.fire();
-            controlCheckBox.fire();
-            institutioningCheckBox.fire();
-            educationCheckBox.fire();
-            socialSupportCheckBox.fire();
-            supportPersonCheckBox.fire();
-            supportToolCheckBox.fire();
-            trainingCheckBox.fire();
-            nonSearchedServicesCheckBox.fire();
+            if (carriageCheckBox.isSelected()) {
+                carriageCheckBox.fire();
+            }
+            if (treatmentCheckBox.isSelected()) {
+                treatmentCheckBox.fire();
+            }
+            if (cashBenefitCheckBox.isSelected()) {
+                cashBenefitCheckBox.fire();
+            }
+            if (controlCheckBox.isSelected()) {
+                controlCheckBox.fire();
+            }
+            if (institutioningCheckBox.isSelected()) {
+                institutioningCheckBox.fire();
+            }
+            if (educationCheckBox.isSelected()) {
+                educationCheckBox.fire();
+            }
+            if (socialSupportCheckBox.isSelected()) {
+                socialSupportCheckBox.fire();
+            }
+            if (supportPersonCheckBox.isSelected()) {
+                supportPersonCheckBox.fire();
+            }
+            if (supportToolCheckBox.isSelected()) {
+                supportToolCheckBox.fire();
+            }
+            if (trainingCheckBox.isSelected()) {
+                trainingCheckBox.fire();
+            }
+            if (nonSearchedServicesCheckBox.isSelected()) {
+                nonSearchedServicesCheckBox.fire();
+            }
+
             activity104CheckBox.setDisable(true);
             carriageCheckBox.setDisable(true);
             treatmentCheckBox.setDisable(true);
@@ -337,7 +360,7 @@ public class CaseworkerController implements Initializable {
             rehabilitationgOfferCheckBox.setDisable(true);
             adultOutboundOffersCheckBox.setDisable(true);
             governmentApprovedOfferCheckBox.setDisable(true);
-            
+
             //Remove selection
             activity104CheckBox.setSelected(false);
             carriageCheckBox.setSelected(false);
@@ -399,8 +422,7 @@ public class CaseworkerController implements Initializable {
             carriage170CheckBox.setDisable(true);
             carriage172CheckBox.setDisable(true);
             individualCarriageCheckBox.setDisable(true);
-            
-            
+
             carriage105CheckBox.setSelected(false);
             carriage25CheckBox.setSelected(false);
             carriage5CheckBox.setSelected(false);
@@ -420,14 +442,14 @@ public class CaseworkerController implements Initializable {
             treatmentPsykCheckBox.setDisable(false);
             treamentSpecialDrCheckBox.setDisable(false);
 
-        } else if(!treatmentCheckBox.isSelected()){
-            
+        } else if (!treatmentCheckBox.isSelected()) {
+
             treatment101CheckBox.setDisable(true);
             treatment141CheckBox.setDisable(true);
             treatmentTherapyCheckBox.setDisable(true);
             treatmentPsykCheckBox.setDisable(true);
             treamentSpecialDrCheckBox.setDisable(true);
-            
+
             treatment101CheckBox.setSelected(false);
             treatment141CheckBox.setSelected(false);
             treatmentTherapyCheckBox.setSelected(false);
@@ -435,49 +457,49 @@ public class CaseworkerController implements Initializable {
             treamentSpecialDrCheckBox.setSelected(false);
         }
     }
-    
+
     @FXML
-    public void updateCashBenefitStatus(ActionEvent event){
-        if(cashBenefitCheckBox.isSelected()){
+    public void updateCashBenefitStatus(ActionEvent event) {
+        if (cashBenefitCheckBox.isSelected()) {
             remunerationCheckBox.setDisable(false);
             additionalCostCheckBox.setDisable(false);
-            
-        } else if(!cashBenefitCheckBox.isSelected()){
-            
+
+        } else if (!cashBenefitCheckBox.isSelected()) {
+
             remunerationCheckBox.setDisable(true);
             additionalCostCheckBox.setDisable(true);
-            
+
             remunerationCheckBox.setSelected(false);
             additionalCostCheckBox.setSelected(false);
         }
     }
-    
+
     @FXML
-    public void updateControlStatus(ActionEvent event){
-        if(controlCheckBox.isSelected()){
-            
+    public void updateControlStatus(ActionEvent event) {
+        if (controlCheckBox.isSelected()) {
+
             control126CheckBox.setDisable(false);
             control127CheckBox.setDisable(false);
             control128CheckBox.setDisable(false);
             control125CheckBox.setDisable(false);
 
-        } else if(!controlCheckBox.isSelected()){
-            
+        } else if (!controlCheckBox.isSelected()) {
+
             control126CheckBox.setDisable(true);
             control127CheckBox.setDisable(true);
             control128CheckBox.setDisable(true);
             control125CheckBox.setDisable(true);
-            
+
             control126CheckBox.setSelected(false);
             control127CheckBox.setSelected(false);
             control128CheckBox.setSelected(false);
             control125CheckBox.setSelected(false);
         }
     }
-    
+
     @FXML
-    public void updateInstitutioningStatus(ActionEvent event){
-        if(institutioningCheckBox.isSelected()){
+    public void updateInstitutioningStatus(ActionEvent event) {
+        if (institutioningCheckBox.isSelected()) {
             _24HourReliefCheckBox.setDisable(false);
             longInstitutionalisingCheckBox.setDisable(false);
             temporaryInstitutionalising80CheckBox.setDisable(false);
@@ -485,15 +507,15 @@ public class CaseworkerController implements Initializable {
             temporaryInstitutionalising109CheckBox.setDisable(false);
             temporaryInstitutionalising110CheckBox.setDisable(false);
 
-        } else if(!institutioningCheckBox.isSelected()){
-            
+        } else if (!institutioningCheckBox.isSelected()) {
+
             _24HourReliefCheckBox.setDisable(true);
             longInstitutionalisingCheckBox.setDisable(true);
             temporaryInstitutionalising80CheckBox.setDisable(true);
             temporaryInstitutionalising107CheckBox.setDisable(true);
             temporaryInstitutionalising109CheckBox.setDisable(true);
             temporaryInstitutionalising110CheckBox.setDisable(true);
-            
+
             _24HourReliefCheckBox.setSelected(false);
             longInstitutionalisingCheckBox.setSelected(false);
             temporaryInstitutionalising80CheckBox.setSelected(false);
@@ -502,26 +524,26 @@ public class CaseworkerController implements Initializable {
             temporaryInstitutionalising110CheckBox.setSelected(false);
         }
     }
-    
+
     @FXML
-    public void updateEducationStatus(ActionEvent event){
-        if(educationCheckBox.isSelected()){
-            
+    public void updateEducationStatus(ActionEvent event) {
+        if (educationCheckBox.isSelected()) {
+
             compensatingSpecialEducationCheckBox.setDisable(false);
             youthEducationSpecialNeedsCheckBox.setDisable(false);
-            
-        } else if(!educationCheckBox.isSelected()){
-            
+
+        } else if (!educationCheckBox.isSelected()) {
+
             compensatingSpecialEducationCheckBox.setDisable(true);
             youthEducationSpecialNeedsCheckBox.setDisable(true);
             compensatingSpecialEducationCheckBox.setSelected(false);
             youthEducationSpecialNeedsCheckBox.setSelected(false);
         }
     }
-    
+
     @FXML
-    public void updateSocialSupportStatus(ActionEvent event){
-        if(socialSupportCheckBox.isSelected()){
+    public void updateSocialSupportStatus(ActionEvent event) {
+        if (socialSupportCheckBox.isSelected()) {
             administrationSupportCheckBox.setDisable(false);
             shoppingSupportCheckBox.setDisable(false);
             contactSupportCheckBox.setDisable(false);
@@ -531,7 +553,7 @@ public class CaseworkerController implements Initializable {
             educationSupportCheckBox.setDisable(false);
             parentingSupportCheckBox.setDisable(false);
 
-        } else if(!socialSupportCheckBox.isSelected()){
+        } else if (!socialSupportCheckBox.isSelected()) {
             //disables checkboxes
             administrationSupportCheckBox.setDisable(true);
             shoppingSupportCheckBox.setDisable(true);
@@ -541,7 +563,7 @@ public class CaseworkerController implements Initializable {
             practicalSupportCheckBox.setDisable(true);
             educationSupportCheckBox.setDisable(true);
             parentingSupportCheckBox.setDisable(true);
-            
+
             //Deselect checkboxes
             administrationSupportCheckBox.setSelected(false);
             shoppingSupportCheckBox.setSelected(false);
@@ -553,10 +575,10 @@ public class CaseworkerController implements Initializable {
             parentingSupportCheckBox.setSelected(false);
         }
     }
-    
+
     @FXML
-    public void updateSupportPersonStatus(ActionEvent event){
-        if(supportPersonCheckBox.isSelected()){
+    public void updateSupportPersonStatus(ActionEvent event) {
+        if (supportPersonCheckBox.isSelected()) {
             //Enables checkboxes
             temporaryReplacement84CheckBox.setDisable(false);
             temporaryReplacement95CheckBox.setDisable(false);
@@ -566,7 +588,7 @@ public class CaseworkerController implements Initializable {
             kinCare118CheckBox.setDisable(false);
             kinCare119CheckBox.setDisable(false);
 
-        } else if(!supportPersonCheckBox.isSelected()){
+        } else if (!supportPersonCheckBox.isSelected()) {
             //Disables checkboxes
             temporaryReplacement84CheckBox.setDisable(true);
             temporaryReplacement95CheckBox.setDisable(true);
@@ -575,7 +597,7 @@ public class CaseworkerController implements Initializable {
             companionCheckBox.setDisable(true);
             kinCare118CheckBox.setDisable(true);
             kinCare119CheckBox.setDisable(true);
-            
+
             //Deselect checkboxes
             temporaryReplacement84CheckBox.setSelected(false);
             temporaryReplacement95CheckBox.setSelected(false);
@@ -586,34 +608,34 @@ public class CaseworkerController implements Initializable {
             kinCare119CheckBox.setSelected(false);
         }
     }
-    
+
     @FXML
-    public void updateSupportToolStatus(ActionEvent event){
-        if(supportToolCheckBox.isSelected()){
-            
+    public void updateSupportToolStatus(ActionEvent event) {
+        if (supportToolCheckBox.isSelected()) {
+
             aidCheckBox.setDisable(false);
             carAidCheckBox.setDisable(false);
             furnishingAidCheckBox.setDisable(false);
             goodsAidCheckBox.setDisable(false);
 
-        } else if(!supportToolCheckBox.isSelected()){
-            
+        } else if (!supportToolCheckBox.isSelected()) {
+
             aidCheckBox.setDisable(true);
             carAidCheckBox.setDisable(true);
             furnishingAidCheckBox.setDisable(true);
             goodsAidCheckBox.setDisable(true);
-            
+
             aidCheckBox.setSelected(false);
             carAidCheckBox.setSelected(false);
             furnishingAidCheckBox.setSelected(false);
             goodsAidCheckBox.setSelected(false);
         }
     }
-    
+
     @FXML
-    public void updateTrainingStatus (ActionEvent event){
-        if(trainingCheckBox.isSelected()){
-            
+    public void updateTrainingStatus(ActionEvent event) {
+        if (trainingCheckBox.isSelected()) {
+
             rehabilitation85CheckBox.setDisable(false);
             rehabilitation86CheckBox.setDisable(false);
             rehabilitation102CheckBox.setDisable(false);
@@ -621,15 +643,15 @@ public class CaseworkerController implements Initializable {
             maintainingAbility86CheckBox.setDisable(false);
             maintainingAbility102CheckBox.setDisable(false);
 
-        } else if(!trainingCheckBox.isSelected()){
-            
+        } else if (!trainingCheckBox.isSelected()) {
+
             rehabilitation85CheckBox.setDisable(true);
             rehabilitation86CheckBox.setDisable(true);
             rehabilitation102CheckBox.setDisable(true);
             maintainingAbility85CheckBox.setDisable(true);
             maintainingAbility86CheckBox.setDisable(true);
             maintainingAbility102CheckBox.setDisable(true);
-            
+
             rehabilitation85CheckBox.setSelected(false);
             rehabilitation86CheckBox.setSelected(false);
             rehabilitation102CheckBox.setSelected(false);
@@ -638,26 +660,23 @@ public class CaseworkerController implements Initializable {
             maintainingAbility102CheckBox.setSelected(false);
         }
     }
-    
+
     @FXML
-    public void updateNonSearchedServicesStatus (ActionEvent event) {
-        if(nonSearchedServicesCheckBox.isSelected()){
-            
+    public void updateNonSearchedServicesStatus(ActionEvent event) {
+        if (nonSearchedServicesCheckBox.isSelected()) {
+
             counselingCheckBox.setDisable(false);
             supportOrContactPersonCheckBox.setDisable(false);
 
-        } else if(!nonSearchedServicesCheckBox.isSelected()){
+        } else if (!nonSearchedServicesCheckBox.isSelected()) {
 
             counselingCheckBox.setDisable(true);
             supportOrContactPersonCheckBox.setDisable(true);
-            
+
             counselingCheckBox.setSelected(false);
             supportOrContactPersonCheckBox.setSelected(false);
 
         }
     }
 
-    
-    
-    
 }
