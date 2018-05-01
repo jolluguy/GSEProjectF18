@@ -6,6 +6,7 @@
 package Business;
 
 import Acquaintance.IUser;
+import java.util.logging.Level;
 
 public class AccessManager{
 
@@ -17,18 +18,18 @@ public class AccessManager{
     }
 
     public int login(String userName, String pw) {
+        int level = -1;
         IUser daUs = facade.getUser(userName); //Parsing User due to IUser return
         User checkUser = new User(daUs.getUserName(), daUs.getPassword(), daUs.getLevel(), daUs.getCreatedTime(), daUs.getLastLoginTime());
-        if (userOne == null) {
+        
             if(checkUser.checkPassword(pw)){
                 userOne = checkUser;
                 userOne.setLastLoginTime();
                 if(facade.updateUser(userOne)){
-                    return userOne.getLevel();
+                    level = userOne.getLevel();
                 }
             }
-        }
-        return 0;
+            return level;
     }
 
     public void logOut() {

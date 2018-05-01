@@ -87,13 +87,18 @@
                            <font>
                               <Font size="15.0" />
                            </font></RadioButton>
+                        <RadioButton fx:id="jobInactiveRadio" layoutX="206.0" layoutY="251.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="133.0" text="Inaktiv" toggleGroup="$jobRadio">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </RadioButton>
                         <Label fx:id="jobWarningLabel" layoutX="53.0" layoutY="628.0" prefHeight="21.0" prefWidth="484.0" />
-                        <Button fx:id="jobSavechangeButton" layoutX="27.0" layoutY="661.0" mnemonicParsing="false" style="-fx-background-color: F3F3F3; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Gem ændringer">
+                        <Button fx:id="jobSavechangeButton" layoutX="27.0" layoutY="661.0" mnemonicParsing="false" onAction="#changeJob" style="-fx-background-color: F3F3F3; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Gem ændringer">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Button>
-                        <Button fx:id="jobCancelButton" layoutX="186.0" layoutY="661.0" mnemonicParsing="false" style="-fx-background-color: F3F3F3; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Annuller">
+                        <Button fx:id="jobCancelButton" layoutX="186.0" layoutY="661.0" mnemonicParsing="false" onAction="#jobCancel" style="-fx-background-color: F3F3F3; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Annuller">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -101,15 +106,10 @@
                      </children></AnchorPane>
                </content>
             </Tab>
-            <Tab text="Sæt bruger inaktiv">
-               <content>
-                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="722.0" prefWidth="1292.0" style="-fx-background-color: white;" />
-               </content>
-            </Tab>
         </tabs>
       </TabPane>
       <Label layoutX="14.0" layoutY="769.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="21.0" prefWidth="142.0" text="Gruppe 3" />
-      <Button fx:id="logoutButton" cancelButton="true" layoutX="1223.0" layoutY="764.0" mnemonicParsing="false" style="-fx-background-color: F3F3F3; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Log ud">
+      <Button fx:id="logoutButton" cancelButton="true" layoutX="1223.0" layoutY="764.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: F3F3F3; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Log ud">
          <font>
             <Font size="15.0" />
          </font></Button>

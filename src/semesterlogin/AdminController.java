@@ -91,6 +91,8 @@ public class AdminController implements Initializable {
     
     
     private IBusiness business = GUIFacade.getInstance().getBusiness();
+    @FXML
+    private RadioButton jobInactiveRadio;
 
     /**
      * Initializes the controller class.
@@ -99,7 +101,7 @@ public class AdminController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
 
-//        //Load listview
+////        Load listview
 //        obsList = FXCollections.observableArrayList();
 //        userListview.setItems(obsList);
 //        obsList.addAll(business.getUserList());
@@ -113,7 +115,7 @@ public class AdminController implements Initializable {
         int level = 0;
 
         if (!(lvl1Radio.isSelected() || lvl2Radio.isSelected())) {
-            warningLabel.setText("Level skal vælges før ændring");
+            warningLabel.setText("En jobtitel skal vælges før ændringen kan foretages");
         } else {
             if (lvl1Radio.isSelected()) {
                 level = 1;
@@ -127,7 +129,7 @@ public class AdminController implements Initializable {
             if(createUserStatus){
                statusmessage = userName + " er blevet oprettet"; 
             } else if (!createUserStatus) {
-                statusmessage = "ADVARSEL! - Bruger kunne ikke oprettes";                
+                statusmessage = "ADVARSEL! - Bruger kunne ikke oprettes. Kontroller venligst at passwords er ens";                
             }
 
             warningLabel.setText(statusmessage);            
@@ -141,8 +143,10 @@ public class AdminController implements Initializable {
         password2Field.clear();
         lvl1Radio.setSelected(false);
         lvl2Radio.setSelected(false);
+        warningLabel.setText("");
     }
 
+    @FXML
     public void logout(ActionEvent event) throws IOException {
         Parent loginScreen = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
 
@@ -151,35 +155,47 @@ public class AdminController implements Initializable {
         appstage.setScene(newScene);
         appstage.show();
 
-        business.logOut();
+//        business.logOut();
     }
 
-//    @FXML
-//    public void changeJob(ActionEvent event) {
-//        String username = jobUsernameField.getText();
-//        String password = jobPasswordField.getText();
-//        int level = 0;
-//
-//        if (!(jobCaseRadio.isSelected() || jobAdminRadio.isSelected())) {
-//            jobWarningLabel.setText("Level skal vælges før ændring");
-//        } else {
-//            if (jobCaseRadio.isSelected()) {
-//                level = 1;
-//            } else if (jobAdminRadio.isSelected()) {
-//                level = 2;
-//            }
-//            
-//            String StatusMessage = business.changeLevel(username, password, level);
-//            jobWarningLabel.setText(StatusMessage);
-//            
-//        }
-//    }
+    @FXML
+    public void changeJob(ActionEvent event) {
+        String username = jobUsernameField.getText();
+        String password = jobPasswordField.getText();
+        int level = -1;
+
+        if (!(jobCaseRadio.isSelected() || jobAdminRadio.isSelected() || jobInactiveRadio.isSelected())) {
+            jobWarningLabel.setText("Et job skal vælges før en ændring kan foretages");
+        } else {
+            if (jobCaseRadio.isSelected()) {
+                level = 1;
+            } else if (jobAdminRadio.isSelected()) {
+                level = 2;
+            } else if(jobInactiveRadio.isSelected()){
+                level = 0;
+            }
+            System.out.println("level is " + level);
+            
+            String statusMessage = "";
+            
+            boolean changeStatus = business.changeJob(username, password, level);
+            if(changeStatus){
+                statusMessage = username + "'s job er blevet ændret";
+            } else if(!changeStatus) {
+                statusMessage = username + "'s job kunne ikke ændres";
+            }
+            
+            jobWarningLabel.setText(statusMessage);
+        }
+    }
     
+    @FXML
     public void jobCancel(ActionEvent event){
         jobUsernameField.clear();
         jobPasswordField.clear();
         jobAdminRadio.setSelected(false);
         jobCaseRadio.setSelected(false);
+        jobInactiveRadio.setSelected(false);
         jobWarningLabel.setText("");
     }
     

@@ -78,6 +78,11 @@ public class BusinessFacade implements IBusiness {
     public boolean createUser(String userName, String password1, String password2, int level){
         return admin.createUser(userName, password1, password2, level);
     }
+    
+    @Override
+    public boolean changeJob(String userName, String password, int level){
+        return admin.changeJob(userName, password, level);
+    }
 
 
     public boolean addUser(IUser user) {

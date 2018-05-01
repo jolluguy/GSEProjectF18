@@ -41,6 +41,10 @@ public class FXMLLoginController implements Initializable {
     private Button loginButton;
     @FXML
     private Button cancelButton;
+    @FXML
+    private Label errorLabel;
+    @FXML
+    private Label errorLabel2;
     
     
 
@@ -83,6 +87,9 @@ public class FXMLLoginController implements Initializable {
             appstage.setScene(newScene);
             appstage.show();
             
+        } else if(result == 0){
+            errorLabel.setText("ADGANG NÆGTET! - Denne bruger er inaktiv!");
+            errorLabel2.setText("Kontakt IT-Support for hjælp");
         }
     }    
     
