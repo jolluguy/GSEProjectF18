@@ -21,4 +21,10 @@ public interface IUser {
 
     void setPassword(String pw);
     
+    String getPassword();
+    
+    Date getCreatedTime();
+    
+    Date getLastLoginTime();
+    
 }

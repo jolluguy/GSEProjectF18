@@ -20,7 +20,14 @@ import javafx.stage.Stage;
 public class GUIFacade extends Application implements IGUI {
     
     private IBusiness business;
-    private static GUIFacade guiFacade;
+    
+    private static GUIFacade instance;
+    public static GUIFacade getInstance(){
+        if(instance == null){
+            instance = new GUIFacade();
+        }
+        return instance;
+    }
     
     @Override
     public void injectBusiness(IBusiness business) {
@@ -31,7 +38,7 @@ public class GUIFacade extends Application implements IGUI {
     public void startApplication(String[] args) {
         System.out.println("UI initializing");
         //Because of static method.
-        guiFacade = this;
+        instance = this;
         launch(args);
     }
 
@@ -45,9 +52,7 @@ public class GUIFacade extends Application implements IGUI {
         stage.show();
     }
     
-    public static GUIFacade getInstance(){
-        return guiFacade;
-    }
+    
     
     public IBusiness getBusiness(){
         return business;

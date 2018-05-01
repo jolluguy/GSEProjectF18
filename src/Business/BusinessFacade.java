@@ -21,10 +21,10 @@ public class BusinessFacade implements IBusiness {
     private ILoginPersistens loginPersistens;
 
     private UserOperations userOperations;
-
+  
     //BusinessLayer instance
     private static BusinessFacade instance = null;
-    static BusinessFacade getInstance(){
+    public static BusinessFacade getInstance(){
         if(instance == null){
             instance = new BusinessFacade();
         } 

@@ -15,6 +15,8 @@ public interface IBusiness {
 
     void injectLoginPersistens(ILoginPersistens loginPersistens);
 
+    
+    
     int login(String name, String pw);
 
     void logOut();

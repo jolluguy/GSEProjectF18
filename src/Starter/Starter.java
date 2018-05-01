@@ -24,8 +24,8 @@ public class Starter {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        IGUI gui = new GUIFacade();
-        IBusiness business = new BusinessFacade();
+        IGUI gui = GUIFacade.getInstance();
+        IBusiness business = BusinessFacade.getInstance();
         IDataPersistens dataPersistens = new DataFacade();
         ILoginPersistens loginPersistens = new LoginFacade();
         business.injectLoginPersistens(loginPersistens);

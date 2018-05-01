@@ -61,5 +61,20 @@ public class DataUser implements IUser, Serializable {
         this.level = level;
         this.lastLoginTime = lastLoginTime;
     }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public Date getCreatedTime() {
+        return createdTime;
+    }
+
+    @Override
+    public Date getLastLoginTime() {
+        return lastLoginTime;
+    }
     
 }

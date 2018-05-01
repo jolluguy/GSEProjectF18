@@ -24,8 +24,7 @@ public class AccessManager{
 
     public int login(String userName, String pw) {
         System.out.println("Accessmanager login entered");
-        User checkUser = (User) LoginPersistens.LoginFacade.getInstance().getUser(userName);
-//        User checkUser = (User) facade.getUser(userName); //Parsing User due to IUser return
+        User checkUser = (User) facade.getUser(userName); //Parsing User due to IUser return
         if (userOne == null) {
             if(checkUser.checkPassword(pw)){
                 userOne = checkUser;
