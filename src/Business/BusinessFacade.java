@@ -22,6 +22,7 @@ public class BusinessFacade implements IBusiness {
 
 
   private AccessManager manager; // Delegate all calls conserning users to the manager.
+  private Admin admin;
   
     //BusinessLayer instance
     private static BusinessFacade instance = null;
@@ -45,7 +46,8 @@ public class BusinessFacade implements IBusiness {
     
     @Override
     public void initiater(){
-      manager = new AccessManager();   
+      manager = new AccessManager();
+      admin = new Admin();
     }
 
     
@@ -70,6 +72,13 @@ public class BusinessFacade implements IBusiness {
     public IUser getUser(String userName) {
         System.out.println("getUser entered businessfacade");
         return loginPersistens.getUser(userName);
+    }
+    
+    
+    
+    @Override
+    public boolean createUser(String userName, String password1, String password2, int level){
+        return admin.createUser(userName, password1, password2, level);
     }
 
 

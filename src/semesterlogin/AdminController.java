@@ -105,28 +105,34 @@ public class AdminController implements Initializable {
 //        obsList.addAll(business.getUserList());
     }
 
-//    @FXML
-//    public void createUser(ActionEvent event) {
-//        String userName = usernameField.getText();
-//        String password1 = password1Field.getText();
-//        String password2 = password2Field.getText();
-//        int level = 0;
-//
-//        if (!(lvl1Radio.isSelected() || lvl2Radio.isSelected())) {
-//            warningLabel.setText("Level skal vælges før ændring");
-//        } else {
-//            if (lvl1Radio.isSelected()) {
-//                level = 1;
-//            } else if (lvl2Radio.isSelected()) {
-//                level = 2;
-//            }
-//
-//            String statusmessage = business.createUser(userName, password1, password2);
-//            warningLabel.setText(statusmessage);
-//            refreshListview(event);
-//
-//        }
-//    }
+    @FXML
+    public void createUser(ActionEvent event) {
+        String userName = usernameField.getText();
+        String password1 = password1Field.getText();
+        String password2 = password2Field.getText();
+        int level = 0;
+
+        if (!(lvl1Radio.isSelected() || lvl2Radio.isSelected())) {
+            warningLabel.setText("Level skal vælges før ændring");
+        } else {
+            if (lvl1Radio.isSelected()) {
+                level = 1;
+            } else if (lvl2Radio.isSelected()) {
+                level = 2;
+            }
+            
+            boolean createUserStatus = business.createUser(userName, password1, password2, level);
+            
+            String statusmessage = "";
+            if(createUserStatus){
+               statusmessage = userName + " er blevet oprettet"; 
+            } else if (!createUserStatus) {
+                statusmessage = "ADVARSEL! - Bruger kunne ikke oprettes";                
+            }
+
+            warningLabel.setText(statusmessage);            
+        }
+    }
 
     @FXML
     public void logout(ActionEvent event) throws IOException {

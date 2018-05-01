@@ -15,19 +15,17 @@ public interface IBusiness {
 
     void injectLoginPersistens(ILoginPersistens loginPersistens);
 
-    
-    
     int login(String name, String pw);
 
     void logOut();
+
+    void initiater();
     
-     public void initiater();
+    boolean createUser(String userName, String password1, String password2, int level);
 
 //    public void getMap();
 //    
 //    public boolean addUser(IUser user);
 //
 //    public boolean updateUser(IUser user);
-
-
 }
