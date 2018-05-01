@@ -35,7 +35,6 @@ public class LoginFacade implements ILoginPersistens, Serializable {
     @Override
     public IUser getUser(String userName) {
         operations = new Operations();
-        System.out.println("Login loginfacade entered");
         return operations.getUser(userName);
     }
 

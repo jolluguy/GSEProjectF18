@@ -17,7 +17,6 @@ public class AccessManager{
     }
 
     public int login(String userName, String pw) {
-        System.out.println("Accessmanager login entered");
         IUser daUs = facade.getUser(userName); //Parsing User due to IUser return
         User checkUser = new User(daUs.getUserName(), daUs.getPassword(), daUs.getLevel(), daUs.getCreatedTime(), daUs.getLastLoginTime());
         if (userOne == null) {

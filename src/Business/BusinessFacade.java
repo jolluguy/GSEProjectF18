@@ -55,7 +55,6 @@ public class BusinessFacade implements IBusiness {
     
     @Override
     public int login(String userName, String pw) {
-        System.out.println("login businessfacade entered after gui");
         return manager.login(userName, pw);
     }
 
@@ -70,7 +69,6 @@ public class BusinessFacade implements IBusiness {
     }
 
     public IUser getUser(String userName) {
-        System.out.println("getUser entered businessfacade");
         return loginPersistens.getUser(userName);
     }
     

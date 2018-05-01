@@ -133,8 +133,16 @@ public class AdminController implements Initializable {
             warningLabel.setText(statusmessage);            
         }
     }
-
+    
     @FXML
+    public void cancelUserCreation(ActionEvent event) {
+        usernameField.clear();
+        password1Field.clear();
+        password2Field.clear();
+        lvl1Radio.setSelected(false);
+        lvl2Radio.setSelected(false);
+    }
+
     public void logout(ActionEvent event) throws IOException {
         Parent loginScreen = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
 
@@ -167,7 +175,6 @@ public class AdminController implements Initializable {
 //        }
 //    }
     
-    @FXML
     public void jobCancel(ActionEvent event){
         jobUsernameField.clear();
         jobPasswordField.clear();
