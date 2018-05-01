@@ -22,9 +22,13 @@ public class BusinessFacade implements IBusiness {
     private static IDataPersistens dataPersistens;
     private ILoginPersistens loginPersistens;    
     private BusinessController controller;
+    private UserManager manager = new UserManager();
 
     private static BusinessFacade instance = null;
     public static BusinessFacade getInstance(){
+        if (instance == null) {
+            instance = new BusinessFacade();
+        }
         return instance;
     }
     
@@ -40,11 +44,11 @@ public class BusinessFacade implements IBusiness {
     }
 
     public BusinessFacade() {
-        manager = new UserManager();
-        controller = new BusinessController();
+//        manager = new UserManager();
+        
     }
 
-    private UserManager manager; // Delegate all calls conserning users to the manager.
+//    private UserManager manager; // Delegate all calls conserning users to the manager.
 
     @Override
     public String addUser(String name, String pw1, String pw2, int level) {
@@ -124,14 +128,16 @@ public class BusinessFacade implements IBusiness {
       
     @Override
     public boolean sendToDB(IInquiry inquiry) {
+        controller = new BusinessController();
         return controller.sendToDB(inquiry); // kaldt fra GUI
     }
     
-    public static boolean saveInq(IInquiry inq) {
+    public boolean saveInq(IInquiry inq) {
         return dataPersistens.saveInq(inq); // kaldt fra Controller
     }
     @Override
     public void testSave(){
+        controller = new BusinessController();
         controller.testSave();
     }
 }

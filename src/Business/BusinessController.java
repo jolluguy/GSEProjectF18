@@ -13,6 +13,8 @@ import Acquaintance.IInquiry;
  */
 public class BusinessController {    
             
+    BusinessFacade facade = BusinessFacade.getInstance();
+    
     public Inquiry createInquiry(long cprNumber, String problemDescription, String firstname, String surname, String roadName, String houseNumber, String floor, int postNumber, String city, String tlfNumber) 
     {
         Inquiry inquiry = new Inquiry(cprNumber, problemDescription, firstname, surname, roadName, houseNumber, floor, postNumber, city, tlfNumber);
@@ -29,7 +31,7 @@ public class BusinessController {
     public boolean sendToDB(IInquiry inquiry){
         boolean returnMessage;
         
-        returnMessage = BusinessFacade.saveInq(inquiry);
+        returnMessage = facade.saveInq(inquiry);
         
         if  (!returnMessage) {
             

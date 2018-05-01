@@ -25,7 +25,7 @@ public class Starter {
      */
     public static void main(String[] args) {          
         IGUI gui = new SemesterLogin();
-        IBusiness business = new BusinessFacade();
+        IBusiness business = BusinessFacade.getInstance();
         IDataPersistens dataPersistens = new DataFacade();
         ILoginPersistens loginPersistens = new LoginFacade();
         business.injectLoginPersistens(loginPersistens);
