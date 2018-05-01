@@ -83,7 +83,7 @@ public class Operations implements Serializable {
         getMap();
         user = userMap.get(userName);
 
-        return user;
+        return user; 
     }
 
 }
