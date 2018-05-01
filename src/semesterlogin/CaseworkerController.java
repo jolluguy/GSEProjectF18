@@ -323,6 +323,45 @@ public class CaseworkerController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
+    
+    
+    //Inquiry variables
+    String cprNumber = cprTextField.getText();
+    String firstName = firstNameTextField.getText();
+    String lastName = lastNameTextField.getText();
+    String streetName = streetNameTextField.getText();
+    String streetNumber = streetNumberTextField.getText();
+    String floor = floorTextField.getText();
+    String zipCode = postalCodeTextField.getText();
+    String city = cityTextField.getText();
+    String phonePrefix = phoneNumberPrefixTextField.getText();
+    String phoneNumber = phoneNumberTextField.getText();
+    String problemDescription = descriptionTextAreaInquiry.getText();
+    
+    //Case variables
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
