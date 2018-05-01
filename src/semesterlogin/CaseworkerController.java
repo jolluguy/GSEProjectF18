@@ -327,6 +327,7 @@ public class CaseworkerController implements Initializable {
     
     
     //Inquiry variables
+    
     String cprNumber = cprTextField.getText();
     String firstName = firstNameTextField.getText();
     String lastName = lastNameTextField.getText();
@@ -340,7 +341,12 @@ public class CaseworkerController implements Initializable {
     String problemDescription = descriptionTextAreaInquiry.getText();
     
     //Case variables
+    //cprNumber & problemDescription will be loaded into the two first fields in the case-scene
     
+    String agreements = agreedTextArea.getText();
+    String specialCircumstances = specialCircumstancesTextArea.getText();
+    String otherActingMunicipality = otherActingMunicipalityTextField.getText();
+    String otherPayingMunicipality = otherPayingMunicipalityTextField.getText();
     
     
     
