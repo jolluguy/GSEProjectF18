@@ -22,7 +22,12 @@ public class User implements IUser, Serializable{
     private int level;
     private Date createdTime;
     private Date lastLoginTime;
-
+/**
+ * for youse when adding a new user to the system, it aoutomaticaly sets createddate and lastlogontime.
+ * @param user
+ * @param pw
+ * @param level 
+ */
     public User(String user, String pw, int level) {
         this.userName = user;
         this.pw = pw;
@@ -30,15 +35,29 @@ public class User implements IUser, Serializable{
         this.createdTime = new Date();
         this.lastLoginTime = new Date();
     }
-
+    public User(String userName, String pw, int level, Date createdTime, Date lastLoginTime) {
+        this.userName = userName;
+        this.pw = pw;
+        this.level = level;
+        this.createdTime = createdTime;
+        this.lastLoginTime = lastLoginTime;
+    }
+    
+    @Override
     public String getUserName() {
         return userName;
     }
-
+    @Override
     public int getLevel() {
         return level;
     }
 
+
+    public DateFormat getDf() {
+        return df;
+    }
+
+    @Override
     public void setLevel(int level) {
         this.level = level;
     }
@@ -56,9 +75,12 @@ public class User implements IUser, Serializable{
         this.pw = pw;
     }
 
+    @Override
     public void setLastLoginTime() {
         this.lastLoginTime = new Date();
     }
+
+
     
     DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
 
@@ -71,17 +93,17 @@ public class User implements IUser, Serializable{
 
     @Override
     public String getPassword() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return pw;
     }
 
     @Override
     public Date getCreatedTime() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return createdTime;
     }
 
     @Override
     public Date getLastLoginTime() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return lastLoginTime;
     }
 
 }

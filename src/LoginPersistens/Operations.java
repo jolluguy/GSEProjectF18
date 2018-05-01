@@ -22,7 +22,7 @@ import java.util.Map;
  *
  * @author Alexa
  */
-public class Operations implements Serializable{
+public class Operations implements Serializable {
 
     protected Map<String, DataUser> userMap; //String = IUser.getUserName;
     private final File file = new File("UserSetFile.obj");
@@ -59,7 +59,7 @@ public class Operations implements Serializable{
         }
     }
 
-    public boolean addUser(IUser user) {
+    public boolean addUser(IUser user) {    // kan ikke bruges som den er til at tilfæje ny bruger da den ikke opretter map
         userMap.put(user.getUserName(), (DataUser) user);
         saveMap();
         return true;
@@ -74,15 +74,15 @@ public class Operations implements Serializable{
     boolean updateUser(IUser user) {
         getMap();
         userMap.remove(user.getUserName());
-        userMap.put(user.getUserName(), (DataUser) user);
+        userMap.put(user.getUserName(), new DataUser(user.getUserName(), user.getPassword(), user.getLevel(), user.getCreatedTime(), user.getLastLoginTime()));
         saveMap();
         return true;
     }
 
-    protected IUser getUser(String userName) {
+    IUser getUser(String userName) {
         getMap();
-        DataUser user = userMap.get(userName);
-        
+        user = userMap.get(userName);
+
         return user;
     }
 

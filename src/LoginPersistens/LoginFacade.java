@@ -18,10 +18,7 @@ import java.io.Serializable;
 public class LoginFacade implements ILoginPersistens, Serializable {
     
     Operations operations;
-
-//    public LoginFacade() {
-//        operations = new Operations();
-//    }
+    
     
     private static LoginFacade instance = null;
     public static LoginFacade getInstance(){
@@ -34,11 +31,13 @@ public class LoginFacade implements ILoginPersistens, Serializable {
     
     @Override
     public void getMap() {
+        operations = new Operations();
         operations.getMap();
     }
     
     @Override
     public IUser getUser(String userName) {
+                operations = new Operations();
         System.out.println("Login loginfacade entered");
         return operations.getUser(userName);
     }
@@ -47,11 +46,13 @@ public class LoginFacade implements ILoginPersistens, Serializable {
 
     @Override
     public boolean addUser(IUser user) {
+                operations = new Operations();
         return operations.addUser(user);
     }
 
     @Override
     public boolean updateUser(IUser user) {
+                operations = new Operations();
         return operations.updateUser(user);
     }
     

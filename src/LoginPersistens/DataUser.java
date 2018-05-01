@@ -76,5 +76,10 @@ public class DataUser implements IUser, Serializable {
     public Date getLastLoginTime() {
         return lastLoginTime;
     }
+
+    @Override
+    public void setLastLoginTime() {
+        this.lastLoginTime = new Date();
+    }
     
 }

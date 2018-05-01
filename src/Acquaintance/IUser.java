@@ -26,5 +26,7 @@ public interface IUser {
     Date getCreatedTime();
     
     Date getLastLoginTime();
-    
+
+    public void setLastLoginTime();
+
 }

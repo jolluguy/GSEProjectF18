@@ -5,6 +5,7 @@
  */
 package Business;
 
+import Acquaintance.IUser;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -16,15 +17,15 @@ public class AccessManager{
 
     private static BusinessFacade facade = BusinessFacade.getInstance();
     
-    private User userOne = null; //userOne due to future plans of multiple user access at once
+    private IUser userOne = null; //userOne due to future plans of multiple user access at once
 
     public AccessManager() {
-        this.userOne = userOne;
     }
 
     public int login(String userName, String pw) {
         System.out.println("Accessmanager login entered");
-        User checkUser = (User) facade.getUser(userName); //Parsing User due to IUser return
+        IUser daUs = facade.getUser(userName); //Parsing User due to IUser return
+        User checkUser = new User(daUs.getUserName(), daUs.getPassword(), daUs.getLevel(), daUs.getCreatedTime(), daUs.getLastLoginTime());
         if (userOne == null) {
             if(checkUser.checkPassword(pw)){
                 userOne = checkUser;

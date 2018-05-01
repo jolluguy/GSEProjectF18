@@ -20,12 +20,14 @@ public interface IBusiness {
     int login(String name, String pw);
 
     void logOut();
-
-    public void getMap();
     
-    public boolean addUser(IUser user);
+     public void initiater();
 
-    public boolean updateUser(IUser user);
+//    public void getMap();
+//    
+//    public boolean addUser(IUser user);
+//
+//    public boolean updateUser(IUser user);
 
 
 }

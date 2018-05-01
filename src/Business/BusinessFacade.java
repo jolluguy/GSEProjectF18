@@ -20,7 +20,8 @@ public class BusinessFacade implements IBusiness {
     private IDataPersistens dataPersistens;
     private ILoginPersistens loginPersistens;
 
-    private UserOperations userOperations;
+
+  private AccessManager manager; // Delegate all calls conserning users to the manager.
   
     //BusinessLayer instance
     private static BusinessFacade instance = null;
@@ -41,12 +42,13 @@ public class BusinessFacade implements IBusiness {
     public void injectLoginPersistens(ILoginPersistens loginPersistens) {
         this.loginPersistens = loginPersistens;
     }
-
-    public BusinessFacade() {
-        manager = new AccessManager();
+    
+    @Override
+    public void initiater(){
+      manager = new AccessManager();   
     }
 
-    private AccessManager manager; // Delegate all calls conserning users to the manager.
+    
 
     
     @Override
@@ -60,7 +62,7 @@ public class BusinessFacade implements IBusiness {
         manager.logOut();
     }
     
-    @Override
+
     public void getMap() {
         loginPersistens.getMap();
     }
@@ -70,12 +72,12 @@ public class BusinessFacade implements IBusiness {
         return loginPersistens.getUser(userName);
     }
 
-    @Override
+
     public boolean addUser(IUser user) {
         return loginPersistens.addUser(user);
     }
 
-    @Override
+
     public boolean updateUser(IUser user) {
         return loginPersistens.updateUser(user);
     }
