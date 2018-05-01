@@ -16,9 +16,6 @@ public class DataFacade implements IDataPersistens {
     
     private static DataFacade instance = null;
     public static DataFacade getInstance(){
-        if (instance == null){
-            instance = new DataFacade();
-        }
         return instance;
     }
     

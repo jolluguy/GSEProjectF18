@@ -18,7 +18,6 @@ import java.io.PrintWriter;
 public class SaveInquiryCSV {
 
     IInquiry inq;
-    public static DataFacade dataFacade = DataFacade.getInstance();
 
     SaveInquiryCSV(IInquiry inq) {
         this.inq = new DataInquiry(new DataCitizen(inq.getCitizen().getCprNumber(), inq.getCitizen().getFirstname(), 

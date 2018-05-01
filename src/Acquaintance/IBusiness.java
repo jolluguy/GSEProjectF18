@@ -45,4 +45,6 @@ public interface IBusiness {
    public boolean checkPassword(String pw);
    
    public boolean sendToDB(IInquiry inquiry);
+   
+   public void testSave();
 }

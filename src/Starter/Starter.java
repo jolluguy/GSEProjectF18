@@ -20,8 +20,6 @@ import LoginPersistens.LoginFacade;
  */
 public class Starter {
     
-    public static BusinessFacade facade = BusinessFacade.getInstance();
-    
     /**
      * @param args the command line arguments
      */
@@ -32,11 +30,10 @@ public class Starter {
         ILoginPersistens loginPersistens = new LoginFacade();
         business.injectLoginPersistens(loginPersistens);
         business.injectionDataPersistens(dataPersistens);
-        
-        facade.testSave();
-        
         gui.injectBusiness(business);
-                
+        
+        business.testSave();
+        
         System.out.println("Ready to start system");
         gui.startApplication(args);
     }

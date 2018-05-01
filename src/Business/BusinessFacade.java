@@ -19,15 +19,12 @@ import DataPersistens.DataFacade;
  */
 public class BusinessFacade implements IBusiness {
 
-    private IDataPersistens dataPersistens;
-    private ILoginPersistens loginPersistens;
-    private static DataFacade dataFacade = DataFacade.getInstance();
+    private static IDataPersistens dataPersistens;
+    private ILoginPersistens loginPersistens;    
+    private BusinessController controller;
 
     private static BusinessFacade instance = null;
     public static BusinessFacade getInstance(){
-        if (instance == null){
-            instance = new BusinessFacade();
-        }
         return instance;
     }
     
@@ -44,6 +41,7 @@ public class BusinessFacade implements IBusiness {
 
     public BusinessFacade() {
         manager = new UserManager();
+        controller = new BusinessController();
     }
 
     private UserManager manager; // Delegate all calls conserning users to the manager.
@@ -122,17 +120,17 @@ public class BusinessFacade implements IBusiness {
         return operations.getAllUsers();
     }
 
-    private BusinessController controller = new BusinessController();
+    
       
     @Override
     public boolean sendToDB(IInquiry inquiry) {
         return controller.sendToDB(inquiry); // kaldt fra GUI
     }
     
-    public boolean saveInq(IInquiry inq) {
-        return dataFacade.saveInq(inq); // kaldt fra Controller
+    public static boolean saveInq(IInquiry inq) {
+        return dataPersistens.saveInq(inq); // kaldt fra Controller
     }
-    
+    @Override
     public void testSave(){
         controller.testSave();
     }
