@@ -251,6 +251,74 @@ public class CaseworkerController implements Initializable {
     private ToggleGroup consentYesOrNoGroup;
     @FXML
     private ToggleGroup consentGroup;
+    @FXML
+    private RadioButton inquiryOriginCitizenRadioButton;
+    @FXML
+    private RadioButton inquiryOriginNextOfKinRadioButton;
+    @FXML
+    private RadioButton inquiryOriginDoctorRadioButton;
+    @FXML
+    private RadioButton inquiryOriginHospitalRadioButton;
+    @FXML
+    private RadioButton inquiryOriginOtherInstanceRadioButton;
+    @FXML
+    private RadioButton inquiryOriginActiveOperationRadioButton;
+    @FXML
+    private RadioButton inquiryOriginOtherMunicipalityRadioButton;
+    @FXML
+    private RadioButton inquiryOriginOtherRadioButton;
+    @FXML
+    private RadioButton inquiryUnderstoodYesRadioButton;
+    @FXML
+    private RadioButton inquiryUnderstoodNoRadioButton;
+    @FXML
+    private RadioButton guardianShip5RadioButton;
+    @FXML
+    private RadioButton guardianShip6RadioButton;
+    @FXML
+    private RadioButton guardianShip7RadioButton;
+    @FXML
+    private CheckBox rightsBystanderCheckBox;
+    @FXML
+    private RadioButton rightsYesRadioButton;
+    @FXML
+    private RadioButton rightsNoRadioButton;
+    @FXML
+    private TextArea agreedTextArea;
+    @FXML
+    private RadioButton consentYesRadioButton;
+    @FXML
+    private RadioButton consentNoRadioButton;
+    @FXML
+    private RadioButton oralConsentRadioButton;
+    @FXML
+    private RadioButton writtenConsentRadioButton;
+    @FXML
+    private CheckBox ownDoctorCheckBox;
+    @FXML
+    private CheckBox specialDoctorCheckBox;
+    @FXML
+    private CheckBox hospitalCheckBox;
+    @FXML
+    private CheckBox unemploymentBenefitsCheckBox;
+    @FXML
+    private CheckBox offerCheckBox;
+    @FXML
+    private CheckBox employerCheckBox;
+    @FXML
+    private CheckBox formerMunicipalityCheckBox;
+    @FXML
+    private CheckBox otherInstancesCheckBox;
+    @FXML
+    private TextArea specialCircumstancesTextArea;
+    @FXML
+    private CheckBox otherActingMunicipalityCheckBox;
+    @FXML
+    private TextField otherActingMunicipalityTextField;
+    @FXML
+    private CheckBox otherPayingMunicipalityCheckBox;
+    @FXML
+    private TextField otherPayingMunicipalityTextField;
 
     /**
      * Initializes the controller class.
