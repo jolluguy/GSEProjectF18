@@ -119,7 +119,7 @@
          <font>
             <Font size="15.0" />
          </font></Label>
-      <Button fx:id="refreshButton" layoutX="912.0" layoutY="706.0" mnemonicParsing="false" style="-fx-background-color: F3F3F3; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Genindlæs">
+      <Button fx:id="refreshButton" layoutX="912.0" layoutY="706.0" mnemonicParsing="false" onAction="#refreshListview" style="-fx-background-color: F3F3F3; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Genindlæs">
          <font>
             <Font size="15.0" />
          </font></Button>
@@ -128,6 +128,10 @@
             <Image url="@../AssetsLibrary/SenSum_Logo.png" />
          </image>
       </ImageView>
-      <ListView fx:id="userListview" layoutX="910.0" layoutY="28.0" prefHeight="671.0" prefWidth="392.0" style="-fx-border-color: black;" />
+      <ListView fx:id="userListview" layoutX="911.0" layoutY="60.0" prefHeight="639.0" prefWidth="391.0" style="-fx-border-color: black;" />
+      <Label layoutX="914.0" layoutY="39.0" text="Brugernavn" />
+      <Label layoutX="1012.0" layoutY="40.0" text="Job" />
+      <Label layoutX="1071.0" layoutY="40.0" text="Oprettet" />
+      <Label layoutX="1193.0" layoutY="40.0" text="Sidst aktiv" />
    </children>
 </AnchorPane>

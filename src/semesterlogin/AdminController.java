@@ -201,9 +201,11 @@ public class AdminController implements Initializable {
         jobWarningLabel.setText("");
     }
 
-//    @FXML
-//    public void refreshListview(ActionEvent event){
-//        obsList.clear();
-//        obsList.addAll(business.getUserList());
-//    }
+    @FXML
+    public void refreshListview(ActionEvent event){
+        obsList.clear();
+        for(IUser i : business.getUserList()){
+            obsList.add(i.toString());
+        }
+    }
 }
