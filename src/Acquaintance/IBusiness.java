@@ -5,27 +5,28 @@
  */
 package Acquaintance;
 
-import Business.User;
-import Business.UserOperations;
 import java.util.Collection;
-import java.util.List;
 
 /**
  *
  * @author Alexa
  */
 public interface IBusiness {
-    
+
     void injectionDataPersistens(IDataPersistens dataPersistens);
-    
+
     void injectLoginPersistens(ILoginPersistens loginPersistens);
+
+    int login(String name, String pw);
+
+    void logOut();
+
+    void initiater();
     
-    public String addUser(String name, String pw1, String pw2, int level);
-    
-   public int login(String name, String pw);
-   
-   public void logOut();
-    
+    boolean createUser(String userName, String password1, String password2, int level);
+
+    boolean changeJob(String userName, String password, int level);
+
    public List<String> getUserList();
    
    public String changePassword(String old, String new1, String new2);

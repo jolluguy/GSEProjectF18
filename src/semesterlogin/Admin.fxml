@@ -9,6 +9,8 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -20,26 +22,26 @@
             <content>
               <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="722.0" prefWidth="1292.0" style="-fx-background-color: white;">
                      <children>
-                        <Label fx:id="usernameLabel" layoutX="53.0" layoutY="46.0" text="Brugernavn">
+                        <Label fx:id="usernameLabel" layoutX="59.0" layoutY="58.0" text="Brugernavn">
                            <font>
                               <Font size="15.0" />
                            </font></Label>
-                        <Label fx:id="password1label" layoutX="53.0" layoutY="77.0" text="Password">
+                        <Label fx:id="password1label" layoutX="59.0" layoutY="117.0" text="Password">
                            <font>
                               <Font size="15.0" />
                            </font></Label>
-                        <Label fx:id="password2Label" layoutX="53.0" layoutY="109.0" text="Gentag password">
+                        <Label fx:id="password2Label" layoutX="59.0" layoutY="177.0" text="Gentag password">
                            <font>
                               <Font size="15.0" />
                            </font></Label>
-                        <TextField fx:id="usernameField" layoutX="228.0" layoutY="44.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: F3F3F3; -fx-background-radius: 3;" />
-                        <PasswordField fx:id="password1Field" layoutX="228.0" layoutY="75.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: F3F3F3; -fx-background-radius: 3;" />
-                        <PasswordField fx:id="password2Field" layoutX="228.0" layoutY="107.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: F3F3F3; -fx-background-radius: 3;" />
-                        <Button fx:id="addUserButton" layoutX="33.0" layoutY="665.0" mnemonicParsing="false" onAction="#addUser" style="-fx-background-color: F3F3F3; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Tilføj bruger">
+                        <TextField fx:id="usernameField" layoutX="228.0" layoutY="52.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: F3F3F3; -fx-background-radius: 3;" />
+                        <PasswordField fx:id="password1Field" layoutX="228.0" layoutY="111.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: F3F3F3; -fx-background-radius: 3;" />
+                        <PasswordField fx:id="password2Field" layoutX="228.0" layoutY="171.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: F3F3F3; -fx-background-radius: 3;" />
+                        <Button fx:id="addUserButton" layoutX="31.0" layoutY="661.0" mnemonicParsing="false" onAction="#createUser" style="-fx-background-color: F3F3F3; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Tilføj bruger">
                            <font>
                               <Font size="15.0" />
                            </font></Button>
-                        <RadioButton fx:id="lvl1Radio" layoutX="228.0" layoutY="159.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="145.0" text="Sagsbehandler">
+                        <RadioButton fx:id="lvl1Radio" layoutX="228.0" layoutY="245.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="145.0" text="Sagsbehandler">
                            <toggleGroup>
                               <ToggleGroup fx:id="levelGroup" />
                            </toggleGroup>
@@ -47,12 +49,12 @@
                               <Font size="15.0" />
                            </font>
                         </RadioButton>
-                        <RadioButton fx:id="lvl2Radio" layoutX="228.0" layoutY="191.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="112.0" text="Admin" toggleGroup="$levelGroup">
+                        <RadioButton fx:id="lvl2Radio" layoutX="228.0" layoutY="277.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="112.0" text="Admin" toggleGroup="$levelGroup">
                            <font>
                               <Font size="15.0" />
                            </font></RadioButton>
                         <Label fx:id="warningLabel" layoutX="33.0" layoutY="621.0" prefHeight="21.0" prefWidth="727.0" />
-                        <Button fx:id="removeUserButton" layoutX="261.0" layoutY="665.0" mnemonicParsing="false" onAction="#addUser" style="-fx-background-color: F3F3F3; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Fjern bruger">
+                        <Button fx:id="removeUserButton" layoutX="152.0" layoutY="661.0" mnemonicParsing="false" onAction="#cancelUserCreation" style="-fx-background-color: F3F3F3; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Annuller">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -65,17 +67,17 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="jobUsername" layoutX="59.0" layoutY="54.0" text="Brugernavn">
+                        <Label fx:id="jobUsername" layoutX="59.0" layoutY="58.0" text="Brugernavn">
                            <font>
                               <Font size="15.0" />
                            </font></Label>
-                        <Label fx:id="jobPassword" layoutX="59.0" layoutY="94.0" text="Password">
+                        <Label fx:id="jobPassword" layoutX="59.0" layoutY="117.0" text="Password">
                            <font>
                               <Font size="15.0" />
                            </font></Label>
-                        <TextField fx:id="jobUsernameField" layoutX="209.0" layoutY="52.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: F3F3F3; -fx-background-radius: 3;" />
-                        <PasswordField fx:id="jobPasswordField" layoutX="209.0" layoutY="92.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: F3F3F3; -fx-background-radius: 3;" />
-                        <RadioButton fx:id="jobCaseRadio" layoutX="206.0" layoutY="182.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="133.0" text="Sagsbehandler">
+                        <TextField fx:id="jobUsernameField" layoutX="228.0" layoutY="52.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: F3F3F3; -fx-background-radius: 3;" />
+                        <PasswordField fx:id="jobPasswordField" layoutX="228.0" layoutY="111.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: F3F3F3; -fx-background-radius: 3;" />
+                        <RadioButton fx:id="jobCaseRadio" layoutX="228.0" layoutY="182.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="133.0" text="Sagsbehandler">
                            <toggleGroup>
                               <ToggleGroup fx:id="jobRadio" />
                            </toggleGroup>
@@ -83,10 +85,15 @@
                               <Font size="15.0" />
                            </font>
                         </RadioButton>
-                        <RadioButton fx:id="jobAdminRadio" layoutX="206.0" layoutY="217.0" mnemonicParsing="false" text="Admin" toggleGroup="$jobRadio">
+                        <RadioButton fx:id="jobAdminRadio" layoutX="228.0" layoutY="217.0" mnemonicParsing="false" text="Admin" toggleGroup="$jobRadio">
                            <font>
                               <Font size="15.0" />
                            </font></RadioButton>
+                        <RadioButton fx:id="jobInactiveRadio" layoutX="228.0" layoutY="251.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="133.0" text="Inaktiv" toggleGroup="$jobRadio">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </RadioButton>
                         <Label fx:id="jobWarningLabel" layoutX="53.0" layoutY="628.0" prefHeight="21.0" prefWidth="484.0" />
                         <Button fx:id="jobSavechangeButton" layoutX="27.0" layoutY="661.0" mnemonicParsing="false" onAction="#changeJob" style="-fx-background-color: F3F3F3; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Gem ændringer">
                            <font>
@@ -99,11 +106,6 @@
                            </font>
                         </Button>
                      </children></AnchorPane>
-               </content>
-            </Tab>
-            <Tab text="Sæt bruger inaktiv">
-               <content>
-                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="722.0" prefWidth="1292.0" style="-fx-background-color: white;" />
                </content>
             </Tab>
         </tabs>
@@ -121,6 +123,15 @@
          <font>
             <Font size="15.0" />
          </font></Button>
-      <ListView fx:id="userListview" layoutX="910.0" layoutY="28.0" prefHeight="671.0" prefWidth="392.0" style="-fx-border-color: black;" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="700.0" AnchorPane.topAnchor="50.0">
+         <image>
+            <Image url="@../AssetsLibrary/SenSum_Logo.png" />
+         </image>
+      </ImageView>
+      <ListView fx:id="userListview" layoutX="911.0" layoutY="60.0" prefHeight="639.0" prefWidth="391.0" style="-fx-border-color: black;" />
+      <Label layoutX="914.0" layoutY="39.0" text="Brugernavn" />
+      <Label layoutX="1012.0" layoutY="40.0" text="Job" />
+      <Label layoutX="1071.0" layoutY="40.0" text="Oprettet" />
+      <Label layoutX="1193.0" layoutY="40.0" text="Sidst aktiv" />
    </children>
 </AnchorPane>
