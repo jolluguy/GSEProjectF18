@@ -19,9 +19,9 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ScrollPane hmax="722.0" prefHeight="762.0" prefViewportHeight="1000.0" prefViewportWidth="771.0" prefWidth="1300.0" vmax="1080.0">
+                        <ScrollPane hmax="722.0" prefHeight="762.0" prefViewportHeight="1000.0" prefViewportWidth="771.0" prefWidth="1300.0" vmax="200.0">
                           <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2000.0" prefWidth="1299.0">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1300.0" prefWidth="1299.0">
                                  <children>
                                     <Label layoutX="123.0" layoutY="67.0" text="Henvendelse">
                                        <font>
@@ -38,7 +38,7 @@
                                           <Font size="28.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="descriptionTextField" alignment="TOP_LEFT" layoutX="118.0" layoutY="687.0" prefHeight="445.0" prefWidth="1050.0" />
+                                    <TextField fx:id="descriptionTextField" alignment="TOP_LEFT" layoutX="118.0" layoutY="687.0" prefHeight="445.0" prefWidth="925.0" />
                                     <Label layoutX="192.0" layoutY="257.0" text="CPR">
                                        <font>
                                           <Font size="18.0" />
