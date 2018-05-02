@@ -6,6 +6,7 @@
 package semesterlogin;
 
 import Acquaintance.IBusiness;
+import Acquaintance.IUser;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -102,7 +103,10 @@ public class AdminController implements Initializable {
 //        Load listview
         obsList = FXCollections.observableArrayList();
         userListview.setItems(obsList);
-        obsList.addAll(business.getUserList());
+        for(IUser i : business.getUserList()){
+            obsList.add(i.toString());
+        }
+//        obsList.addAll(business.getUserList().toString());
     }
 
     @FXML

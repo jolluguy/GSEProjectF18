@@ -86,7 +86,7 @@ public class Operations implements Serializable {
     Collection<IUser> getAllUsers(){
         Collection<IUser> col = new ArrayList<>();
         getMap();
-        for ( IUser i : userMap.values()){
+        for ( DataUser i : userMap.values()){
             col.add(i);
             
         }

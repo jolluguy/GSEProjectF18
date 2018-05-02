@@ -6,6 +6,7 @@
 package Business;
 
 import Acquaintance.IUser;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -34,7 +35,12 @@ public class Admin extends Job {
 
 
     Collection<IUser> getUserList() {
-        return facade.getAllUsers();
+        ArrayList<IUser> tempList = new ArrayList<>();
+        for(IUser i : facade.getAllUsers()){
+            tempList.add(new User(i.getUserName(), i.getPassword(), i.getLevel(), i.getCreatedTime(), i.getLastLoginTime()));
+        }
+            
+        return tempList;
     }
     
     
