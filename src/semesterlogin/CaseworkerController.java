@@ -9,6 +9,8 @@ import Acquaintance.IBusiness;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -336,50 +338,6 @@ public class CaseworkerController implements Initializable {
      * Initializes the controller class.
      */
     
-    
-    
-//    //Inquiry variables
-//    
-//    String cprNumber = cprTextField.getText();
-//    String firstName = firstNameTextField.getText();
-//    String lastName = lastNameTextField.getText();
-//    String streetName = streetNameTextField.getText();
-//    String streetNumber = streetNumberTextField.getText();
-//    String floor = floorTextField.getText();
-//    String zipCode = postalCodeTextField.getText();
-//    String city = cityTextField.getText();
-//    String phonePrefix = phoneNumberPrefixTextField.getText();
-//    String phoneNumber = phoneNumberTextField.getText();
-//    String problemDescription = descriptionTextAreaInquiry.getText();
-//    
-//    //Case variables
-//    //cprNumber & problemDescription will be loaded into the two first fields in the case-scene
-//    
-//    String agreements = agreedTextArea.getText();
-//    String specialCircumstances = specialCircumstancesTextArea.getText();
-//    String otherActingMunicipality = otherActingMunicipalityTextField.getText();
-//    String otherPayingMunicipality = otherPayingMunicipalityTextField.getText();
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -392,15 +350,36 @@ public class CaseworkerController implements Initializable {
         String firstname = firstNameTextField.getText();
         String surname = lastNameTextField.getText();
         String roadName = streetNameTextField.getText();
+        String houseNumber = streetNumberTextField.getText();
         String floor = floorTextField.getText();
         int postNumber = Integer.parseInt(postalCodeTextField.getText());
         String city = cityTextField.getText();
         String tlfNumber = phoneNumberPrefixTextField.getText() + phoneNumberTextField.getText();
 
-        boolean inquiryMade = business.newInquery(cprNumber, problemDescription, firstname, surname, roadName, tlfNumber, floor, postNumber, city, tlfNumber);
+        boolean inquiryMade = business.newInquery(cprNumber, problemDescription, firstname, surname, roadName, houseNumber, floor, postNumber, city, tlfNumber);
 
         if(inquiryMade) {
             System.out.println("Inquiry Made");
+            
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(CaseworkerController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+        cprTextField.clear();
+        descriptionTextAreaInquiry.clear();
+        firstNameTextField.clear();
+        lastNameTextField.clear();
+        streetNameTextField.clear();
+        streetNumberTextField.clear();
+        floorTextField.clear();
+        postalCodeTextField.clear();
+        cityTextField.clear();
+        phoneNumberPrefixTextField.clear();
+        phoneNumberTextField.clear();
+                
         } else if(!inquiryMade) {
             System.out.println("Inquiry failed");
         }
