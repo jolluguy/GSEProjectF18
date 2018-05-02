@@ -326,6 +326,10 @@ public class CaseworkerController implements Initializable {
     private CheckBox otherPayingMunicipalityCheckBox;
     @FXML
     private TextField otherPayingMunicipalityTextField;
+    @FXML
+    private Button archiveButton;
+    @FXML
+    private Button newCaseButton;
 
 
     /**
@@ -334,27 +338,27 @@ public class CaseworkerController implements Initializable {
     
     
     
-    //Inquiry variables
-    
-    String cprNumber = cprTextField.getText();
-    String firstName = firstNameTextField.getText();
-    String lastName = lastNameTextField.getText();
-    String streetName = streetNameTextField.getText();
-    String streetNumber = streetNumberTextField.getText();
-    String floor = floorTextField.getText();
-    String zipCode = postalCodeTextField.getText();
-    String city = cityTextField.getText();
-    String phonePrefix = phoneNumberPrefixTextField.getText();
-    String phoneNumber = phoneNumberTextField.getText();
-    String problemDescription = descriptionTextAreaInquiry.getText();
-    
-    //Case variables
-    //cprNumber & problemDescription will be loaded into the two first fields in the case-scene
-    
-    String agreements = agreedTextArea.getText();
-    String specialCircumstances = specialCircumstancesTextArea.getText();
-    String otherActingMunicipality = otherActingMunicipalityTextField.getText();
-    String otherPayingMunicipality = otherPayingMunicipalityTextField.getText();
+//    //Inquiry variables
+//    
+//    String cprNumber = cprTextField.getText();
+//    String firstName = firstNameTextField.getText();
+//    String lastName = lastNameTextField.getText();
+//    String streetName = streetNameTextField.getText();
+//    String streetNumber = streetNumberTextField.getText();
+//    String floor = floorTextField.getText();
+//    String zipCode = postalCodeTextField.getText();
+//    String city = cityTextField.getText();
+//    String phonePrefix = phoneNumberPrefixTextField.getText();
+//    String phoneNumber = phoneNumberTextField.getText();
+//    String problemDescription = descriptionTextAreaInquiry.getText();
+//    
+//    //Case variables
+//    //cprNumber & problemDescription will be loaded into the two first fields in the case-scene
+//    
+//    String agreements = agreedTextArea.getText();
+//    String specialCircumstances = specialCircumstancesTextArea.getText();
+//    String otherActingMunicipality = otherActingMunicipalityTextField.getText();
+//    String otherPayingMunicipality = otherPayingMunicipalityTextField.getText();
     
     
     
@@ -379,8 +383,30 @@ public class CaseworkerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }   
+    }
     
+    @FXML
+    public void newInquiry(ActionEvent event) {
+        long cprNumber = Long.parseLong(cprTextField.getText(), 10);
+        String problemDescription = descriptionTextAreaInquiry.getText();
+        String firstname = firstNameTextField.getText();
+        String surname = lastNameTextField.getText();
+        String roadName = streetNameTextField.getText();
+        String floor = floorTextField.getText();
+        int postNumber = Integer.parseInt(postalCodeTextField.getText());
+        String city = cityTextField.getText();
+        String tlfNumber = phoneNumberPrefixTextField.getText() + phoneNumberTextField.getText();
+
+        boolean inquiryMade = business.newInquery(cprNumber, problemDescription, firstname, surname, roadName, tlfNumber, floor, postNumber, city, tlfNumber);
+
+        if(inquiryMade) {
+            System.out.println("Inquiry Made");
+        } else if(!inquiryMade) {
+            System.out.println("Inquiry failed");
+        }
+
+    }
+
     @FXML
     public void logout(ActionEvent event) throws IOException {
         Parent loginScreen = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
@@ -390,8 +416,6 @@ public class CaseworkerController implements Initializable {
         appstage.setScene(newScene);
         appstage.show();
     }
-  
-    
 
     @FXML
     public void updateYesNoStatus(ActionEvent event) {

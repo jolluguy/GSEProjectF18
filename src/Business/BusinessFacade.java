@@ -24,6 +24,7 @@ public class BusinessFacade implements IBusiness {
       private BusinessController controller;
   private AccessManager manager; // Delegate all calls conserning users to the manager.
   private Admin admin;
+  private CaseWorker caseWorker;
   
     //BusinessLayer instance
     private static BusinessFacade instance = null;
@@ -50,6 +51,7 @@ public class BusinessFacade implements IBusiness {
     public void startUp(){
         controller = new BusinessController();
              manager = new AccessManager();
+             caseWorker = new CaseWorker();
       admin = new Admin();
     }
    
@@ -96,6 +98,13 @@ public class BusinessFacade implements IBusiness {
  
     Collection<IUser> getAllUsers(){
         return loginPersistens.getAllUsers();
+    }
+    
+    @Override
+    public boolean newInquery(long cprNumber, String problemDescription, String firstname, String surname, String roadName, String houseNumber,
+                       String floor, int postNumber, String city, String tlfNumber){
+        return caseWorker.newInquiry(cprNumber, problemDescription, firstname, surname, roadName, houseNumber,
+                       floor, postNumber, city, tlfNumber);
     }
     
    
