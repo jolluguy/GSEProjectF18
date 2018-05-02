@@ -46,12 +46,12 @@ public class BusinessFacade implements IBusiness {
         this.loginPersistens = loginPersistens;
     }
 
-    @Override
-    public void initiater(){
-      manager = new AccessManager();
+     @Override
+    public void startUp(){
+        controller = new BusinessController();
+             manager = new AccessManager();
       admin = new Admin();
     }
-
    
     
     @Override
@@ -65,15 +65,9 @@ public class BusinessFacade implements IBusiness {
     }
     
 
-    public void getMap() {
-        loginPersistens.getMap();
-    }
-
     public IUser getUser(String userName) {
         return loginPersistens.getUser(userName);
     }
-    
-    
     
     @Override
     public boolean createUser(String userName, String password1, String password2, int level){
@@ -95,6 +89,7 @@ public class BusinessFacade implements IBusiness {
         return loginPersistens.updateUser(user);
     }
     
+    @Override
     public Collection<IUser> getUserList(){
         return admin.getUserList();
     }
@@ -103,9 +98,7 @@ public class BusinessFacade implements IBusiness {
         return loginPersistens.getAllUsers();
     }
     
-
-    
-      
+   
     @Override
     public boolean sendToDB(IInquiry inquiry) {
         controller = new BusinessController();
@@ -115,9 +108,5 @@ public class BusinessFacade implements IBusiness {
     public boolean saveInq(IInquiry inq) {
         return dataPersistens.saveInq(inq); // kaldt fra Controller
     }
-    @Override
-    public void testSave(){
-        controller = new BusinessController();
-        controller.testSave();
-    }
+   
 }

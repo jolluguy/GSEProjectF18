@@ -391,7 +391,7 @@ public class CaseworkerController implements Initializable {
         appstage.show();
     }
   
-    }
+    
 
     @FXML
     public void updateYesNoStatus(ActionEvent event) {

@@ -27,14 +27,12 @@ public class Starter {
     public static void main(String[] args) {
         IGUI gui = GUIFacade.getInstance();
         IBusiness business = BusinessFacade.getInstance();
-        business.initiater();
+        business.startUp();
         IDataPersistens dataPersistens = new DataFacade();
         ILoginPersistens loginPersistens = new LoginFacade();
         business.injectLoginPersistens(loginPersistens);
         business.injectionDataPersistens(dataPersistens);
         gui.injectBusiness(business);
-        
-        business.testSave();
         
         System.out.println("Ready to start system");
         gui.startApplication(args);
