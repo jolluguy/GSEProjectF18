@@ -33,7 +33,7 @@ import javafx.stage.Stage;
  * @author Alexa
  */
 public class AdminController implements Initializable {
-    
+
     @FXML
     private Label usernameLabel;
     @FXML
@@ -88,8 +88,7 @@ public class AdminController implements Initializable {
     private Label jobWarningLabel;
     @FXML
     private Button removeUserButton;
-    
-    
+
     private IBusiness business = GUIFacade.getInstance().getBusiness();
     @FXML
     private RadioButton jobInactiveRadio;
@@ -99,7 +98,6 @@ public class AdminController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
 
 ////        Load listview
 //        obsList = FXCollections.observableArrayList();
@@ -112,30 +110,30 @@ public class AdminController implements Initializable {
         String userName = usernameField.getText();
         String password1 = password1Field.getText();
         String password2 = password2Field.getText();
-        int level = 0;
+        int level = -1;
 
         if (!(lvl1Radio.isSelected() || lvl2Radio.isSelected())) {
             warningLabel.setText("En jobtitel skal vælges før ændringen kan foretages");
-        } else {
-            if (lvl1Radio.isSelected()) {
-                level = 1;
-            } else if (lvl2Radio.isSelected()) {
-                level = 2;
-            }
-            
-            boolean createUserStatus = business.createUser(userName, password1, password2, level);
-            
-            String statusmessage = "";
-            if(createUserStatus){
-               statusmessage = userName + " er blevet oprettet"; 
-            } else if (!createUserStatus) {
-                statusmessage = "ADVARSEL! - Bruger kunne ikke oprettes. Kontroller venligst at passwords er ens";                
-            }
-
-            warningLabel.setText(statusmessage);            
         }
+
+        if (lvl1Radio.isSelected()) {
+            level = 1;
+        } else if (lvl2Radio.isSelected()) {
+            level = 2;
+        }
+
+        boolean createUserStatus = business.createUser(userName, password1, password2, level);
+
+        String statusmessage = "";
+        if (createUserStatus) {
+            statusmessage = userName + " er blevet oprettet";
+        } else if (!createUserStatus) {
+            statusmessage = "ADVARSEL! - Bruger kunne ikke oprettes. Kontroller venligst at passwords er ens";
+        }
+
+        warningLabel.setText(statusmessage);
     }
-    
+
     @FXML
     public void cancelUserCreation(ActionEvent event) {
         usernameField.clear();
@@ -171,26 +169,26 @@ public class AdminController implements Initializable {
                 level = 1;
             } else if (jobAdminRadio.isSelected()) {
                 level = 2;
-            } else if(jobInactiveRadio.isSelected()){
+            } else if (jobInactiveRadio.isSelected()) {
                 level = 0;
             }
             System.out.println("level is " + level);
-            
+
             String statusMessage = "";
-            
+
             boolean changeStatus = business.changeJob(username, password, level);
-            if(changeStatus){
+            if (changeStatus) {
                 statusMessage = username + "'s job er blevet ændret";
-            } else if(!changeStatus) {
+            } else if (!changeStatus) {
                 statusMessage = username + "'s job kunne ikke ændres";
             }
-            
+
             jobWarningLabel.setText(statusMessage);
         }
     }
-    
+
     @FXML
-    public void jobCancel(ActionEvent event){
+    public void jobCancel(ActionEvent event) {
         jobUsernameField.clear();
         jobPasswordField.clear();
         jobAdminRadio.setSelected(false);
@@ -198,11 +196,10 @@ public class AdminController implements Initializable {
         jobInactiveRadio.setSelected(false);
         jobWarningLabel.setText("");
     }
-    
+
 //    @FXML
 //    public void refreshListview(ActionEvent event){
 //        obsList.clear();
 //        obsList.addAll(business.getUserList());
 //    }
-    
 }
