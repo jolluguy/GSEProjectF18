@@ -6,6 +6,8 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -105,6 +107,11 @@
             </Tab>
         </tabs>
       </TabPane>
-      <Button fx:id="logOutButton" layoutX="429.0" mnemonicParsing="false" onAction="#logout" text="Log ud" AnchorPane.leftAnchor="1200.0" AnchorPane.topAnchor="50.0" />
+      <Button fx:id="logOutButton" layoutX="429.0" mnemonicParsing="false" onAction="#logout" text="Log ud" AnchorPane.leftAnchor="1227.0" AnchorPane.topAnchor="4.0" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="1070.0" AnchorPane.topAnchor="50.0">
+         <image>
+            <Image url="@../AssetsLibrary/SenSum_Logo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
