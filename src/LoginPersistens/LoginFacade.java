@@ -8,6 +8,7 @@ package LoginPersistens;
 import Acquaintance.ILoginPersistens;
 import Acquaintance.IUser;
 import java.io.Serializable;
+import java.util.Collection;
 
 /**
  *
@@ -49,5 +50,13 @@ public class LoginFacade implements ILoginPersistens, Serializable {
         operations = new Operations();
         return operations.updateUser(user);
     }
+    
+    @Override
+    public Collection<IUser> getAllUsers(){
+        operations = new Operations();
+        return operations.getAllUsers();
+    }
+    
+
 
 }

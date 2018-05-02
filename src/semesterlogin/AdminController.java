@@ -101,10 +101,10 @@ public class AdminController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
 
-////        Load listview
-//        obsList = FXCollections.observableArrayList();
-//        userListview.setItems(obsList);
-//        obsList.addAll(business.getUserList());
+//        Load listview
+        obsList = FXCollections.observableArrayList();
+        userListview.setItems(obsList);
+        obsList.addAll(business.getUserList());
     }
 
     @FXML

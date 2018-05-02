@@ -5,6 +5,8 @@
  */
 package Acquaintance;
 
+import java.util.Collection;
+
 /**
  *
  * @author Rol's studie PC
@@ -18,4 +20,6 @@ public interface ILoginPersistens {
     boolean addUser(IUser user);
     
     boolean updateUser(IUser user);
+    
+    Collection<IUser> getAllUsers();
 }

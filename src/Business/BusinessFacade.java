@@ -10,6 +10,7 @@ import Acquaintance.IBusiness;
 import Acquaintance.IDataPersistens;
 import Acquaintance.ILoginPersistens;
 import Acquaintance.IUser;
+import java.util.Collection;
 
 /**
  *
@@ -93,7 +94,14 @@ public class BusinessFacade implements IBusiness {
     public boolean updateUser(IUser user) {
         return loginPersistens.updateUser(user);
     }
-
+    
+    public Collection<IUser> getUserList(){
+        return admin.getUserList();
+    }
+ 
+    Collection<IUser> getAllUsers(){
+        return loginPersistens.getAllUsers();
+    }
     
 
 }

@@ -6,6 +6,7 @@
 package Business;
 
 import Acquaintance.IUser;
+import java.util.Collection;
 import java.util.Date;
 
 /**
@@ -18,7 +19,7 @@ public class Admin extends Job {
 
     boolean createUser(String userName, String password1, String password2, int level) {
         if (password1.equals(password2)) {
-            return facade.addUser( new User(userName, password1, 0, new Date(), new Date()) {});
+            return facade.addUser( new User(userName, password1, level, new Date(), new Date()) {});
         } else {
             return false;
         }
@@ -29,4 +30,12 @@ public class Admin extends Job {
         user.setLevel(level);
         return facade.updateUser(user);
     }
+    
+
+
+    Collection<IUser> getUserList() {
+        return facade.getAllUsers();
+    }
+    
+    
 }

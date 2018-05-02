@@ -5,6 +5,8 @@
  */
 package Acquaintance;
 
+import java.util.Collection;
+
 /**
  *
  * @author Alexa
@@ -24,6 +26,8 @@ public interface IBusiness {
     boolean createUser(String userName, String password1, String password2, int level);
 
     boolean changeJob(String userName, String password, int level);
+    
+    Collection<IUser> getUserList();
     
 //    public void getMap();
 //    
