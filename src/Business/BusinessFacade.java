@@ -10,7 +10,9 @@ import Acquaintance.IBusiness;
 import java.util.Collection;
 import java.util.List;
 import Acquaintance.IDataPersistens;
+import Acquaintance.IInquiry;
 import Acquaintance.ILoginPersistens;
+import DataPersistens.DataFacade;
 
 /**
  *
@@ -18,9 +20,19 @@ import Acquaintance.ILoginPersistens;
  */
 public class BusinessFacade implements IBusiness {
 
-    private IDataPersistens dataPersistens;
-    private ILoginPersistens loginPersistens;
+    private static IDataPersistens dataPersistens;
+    private ILoginPersistens loginPersistens;    
+    private BusinessController controller;
+    private UserManager manager = new UserManager();
 
+    private static BusinessFacade instance = null;
+    public static BusinessFacade getInstance(){
+        if (instance == null) {
+            instance = new BusinessFacade();
+        }
+        return instance;
+    }
+    
     //Data layer injection
     @Override
     public void injectionDataPersistens(IDataPersistens dataPersistens) {
@@ -33,10 +45,11 @@ public class BusinessFacade implements IBusiness {
     }
 
     public BusinessFacade() {
-        manager = new UserManager();
+//        manager = new UserManager();
+        
     }
 
-    private UserManager manager; // Delegate all calls conserning users to the manager.
+//    private UserManager manager; // Delegate all calls conserning users to the manager.
 
     @Override
     public String addUser(String name, String pw1, String pw2, int level) {
@@ -112,4 +125,20 @@ public class BusinessFacade implements IBusiness {
         return operations.getAllUsers();
     }
 
+    
+      
+    @Override
+    public boolean sendToDB(IInquiry inquiry) {
+        controller = new BusinessController();
+        return controller.sendToDB(inquiry); // kaldt fra GUI
+    }
+    
+    public boolean saveInq(IInquiry inq) {
+        return dataPersistens.saveInq(inq); // kaldt fra Controller
+    }
+    @Override
+    public void testSave(){
+        controller = new BusinessController();
+        controller.testSave();
+    }
 }
