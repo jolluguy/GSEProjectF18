@@ -7,10 +7,11 @@ package Acquaintance;
 
 /**
  *
- * @author Alexa
+ * @author Rasmus
  */
-public interface IDataPersistens {
-    
-    public boolean saveInq(IInquiry inq);
-    
+public interface IInquiry {
+public ICitizen getCitizen();
+public void setCitizen(ICitizen citizen);
+public String getProblemDescription();
+public void setProblemDescription(String problemDescription);
 }

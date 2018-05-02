@@ -19,10 +19,11 @@ import LoginPersistens.LoginFacade;
  * @author Alexa
  */
 public class Starter {
-
+    
     /**
      * @param args the command line arguments
      */
+
     public static void main(String[] args) {
         IGUI gui = GUIFacade.getInstance();
         IBusiness business = BusinessFacade.getInstance();
@@ -32,6 +33,8 @@ public class Starter {
         business.injectLoginPersistens(loginPersistens);
         business.injectionDataPersistens(dataPersistens);
         gui.injectBusiness(business);
+        
+        business.testSave();
         
         System.out.println("Ready to start system");
         gui.startApplication(args);

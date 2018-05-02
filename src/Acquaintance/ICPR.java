@@ -7,10 +7,11 @@ package Acquaintance;
 
 /**
  *
- * @author Alexa
+ * @author Rasmus
  */
-public interface IDataPersistens {
-    
-    public boolean saveInq(IInquiry inq);
-    
+public interface ICPR {
+   public long getCprNumber();
+   public void setCprNumber(long cprNumber);
+   public boolean validateCPR();
+   
 }

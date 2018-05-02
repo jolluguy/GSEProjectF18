@@ -1,13 +1,14 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
- 
-* To change this template file, choose Tools | Templates
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package Business;
 
 import Acquaintance.IBusiness;
 import Acquaintance.IDataPersistens;
+import Acquaintance.IInquiry;
 import Acquaintance.ILoginPersistens;
 import Acquaintance.IUser;
 import java.util.Collection;
@@ -20,8 +21,7 @@ public class BusinessFacade implements IBusiness {
 
     private IDataPersistens dataPersistens;
     private ILoginPersistens loginPersistens;
-
-
+      private BusinessController controller;
   private AccessManager manager; // Delegate all calls conserning users to the manager.
   private Admin admin;
   
@@ -35,6 +35,7 @@ public class BusinessFacade implements IBusiness {
     }
     
     //Data-layer injection
+
     @Override
     public void injectionDataPersistens(IDataPersistens dataPersistens) {
         this.dataPersistens = dataPersistens;
@@ -44,15 +45,14 @@ public class BusinessFacade implements IBusiness {
     public void injectLoginPersistens(ILoginPersistens loginPersistens) {
         this.loginPersistens = loginPersistens;
     }
-    
+
     @Override
     public void initiater(){
       manager = new AccessManager();
       admin = new Admin();
     }
 
-    
-
+   
     
     @Override
     public int login(String userName, String pw) {
@@ -104,4 +104,20 @@ public class BusinessFacade implements IBusiness {
     }
     
 
+    
+      
+    @Override
+    public boolean sendToDB(IInquiry inquiry) {
+        controller = new BusinessController();
+        return controller.sendToDB(inquiry); // kaldt fra GUI
+    }
+    
+    public boolean saveInq(IInquiry inq) {
+        return dataPersistens.saveInq(inq); // kaldt fra Controller
+    }
+    @Override
+    public void testSave(){
+        controller = new BusinessController();
+        controller.testSave();
+    }
 }
