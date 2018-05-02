@@ -31,7 +31,7 @@ public class Operations implements Serializable {
     Map getMap() {
         if (!file.exists()) {
             userMap = new HashMap<>();
-            addUser(new DataUser("Admin", "Super", 2, new Date(), new Date())); // Default SuperUser
+            userMap.put("Admin", new DataUser("Admin", "Super", 2, new Date(), new Date())); // Default SuperUser
             saveMap();
         } else {
             try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
@@ -60,15 +60,10 @@ public class Operations implements Serializable {
     }
 
     public boolean addUser(IUser user) {    // kan ikke bruges som den er til at tilfæje ny bruger da den ikke opretter map
-        userMap.put(user.getUserName(), (DataUser) user);
+        getMap();
+        userMap.put(user.getUserName(), new DataUser(user.getUserName(), user.getPassword(), user.getLevel(), user.getCreatedTime(), user.getLastLoginTime()));
         saveMap();
         return true;
-    }
-
-    private void saveUser(IUser user) {
-        getMap();
-        userMap.put(user.getUserName(), (DataUser) user);
-        saveMap();
     }
 
     boolean updateUser(IUser user) {
