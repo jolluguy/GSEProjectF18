@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="semesterlogin.CaseworkerController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="semesterlogin.CaseworkerController">
    <children>
       <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
@@ -25,7 +25,7 @@
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
 
-                        <ScrollPane hmax="722.0" prefHeight="762.0" prefViewportHeight="1000.0" prefViewportWidth="771.0" prefWidth="1300.0" vmax="1080.0">
+                        <ScrollPane hmax="722.0" prefHeight="762.0" prefViewportHeight="1000.0" prefViewportWidth="771.0" prefWidth="1300.0" style="-fx-background-color: f3f3f3;" vmax="1080.0">
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1300.0" prefWidth="1299.0">
                                  <children>
@@ -89,11 +89,11 @@
                                     <TextField fx:id="cityTextField" layoutX="545.0" layoutY="525.0" prefHeight="31.0" prefWidth="195.0" />
                                     <TextField fx:id="phoneNumberPrefixTextField" layoutX="440.0" layoutY="580.0" prefHeight="31.0" prefWidth="45.0" text="+45" />
                                     <TextField fx:id="phoneNumberTextField" layoutX="506.0" layoutY="580.0" prefHeight="31.0" prefWidth="235.0" />
-                                    <Button fx:id="cprInfoButton" layoutX="763.0" layoutY="255.0" mnemonicParsing="false" text="Hent info" />
+                                    <Button fx:id="cprInfoButton" layoutX="763.0" layoutY="255.0" mnemonicParsing="false" style="-fx-background-color: f3f3f3; -fx-background-radius: 3; -fx-border-color: black; -fx-border-radius: 3;" text="Hent info" />
                                     <Label layoutX="532.0" layoutY="224.0" text="Eks: 123456-1234" textFill="#bfbfbf" />
-                                    <TextArea fx:id="descriptionTextAreaInquiry" layoutX="125.0" layoutY="702.0" prefHeight="445.0" prefWidth="1050.0" />
-                                    <Button fx:id="archiveButton" layoutX="125.0" layoutY="1226.0" mnemonicParsing="false" onAction="#newInquiry" text="Arkiver" />
-                                    <Button fx:id="newCaseButton" layoutX="230.0" layoutY="1226.0" mnemonicParsing="false" text="Opret ny sag" />
+                                    <TextArea fx:id="descriptionTextAreaInquiry" layoutX="125.0" layoutY="702.0" prefHeight="445.0" prefWidth="900.0" />
+                                    <Button fx:id="archiveButton" layoutX="125.0" layoutY="1226.0" mnemonicParsing="false" onAction="#newInquiry" style="-fx-background-color: f3f3f3; -fx-background-radius: 3; -fx-border-color: black; -fx-border-radius: 3;" text="Arkiver" />
+                                    <Button fx:id="newCaseButton" layoutX="230.0" layoutY="1226.0" mnemonicParsing="false" style="-fx-background-color: f3f3f3; -fx-background-radius: 3; -fx-border-color: black; -fx-border-radius: 3;" text="Opret ny sag" />
                                  </children></AnchorPane>
                           </content>
                         </ScrollPane>
@@ -129,7 +129,7 @@
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Separator layoutX="162.0" layoutY="694.0" prefHeight="0.0" prefWidth="1000.0" style="-fx-background-color: black;" />
+                                    <Separator layoutX="162.0" layoutY="694.0" prefHeight="0.0" prefWidth="900.0" style="-fx-background-color: black;" />
                                     <Label layoutX="162.0" layoutY="717.0" text="Hvis ja, angiv ydelse [afkrydsning af ydelser/§]">
                                        <font>
                                           <Font size="14.0" />
@@ -160,7 +160,7 @@
                                     <CheckBox fx:id="control127CheckBox" disable="true" layoutX="184.0" layoutY="1498.0" mnemonicParsing="false" text="Fastholdelse (§127)" />
                                     <CheckBox fx:id="control128CheckBox" disable="true" layoutX="184.0" layoutY="1528.0" mnemonicParsing="false" text="Fastholdelse (§128)" />
                                     <CheckBox fx:id="control125CheckBox" disable="true" layoutX="184.0" layoutY="1558.0" mnemonicParsing="false" text="Kontrol med færden (§125)" />
-                                    <Separator layoutX="148.0" layoutY="2027.0" prefHeight="1.0" prefWidth="1003.0" style="-fx-background-color: black;" />
+                                    <Separator layoutX="148.0" layoutY="2027.0" prefHeight="1.0" prefWidth="900.0" style="-fx-background-color: black;" />
                                     <CheckBox fx:id="institutioningCheckBox" disable="true" layoutX="164.0" layoutY="1598.0" mnemonicParsing="false" onAction="#updateInstitutioningStatus" text="Ophold" />
                                     <CheckBox fx:id="_24HourReliefCheckBox" disable="true" layoutX="184.0" layoutY="1627.0" mnemonicParsing="false" text="Døgnaflastning (§84)" />
                                     <CheckBox fx:id="longInstitutionalisingCheckBox" disable="true" layoutX="184.0" layoutY="1655.0" mnemonicParsing="false" text="Længerevarende ophold (§108)" />
@@ -231,7 +231,7 @@
                                     <CheckBox fx:id="rehabilitationgOfferCheckBox" disable="true" layoutX="684.0" layoutY="2423.0" mnemonicParsing="false" text="Rehabiliteringstilbud" />
                                     <CheckBox fx:id="adultOutboundOffersCheckBox" disable="true" layoutX="665.0" layoutY="2467.0" mnemonicParsing="false" text="Udgående tilbud til voksne" />
                                     <CheckBox fx:id="governmentApprovedOfferCheckBox" disable="true" layoutX="665.0" layoutY="2502.0" mnemonicParsing="false" text="Tilbud med myndighedsbeføjelse" />
-                                    <Separator layoutX="148.0" layoutY="2555.0" prefHeight="1.0" prefWidth="1003.0" style="-fx-background-color: black;" />
+                                    <Separator layoutX="148.0" layoutY="2555.0" prefHeight="1.0" prefWidth="900.0" style="-fx-background-color: black;" />
                                     <Label layoutX="150.0" layoutY="2572.0" text="Henvendelse">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
@@ -243,7 +243,7 @@
                                        </toggleGroup>
                                     </RadioButton>
                                     <RadioButton fx:id="inquiryNoRadioButton" layoutX="492.0" layoutY="647.0" mnemonicParsing="false" onAction="#updateYesNoStatus" text="Nej" toggleGroup="$YesNoGroup" />
-                                    <TextArea fx:id="descriptionTextAreaCase" layoutX="160.0" layoutY="287.0" prefHeight="299.0" prefWidth="1017.0" />
+                                    <TextArea fx:id="descriptionTextAreaCase" layoutX="160.0" layoutY="287.0" prefHeight="299.0" prefWidth="900.0" />
                                     <Label layoutX="159.0" layoutY="2607.0" text="Hvor kommer henvendelsen fra?" />
                                     <Label layoutX="160.0" layoutY="2873.0" text="Er borgeren indforstået med henvendelsen?" />
                                     <RadioButton fx:id="inquiryOriginCitizenRadioButton" layoutX="576.0" layoutY="2642.0" mnemonicParsing="false" text="Borger">
@@ -264,7 +264,7 @@
                                        </toggleGroup>
                                     </RadioButton>
                                     <RadioButton fx:id="inquiryUnderstoodNoRadioButton" layoutX="578.0" layoutY="2910.0" mnemonicParsing="false" text="Nej" toggleGroup="$inquiryYesOrNoGroup" />
-                                    <Separator layoutX="139.0" layoutY="2957.0" prefHeight="1.0" prefWidth="1003.0" style="-fx-background-color: black;" />
+                                    <Separator layoutX="139.0" layoutY="2957.0" prefHeight="1.0" prefWidth="900.0" style="-fx-background-color: black;" />
                                     <Label layoutX="142.0" layoutY="2978.0" text="Værgemål og repræsentation">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
@@ -283,7 +283,7 @@
                                     </RadioButton>
                                     <RadioButton fx:id="guardianShip6RadioButton" layoutX="580.0" layoutY="3044.0" mnemonicParsing="false" text="Værgemål med frataget retslig handleevne (§6)" toggleGroup="$guardianshipGroup" />
                                     <RadioButton fx:id="guardianShip7RadioButton" layoutX="580.0" layoutY="3071.0" mnemonicParsing="false" text="Samværgemål (§7)" toggleGroup="$guardianshipGroup" />
-                                    <Separator layoutX="139.0" layoutY="3127.0" prefHeight="1.0" prefWidth="1003.0" style="-fx-background-color: black;" />
+                                    <Separator layoutX="139.0" layoutY="3127.0" prefHeight="1.0" prefWidth="900.0" style="-fx-background-color: black;" />
                                     <Label layoutX="145.0" layoutY="3149.0" text="Rettigheder og pligter">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
@@ -296,13 +296,13 @@
                                        </toggleGroup>
                                     </RadioButton>
                                     <RadioButton fx:id="rightsNoRadioButton" layoutX="579.0" layoutY="3291.0" mnemonicParsing="false" text="Nej" toggleGroup="$rightsYesOrNoGroup" />
-                                    <Separator layoutX="138.0" layoutY="3342.0" prefHeight="1.0" prefWidth="1003.0" style="-fx-background-color: black;" />
+                                    <Separator layoutX="138.0" layoutY="3342.0" prefHeight="1.0" prefWidth="900.0" style="-fx-background-color: black;" />
                                     <Label layoutX="147.0" layoutY="3369.0" text="Aftaler om det videre forløb">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font></Label>
-                                    <TextArea fx:id="agreedTextArea" layoutX="167.0" layoutY="3397.0" prefHeight="200.0" prefWidth="950.0" />
-                                    <Separator layoutX="139.0" layoutY="3644.0" prefHeight="1.0" prefWidth="1003.0" style="-fx-background-color: black;" />
+                                    <TextArea fx:id="agreedTextArea" layoutX="138.0" layoutY="3404.0" prefHeight="200.0" prefWidth="900.0" />
+                                    <Separator layoutX="139.0" layoutY="3644.0" prefHeight="1.0" prefWidth="900.0" style="-fx-background-color: black;" />
                                     <Label layoutX="150.0" layoutY="3669.0" text="Samtykke">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
@@ -321,7 +321,7 @@
                                        </toggleGroup>
                                     </RadioButton>
                                     <RadioButton fx:id="writtenConsentRadioButton" layoutX="575.0" layoutY="3823.0" mnemonicParsing="false" text="Skriftligt samtykke" toggleGroup="$consentGroup" />
-                                    <Separator layoutX="140.0" layoutY="3870.0" prefHeight="1.0" prefWidth="1003.0" style="-fx-background-color: black;" />
+                                    <Separator layoutX="140.0" layoutY="3870.0" prefHeight="1.0" prefWidth="900.0" style="-fx-background-color: black;" />
                                     <Label layoutX="151.0" layoutY="3899.0" text="Indhentelse af oplysninger">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
@@ -336,15 +336,15 @@
                                     <CheckBox fx:id="employerCheckBox" layoutX="577.0" layoutY="4102.0" mnemonicParsing="false" text="Arbejdsgiver" />
                                     <CheckBox fx:id="formerMunicipalityCheckBox" layoutX="577.0" layoutY="4130.0" mnemonicParsing="false" text="Tidligere opholdskommune" />
                                     <CheckBox fx:id="otherInstancesCheckBox" layoutX="577.0" layoutY="4159.0" mnemonicParsing="false" text="Andre forvaltninger" />
-                                    <Separator layoutX="140.0" layoutY="4216.0" prefHeight="1.0" prefWidth="1003.0" style="-fx-background-color: black;" />
+                                    <Separator layoutX="140.0" layoutY="4216.0" prefHeight="1.0" prefWidth="900.0" style="-fx-background-color: black;" />
                                     <Label layoutX="159.0" layoutY="4241.0" text="Borgerinddragelse - særlige forhold">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </Label>
                                     <Label layoutX="180.0" layoutY="4271.0" text="Eventuelle særlige forhold der skal adresseres for at borgeren kan inddrages i sagsbehandlingen?" />
-                                    <TextArea fx:id="specialCircumstancesTextArea" layoutX="142.0" layoutY="4305.0" prefHeight="200.0" prefWidth="1000.0" />
-                                    <Separator layoutX="141.0" layoutY="4550.0" prefHeight="1.0" prefWidth="1003.0" style="-fx-background-color: black;" />
+                                    <TextArea fx:id="specialCircumstancesTextArea" layoutX="142.0" layoutY="4305.0" prefHeight="200.0" prefWidth="900.0" />
+                                    <Separator layoutX="141.0" layoutY="4550.0" prefHeight="1.0" prefWidth="900.0" style="-fx-background-color: black;" />
                                     <Label layoutX="157.0" layoutY="4577.0" text="Handle- og betalingskommune">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
@@ -355,7 +355,7 @@
                                     <TextField fx:id="otherActingMunicipalityTextField" layoutX="833.0" layoutY="4641.0" />
                                     <CheckBox fx:id="otherPayingMunicipalityCheckBox" layoutX="578.0" layoutY="4688.0" mnemonicParsing="false" text="Anden betalingskommune" />
                                     <TextField fx:id="otherPayingMunicipalityTextField" layoutX="833.0" layoutY="4683.0" />
-                                    <Separator layoutX="142.0" layoutY="4740.0" prefHeight="1.0" prefWidth="1003.0" style="-fx-background-color: black;" />
+                                    <Separator layoutX="142.0" layoutY="4740.0" prefHeight="1.0" prefWidth="900.0" style="-fx-background-color: black;" />
                                  </children></AnchorPane>
                            </content>
                         </ScrollPane>
