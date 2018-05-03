@@ -31,4 +31,7 @@ public interface IBusiness {
    public boolean sendToDB(IInquiry inquiry);
    
    public void startUp();
+   
+   boolean newInquery(long cprNumber, String problemDescription, String firstname, String surname, String roadName, String houseNumber,
+                       String floor, int postNumber, String city, String tlfNumber);
 }

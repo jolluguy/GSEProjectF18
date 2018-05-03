@@ -22,8 +22,8 @@ public class SaveInquiryCSV {
     SaveInquiryCSV(IInquiry inq) {
         this.inq = new DataInquiry(new DataCitizen(inq.getCitizen().getCprNumber(), inq.getCitizen().getFirstname(), 
                 inq.getCitizen().getSurname(), inq.getCitizen().getRoadName(), inq.getCitizen().getHouseNumber(), 
-                inq.getCitizen().getFloor(), inq.getCitizen().getPostNumber(), inq.getCitizen().getCity(), 
-                inq.getCitizen().getCity()), inq.getProblemDescription());
+                inq.getCitizen().getFloor(), inq.getCitizen().getPostNumber(), inq.getCitizen().getCity(), inq.getCitizen().getTlfNumber()),
+                inq.getProblemDescription());
     }
     
     boolean saveInq(){
@@ -46,8 +46,6 @@ public class SaveInquiryCSV {
                     inq.getCitizen().getFloor()+
                     SEPPERATOR+
                     inq.getCitizen().getPostNumber()+
-                    SEPPERATOR+
-                    inq.getCitizen().getCity()+
                     SEPPERATOR+
                     inq.getCitizen().getCity()+
                     SEPPERATOR+

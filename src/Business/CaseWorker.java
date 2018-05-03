@@ -11,4 +11,12 @@ package Business;
  */
 public class CaseWorker extends Job {
     
+    private BusinessFacade facade = BusinessFacade.getInstance();
+    
+    boolean newInquiry(long cprNumber, String problemDescription, String firstname, String surname, String roadName, String houseNumber, 
+                        String floor, int postNumber, String city, String tlfNumber){
+        
+        Inquiry inquiry = new Inquiry(cprNumber, problemDescription, firstname, surname, roadName, houseNumber, floor, postNumber, city, tlfNumber);
+        return facade.saveInq(inquiry);
+    }    
 }
