@@ -22,4 +22,6 @@ public interface ILoginPersistens {
     boolean updateUser(IUser user);
     
     Collection<IUser> getAllUsers();
+    
+    boolean getUserInfo(String userName);
 }

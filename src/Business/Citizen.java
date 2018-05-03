@@ -15,7 +15,6 @@ import Acquaintance.ICitizen;
  */
 public class Citizen implements ICitizen{
     
-    private long cprNumber;
     private String firstname;
     private String surname;
     private String roadName;
@@ -28,7 +27,6 @@ public class Citizen implements ICitizen{
     private ICPR cpr;
     
     Citizen (long cprNumber, String firstname, String surname, String roadName, String houseNumber, String floor, int postNumber, String city, String tlfNumber) {
-        this.cprNumber = cprNumber;
         this.firstname = firstname;
         this.surname = surname;
         this.roadName = roadName;
@@ -43,7 +41,7 @@ public class Citizen implements ICitizen{
 
     @Override
     public long getCprNumber() {
-        return cprNumber;
+        return this.cpr.getCprNumber();
     }
     
     @Override

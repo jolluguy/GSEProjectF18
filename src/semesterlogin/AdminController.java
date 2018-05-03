@@ -157,7 +157,7 @@ public class AdminController implements Initializable {
         appstage.setScene(newScene);
         appstage.show();
 
-//        business.logOut();
+        business.logOut();
     }
 
     @FXML

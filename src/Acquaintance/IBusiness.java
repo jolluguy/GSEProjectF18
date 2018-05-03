@@ -22,6 +22,8 @@ public interface IBusiness {
 
     void logOut();
     
+    boolean checkCredentials(String userName, String password);
+    
     boolean createUser(String userName, String password1, String password2, int level);
 
     boolean changeJob(String userName, String password, int level);
@@ -32,6 +34,6 @@ public interface IBusiness {
    
    public void startUp();
    
-   boolean newInquery(long cprNumber, String problemDescription, String firstname, String surname, String roadName, String houseNumber,
+   boolean newInquiry(long cprNumber, String problemDescription, String firstname, String surname, String roadName, String houseNumber,
                        String floor, int postNumber, String city, String tlfNumber);
 }

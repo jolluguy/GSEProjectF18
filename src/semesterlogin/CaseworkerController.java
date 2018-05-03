@@ -356,7 +356,7 @@ public class CaseworkerController implements Initializable {
         String city = cityTextField.getText();
         String tlfNumber = phoneNumberPrefixTextField.getText() + phoneNumberTextField.getText();
 
-        boolean inquiryMade = business.newInquery(cprNumber, problemDescription, firstname, surname, roadName, houseNumber, floor, postNumber, city, tlfNumber);
+        boolean inquiryMade = business.newInquiry(cprNumber, problemDescription, firstname, surname, roadName, houseNumber, floor, postNumber, city, tlfNumber);
 
         if(inquiryMade) {
             System.out.println("Inquiry Made");
@@ -377,7 +377,6 @@ public class CaseworkerController implements Initializable {
         floorTextField.clear();
         postalCodeTextField.clear();
         cityTextField.clear();
-        phoneNumberPrefixTextField.clear();
         phoneNumberTextField.clear();
                 
         } else if(!inquiryMade) {
@@ -394,6 +393,8 @@ public class CaseworkerController implements Initializable {
         Stage appstage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         appstage.setScene(newScene);
         appstage.show();
+        
+        business.logOut();
     }
 
     @FXML
