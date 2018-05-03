@@ -33,21 +33,19 @@ public class AccessManager {
 
     public void logOut() {
         userOne = null;
+        System.out.println(userOne.toString());
     }
 
     public boolean checkCredentials(String userName, String password) {
-        
-            System.out.println("checking username");
         if (facade.getUserInfo(userName)) {
-            System.out.println("userName true");
             IUser user = facade.getUser(userName);
-            if(user.getPassword().equals(password)) {
-                System.out.println("password true");
+            if (user.getPassword().equals(password)) {
+
                 return true;
             }
-            System.out.println("password false");
+
         }
-        
+
         return false;
     }
 }
