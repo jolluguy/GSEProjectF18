@@ -33,7 +33,6 @@ public class AccessManager {
 
     public void logOut() {
         userOne = null;
-        System.out.println(userOne.toString());
     }
 
     public boolean checkCredentials(String userName, String password) {

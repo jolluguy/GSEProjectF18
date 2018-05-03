@@ -394,6 +394,8 @@ public class CaseworkerController implements Initializable {
         Stage appstage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         appstage.setScene(newScene);
         appstage.show();
+        
+        business.logOut();
     }
 
     @FXML
