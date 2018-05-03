@@ -18,6 +18,15 @@ public class Admin extends Job {
 
     private BusinessFacade facade = BusinessFacade.getInstance();
 
+    private static Admin instance = null;
+
+    public static Admin getInstance() {
+        if (instance == null) {
+            instance = new Admin();
+        }
+        return instance;
+    }
+    
     boolean createUser(String userName, String password1, String password2, int level) {
         if (password1.equals(password2)) {
             return facade.addUser( new User(userName, password1, level, new Date(), new Date()) {});

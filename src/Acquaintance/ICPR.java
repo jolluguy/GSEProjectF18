@@ -11,7 +11,6 @@ package Acquaintance;
  */
 public interface ICPR {
    public long getCprNumber();
-   public void setCprNumber(long cprNumber);
    public boolean validateCPR();
    
 }

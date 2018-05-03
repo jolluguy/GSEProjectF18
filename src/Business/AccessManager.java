@@ -13,7 +13,13 @@ public class AccessManager {
 
     private IUser userOne = null; //userOne due to future plans of multiple user access at once
 
-    public AccessManager() {
+    private static AccessManager instance = null;
+
+    public static AccessManager getInstance() {
+        if (instance == null) {
+            instance = new AccessManager();
+        }
+        return instance;
     }
 
     public int login(String userName, String pw) {

@@ -49,9 +49,9 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public void startUp() {
-        controller = new BusinessController();
-        manager = new AccessManager();
-        admin = new Admin();
+        this.controller = controller.getInstance();
+        this.manager = manager.getInstance();
+        this.admin = admin.getInstance();
     }
 
     @Override
@@ -112,7 +112,6 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public boolean sendToDB(IInquiry inquiry) {
-        controller = new BusinessController();
         return controller.sendToDB(inquiry); // kaldt fra GUI
     }
 

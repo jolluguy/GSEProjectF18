@@ -49,7 +49,8 @@ public class SaveInquiryCSV {
                     SEPPERATOR+
                     inq.getCitizen().getCity()+
                     SEPPERATOR+
-                    inq.getProblemDescription());
+                    inq.getProblemDescription()+
+                    "\n");
         } catch (IOException ex) {
             System.out.println(ex.toString());
         }

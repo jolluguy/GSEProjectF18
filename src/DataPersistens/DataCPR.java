@@ -24,11 +24,6 @@ class DataCPR implements ICPR {
     }
 
     @Override
-    public void setCprNumber(long cprNumber) {
-        this.cprNumber = cprNumber;
-    }
-
-    @Override
     public boolean validateCPR() {
         long elevenDigitMin, tenDigitMin;
         elevenDigitMin = (long)Math.pow(10, 10);
