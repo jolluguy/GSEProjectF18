@@ -35,9 +35,14 @@ public class AccessManager {
         userOne = null;
     }
 
-    public boolean checkCredentials(String userName) {
-        if (facade.getUserInfo(userName))  {
-            return true;
+    public boolean checkCredentials(String userName, String password) {
+        if (facade.getUserInfo(userName)) {
+            System.out.println("checking username");
+            IUser user = facade.getUser(userName);
+            if(user.getPassword() == password) {
+                
+                return true;
+            }
         }
         return false;
     }

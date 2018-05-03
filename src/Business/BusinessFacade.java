@@ -52,7 +52,6 @@ public class BusinessFacade implements IBusiness {
     public void startUp() {
         controller = new BusinessController();
         manager = new AccessManager();
-        caseWorker = new CaseWorker();
         admin = new Admin();
     }
 
@@ -67,8 +66,8 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public boolean checkCredentials(String userName) {
-        return manager.checkCredentials(userName);
+    public boolean checkCredentials(String userName, String password) {
+        return manager.checkCredentials(userName, password);
     }
     
     public boolean getUserInfo(String userName) {
@@ -106,9 +105,9 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public boolean newInquery(long cprNumber, String problemDescription, String firstname, String surname, String roadName, String houseNumber,
+    public boolean newInquiry(long cprNumber, String problemDescription, String firstname, String surname, String roadName, String houseNumber,
             String floor, int postNumber, String city, String tlfNumber) {
-        return caseWorker.newInquiry(cprNumber, problemDescription, firstname, surname, roadName, houseNumber,
+        return controller.createInquiry(cprNumber, problemDescription, firstname, surname, roadName, houseNumber,
                 floor, postNumber, city, tlfNumber);
     }
 

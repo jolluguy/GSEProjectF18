@@ -356,7 +356,7 @@ public class CaseworkerController implements Initializable {
         String city = cityTextField.getText();
         String tlfNumber = phoneNumberPrefixTextField.getText() + phoneNumberTextField.getText();
 
-        boolean inquiryMade = business.newInquery(cprNumber, problemDescription, firstname, surname, roadName, houseNumber, floor, postNumber, city, tlfNumber);
+        boolean inquiryMade = business.newInquiry(cprNumber, problemDescription, firstname, surname, roadName, houseNumber, floor, postNumber, city, tlfNumber);
 
         if(inquiryMade) {
             System.out.println("Inquiry Made");

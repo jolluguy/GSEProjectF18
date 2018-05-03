@@ -15,10 +15,10 @@ public class BusinessController {
             
     BusinessFacade facade = BusinessFacade.getInstance();
     
-    public Inquiry createInquiry(long cprNumber, String problemDescription, String firstname, String surname, String roadName, String houseNumber, String floor, int postNumber, String city, String tlfNumber) 
+    public boolean createInquiry(long cprNumber, String problemDescription, String firstname, String surname, String roadName, String houseNumber, String floor, int postNumber, String city, String tlfNumber) 
     {
         Inquiry inquiry = new Inquiry(cprNumber, problemDescription, firstname, surname, roadName, houseNumber, floor, postNumber, city, tlfNumber);
-        return inquiry;        
+        return sendToDB(inquiry);        
     }
     
     // Kan vi sørge for at denne metode kan bruges til at gemme både Inquiry og Case, nu hvor de arver?

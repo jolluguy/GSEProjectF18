@@ -67,7 +67,7 @@ public class FXMLLoginController implements Initializable {
         String userName = usernameField.getText();
         String password = passwordField.getText();
 
-        if (!business.checkCredentials(userName)) {
+        if (!business.checkCredentials(userName, password)) {
             errorLabel.setText("Brugernavn eller password er forkert!");
         } else {
             int result = business.login(userName, password);
