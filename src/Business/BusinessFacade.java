@@ -67,10 +67,13 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public boolean checkCredentials(String userName, String password) {
-        return manager.checkCredentials(userName, password);
-    }    
-
+    public boolean checkCredentials(String userName) {
+        return manager.checkCredentials(userName);
+    }
+    
+    public boolean getUserInfo(String userName) {
+        return loginPersistens.getUserInfo(userName);
+    }
     public IUser getUser(String userName) {
         return loginPersistens.getUser(userName);
     }

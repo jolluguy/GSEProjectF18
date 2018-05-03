@@ -31,9 +31,9 @@ import javafx.stage.Stage;
  * @author Alexa
  */
 public class FXMLLoginController implements Initializable {
-    
+
     private IBusiness business = GUIFacade.getInstance().getBusiness();
-    
+
     @FXML
     private TextField usernameField;
     @FXML
@@ -46,56 +46,53 @@ public class FXMLLoginController implements Initializable {
     private Label errorLabel;
     @FXML
     private Label errorLabel2;
-    
-    
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
     }
-    
+
     @FXML
     public void quit(ActionEvent event) {
-         usernameField.clear();
-         passwordField.clear();
-         System.exit(0);
+        usernameField.clear();
+        passwordField.clear();
+        System.exit(0);
     }
-    
+
     @FXML
     public void login(ActionEvent event) throws IOException {
         String userName = usernameField.getText();
         String password = passwordField.getText();
         int result = business.login(userName, password);
-        
-        if(business.checkCredentials(userName, password)){
-                   
-        if(result == 1){
-            
+
+        if (!business.checkCredentials(userName)) {
+            errorLabel.setText("Brugernavn eller password er forkert!");
+        }
+
+        if (result == 1) {
+
             Parent caseworkerScene = FXMLLoader.load(getClass().getResource("Caseworker.fxml"));
-            
+
             Scene newScene = new Scene(caseworkerScene);
             Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             appStage.setScene(newScene);
             appStage.show();
-            
-            
-        } else if(result == 2){
+
+        } else if (result == 2) {
             Parent adminScene = FXMLLoader.load(getClass().getResource("Admin.fxml"));
-            
+
             Scene newScene = new Scene(adminScene);
             Stage appstage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             appstage.setScene(newScene);
             appstage.show();
-            
-        } else if(result == 0){
+
+        } else if (result == 0) {
             errorLabel.setText("ADGANG NÆGTET! - Denne bruger er inaktiv!");
             errorLabel2.setText("Kontakt IT-Support for hjælp");
         }
-        }
-        else errorLabel.setText("Brugernavn eller password er forkert!");
-    }    
-    
+    }
+
 }

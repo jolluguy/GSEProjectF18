@@ -6,12 +6,11 @@
 package Business;
 
 import Acquaintance.IUser;
-import java.util.logging.Level;
 
-public class AccessManager{
+public class AccessManager {
 
     private static BusinessFacade facade = BusinessFacade.getInstance();
-    
+
     private IUser userOne = null; //userOne due to future plans of multiple user access at once
 
     public AccessManager() {
@@ -21,26 +20,25 @@ public class AccessManager{
         int level = -1;
         IUser daUs = facade.getUser(userName); //Parsing User due to IUser return
         User checkUser = new User(daUs.getUserName(), daUs.getPassword(), daUs.getLevel(), daUs.getCreatedTime(), daUs.getLastLoginTime());
-        
-            if(checkUser.checkPassword(pw)){
-                userOne = checkUser;
-                userOne.setLastLoginTime();
-                if(facade.updateUser(userOne)){
-                    level = userOne.getLevel();
-                }
+
+        if (checkUser.checkPassword(pw)) {
+            userOne = checkUser;
+            userOne.setLastLoginTime();
+            if (facade.updateUser(userOne)) {
+                level = userOne.getLevel();
             }
-            return level;
+        }
+        return level;
     }
 
     public void logOut() {
         userOne = null;
     }
-    
-    public boolean checkCredentials(String userName, String password) {
-        User user = (User) facade.getUser(userName);
-        if(user.getUserName() != userName || user.getPassword() != password) {
-            return false;
+
+    public boolean checkCredentials(String userName) {
+        if (facade.getUserInfo(userName))  {
+            return true;
         }
-        return true;
+        return false;
     }
 }

@@ -23,5 +23,5 @@ public interface ILoginPersistens {
     
     Collection<IUser> getAllUsers();
     
-    boolean userExist(String userName);
+    boolean getUserInfo(String userName);
 }

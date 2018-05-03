@@ -22,7 +22,7 @@ public interface IBusiness {
 
     void logOut();
     
-    boolean checkCredentials(String userName, String password);
+    boolean checkCredentials(String userName);
     
     boolean createUser(String userName, String password1, String password2, int level);
 
