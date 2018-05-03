@@ -13,8 +13,6 @@ import java.util.Collection;
  */
 public interface ILoginPersistens {
     
-    void getMap();
-    
     IUser getUser(String userName);
 
     boolean addUser(IUser user);

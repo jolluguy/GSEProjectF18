@@ -31,7 +31,7 @@ public class Operations implements Serializable {
     private final File file = new File("UserSetFile.obj");
     private DataUser user;
 
-    Map getMap() {
+    private Map getMap() {
         if (!file.exists()) {
             userMap = new HashMap<>();
             userMap.put("Admin", new DataUser("Admin", "Super", 2, new Date(), new Date())); // Default SuperUser

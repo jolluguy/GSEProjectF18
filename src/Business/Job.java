@@ -11,7 +11,7 @@ package Business;
  */
 public abstract class Job {
     
-    boolean active;
+    protected boolean active;
     
     
 // change pw metode

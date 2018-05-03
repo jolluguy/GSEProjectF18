@@ -20,19 +20,6 @@ public class LoginFacade implements ILoginPersistens, Serializable {
 
     private static LoginFacade instance = null;
 
-    public static LoginFacade getInstance() {
-        if (instance == null) {
-            instance = new LoginFacade();
-        }
-        return instance;
-    }
-
-    @Override
-    public void getMap() {
-        operations = new Operations();
-        operations.getMap();
-    }
-
     @Override
     public IUser getUser(String userName) {
         operations = new Operations();

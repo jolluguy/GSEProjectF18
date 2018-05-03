@@ -18,26 +18,26 @@ public class User implements IUser, Serializable{
    
     
     private String userName;
-    private String pw;
+    private String password;
     private int level;
     private Date createdTime;
     private Date lastLoginTime;
 /**
  * for youse when adding a new user to the system, it aoutomaticaly sets createddate and lastlogontime.
- * @param user
- * @param pw
+ * @param userName
+ * @param password
  * @param level 
  */
-    public User(String user, String pw, int level) {
-        this.userName = user;
-        this.pw = pw;
+    public User(String userName, String password, int level) {
+        this.userName = userName;
+        this.password = password;
         this.level = level;
         this.createdTime = new Date();
         this.lastLoginTime = new Date();
     }
-    public User(String userName, String pw, int level, Date createdTime, Date lastLoginTime) {
+    public User(String userName, String password, int level, Date createdTime, Date lastLoginTime) {
         this.userName = userName;
-        this.pw = pw;
+        this.password = password;
         this.level = level;
         this.createdTime = createdTime;
         this.lastLoginTime = lastLoginTime;
@@ -47,14 +47,10 @@ public class User implements IUser, Serializable{
     public String getUserName() {
         return userName;
     }
+    
     @Override
     public int getLevel() {
         return level;
-    }
-
-
-    public DateFormat getDf() {
-        return df;
     }
 
     @Override
@@ -63,16 +59,16 @@ public class User implements IUser, Serializable{
     }
     
     @Override
-    public void setPassword(String pw) {
-        this.pw = pw;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public boolean checkPassword(String pw) {
-        return this.pw.equals(pw);
+    public boolean checkPassword(String password) {
+        return this.password.equals(password);
     }
 
-    public void changePassword(String pw) {
-        this.pw = pw;
+    public void changePassword(String password) {
+        this.password = password;
     }
 
     @Override
@@ -93,7 +89,7 @@ public class User implements IUser, Serializable{
 
     @Override
     public String getPassword() {
-        return pw;
+        return password;
     }
 
     @Override
