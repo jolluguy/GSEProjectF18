@@ -17,7 +17,10 @@ public class BusinessController {
     
     public boolean createInquiry(long cprNumber, String problemDescription, String firstname, String surname, String roadName, String houseNumber, String floor, int postNumber, String city, String tlfNumber) {
         Inquiry inquiry = new Inquiry(cprNumber, problemDescription, firstname, surname, roadName, houseNumber, floor, postNumber, city, tlfNumber);
-        return sendToDB(inquiry);        
+        if (!inquiry.getCitizen().getCpr().validateCPR()) {
+            return false;
+        }
+        return sendToDB(inquiry);
     }
 
     // Kan vi sørge for at denne metode kan bruges til at gemme både Inquiry og Case, nu hvor de arver?

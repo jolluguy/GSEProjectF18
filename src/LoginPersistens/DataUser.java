@@ -48,7 +48,7 @@ public class DataUser implements IUser, Serializable {
 
     @Override
     public void setPassword(String pw) {
-        this.password = password;
+        this.password = pw;
     }
 
     
