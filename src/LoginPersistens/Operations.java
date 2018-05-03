@@ -83,6 +83,14 @@ public class Operations implements Serializable {
 
         return user; 
     }
+    
+    boolean isUserInMap(String userName){
+        getMap();
+        if(userMap.containsKey(userName)){
+            return true;
+        } else return false;
+    }
+    
     Collection<IUser> getAllUsers(){
         Collection<IUser> col = new ArrayList<>();
         getMap();

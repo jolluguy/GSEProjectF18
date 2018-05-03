@@ -19,12 +19,6 @@ public class BusinessController {
     {
         Inquiry inquiry = new Inquiry(cprNumber, problemDescription, firstname, surname, roadName, houseNumber, floor, postNumber, city, tlfNumber);
         return inquiry;        
-    }  
-    
-    public void testSave(){
-        IInquiry inq = new Inquiry(1234567891, "Problem", "Jonas", "Schröder", "vej", "11b", "2tv", 2000, "Fredensborg", "55667788");
-        boolean ret = sendToDB(inq);
-        System.out.println("Finished" + " " + ret);
     }
     
     // Kan vi sørge for at denne metode kan bruges til at gemme både Inquiry og Case, nu hvor de arver?

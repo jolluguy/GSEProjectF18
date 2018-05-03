@@ -57,6 +57,10 @@ public class LoginFacade implements ILoginPersistens, Serializable {
         return operations.getAllUsers();
     }
     
+    public boolean userExist(String userName) {
+        return operations.isUserInMap(userName);
+    }
+    
 
 
 }

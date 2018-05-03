@@ -6,6 +6,7 @@
 package semesterlogin;
 
 import Acquaintance.IBusiness;
+import Acquaintance.IUser;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -69,6 +70,8 @@ public class FXMLLoginController implements Initializable {
         String password = passwordField.getText();
         int result = business.login(userName, password);
         
+        if(business.checkCredentials(userName, password)){
+                   
         if(result == 1){
             
             Parent caseworkerScene = FXMLLoader.load(getClass().getResource("Caseworker.fxml"));
@@ -91,6 +94,8 @@ public class FXMLLoginController implements Initializable {
             errorLabel.setText("ADGANG NÆGTET! - Denne bruger er inaktiv!");
             errorLabel2.setText("Kontakt IT-Support for hjælp");
         }
+        }
+        else errorLabel.setText("Brugernavn eller password er forkert!");
     }    
     
 }

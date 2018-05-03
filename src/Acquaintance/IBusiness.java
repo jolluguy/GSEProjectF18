@@ -22,6 +22,8 @@ public interface IBusiness {
 
     void logOut();
     
+    boolean checkCredentials(String userName, String password);
+    
     boolean createUser(String userName, String password1, String password2, int level);
 
     boolean changeJob(String userName, String password, int level);
