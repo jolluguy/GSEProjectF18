@@ -11,6 +11,8 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -22,9 +24,10 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ScrollPane hmax="722.0" prefHeight="762.0" prefViewportHeight="1000.0" prefViewportWidth="771.0" prefWidth="1300.0" vmax="1080.0" vvalue="128.0">
+
+                        <ScrollPane hmax="722.0" prefHeight="762.0" prefViewportHeight="1000.0" prefViewportWidth="771.0" prefWidth="1300.0" vmax="1080.0">
                           <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2000.0" prefWidth="1299.0">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1300.0" prefWidth="1299.0">
                                  <children>
                                     <Label layoutX="123.0" layoutY="67.0" text="Henvendelse">
                                        <font>
@@ -89,6 +92,8 @@
                                     <Button fx:id="cprInfoButton" layoutX="763.0" layoutY="255.0" mnemonicParsing="false" text="Hent info" />
                                     <Label layoutX="532.0" layoutY="224.0" text="Eks: 123456-1234" textFill="#bfbfbf" />
                                     <TextArea fx:id="descriptionTextAreaInquiry" layoutX="125.0" layoutY="702.0" prefHeight="445.0" prefWidth="1050.0" />
+                                    <Button fx:id="archiveButton" layoutX="125.0" layoutY="1226.0" mnemonicParsing="false" onAction="#newInquiry" text="Arkiver" />
+                                    <Button fx:id="newCaseButton" layoutX="230.0" layoutY="1226.0" mnemonicParsing="false" text="Opret ny sag" />
                                  </children></AnchorPane>
                           </content>
                         </ScrollPane>
@@ -99,7 +104,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ScrollPane hmax="722.0" prefHeight="766.0" prefWidth="1300.0" vmax="5000.0" vvalue="4934.0">
+                        <ScrollPane hmax="722.0" prefHeight="766.0" prefWidth="1300.0" vmax="5000.0">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="5000.0" prefWidth="1299.0">
                                  <children>
@@ -360,6 +365,11 @@
             </Tab>
         </tabs>
       </TabPane>
-      <Button fx:id="logOutButton" layoutX="429.0" mnemonicParsing="false" text="Log ud" AnchorPane.leftAnchor="1200.0" AnchorPane.topAnchor="50.0" />
+      <Button fx:id="logOutButton" layoutX="429.0" mnemonicParsing="false" onAction="#logout" text="Log ud" AnchorPane.leftAnchor="1227.0" AnchorPane.topAnchor="4.0" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="1070.0" AnchorPane.topAnchor="50.0">
+         <image>
+            <Image url="@../AssetsLibrary/SenSum_Logo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

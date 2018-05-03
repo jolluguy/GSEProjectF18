@@ -6,16 +6,24 @@
 package semesterlogin;
 
 import Acquaintance.IBusiness;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.scene.control.ToggleGroup;
 
 /**
@@ -24,8 +32,8 @@ import javafx.scene.control.ToggleGroup;
  * @author Alexa
  */
 public class CaseworkerController implements Initializable {
-
-    private IBusiness business = SemesterLogin.getInstance().getBusiness();
+    
+    private IBusiness business = GUIFacade.getInstance().getBusiness();
 
     @FXML
     private TextField cprTextField;
@@ -51,6 +59,7 @@ public class CaseworkerController implements Initializable {
     private TextField cityTextField;
     @FXML
     private Button logOutButton;
+
     @FXML
     private CheckBox activity104CheckBox;
     @FXML
@@ -319,58 +328,72 @@ public class CaseworkerController implements Initializable {
     private CheckBox otherPayingMunicipalityCheckBox;
     @FXML
     private TextField otherPayingMunicipalityTextField;
+    @FXML
+    private Button archiveButton;
+    @FXML
+    private Button newCaseButton;
+
 
     /**
      * Initializes the controller class.
      */
     
-    
-    
-    //Inquiry variables
-    
-    String cprNumber = cprTextField.getText();
-    String firstName = firstNameTextField.getText();
-    String lastName = lastNameTextField.getText();
-    String streetName = streetNameTextField.getText();
-    String streetNumber = streetNumberTextField.getText();
-    String floor = floorTextField.getText();
-    String zipCode = postalCodeTextField.getText();
-    String city = cityTextField.getText();
-    String phonePrefix = phoneNumberPrefixTextField.getText();
-    String phoneNumber = phoneNumberTextField.getText();
-    String problemDescription = descriptionTextAreaInquiry.getText();
-    
-    //Case variables
-    //cprNumber & problemDescription will be loaded into the two first fields in the case-scene
-    
-    String agreements = agreedTextArea.getText();
-    String specialCircumstances = specialCircumstancesTextArea.getText();
-    String otherActingMunicipality = otherActingMunicipalityTextField.getText();
-    String otherPayingMunicipality = otherPayingMunicipalityTextField.getText();
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+    }
+    
+    @FXML
+    public void newInquiry(ActionEvent event) {
+        long cprNumber = Long.parseLong(cprTextField.getText(), 10);
+        String problemDescription = descriptionTextAreaInquiry.getText();
+        String firstname = firstNameTextField.getText();
+        String surname = lastNameTextField.getText();
+        String roadName = streetNameTextField.getText();
+        String houseNumber = streetNumberTextField.getText();
+        String floor = floorTextField.getText();
+        int postNumber = Integer.parseInt(postalCodeTextField.getText());
+        String city = cityTextField.getText();
+        String tlfNumber = phoneNumberPrefixTextField.getText() + phoneNumberTextField.getText();
+
+        boolean inquiryMade = business.newInquery(cprNumber, problemDescription, firstname, surname, roadName, houseNumber, floor, postNumber, city, tlfNumber);
+
+        if(inquiryMade) {
+            System.out.println("Inquiry Made");
+            
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(CaseworkerController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+        cprTextField.clear();
+        descriptionTextAreaInquiry.clear();
+        firstNameTextField.clear();
+        lastNameTextField.clear();
+        streetNameTextField.clear();
+        streetNumberTextField.clear();
+        floorTextField.clear();
+        postalCodeTextField.clear();
+        cityTextField.clear();
+        phoneNumberPrefixTextField.clear();
+        phoneNumberTextField.clear();
+                
+        } else if(!inquiryMade) {
+            System.out.println("Inquiry failed");
+        }
+
+    }
+
+    @FXML
+    public void logout(ActionEvent event) throws IOException {
+        Parent loginScreen = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
+
+        Scene newScene = new Scene(loginScreen);
+        Stage appstage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        appstage.setScene(newScene);
+        appstage.show();
     }
 
     @FXML
@@ -805,5 +828,4 @@ public class CaseworkerController implements Initializable {
 
         }
     }
-
 }

@@ -5,8 +5,6 @@
  */
 package Acquaintance;
 
-import Business.User;
-import Business.UserOperations;
 import java.util.Collection;
 import java.util.List;
 
@@ -15,33 +13,25 @@ import java.util.List;
  * @author Alexa
  */
 public interface IBusiness {
-    
+
     void injectionDataPersistens(IDataPersistens dataPersistens);
-    
+
     void injectLoginPersistens(ILoginPersistens loginPersistens);
+
+    int login(String name, String pw);
+
+    void logOut();
     
-    public String addUser(String name, String pw1, String pw2, int level);
+    boolean createUser(String userName, String password1, String password2, int level);
+
+    boolean changeJob(String userName, String password, int level);
     
-   public int login(String name, String pw);
+    Collection<IUser> getUserList();
    
-   public void logOut();
-    
-   public List<String> getUserList();
+   public boolean sendToDB(IInquiry inquiry);
    
-   public String changePassword(String old, String new1, String new2);
+   public void startUp();
    
-   public String changeLevel(String name, String pw, int level);
-   
-   public boolean userExists(String userName);
-   
-   public User getUser(String UserName, String pw);
-   
-   public void addUserToMap(User user);
-   
-   public Collection<User> getAllUsers();
-   
-   public String getUserName();
-   
-   public boolean checkPassword(String pw);
-    
+   boolean newInquery(long cprNumber, String problemDescription, String firstname, String surname, String roadName, String houseNumber,
+                       String floor, int postNumber, String city, String tlfNumber);
 }

@@ -31,7 +31,7 @@ import javafx.stage.Stage;
  */
 public class FXMLLoginController implements Initializable {
     
-    private IBusiness business = SemesterLogin.getInstance().getBusiness();
+    private IBusiness business = GUIFacade.getInstance().getBusiness();
     
     @FXML
     private TextField usernameField;
@@ -41,6 +41,10 @@ public class FXMLLoginController implements Initializable {
     private Button loginButton;
     @FXML
     private Button cancelButton;
+    @FXML
+    private Label errorLabel;
+    @FXML
+    private Label errorLabel2;
     
     
 
@@ -60,10 +64,9 @@ public class FXMLLoginController implements Initializable {
     }
     
     @FXML
-    public void login(ActionEvent event) throws IOException {       
+    public void login(ActionEvent event) throws IOException {
         String userName = usernameField.getText();
         String password = passwordField.getText();
-        
         int result = business.login(userName, password);
         
         if(result == 1){
@@ -77,7 +80,6 @@ public class FXMLLoginController implements Initializable {
             
             
         } else if(result == 2){
-            
             Parent adminScene = FXMLLoader.load(getClass().getResource("Admin.fxml"));
             
             Scene newScene = new Scene(adminScene);
@@ -85,6 +87,9 @@ public class FXMLLoginController implements Initializable {
             appstage.setScene(newScene);
             appstage.show();
             
+        } else if(result == 0){
+            errorLabel.setText("ADGANG NÆGTET! - Denne bruger er inaktiv!");
+            errorLabel2.setText("Kontakt IT-Support for hjælp");
         }
     }    
     

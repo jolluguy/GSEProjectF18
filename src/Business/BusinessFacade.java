@@ -7,10 +7,11 @@
 package Business;
 
 import Acquaintance.IBusiness;
-import java.util.Collection;
-import java.util.List;
 import Acquaintance.IDataPersistens;
+import Acquaintance.IInquiry;
 import Acquaintance.ILoginPersistens;
+import Acquaintance.IUser;
+import java.util.Collection;
 
 /**
  *
@@ -20,96 +21,101 @@ public class BusinessFacade implements IBusiness {
 
     private IDataPersistens dataPersistens;
     private ILoginPersistens loginPersistens;
+      private BusinessController controller;
+  private AccessManager manager; // Delegate all calls conserning users to the manager.
+  private Admin admin;
+  private CaseWorker caseWorker;
+  
+    //BusinessLayer instance
+    private static BusinessFacade instance = null;
+    public static BusinessFacade getInstance(){
+        if(instance == null){
+            instance = new BusinessFacade();
+        } 
+        return instance;
+    }
+    
+    //Data-layer injection
 
-    //Data layer injection
     @Override
     public void injectionDataPersistens(IDataPersistens dataPersistens) {
         this.dataPersistens = dataPersistens;
     }
-    
+    //Data-layer injection
     @Override
     public void injectLoginPersistens(ILoginPersistens loginPersistens) {
         this.loginPersistens = loginPersistens;
     }
 
-    public BusinessFacade() {
-        manager = new UserManager();
+     @Override
+    public void startUp(){
+        controller = new BusinessController();
+             manager = new AccessManager();
+             caseWorker = new CaseWorker();
+      admin = new Admin();
     }
-
-    private UserManager manager; // Delegate all calls conserning users to the manager.
-
+   
+    
     @Override
-    public String addUser(String name, String pw1, String pw2, int level) {
-        if (pw1.equals(pw2)) {
-            
-            boolean succes = manager.addUser(name, pw1, level);
-            
-            if (succes) {
-                return "Bruger " + name + " tilføjet.";
-            } else {
-                return "Fejl: " + name + " eksisterer allerede!";
-            }
-        } else return "Passwords matcher ikke!";
-
+    public int login(String userName, String pw) {
+        return manager.login(userName, pw);
     }
 
     @Override
-    public int login(String name, String pw) {
-        return manager.login(name, pw);
-    }
-
-    @Override
-    public void logOut() {
+    public void logOut() { //later: Need to return true before scenechange
         manager.logOut();
     }
-
-    @Override
-    public List<String> getUserList() {
-        return manager.getUserList();
-    }
-
-    @Override
-    public String changePassword(String old, String new1, String new2) {
-        return manager.changePw(old, new1, new2);
-    }
-
-    @Override
-    public String changeLevel(String name, String pw, int level) {
-        return manager.changeLevel(name, pw, level);
-    }
-
-    private UserOperations operations;
-
-    @Override
-    public boolean userExists(String userName) {
-        return operations.userExists(userName);
-    }
-
-    @Override
-    public User getUser(String UserName, String pw) {
-        return operations.getUser(UserName, pw);
-    }
     
-    private User user;
-    
-    @Override
-    public String getUserName(){
-        return user.getUserName();
+
+    public IUser getUser(String userName) {
+        return loginPersistens.getUser(userName);
     }
     
     @Override
-    public boolean checkPassword(String pw){
-        return user.checkPassword(pw);
+    public boolean createUser(String userName, String password1, String password2, int level){
+        return admin.createUser(userName, password1, password2, level);
     }
-
+    
     @Override
-    public void addUserToMap(User user) {
-        operations.addUserToMap(user);
+    public boolean changeJob(String userName, String password, int level){
+        return admin.changeJob(userName, password, level);
     }
 
+
+    public boolean addUser(IUser user) {
+        return loginPersistens.addUser(user);
+    }
+
+
+    public boolean updateUser(IUser user) {
+        return loginPersistens.updateUser(user);
+    }
+    
     @Override
-    public Collection<User> getAllUsers() {
-        return operations.getAllUsers();
+    public Collection<IUser> getUserList(){
+        return admin.getUserList();
     }
-
+ 
+    Collection<IUser> getAllUsers(){
+        return loginPersistens.getAllUsers();
+    }
+    
+    @Override
+    public boolean newInquery(long cprNumber, String problemDescription, String firstname, String surname, String roadName, String houseNumber,
+                       String floor, int postNumber, String city, String tlfNumber){
+        return caseWorker.newInquiry(cprNumber, problemDescription, firstname, surname, roadName, houseNumber,
+                       floor, postNumber, city, tlfNumber);
+    }
+    
+   
+    @Override
+    public boolean sendToDB(IInquiry inquiry) {
+        controller = new BusinessController();
+        return controller.sendToDB(inquiry); // kaldt fra GUI
+    }
+    
+    public boolean saveInq(IInquiry inq) {
+        return dataPersistens.saveInq(inq); // kaldt fra Controller
+    }
+   
 }
