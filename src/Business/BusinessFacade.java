@@ -24,7 +24,6 @@ public class BusinessFacade implements IBusiness {
     private BusinessController controller;
     private AccessManager manager; // Delegate all calls conserning users to the manager.
     private Admin admin;
-    private CaseWorker caseWorker;
 
     //BusinessLayer instance
     private static BusinessFacade instance = null;
