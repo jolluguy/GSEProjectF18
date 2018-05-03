@@ -10,7 +10,5 @@ package Business;
  * @author Rasmus
  */
 public class CaseWorker extends Job {
-    
-    private BusinessFacade facade = BusinessFacade.getInstance();
        
 }
