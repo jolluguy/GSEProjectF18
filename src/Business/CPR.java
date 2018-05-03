@@ -23,11 +23,6 @@ public class CPR implements ICPR {
     public long getCprNumber() {
         return CPRNumber;
     }
-
-    @Override
-    public void setCprNumber(long cprNumber) {
-        this.CPRNumber = cprNumber;
-    }
     
     @Override
     public boolean validateCPR() {

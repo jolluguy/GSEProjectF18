@@ -28,7 +28,5 @@ public interface ICitizen {
    public void setTlfNumber(String tlfNumber);
    
    public long getCprNumber();
-   public void setCprNumber(long cpr);
    public ICPR getCpr();
-   public void setCpr(ICPR cpr);
 }

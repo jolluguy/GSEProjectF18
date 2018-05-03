@@ -108,20 +108,10 @@ class DataCitizen implements ICitizen {
     public ICPR getCpr() {
         return this.cpr;
     }
-    
-    @Override
-    public void setCpr(ICPR cpr) {
-        this.cpr = cpr;
-    }
 
     @Override
     public long getCprNumber() {
         return this.cpr.getCprNumber();
-    }
-
-    @Override
-    public void setCprNumber(long cpr) {
-        this.cpr.setCprNumber(cpr);
     }
 
 }

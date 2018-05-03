@@ -43,11 +43,6 @@ public class Citizen implements ICitizen{
     public long getCprNumber() {
         return this.cpr.getCprNumber();
     }
-    
-    @Override
-    public void setCprNumber(long cpr) {
-        this.cpr.setCprNumber(cpr);
-    }
 
     @Override
     public String getFirstname() {
@@ -92,11 +87,6 @@ public class Citizen implements ICitizen{
     @Override
     public ICPR getCpr() {
         return cpr;
-    }
-    
-    @Override
-    public void setCpr(ICPR cpr) {
-        this.cpr = cpr;
     }
 
     @Override
