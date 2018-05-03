@@ -377,7 +377,6 @@ public class CaseworkerController implements Initializable {
         floorTextField.clear();
         postalCodeTextField.clear();
         cityTextField.clear();
-        phoneNumberPrefixTextField.clear();
         phoneNumberTextField.clear();
                 
         } else if(!inquiryMade) {
