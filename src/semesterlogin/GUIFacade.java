@@ -47,6 +47,10 @@ public class GUIFacade extends Application implements IGUI {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
         stage.setTitle("Sensum Udred");
         
+        javafx.scene.image.Image image = new javafx.scene.image.Image("/AssetsLibrary/icon.png");
+        
+        stage.getIcons().add(image);
+        
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
