@@ -10,11 +10,7 @@ package Business;
  * @author Rasmus
  */
 public abstract class Job {
-    
-    protected boolean active;
-    
-    
-// change pw metode
-    }
-    
 
+    private boolean active;
+
+}
