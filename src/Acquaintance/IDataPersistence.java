@@ -9,7 +9,7 @@ package Acquaintance;
  *
  * @author Alexa
  */
-public interface IDataPersistens {
+public interface IDataPersistence {
     
     public boolean saveInq(IInquiry inq);
     

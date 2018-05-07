@@ -3,22 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package LoginPersistens;
+package LoginPersistence;
 
-import Acquaintance.ILoginPersistens;
 import Acquaintance.IUser;
 import java.io.Serializable;
 import java.util.Collection;
+import Acquaintance.ILoginPersistence;
 
 /**
  *
  * @author Rol's studie PC
  */
-public class LoginFacade implements ILoginPersistens, Serializable {
+public class LoginFacade implements ILoginPersistence, Serializable {
 
     Operations operations;
 
     private static LoginFacade instance = null;
+    
+    private LoginFacade() {
+        
+    }
+    
+    public static LoginFacade getInstance() {
+        if(instance == null) {
+            instance = new LoginFacade();
+        }
+        return instance;
+    }
 
     @Override
     public IUser getUser(String userName) {

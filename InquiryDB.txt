@@ -7,3 +7,7 @@
 
 1234567890<John Doe<Doe DOe<andtheDoeDoes<432<141<5000<EnglandIsMyCity<Descript
 
+1234567890<John<Doe<Street<Nr<Etage<5555<Odense<Beskrivelse
+
+1234567890<John<Doe<Vej<Nr<Etage<5000<Odense<Beskrivelse
+

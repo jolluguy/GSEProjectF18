@@ -8,11 +8,11 @@ package Starter;
 import Acquaintance.IBusiness;
 import Acquaintance.IGUI;
 import Business.BusinessFacade;
-import DataPersistens.DataFacade;
+import DataPersistence.DataFacade;
 import semesterlogin.GUIFacade;
-import Acquaintance.IDataPersistens;
-import Acquaintance.ILoginPersistens;
-import LoginPersistens.LoginFacade;
+import LoginPersistence.LoginFacade;
+import Acquaintance.IDataPersistence;
+import Acquaintance.ILoginPersistence;
 
 /**
  *
@@ -28,8 +28,8 @@ public class Starter {
         IGUI gui = GUIFacade.getInstance();
         IBusiness business = BusinessFacade.getInstance();
         business.startUp();
-        IDataPersistens dataPersistens = new DataFacade();
-        ILoginPersistens loginPersistens = new LoginFacade();
+        IDataPersistence dataPersistens = DataFacade.getInstance();
+        ILoginPersistence loginPersistens = LoginFacade.getInstance();
         business.injectLoginPersistens(loginPersistens);
         business.injectionDataPersistens(dataPersistens);
         gui.injectBusiness(business);

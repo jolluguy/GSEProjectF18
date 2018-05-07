@@ -17,6 +17,10 @@ public class BusinessController {
     
     private static BusinessController instance = null;
 
+    private BusinessController() {
+        
+    }
+    
     public static BusinessController getInstance() {
         if (instance == null) {
             instance = new BusinessController();

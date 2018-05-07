@@ -14,9 +14,9 @@ import java.util.List;
  */
 public interface IBusiness {
 
-    void injectionDataPersistens(IDataPersistens dataPersistens);
+    void injectionDataPersistens(IDataPersistence dataPersistens);
 
-    void injectLoginPersistens(ILoginPersistens loginPersistens);
+    void injectLoginPersistens(ILoginPersistence loginPersistens);
 
     int login(String name, String pw);
 

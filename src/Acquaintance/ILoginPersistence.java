@@ -11,7 +11,7 @@ import java.util.Collection;
  *
  * @author Rol's studie PC
  */
-public interface ILoginPersistens {
+public interface ILoginPersistence {
     
     IUser getUser(String userName);
 

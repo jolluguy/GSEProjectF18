@@ -20,6 +20,10 @@ public class Admin extends Job {
 
     private static Admin instance = null;
 
+    private Admin() {
+        
+    }
+    
     public static Admin getInstance() {
         if (instance == null) {
             instance = new Admin();

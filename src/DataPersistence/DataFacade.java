@@ -3,19 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DataPersistens;
+package DataPersistence;
 
-import Acquaintance.IDataPersistens;
 import Acquaintance.IInquiry;
+import Acquaintance.IDataPersistence;
 
 /**
  *
  * @author Alexa
  */
-public class DataFacade implements IDataPersistens {
+public class DataFacade implements IDataPersistence {
     
     private static DataFacade instance = null;
+    
+    private DataFacade() {
+        
+    }
+    
     public static DataFacade getInstance(){
+        if (instance == null) {
+            instance = new DataFacade();
+        }
         return instance;
     }
     

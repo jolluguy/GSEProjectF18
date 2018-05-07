@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DataPersistens;
+package DataPersistence;
 
 import Acquaintance.IInquiry;
 import java.io.BufferedWriter;

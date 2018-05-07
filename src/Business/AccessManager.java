@@ -15,6 +15,10 @@ public class AccessManager {
 
     private static AccessManager instance = null;
 
+    private AccessManager() {
+        
+    }
+    
     public static AccessManager getInstance() {
         if (instance == null) {
             instance = new AccessManager();

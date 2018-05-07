@@ -7,11 +7,11 @@
 package Business;
 
 import Acquaintance.IBusiness;
-import Acquaintance.IDataPersistens;
 import Acquaintance.IInquiry;
-import Acquaintance.ILoginPersistens;
 import Acquaintance.IUser;
 import java.util.Collection;
+import Acquaintance.IDataPersistence;
+import Acquaintance.ILoginPersistence;
 
 /**
  *
@@ -19,8 +19,8 @@ import java.util.Collection;
  */
 public class BusinessFacade implements IBusiness {
 
-    private IDataPersistens dataPersistens;
-    private ILoginPersistens loginPersistens;
+    private IDataPersistence dataPersistens;
+    private ILoginPersistence loginPersistens;
     private BusinessController controller;
     private AccessManager manager; // Delegate all calls conserning users to the manager.
     private Admin admin;
@@ -28,6 +28,10 @@ public class BusinessFacade implements IBusiness {
     //BusinessLayer instance
     private static BusinessFacade instance = null;
 
+    private BusinessFacade() {
+        
+    }
+    
     public static BusinessFacade getInstance() {
         if (instance == null) {
             instance = new BusinessFacade();
@@ -37,13 +41,13 @@ public class BusinessFacade implements IBusiness {
 
     //Data-layer injection
     @Override
-    public void injectionDataPersistens(IDataPersistens dataPersistens) {
+    public void injectionDataPersistens(IDataPersistence dataPersistens) {
         this.dataPersistens = dataPersistens;
     }
 
     //Data-layer injection
     @Override
-    public void injectLoginPersistens(ILoginPersistens loginPersistens) {
+    public void injectLoginPersistens(ILoginPersistence loginPersistens) {
         this.loginPersistens = loginPersistens;
     }
 
