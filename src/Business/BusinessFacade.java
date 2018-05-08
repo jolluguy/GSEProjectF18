@@ -68,6 +68,11 @@ public class BusinessFacade implements IBusiness {
         manager.logOut();
     }
     
+    @Override
+    public boolean changePassword(String oldPassword, String newPassword1, String newPassword2){
+        return manager.changePassword(oldPassword, newPassword1, newPassword2);
+    }
+    
     public IUser getUserOne() {
         return manager.getUserOne();
     }

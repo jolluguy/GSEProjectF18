@@ -22,6 +22,8 @@ public interface IBusiness {
 
     void logOut();
     
+    boolean changePassword(String oldPassword, String newPassword1, String newPassword2);
+    
     IUser getUserOne();
     
     boolean checkCredentials(String userName, String password);

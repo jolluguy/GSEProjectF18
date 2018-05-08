@@ -57,6 +57,16 @@ public class AccessManager {
 
         return false;
     }
+    
+    public boolean changePassword(String oldPassword, String newPassword1, String newPassword2){
+        if(oldPassword.equals(userOne.getPassword())){
+            if(newPassword1.equals(newPassword2)){
+                userOne.setPassword(newPassword1);
+                return true;
+            }
+        }
+        return false;
+    }
 
     public IUser getUserOne() {
         return userOne;
