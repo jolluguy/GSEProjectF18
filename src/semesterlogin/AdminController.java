@@ -136,6 +136,12 @@ public class AdminController implements Initializable {
         }
 
         warningLabel.setText(statusmessage);
+        
+        usernameField.clear();
+        password1Field.clear();
+        password2Field.clear();
+        lvl1Radio.setSelected(false);
+        lvl2Radio.setSelected(false);
     }
 
     @FXML
