@@ -9,7 +9,7 @@ import Acquaintance.IBusiness;
 import Acquaintance.IGUI;
 import Business.BusinessFacade;
 import DataPersistence.DataFacade;
-import semesterlogin.GUIFacade;
+import Presentation.GUIFacade;
 import LoginPersistence.LoginFacade;
 import Acquaintance.IDataPersistence;
 import Acquaintance.ILoginPersistence;
