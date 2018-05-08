@@ -15,26 +15,26 @@ import Acquaintance.ICitizen;
  */
 public class Citizen implements ICitizen{
     
-    private String firstname;
-    private String surname;
+    private String firstName;
+    private String lastName;
     private String roadName;
     private String houseNumber;
     private String floor;
-    private int postNumber;
+    private int postalCode;
     private String city;
-    private String tlfNumber;
+    private String phoneNumber;
     
     private ICPR cpr;
     
-    Citizen (long cprNumber, String firstname, String surname, String roadName, String houseNumber, String floor, int postNumber, String city, String tlfNumber) {
-        this.firstname = firstname;
-        this.surname = surname;
+    Citizen (long cprNumber, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.roadName = roadName;
         this.houseNumber = houseNumber;
         this.floor = floor;
-        this.postNumber = postNumber;
+        this.postalCode = postalCode;
         this.city = city;
-        this.tlfNumber = tlfNumber;
+        this.phoneNumber = phoneNumber;
         
         cpr = new CPR(cprNumber);
     }
@@ -45,13 +45,13 @@ public class Citizen implements ICitizen{
     }
 
     @Override
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
     @Override
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
 
     @Override
@@ -70,8 +70,8 @@ public class Citizen implements ICitizen{
     }
 
     @Override
-    public int getPostNumber() {
-        return postNumber;
+    public int getPostalCode() {
+        return postalCode;
     }
 
     @Override
@@ -80,8 +80,8 @@ public class Citizen implements ICitizen{
     }
 
     @Override
-    public String getTlfNumber() {
-        return tlfNumber;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     @Override
@@ -90,13 +90,13 @@ public class Citizen implements ICitizen{
     }
 
     @Override
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     @Override
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     @Override
@@ -115,8 +115,8 @@ public class Citizen implements ICitizen{
     }
 
     @Override
-    public void setPostNumber(int postNumber) {
-        this.postNumber = postNumber;
+    public void setPostalCode(int postalCode) {
+        this.postalCode = postalCode;
     }
 
     @Override
@@ -125,7 +125,7 @@ public class Citizen implements ICitizen{
     }
 
     @Override
-    public void setTlfNumber(String tlfNumber) {
-        this.tlfNumber = tlfNumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

@@ -30,7 +30,7 @@ public class DataInquiry implements IInquiry {
 
     @Override
     public void setCitizen(ICitizen citizen) {
-        this.citizen = new DataCitizen(citizen.getCprNumber(), citizen.getFirstname(), citizen.getSurname(), citizen.getRoadName(), citizen.getHouseNumber(), citizen.getFloor(), citizen.getPostNumber(), citizen.getCity(), citizen.getTlfNumber());
+        this.citizen = new DataCitizen(citizen.getCprNumber(), citizen.getFirstName(), citizen.getLastName(), citizen.getRoadName(), citizen.getHouseNumber(), citizen.getFloor(), citizen.getPostalCode(), citizen.getCity(), citizen.getPhoneNumber());
     }
 
     @Override

@@ -19,8 +19,8 @@ import Acquaintance.ILoginPersistence;
  */
 public class BusinessFacade implements IBusiness {
 
-    private IDataPersistence dataPersistens;
-    private ILoginPersistence loginPersistens;
+    private IDataPersistence dataPersistence;
+    private ILoginPersistence loginPersistence;
     private BusinessController controller;
     private AccessManager manager; // Delegate all calls conserning users to the manager.
     private Admin admin;
@@ -41,14 +41,14 @@ public class BusinessFacade implements IBusiness {
 
     //Data-layer injection
     @Override
-    public void injectionDataPersistens(IDataPersistence dataPersistens) {
-        this.dataPersistens = dataPersistens;
+    public void injectDataPersistence(IDataPersistence dataPersistence) {
+        this.dataPersistence = dataPersistence;
     }
 
     //Data-layer injection
     @Override
-    public void injectLoginPersistens(ILoginPersistence loginPersistens) {
-        this.loginPersistens = loginPersistens;
+    public void injectLoginPersistence(ILoginPersistence loginPersistence) {
+        this.loginPersistence = loginPersistence;
     }
 
     @Override
@@ -74,10 +74,10 @@ public class BusinessFacade implements IBusiness {
     }
     
     public boolean getUserInfo(String userName) {
-        return loginPersistens.getUserInfo(userName);
+        return loginPersistence.getUserInfo(userName);
     }
     public IUser getUser(String userName) {
-        return loginPersistens.getUser(userName);
+        return loginPersistence.getUser(userName);
     }
 
     @Override
@@ -91,11 +91,11 @@ public class BusinessFacade implements IBusiness {
     }
 
     public boolean addUser(IUser user) {
-        return loginPersistens.addUser(user);
+        return loginPersistence.addUser(user);
     }
 
     public boolean updateUser(IUser user) {
-        return loginPersistens.updateUser(user);
+        return loginPersistence.updateUser(user);
     }
 
     @Override
@@ -104,14 +104,14 @@ public class BusinessFacade implements IBusiness {
     }
 
     Collection<IUser> getAllUsers() {
-        return loginPersistens.getAllUsers();
+        return loginPersistence.getAllUsers();
     }
 
     @Override
-    public boolean newInquiry(long cprNumber, String problemDescription, String firstname, String surname, String roadName, String houseNumber,
-            String floor, int postNumber, String city, String tlfNumber) {
-        return controller.createInquiry(cprNumber, problemDescription, firstname, surname, roadName, houseNumber,
-                floor, postNumber, city, tlfNumber);
+    public boolean newInquiry(long cprNumber, String problemDescription, String firstName, String lastName, String roadName, String houseNumber,
+            String floor, int postNumber, String city, String phoneNumber) {
+        return controller.createInquiry(cprNumber, problemDescription, firstName, lastName, roadName, houseNumber,
+                floor, postNumber, city, phoneNumber);
     }
 
     @Override
@@ -119,8 +119,8 @@ public class BusinessFacade implements IBusiness {
         return controller.sendToDB(inquiry); // kaldt fra GUI
     }
 
-    public boolean saveInq(IInquiry inq) {
-        return dataPersistens.saveInq(inq); // kaldt fra Controller
+    public boolean saveInq(IInquiry inquiry) {
+        return dataPersistence.saveInquiry(inquiry); // kaldt fra Controller
     }
 
 }

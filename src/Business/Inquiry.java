@@ -18,12 +18,12 @@ public class Inquiry implements IInquiry{
     private String problemDescription;
     private ICitizen citizen;
     
-    public Inquiry (long cprNumber, String problemDescription, String firstname, 
-            String surname, String roadName, String houseNumber, String floor, 
-            int postNumber, String city, String tlfNumber) {
+    public Inquiry (long cprNumber, String problemDescription, String firstName, 
+            String lastName, String roadName, String houseNumber, String floor, 
+            int postalCode, String city, String phoneNumber) {
         this.problemDescription = problemDescription;
         
-        citizen = new Citizen(cprNumber, firstname, surname, roadName, houseNumber, floor, postNumber, city, tlfNumber);
+        citizen = new Citizen(cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
     }
 
     @Override

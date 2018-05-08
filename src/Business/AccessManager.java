@@ -28,8 +28,8 @@ public class AccessManager {
 
     public int login(String userName, String pw) {
         int level = -1;
-        IUser daUs = facade.getUser(userName); //Parsing User due to IUser return
-        User checkUser = new User(daUs.getUserName(), daUs.getPassword(), daUs.getLevel(), daUs.getCreatedTime(), daUs.getLastLoginTime());
+        IUser user = facade.getUser(userName); //Parsing User due to IUser return
+        User checkUser = new User(user.getUserName(), user.getPassword(), user.getLevel(), user.getCreatedTime(), user.getLastLoginTime());
 
         if (checkUser.checkPassword(pw)) {
             userOne = checkUser;

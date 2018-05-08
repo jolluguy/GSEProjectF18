@@ -10,22 +10,22 @@ package Acquaintance;
  * @author Rasmus
  */
 public interface ICitizen {
-   public String getFirstname();  
-   public void setFirstname(String firstname);
-   public String getSurname();
-   public void setSurname(String surname);
+   public String getFirstName();  
+   public void setFirstName(String firstName);
+   public String getLastName();
+   public void setLastName(String lastName);
    public String getRoadName();
    public void setRoadName(String roadName);
    public String getHouseNumber();
    public void setHouseNumber(String houseNumber);
    public String getFloor();
    public void setFloor(String floor);
-   public int getPostNumber();
-   public void setPostNumber(int postNumber);
+   public int getPostalCode();
+   public void setPostalCode(int postalCode);
    public String getCity();
    public void setCity(String city);
-   public String getTlfNumber();
-   public void setTlfNumber(String tlfNumber);
+   public String getPhoneNumber();
+   public void setPhoneNumber(String phoneNumber);
    
    public long getCprNumber();
    public ICPR getCpr();

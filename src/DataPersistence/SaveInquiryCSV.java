@@ -19,14 +19,14 @@ public class SaveInquiryCSV {
 
     IInquiry inq;
 
-    SaveInquiryCSV(IInquiry inq) {
-        this.inq = new DataInquiry(new DataCitizen(inq.getCitizen().getCprNumber(), inq.getCitizen().getFirstname(), 
-                inq.getCitizen().getSurname(), inq.getCitizen().getRoadName(), inq.getCitizen().getHouseNumber(), 
-                inq.getCitizen().getFloor(), inq.getCitizen().getPostNumber(), inq.getCitizen().getCity(), inq.getCitizen().getTlfNumber()),
-                inq.getProblemDescription());
+    SaveInquiryCSV(IInquiry inquiry) {
+        this.inq = new DataInquiry(new DataCitizen(inquiry.getCitizen().getCprNumber(), inquiry.getCitizen().getFirstName(), 
+                inquiry.getCitizen().getLastName(), inquiry.getCitizen().getRoadName(), inquiry.getCitizen().getHouseNumber(), 
+                inquiry.getCitizen().getFloor(), inquiry.getCitizen().getPostalCode(), inquiry.getCitizen().getCity(), inquiry.getCitizen().getPhoneNumber()),
+                inquiry.getProblemDescription());
     }
     
-    boolean saveInq(){
+    boolean saveInquiry(){
         final String SEPPERATOR = "<";
         
         try (FileWriter fw = new FileWriter("InquiryDB.txt", true); // true betyder at den appender filen i stedet for at overrite den
@@ -35,9 +35,9 @@ public class SaveInquiryCSV {
             writer.println(
                     inq.getCitizen().getCprNumber()+
                     SEPPERATOR+
-                    inq.getCitizen().getFirstname()+
+                    inq.getCitizen().getFirstName()+
                     SEPPERATOR+
-                    inq.getCitizen().getSurname()+
+                    inq.getCitizen().getLastName()+
                     SEPPERATOR+
                     inq.getCitizen().getRoadName()+
                     SEPPERATOR+
@@ -45,7 +45,7 @@ public class SaveInquiryCSV {
                     SEPPERATOR+
                     inq.getCitizen().getFloor()+
                     SEPPERATOR+
-                    inq.getCitizen().getPostNumber()+
+                    inq.getCitizen().getPostalCode()+
                     SEPPERATOR+
                     inq.getCitizen().getCity()+
                     SEPPERATOR+

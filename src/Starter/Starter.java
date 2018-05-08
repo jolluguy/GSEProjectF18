@@ -30,8 +30,8 @@ public class Starter {
         business.startUp();
         IDataPersistence dataPersistens = DataFacade.getInstance();
         ILoginPersistence loginPersistens = LoginFacade.getInstance();
-        business.injectLoginPersistens(loginPersistens);
-        business.injectionDataPersistens(dataPersistens);
+        business.injectLoginPersistence(loginPersistens);
+        business.injectDataPersistence(dataPersistens);
         gui.injectBusiness(business);
         
         System.out.println("Ready to start system");

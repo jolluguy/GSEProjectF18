@@ -14,45 +14,45 @@ import Acquaintance.ICitizen;
  */
 class DataCitizen implements ICitizen {
 
-    private String firstname;
-    private String surname;
+    private String firstName;
+    private String lastName;
     private String roadName;
     private String houseNumber;
     private String floor;
-    private int postNumber;
+    private int postalCode;
     private String city;
-    private String tlfNumber;
+    private String phoneNumber;
     private ICPR cpr;
 
     public DataCitizen(long cprNumber, String firstname, String surname, String roadName, String houseNumber, String floor, int postNumber, String city, String tlfNumber) {
-        this.firstname = firstname;
-        this.surname = surname;
+        this.firstName = firstname;
+        this.lastName = surname;
         this.roadName = roadName;
         this.houseNumber = houseNumber;
         this.floor = floor;
-        this.postNumber = postNumber;
+        this.postalCode = postNumber;
         this.city = city;
-        this.tlfNumber = tlfNumber;
+        this.phoneNumber = tlfNumber;
         
         this.cpr = new DataCPR(cprNumber);
     }
 
     
 @Override
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
     @Override
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
     @Override
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
     @Override
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
     @Override
     public String getRoadName() {
@@ -79,12 +79,12 @@ class DataCitizen implements ICitizen {
         this.floor = floor;
     }
     @Override
-    public int getPostNumber() {
-        return postNumber;
+    public int getPostalCode() {
+        return postalCode;
     }
     @Override
-    public void setPostNumber(int postNumber) {
-        this.postNumber = postNumber;
+    public void setPostalCode(int postalCode) {
+        this.postalCode = postalCode;
     }
     @Override
     public String getCity() {
@@ -95,13 +95,13 @@ class DataCitizen implements ICitizen {
         this.city = city;
     }
     @Override
-    public String getTlfNumber() {
-        return tlfNumber;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     @Override
-    public void setTlfNumber(String tlfNumber) {
-        this.tlfNumber = tlfNumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
     
     @Override

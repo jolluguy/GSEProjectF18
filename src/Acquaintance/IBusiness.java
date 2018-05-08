@@ -14,9 +14,9 @@ import java.util.List;
  */
 public interface IBusiness {
 
-    void injectionDataPersistens(IDataPersistence dataPersistens);
+    void injectDataPersistence(IDataPersistence dataPersistence);
 
-    void injectLoginPersistens(ILoginPersistence loginPersistens);
+    void injectLoginPersistence(ILoginPersistence loginPersistence);
 
     int login(String name, String pw);
 
@@ -34,6 +34,6 @@ public interface IBusiness {
    
    public void startUp();
    
-   boolean newInquiry(long cprNumber, String problemDescription, String firstname, String surname, String roadName, String houseNumber,
-                       String floor, int postNumber, String city, String tlfNumber);
+   boolean newInquiry(long cprNumber, String problemDescription, String firstName, String lastName, String roadName, String houseNumber,
+                       String floor, int postalCode, String city, String phoneNumber);
 }

@@ -347,16 +347,16 @@ public class CaseworkerController implements Initializable {
     public void newInquiry(ActionEvent event) {
         long cprNumber = Long.parseLong(cprTextField.getText(), 10);
         String problemDescription = descriptionTextAreaInquiry.getText();
-        String firstname = firstNameTextField.getText();
-        String surname = lastNameTextField.getText();
+        String firstName = firstNameTextField.getText();
+        String lastName = lastNameTextField.getText();
         String roadName = streetNameTextField.getText();
         String houseNumber = streetNumberTextField.getText();
         String floor = floorTextField.getText();
-        int postNumber = Integer.parseInt(postalCodeTextField.getText());
+        int postalCode = Integer.parseInt(postalCodeTextField.getText());
         String city = cityTextField.getText();
-        String tlfNumber = phoneNumberPrefixTextField.getText() + phoneNumberTextField.getText();
+        String phoneNumber = phoneNumberPrefixTextField.getText() + phoneNumberTextField.getText();
 
-        boolean inquiryMade = business.newInquiry(cprNumber, problemDescription, firstname, surname, roadName, houseNumber, floor, postNumber, city, tlfNumber);
+        boolean inquiryMade = business.newInquiry(cprNumber, problemDescription, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
 
         if(inquiryMade) {
             System.out.println("Inquiry Made");
