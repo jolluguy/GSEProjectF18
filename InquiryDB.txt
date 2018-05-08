@@ -1,13 +1,2 @@
-1234567890<jon<Doe<street<1<2tv<5000<Odense<beskrivelse
-123456879<likdhbfg<lidsygrf<liydushrg<2<sut<5000<ihbsrgf<sdfghjkl
-1234567890<wq<qw<qw<4<qw<5555<wq<wq
-1234567890<John<Doe<Vej<Nr<Etage<5000<Odense<Beskrivelse
-
-1234567890<Jane<Doe<Vej<Nr<Etage<5000<Odense<Beskrivelse igen
-
-1234567890<John Doe<Doe DOe<andtheDoeDoes<432<141<5000<EnglandIsMyCity<Descript
-
-1234567890<John<Doe<Street<Nr<Etage<5555<Odense<Beskrivelse
-
-1234567890<John<Doe<Vej<Nr<Etage<5000<Odense<Beskrivelse
+1234567890<fornavn<efternavn<vejanvn<22<2tv<5000<Odense<Beskrivelse
 
