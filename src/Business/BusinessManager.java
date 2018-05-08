@@ -11,19 +11,19 @@ import Acquaintance.IInquiry;
  *
  * @author goope
  */
-public class BusinessController {    
+public class BusinessManager {    
     
     BusinessFacade facade = BusinessFacade.getInstance();
     
-    private static BusinessController instance = null;
+    private static BusinessManager instance = null;
 
-    private BusinessController() {
+    private BusinessManager() {
         
     }
     
-    public static BusinessController getInstance() {
+    public static BusinessManager getInstance() {
         if (instance == null) {
-            instance = new BusinessController();
+            instance = new BusinessManager();
         }
         return instance;
     }

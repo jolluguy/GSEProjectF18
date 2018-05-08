@@ -21,7 +21,7 @@ public class BusinessFacade implements IBusiness {
 
     private IDataPersistence dataPersistence;
     private ILoginPersistence loginPersistence;
-    private BusinessController controller;
+    private BusinessManager controller;
     private AccessManager manager; // Delegate all calls conserning users to the manager.
     private Admin admin;
 

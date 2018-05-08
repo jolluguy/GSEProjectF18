@@ -89,7 +89,7 @@
                                     <TextField fx:id="cityTextField" layoutX="545.0" layoutY="525.0" prefHeight="31.0" prefWidth="195.0" />
                                     <TextField fx:id="phoneNumberPrefixTextField" layoutX="440.0" layoutY="580.0" prefHeight="31.0" prefWidth="45.0" text="+45" />
                                     <TextField fx:id="phoneNumberTextField" layoutX="506.0" layoutY="580.0" prefHeight="31.0" prefWidth="235.0" />
-                                    <Button fx:id="cprInfoButton" layoutX="763.0" layoutY="255.0" mnemonicParsing="false" style="-fx-background-color: f3f3f3; -fx-background-radius: 3; -fx-border-color: black; -fx-border-radius: 3;" text="Hent info" />
+                                    <Button fx:id="cprInfoButton" focusTraversable="false" layoutX="763.0" layoutY="255.0" mnemonicParsing="false" style="-fx-background-color: f3f3f3; -fx-background-radius: 3; -fx-border-color: black; -fx-border-radius: 3;" text="Hent info" />
                                     <Label layoutX="532.0" layoutY="224.0" text="Eks: 123456-1234" textFill="#bfbfbf" />
                                     <TextArea fx:id="descriptionTextAreaInquiry" layoutX="125.0" layoutY="702.0" prefHeight="445.0" prefWidth="900.0" />
                                     <Button fx:id="archiveButton" layoutX="125.0" layoutY="1226.0" mnemonicParsing="false" onAction="#newInquiry" style="-fx-background-color: f3f3f3; -fx-background-radius: 3; -fx-border-color: black; -fx-border-radius: 3;" text="Arkiver" />
