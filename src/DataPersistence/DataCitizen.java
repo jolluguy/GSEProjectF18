@@ -24,15 +24,15 @@ class DataCitizen implements ICitizen {
     private String phoneNumber;
     private ICPR cpr;
 
-    public DataCitizen(long cprNumber, String firstname, String surname, String roadName, String houseNumber, String floor, int postNumber, String city, String tlfNumber) {
-        this.firstName = firstname;
-        this.lastName = surname;
+    public DataCitizen(long cprNumber, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.roadName = roadName;
         this.houseNumber = houseNumber;
         this.floor = floor;
-        this.postalCode = postNumber;
+        this.postalCode = postalCode;
         this.city = city;
-        this.phoneNumber = tlfNumber;
+        this.phoneNumber = phoneNumber;
         
         this.cpr = new DataCPR(cprNumber);
     }

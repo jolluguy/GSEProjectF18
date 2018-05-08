@@ -109,9 +109,9 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public boolean newInquiry(long cprNumber, String problemDescription, String firstName, String lastName, String roadName, String houseNumber,
-            String floor, int postNumber, String city, String phoneNumber) {
+            String floor, int postalCode, String city, String phoneNumber) {
         return controller.createInquiry(cprNumber, problemDescription, firstName, lastName, roadName, houseNumber,
-                floor, postNumber, city, phoneNumber);
+                floor, postalCode, city, phoneNumber);
     }
 
     @Override
