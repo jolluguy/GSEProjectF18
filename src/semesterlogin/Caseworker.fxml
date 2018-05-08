@@ -25,7 +25,7 @@
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
 
-                        <ScrollPane hmax="722.0" prefHeight="762.0" prefViewportHeight="1000.0" prefViewportWidth="771.0" prefWidth="1300.0" style="-fx-background-color: f3f3f3;" vmax="1080.0">
+                        <ScrollPane hmax="722.0" prefHeight="762.0" prefViewportHeight="1000.0" prefViewportWidth="771.0" prefWidth="1300.0" style="-fx-background-color: f3f3f3;" vmax="1080.0" vvalue="1080.0">
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1300.0" prefWidth="1299.0">
                                  <children>
@@ -94,6 +94,7 @@
                                     <TextArea fx:id="descriptionTextAreaInquiry" layoutX="125.0" layoutY="702.0" prefHeight="445.0" prefWidth="900.0" />
                                     <Button fx:id="archiveButton" layoutX="125.0" layoutY="1226.0" mnemonicParsing="false" onAction="#newInquiry" style="-fx-background-color: f3f3f3; -fx-background-radius: 3; -fx-border-color: black; -fx-border-radius: 3;" text="Arkiver" />
                                     <Button fx:id="newCaseButton" layoutX="230.0" layoutY="1226.0" mnemonicParsing="false" style="-fx-background-color: f3f3f3; -fx-background-radius: 3; -fx-border-color: black; -fx-border-radius: 3;" text="Opret ny sag" />
+                                    <Label fx:id="inquiryStatusTextField" layoutX="125.0" layoutY="1187.0" prefWidth="900.0" />
                                  </children></AnchorPane>
                           </content>
                         </ScrollPane>

@@ -20,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -332,6 +333,8 @@ public class CaseworkerController implements Initializable {
     private Button archiveButton;
     @FXML
     private Button newCaseButton;
+    @FXML
+    private Label inquiryStatusTextField;
 
 
     /**
@@ -360,6 +363,7 @@ public class CaseworkerController implements Initializable {
 
         if(inquiryMade) {
             System.out.println("Inquiry Made");
+            inquiryStatusTextField.setText("Henvendelse er arkiveret med succes.");
             
             try {
                 Thread.sleep(500);
