@@ -3,6 +3,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
@@ -16,7 +18,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="semesterlogin.CaseworkerController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="semesterlogin.CaseworkerController">
    <children>
       <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
@@ -25,7 +27,7 @@
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
 
-                        <ScrollPane hmax="722.0" prefHeight="762.0" prefViewportHeight="1000.0" prefViewportWidth="771.0" prefWidth="1300.0" style="-fx-background-color: f3f3f3;" vmax="1080.0" vvalue="1080.0">
+                        <ScrollPane hmax="722.0" prefHeight="762.0" prefViewportHeight="1000.0" prefViewportWidth="771.0" prefWidth="1300.0" style="-fx-background-color: f3f3f3;" vmax="1080.0">
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1300.0" prefWidth="1299.0">
                                  <children>
@@ -366,11 +368,17 @@
             </Tab>
         </tabs>
       </TabPane>
-      <Button fx:id="logOutButton" layoutX="429.0" mnemonicParsing="false" onAction="#logout" text="Log ud" AnchorPane.leftAnchor="1227.0" AnchorPane.topAnchor="4.0" />
       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="1070.0" AnchorPane.topAnchor="50.0">
          <image>
             <Image url="@../AssetsLibrary/SenSum_Logo.png" />
          </image>
       </ImageView>
+      <Label fx:id="userOneLabel" alignment="CENTER_RIGHT" layoutX="822.0" layoutY="7.0" prefHeight="17.0" prefWidth="365.0" />
+      <MenuButton fx:id="menuBar" layoutX="1197.0" layoutY="4.0" mnemonicParsing="false" text="Funktioner">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Skift password" />
+          <MenuItem fx:id="logOutButton" mnemonicParsing="false" onAction="#logout" text="Log ud" />
+        </items>
+      </MenuButton>
    </children>
 </AnchorPane>

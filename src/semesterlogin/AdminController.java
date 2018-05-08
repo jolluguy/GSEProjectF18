@@ -22,6 +22,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -49,8 +51,6 @@ public class AdminController implements Initializable {
     private PasswordField password2Field;
     @FXML
     private Button addUserButton;
-    @FXML
-    private Button logoutButton;
     @FXML
     private ListView<String> userListview;
     @FXML
@@ -87,12 +87,18 @@ public class AdminController implements Initializable {
     private Button jobCancelButton;
     @FXML
     private Label jobWarningLabel;
-    @FXML
-    private Button removeUserButton;
 
     private IBusiness business = GUIFacade.getInstance().getBusiness();
     @FXML
     private RadioButton jobInactiveRadio;
+    @FXML
+    private Label userOneLabel;
+    @FXML
+    private Button createUserCancelButton;
+    @FXML
+    private MenuItem logoutButton;
+    @FXML
+    private MenuButton menuBar;
 
     /**
      * Initializes the controller class.
@@ -100,10 +106,12 @@ public class AdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        userOneLabel.setText(business.getUserOne().getUserName() + "");
+
 //        Load listview
         obsList = FXCollections.observableArrayList();
         userListview.setItems(obsList);
-        for(IUser i : business.getUserList()){
+        for (IUser i : business.getUserList()) {
             obsList.add(i.toString());
         }
 //        obsList.addAll(business.getUserList().toString());
@@ -136,7 +144,7 @@ public class AdminController implements Initializable {
         }
 
         warningLabel.setText(statusmessage);
-        
+
         usernameField.clear();
         password1Field.clear();
         password2Field.clear();
@@ -145,7 +153,7 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    public void cancelUserCreation(ActionEvent event) {
+    public void userCreationClearFields(ActionEvent event) {
         usernameField.clear();
         password1Field.clear();
         password2Field.clear();
@@ -159,7 +167,7 @@ public class AdminController implements Initializable {
         Parent loginScreen = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
 
         Scene newScene = new Scene(loginScreen);
-        Stage appstage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage appstage = (Stage) menuBar.getScene().getWindow();
         appstage.setScene(newScene);
         appstage.show();
 
@@ -195,6 +203,12 @@ public class AdminController implements Initializable {
 
             jobWarningLabel.setText(statusMessage);
         }
+
+        jobUsernameField.clear();
+        jobPasswordField.clear();
+        jobAdminRadio.setSelected(false);
+        jobCaseRadio.setSelected(false);
+        jobInactiveRadio.setSelected(false);
     }
 
     @FXML
@@ -208,9 +222,9 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    public void refreshListview(ActionEvent event){
+    public void refreshListview(ActionEvent event) {
         obsList.clear();
-        for(IUser i : business.getUserList()){
+        for (IUser i : business.getUserList()) {
             obsList.add(i.toString());
         }
     }

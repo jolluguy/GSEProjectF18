@@ -22,6 +22,8 @@ public interface IBusiness {
 
     void logOut();
     
+    IUser getUserOne();
+    
     boolean checkCredentials(String userName, String password);
     
     boolean createUser(String userName, String password1, String password2, int level);

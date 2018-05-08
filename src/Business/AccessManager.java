@@ -57,4 +57,10 @@ public class AccessManager {
 
         return false;
     }
+
+    public IUser getUserOne() {
+        return userOne;
+    }
+    
+    
 }

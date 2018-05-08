@@ -21,6 +21,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -59,7 +61,7 @@ public class CaseworkerController implements Initializable {
     @FXML
     private TextField cityTextField;
     @FXML
-    private Button logOutButton;
+    private MenuItem logOutButton;
 
     @FXML
     private CheckBox activity104CheckBox;
@@ -335,6 +337,10 @@ public class CaseworkerController implements Initializable {
     private Button newCaseButton;
     @FXML
     private Label inquiryStatusTextField;
+    @FXML
+    private Label userOneLabel;
+    @FXML
+    private MenuButton menuBar;
 
 
     /**
@@ -344,6 +350,8 @@ public class CaseworkerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+        userOneLabel.setText(business.getUserOne().getUserName() + ""); //Quotes are only for casting IUser to a String.
     }
     
     @FXML
@@ -394,7 +402,7 @@ public class CaseworkerController implements Initializable {
         Parent loginScreen = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
 
         Scene newScene = new Scene(loginScreen);
-        Stage appstage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage appstage = (Stage) ((Node) menuBar).getScene().getWindow();
         appstage.setScene(newScene);
         appstage.show();
         

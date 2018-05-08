@@ -67,6 +67,10 @@ public class BusinessFacade implements IBusiness {
     public void logOut() { //later: Need to return true before scenechange
         manager.logOut();
     }
+    
+    public IUser getUserOne() {
+        return manager.getUserOne();
+    }
 
     @Override
     public boolean checkCredentials(String userName, String password) {
