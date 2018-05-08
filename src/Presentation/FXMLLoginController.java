@@ -64,7 +64,7 @@ public class FXMLLoginController implements Initializable {
 
     @FXML
     public void login(ActionEvent event) throws IOException {
-        String userName = usernameField.getText();
+        String userName = usernameField.getText().toLowerCase();
         String password = passwordField.getText();
 
         if (!business.checkCredentials(userName, password)) {

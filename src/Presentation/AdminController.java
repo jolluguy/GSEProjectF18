@@ -119,7 +119,7 @@ public class AdminController implements Initializable {
 
     @FXML
     public void createUser(ActionEvent event) {
-        String userName = usernameField.getText();
+        String userName = usernameField.getText().toLowerCase();
         String password1 = password1Field.getText();
         String password2 = password2Field.getText();
         int level = -1;
