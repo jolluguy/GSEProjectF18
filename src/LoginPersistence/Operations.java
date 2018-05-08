@@ -34,7 +34,7 @@ public class Operations implements Serializable {
     private Map getMap() {
         if (!file.exists()) {
             userMap = new HashMap<>();
-            userMap.put("Admin", new DataUser("Admin", "Super", 2, new Date(), new Date())); // Default SuperUser
+            userMap.put("admin", new DataUser("admin", "Super", 2, new Date(), new Date())); // Default SuperUser
             saveMap();
         } else {
             try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
