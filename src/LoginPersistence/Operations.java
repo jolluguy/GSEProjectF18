@@ -63,9 +63,9 @@ public class Operations implements Serializable {
     }
 
     public boolean addUser(IUser user) {    // kan ikke bruges som den er til at tilfæje ny bruger da den ikke opretter map
-//        getMap();
-//        userMap.put(user.getUserName(), new DataUser(user.getUserName(), user.getPassword(), user.getLevel(), user.getCreatedTime(), user.getLastLoginTime()));
-//        saveMap();
+        getMap();
+        
+        saveMap();
         DatabaseManager database = new DatabaseManager();
         String username = user.getUserName();
         String password = user.getPassword();
