@@ -13,7 +13,7 @@ public class DatabaseManager {
     String username = "ksevsemh";
     String password = "S_ACh-Y8moY8kuw4BtFMiGDWoqLrzc_o";
 
-    public Connection dbConnection() {
+    public final Connection dbConnection() {
 
         try {
             Class.forName("org.postgresql.Driver");
@@ -29,5 +29,9 @@ public class DatabaseManager {
         }
         return conn;
     }
+    
+    public void createUserInDB {
+        
+}
 
 }

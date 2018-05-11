@@ -66,7 +66,12 @@ public class Operations implements Serializable {
 //        getMap();
 //        userMap.put(user.getUserName(), new DataUser(user.getUserName(), user.getPassword(), user.getLevel(), user.getCreatedTime(), user.getLastLoginTime()));
 //        saveMap();
-        
+        DatabaseManager database = new DatabaseManager();
+        String username = user.getUserName();
+        String password = user.getPassword();
+        Date createdTime = user.getCreatedTime();
+        Date lastLoginTime = user.getLastLoginTime();
+        database.createUserInDB(username, password, true, createdTime, lastLoginTime);
         
         return true;
     }
