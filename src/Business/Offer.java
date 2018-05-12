@@ -5,10 +5,12 @@
  */
 package Business;
 
+import Acquaintance.IOffer;
+
 /**
  *
  * @author Rasmus
  */
-public class CaseWorker extends Job {
-   
+class Offer implements IOffer {
+    
 }

@@ -10,7 +10,7 @@ package Acquaintance;
  * @author Rasmus
  */
 public interface ICPR {
-   public long getCprNumber();
+   public String getCprNumber();
    public boolean validateCPR();
    
 }

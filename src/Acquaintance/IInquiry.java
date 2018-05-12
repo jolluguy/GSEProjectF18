@@ -10,8 +10,12 @@ package Acquaintance;
  * @author Rasmus
  */
 public interface IInquiry {
+    
 public ICitizen getCitizen();
+
 public void setCitizen(ICitizen citizen);
+
 public String getProblemDescription();
+
 public void setProblemDescription(String problemDescription);
 }
