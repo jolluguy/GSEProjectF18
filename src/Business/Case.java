@@ -28,11 +28,14 @@ public class Case {
     Collection<IService> serviceList;
     Collection<IOffer> offerList;
     
-        public Case(inquiryList, Collection<String> responsibleCaseworkerIDList, Collection<IMeeting> meeting, Collection<IRepresentation> representationList, Collection<ICaseNote> caseNoteList, Collection<IService> serviceList, Collection<IOffer> offerList) {
-        inquiryList = new ArrayList<in>();
-        inquiryList.add(new Inquiry)
-        this.responsibleCaseworkerIDList = responsibleCaseworkerIDList;
-        this.meeting = meeting;
+        public Case(Inquiry inquiry, Collection<String> responsibleCaseworkerIDList, Collection<IMeeting> meeting, Collection<IRepresentation> representationList, Collection<ICaseNote> caseNoteList, Collection<IService> serviceList, Collection<IOffer> offerList) {
+        inquiryList = new ArrayList<>();
+        inquiryList.add(inquiry);
+        this.responsibleCaseworkerIDList = new ArrayList<>();
+        for(String s: responsibleCaseworkerIDList){
+            this.responsibleCaseworkerIDList.add(s);
+        }
+        this.meeting = new Meeting();
         this.representationList = representationList;
         this.caseNoteList = caseNoteList;
         this.serviceList = serviceList;

@@ -18,7 +18,7 @@ public class Inquiry implements IInquiry{
     private String problemDescription;
     private ICitizen citizen;
     
-    public Inquiry (long cprNumber, String problemDescription, String firstName, 
+    public Inquiry (String cprNumber, String problemDescription, String firstName, 
             String lastName, String roadName, String houseNumber, String floor, 
             int postalCode, String city, String phoneNumber) {
         this.problemDescription = problemDescription;
