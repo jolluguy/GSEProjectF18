@@ -27,6 +27,6 @@ public interface ICitizen {
    public String getPhoneNumber();
    public void setPhoneNumber(String phoneNumber);
    
-   public long getCprNumber();
+   public String getCprNumber();
    public ICPR getCpr();
 }

@@ -26,7 +26,7 @@ public class Citizen implements ICitizen{
     
     private ICPR cpr;
     
-    Citizen (long cprNumber, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber) {
+    Citizen (String cprNumber, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.roadName = roadName;
@@ -40,7 +40,7 @@ public class Citizen implements ICitizen{
     }
 
     @Override
-    public long getCprNumber() {
+    public String getCprNumber() {
         return this.cpr.getCprNumber();
     }
 
