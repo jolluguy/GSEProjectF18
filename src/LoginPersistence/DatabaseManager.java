@@ -70,24 +70,4 @@ public class DatabaseManager {
         return userList;
     }
 
-    public int countUsers() {
-        int userNumb = -1;
-
-        try {
-            Class.forName("org.postgresql.Driver");
-            Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword);
-            Statement st = conn.createStatement();
-            String sql = "SELECT COUNT(brugernavn) FROM login";
-            
-            ResultSet result = st.executeQuery(sql);
-            
-            userNumb = Integer.parseInt(result.getString("count"));
-            
-        } catch(Exception e){
-            e.printStackTrace();
-        }
-
-        return userNumb;
-    }
-
 }
