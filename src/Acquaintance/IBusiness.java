@@ -38,6 +38,6 @@ public interface IBusiness {
    
    public void startUp();
    
-   boolean newInquiry(long cprNumber, String problemDescription, String firstName, String lastName, String roadName, String houseNumber,
+   boolean newInquiry(String cprNumber, String problemDescription, String firstName, String lastName, String roadName, String houseNumber,
                        String floor, int postalCode, String city, String phoneNumber);
 }

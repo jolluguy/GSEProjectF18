@@ -28,7 +28,7 @@ public class BusinessManager {
         return instance;
     }
     
-    public boolean createInquiry(long cprNumber, String problemDescription, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber) {
+    public boolean createInquiry(String cprNumber, String problemDescription, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber) {
         Inquiry inquiry = new Inquiry(cprNumber, problemDescription, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
         if (!inquiry.getCitizen().getCpr().validateCPR()) {
             return false;
