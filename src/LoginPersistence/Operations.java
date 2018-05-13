@@ -20,6 +20,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,18 +30,25 @@ import java.util.Map;
 public class Operations implements Serializable {
 
     protected Map<String, DataUser> userMap; //String = IUser.getUserName;
+    protected List<DataUser> tempUserList; //Only for loading in users from DB;
     private final File file = new File("UserSetFile.obj");
     private DataUser user;
     DatabaseManager database = new DatabaseManager();
 
     private Map getMap() {
+        System.out.println("getMap called");
+        tempUserList = database.getAllUsers();
         
-        int loopCounter = database.countUsers(); //Counts amount of users in DB
-        
-        for(int i = 1; i < loopCounter; i++){
-            
+        userMap = new HashMap<>();
+
+        for (DataUser user : tempUserList) {
+            userMap.put(user.getUserName(), user);
         }
+        System.out.println("tempUserList = " + tempUserList);
+        System.out.println("userMap = " + userMap);
         
+        return userMap;
+
 //        if (!file.exists()) {
 //            userMap = new HashMap<>();
 //            userMap.put("admin", new DataUser("admin", "Super", 2, new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()))); // Default SuperUser
@@ -61,7 +69,7 @@ public class Operations implements Serializable {
 //        return userMap;
     }
 
-    private void saveMap() {  // Called every time a user is created/updated/deleted
+    private void saveMap() {  // Called every time a user is created/updated
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
             oos.writeObject(userMap);
         } catch (FileNotFoundException ex) {
@@ -73,14 +81,15 @@ public class Operations implements Serializable {
 
     public boolean addUser(IUser user) {    // kan ikke bruges som den er til at tilfæje ny bruger da den ikke opretter map
         getMap();
-        
+
         saveMap();
         String username = user.getUserName();
         String password = user.getPassword();
+        int level = user.getLevel();
         Timestamp createdTime = user.getCreatedTime();
         Timestamp lastLoginTime = user.getLastLoginTime();
-        database.createUserInDB(username, password, true, createdTime, lastLoginTime);
-        
+        database.createUserInDB(username, password, level, createdTime, lastLoginTime);
+
         return true;
     }
 
@@ -96,20 +105,22 @@ public class Operations implements Serializable {
         getMap();
         user = userMap.get(userName);
 
-        return user; 
+        return user;
     }
 
-    boolean isUserInMap(String userName){
+    boolean isUserInMap(String userName) {
         getMap();
-        if(userMap.containsKey(userName)){
+        if (userMap.containsKey(userName)) {
             return true;
-        } else return false;
+        } else {
+            return false;
+        }
     }
 
-    Collection<IUser> getAllUsers(){
+    Collection<IUser> getAllUsers() {
         Collection<IUser> col = new ArrayList<>();
         getMap();
-        for ( DataUser i : userMap.values()){
+        for (DataUser i : userMap.values()) {
             col.add(i);
 
         }
