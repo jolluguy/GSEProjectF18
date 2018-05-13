@@ -12,5 +12,7 @@ package Acquaintance;
 public interface IDataPersistence {
     
     public boolean saveInquiry(IInquiry inquiry);
+
+    public boolean saveCase(ICase case1);
     
 }

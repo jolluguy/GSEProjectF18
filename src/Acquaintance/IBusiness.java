@@ -6,6 +6,7 @@
 package Acquaintance;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,10 +35,19 @@ public interface IBusiness {
     
     Collection<IUser> getUserList();
    
-   public boolean sendToDB(IInquiry inquiry);
+//  se se komentar på busnisfasade  
+//   public boolean sendToDB(IInquiry inquiry);
    
    public void startUp();
    
    boolean newInquiry(String cprNumber, String problemDescription, String firstName, String lastName, String roadName, String houseNumber,
                        String floor, int postalCode, String city, String phoneNumber);
+
+public boolean newCase(String cprNumber, String problemDescription, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber,
+                Collection<String> responsibleCaseworkerIDList,
+                Date meetingDate, Collection<String> attendingCasworkerIDList, String meetingDescription, String meetingLocation,
+                String cprNumberRep, String firstNameRep, String lastNameRep, String roadNameRep, String houseNumberRep, String floorRep, int postalCodeRep, String cityRep, String phoneNumberRep, String representationType,
+                String note, String caseWorkerID,
+                Collection<Integer> serviceIDList,
+                Collection<Integer> offerIDList);
 }

@@ -5,6 +5,7 @@
  */
 package Business;
 
+import Acquaintance.ICase;
 import Acquaintance.ICaseNote;
 import Acquaintance.IInquiry;
 import Acquaintance.IMeeting;
@@ -19,7 +20,7 @@ import java.util.Date;
  *
  * @author Rasmus
  */
-public class Case {
+public class Case implements ICase{
     
     Collection<IInquiry> inquiryList;
     Collection<String> responsibleCaseworkerIDList;    // skal det være en collection eller bare en?
@@ -52,7 +53,7 @@ public class Case {
      * @param serviceIDList
      * @param offerIDList 
      */
-        public Case(Inquiry inquiry,
+        public Case(IInquiry inquiry,
                 Collection<String> responsibleCaseworkerIDList,
                 Date meetingDate, Collection<String> attendingCasworkerIDList, String meetingDescription, String meetingLocation,
                 String cprNumber, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber, String representationType,
