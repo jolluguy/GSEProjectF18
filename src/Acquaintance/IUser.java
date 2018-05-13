@@ -6,6 +6,7 @@
 package Acquaintance;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -23,9 +24,9 @@ public interface IUser {
     
     String getPassword();
     
-    Date getCreatedTime();
+    Timestamp getCreatedTime();
     
-    Date getLastLoginTime();
+    Timestamp getLastLoginTime();
 
     public void setLastLoginTime();
 

@@ -17,6 +17,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -34,7 +35,7 @@ public class Operations implements Serializable {
     private Map getMap() {
         if (!file.exists()) {
             userMap = new HashMap<>();
-            userMap.put("admin", new DataUser("admin", "Super", 2, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()))); // Default SuperUser
+            userMap.put("admin", new DataUser("admin", "Super", 2, new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()))); // Default SuperUser
             saveMap();
         } else {
             try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
@@ -69,8 +70,8 @@ public class Operations implements Serializable {
         DatabaseManager database = new DatabaseManager();
         String username = user.getUserName();
         String password = user.getPassword();
-        Date createdTime = user.getCreatedTime();
-        Date lastLoginTime = user.getLastLoginTime();
+        Timestamp createdTime = user.getCreatedTime();
+        Timestamp lastLoginTime = user.getLastLoginTime();
         database.createUserInDB(username, password, true, createdTime, lastLoginTime);
         
         return true;

@@ -3,15 +3,6 @@ package LoginPersistence;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class DatabaseManager {
 
@@ -22,13 +13,15 @@ public class DatabaseManager {
 
     
 
-    public boolean createUserInDB(String username, String password, boolean b, java.util.Date createdTime, java.util.Date lastLoginTime) {
+    public boolean createUserInDB(String username, String password, boolean b, java.sql.Timestamp createdTime, java.sql.Timestamp lastLoginTime) {
         try {
             
             Class.forName("org.postgresql.Driver");
             Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword);
             PreparedStatement st = conn.prepareStatement("insert into login (brugernavn, kodeord, status, created_time, last_login_time) "
                     + "values ('" + username + "', '" + password + "', " + b + ", '" + createdTime + "', '" + lastLoginTime + "');");
+            
+            System.out.println("CreatedTime = " + createdTime);
 
 
             st.executeUpdate();

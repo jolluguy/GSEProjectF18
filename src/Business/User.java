@@ -8,7 +8,7 @@ package Business;
 import Acquaintance.IUser;
 import java.io.Serializable;
 import java.text.DateFormat;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -20,8 +20,8 @@ public class User implements IUser, Serializable{
     private String userName;
     private String password;
     private int level;
-    private Date createdTime;
-    private Date lastLoginTime;
+    private Timestamp createdTime;
+    private Timestamp lastLoginTime;
 /**
  * for youse when adding a new user to the system, it aoutomaticaly sets createddate and lastlogontime.
  * @param userName
@@ -32,10 +32,10 @@ public class User implements IUser, Serializable{
         this.userName = userName;
         this.password = password;
         this.level = level;
-        this.createdTime = new Date(System.currentTimeMillis());
-        this.lastLoginTime = new Date(System.currentTimeMillis());
+        this.createdTime = new Timestamp(System.currentTimeMillis());
+        this.lastLoginTime = new Timestamp(System.currentTimeMillis());
     }
-    public User(String userName, String password, int level, Date createdTime, Date lastLoginTime) {
+    public User(String userName, String password, int level, Timestamp createdTime, Timestamp lastLoginTime) {
         this.userName = userName;
         this.password = password;
         this.level = level;
@@ -73,7 +73,7 @@ public class User implements IUser, Serializable{
 
     @Override
     public void setLastLoginTime() {
-        this.lastLoginTime = new Date(System.currentTimeMillis());
+        this.lastLoginTime = new Timestamp(System.currentTimeMillis());
     }
 
 
@@ -93,12 +93,12 @@ public class User implements IUser, Serializable{
     }
 
     @Override
-    public Date getCreatedTime() {
+    public Timestamp getCreatedTime() {
         return createdTime;
     }
 
     @Override
-    public Date getLastLoginTime() {
+    public Timestamp getLastLoginTime() {
         return lastLoginTime;
     }
 

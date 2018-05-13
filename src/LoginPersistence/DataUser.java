@@ -7,8 +7,8 @@ package LoginPersistence;
 
 import Acquaintance.IUser;
 import java.io.Serializable;
-import java.time.Instant;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -19,10 +19,10 @@ public class DataUser implements IUser, Serializable {
     private final String userName;
     private String password;
     private int level;
-    private final Date createdTime;
-    private Date lastLoginTime;
+    private final Timestamp createdTime;
+    private Timestamp lastLoginTime;
 
-    public DataUser(String userName, String password, int level, Date createdTime, Date lastLoginTime) {
+    public DataUser(String userName, String password, int level, Timestamp createdTime, Timestamp lastLoginTime) {
         this.userName = userName;
         this.password = password;
         this.level = level;
@@ -52,11 +52,11 @@ public class DataUser implements IUser, Serializable {
     }
 
     
-    public void setLastLoginTime(Date lastLoginTime) {
+    public void setLastLoginTime(Timestamp lastLoginTime) {
         this.lastLoginTime = lastLoginTime;
     }
     
-    void updateUser(String password, int level, Date lastLoginTime){
+    void updateUser(String password, int level, Timestamp lastLoginTime){
         this.password = password;
         this.level = level;
         this.lastLoginTime = lastLoginTime;
@@ -68,18 +68,18 @@ public class DataUser implements IUser, Serializable {
     }
 
     @Override
-    public Date getCreatedTime() {
+    public Timestamp getCreatedTime() {
         return createdTime;
     }
 
     @Override
-    public Date getLastLoginTime() {
+    public Timestamp getLastLoginTime() {
         return lastLoginTime;
     }
 
     @Override
     public void setLastLoginTime() {
-        this.lastLoginTime = new Date(System.currentTimeMillis());
+        this.lastLoginTime = new Timestamp(System.currentTimeMillis());
     }
     
 }

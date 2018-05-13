@@ -9,6 +9,7 @@ import Acquaintance.IUser;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -33,7 +34,7 @@ public class Admin extends Job {
     
     boolean createUser(String userName, String password1, String password2, int level) {
         if (password1.equals(password2)) {
-            return facade.addUser( new User(userName, password1, level, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis())) {});
+            return facade.addUser( new User(userName, password1, level, new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis())) {});
         } else {
             return false;
         }
