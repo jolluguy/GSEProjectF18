@@ -32,9 +32,9 @@ public class Admin extends Job {
         return instance;
     }
     
-    boolean createUser(String userName, String password1, String password2, int level) {
+    boolean createUser(String firstName, String lastName, String userName, String password1, String password2, int level) {
         if (password1.equals(password2)) {
-            return facade.addUser( new User(userName, password1, level, new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis())) {});
+            return facade.addUser( new User(firstName, lastName, userName, password1, level));
         } else {
             return false;
         }

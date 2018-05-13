@@ -13,8 +13,16 @@ import java.sql.Timestamp;
  * @author Alexa
  */
 public interface IUser {
+    
+    String getFirstName();
+    
+    String getLastName();
 
     String getUserName();
+    
+    String getPhoneNumber();
+    
+    String getMail();
 
     int getLevel();
 

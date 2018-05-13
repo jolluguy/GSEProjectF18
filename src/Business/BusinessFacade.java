@@ -90,8 +90,8 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public boolean createUser(String userName, String password1, String password2, int level) {
-        return admin.createUser(userName, password1, password2, level);
+    public boolean createUser(String firstName, String lastName, String userName, String password1, String password2, int level) {
+        return admin.createUser(firstName, lastName, userName, password1, password2, level);
     }
 
     @Override

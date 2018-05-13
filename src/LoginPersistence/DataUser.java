@@ -16,6 +16,10 @@ import java.sql.Timestamp;
  */
 public class DataUser implements IUser, Serializable {
     
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
+    private String mail;
     private final String userName;
     private String password;
     private int level;
@@ -29,8 +33,39 @@ public class DataUser implements IUser, Serializable {
         this.createdTime = createdTime;
         this.lastLoginTime = lastLoginTime;
     }   
-    
 
+    public DataUser(String firstName, String lastName, String phoneNumber, String mail, String userName, String password, int level, Timestamp createdTime, Timestamp lastLoginTime) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.mail = mail;
+        this.userName = userName;
+        this.password = password;
+        this.level = level;
+        this.createdTime = createdTime;
+        this.lastLoginTime = lastLoginTime;
+    }
+    
+    @Override
+    public String getFirstName(){
+        return firstName;
+    }
+    
+    @Override
+    public String getLastName(){
+        return lastName; 
+    }
+    
+    @Override
+    public String getPhoneNumber(){
+        return phoneNumber;
+    }
+    
+    @Override
+    public String getMail(){
+        return mail;
+    }
+    
     @Override
     public String getUserName() {
         return userName;

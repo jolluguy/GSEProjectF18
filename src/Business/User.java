@@ -16,7 +16,10 @@ import java.sql.Timestamp;
  */
 public class User implements IUser, Serializable{
    
-    
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
+    private String mail;
     private String userName;
     private String password;
     private int level;
@@ -28,7 +31,11 @@ public class User implements IUser, Serializable{
  * @param password
  * @param level 
  */
-    public User(String userName, String password, int level) {
+    public User(String firstName, String lastName, String userName, String password, int level) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = "88888888"; //NB!! - Telefonnummer skal oprettes automatisk;
+        this.mail = userName + "@sensum.dk";
         this.userName = userName;
         this.password = password;
         this.level = level;
@@ -41,6 +48,26 @@ public class User implements IUser, Serializable{
         this.level = level;
         this.createdTime = createdTime;
         this.lastLoginTime = lastLoginTime;
+    }
+
+    @Override
+    public String getFirstName() {
+        return firstName;
+    }
+
+    @Override
+    public String getLastName() {
+        return lastName;
+    }
+
+    @Override
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    @Override
+    public String getMail() {
+        return mail;
     }
     
     @Override

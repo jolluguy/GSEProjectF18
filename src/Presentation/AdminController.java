@@ -99,6 +99,14 @@ public class AdminController implements Initializable {
     private MenuItem logoutButton;
     @FXML
     private MenuButton menuBar;
+    @FXML
+    private TextField lastNameField;
+    @FXML
+    private TextField firstNameField;
+    @FXML
+    private Label firstNameLabel;
+    @FXML
+    private Label lastNameLabel;
 
     /**
      * Initializes the controller class.
@@ -119,6 +127,8 @@ public class AdminController implements Initializable {
 
     @FXML
     public void createUser(ActionEvent event) {
+        String firstName = firstNameField.getText();
+        String lastName = lastNameField.getText();
         String userName = usernameField.getText().toLowerCase();
         String password1 = password1Field.getText();
         String password2 = password2Field.getText();
@@ -134,7 +144,7 @@ public class AdminController implements Initializable {
             level = 2;
         }
 
-        boolean createUserStatus = business.createUser(userName, password1, password2, level);
+        boolean createUserStatus = business.createUser(firstName, lastName, userName, password1, password2, level);
 
         String statusmessage = "";
         if (createUserStatus) {
@@ -145,6 +155,8 @@ public class AdminController implements Initializable {
 
         warningLabel.setText(statusmessage);
 
+        firstNameField.clear();
+        lastNameField.clear();
         usernameField.clear();
         password1Field.clear();
         password2Field.clear();

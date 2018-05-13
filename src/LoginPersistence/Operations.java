@@ -7,19 +7,15 @@ package LoginPersistence;
 
 import Acquaintance.IUser;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -83,12 +79,16 @@ public class Operations implements Serializable {
         getMap();
 
         saveMap();
+        String firstName = user.getFirstName();
+        String lastName = user.getLastName();
+        String phoneNumber = user.getPhoneNumber();
+        String mail = user.getMail();
         String username = user.getUserName();
         String password = user.getPassword();
         int level = user.getLevel();
         Timestamp createdTime = user.getCreatedTime();
         Timestamp lastLoginTime = user.getLastLoginTime();
-        database.createUserInDB(username, password, level, createdTime, lastLoginTime);
+        database.createUserInDB(firstName, lastName, phoneNumber, mail, username, password, level, createdTime, lastLoginTime);
 
         return true;
     }
