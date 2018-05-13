@@ -32,6 +32,8 @@ public class Operations implements Serializable {
     private DataUser user;
 
     private Map getMap() {
+        
+        
         if (!file.exists()) {
             userMap = new HashMap<>();
             userMap.put("admin", new DataUser("admin", "Super", 2, new Date(), new Date())); // Default SuperUser
@@ -63,9 +65,16 @@ public class Operations implements Serializable {
     }
 
     public boolean addUser(IUser user) {    // kan ikke bruges som den er til at tilfæje ny bruger da den ikke opretter map
-        getMap();
-        userMap.put(user.getUserName(), new DataUser(user.getUserName(), user.getPassword(), user.getLevel(), user.getCreatedTime(), user.getLastLoginTime()));
-        saveMap();
+
+        UserDataBase database = new UserDataBase();
+        String username = user.getUserName();
+        String password = user.getPassword();
+        Date createdTime = user.getCreatedTime();
+        Date lastLoginTime = user.getLastLoginTime();
+        database.createUserInDB(username, password, true, createdTime, lastLoginTime);
+//        getMap();
+//        userMap.put(user.getUserName(), new DataUser(user.getUserName(), user.getPassword(), user.getLevel(), user.getCreatedTime(), user.getLastLoginTime()));
+//        saveMap();
         return true;
     }
 
