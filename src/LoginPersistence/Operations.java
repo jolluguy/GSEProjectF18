@@ -16,7 +16,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -34,7 +34,7 @@ public class Operations implements Serializable {
     private Map getMap() {
         if (!file.exists()) {
             userMap = new HashMap<>();
-            userMap.put("admin", new DataUser("admin", "Super", 2, new Date(), new Date())); // Default SuperUser
+            userMap.put("admin", new DataUser("admin", "Super", 2, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()))); // Default SuperUser
             saveMap();
         } else {
             try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {

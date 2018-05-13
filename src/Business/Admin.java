@@ -8,7 +8,7 @@ package Business;
 import Acquaintance.IUser;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
@@ -33,7 +33,7 @@ public class Admin extends Job {
     
     boolean createUser(String userName, String password1, String password2, int level) {
         if (password1.equals(password2)) {
-            return facade.addUser( new User(userName, password1, level, new Date(), new Date()) {});
+            return facade.addUser( new User(userName, password1, level, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis())) {});
         } else {
             return false;
         }

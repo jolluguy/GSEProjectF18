@@ -20,7 +20,7 @@
    <children>
       <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="751.0" prefWidth="911.0" style="-fx-background-color: white;" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Tilføj/fjern bruger">
+          <Tab text="Tilføj bruger">
             <content>
               <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="722.0" prefWidth="1292.0" style="-fx-background-color: white;">
                      <children>

@@ -8,7 +8,7 @@ package Business;
 import Acquaintance.IUser;
 import java.io.Serializable;
 import java.text.DateFormat;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
@@ -32,8 +32,8 @@ public class User implements IUser, Serializable{
         this.userName = userName;
         this.password = password;
         this.level = level;
-        this.createdTime = new Date();
-        this.lastLoginTime = new Date();
+        this.createdTime = new Date(System.currentTimeMillis());
+        this.lastLoginTime = new Date(System.currentTimeMillis());
     }
     public User(String userName, String password, int level, Date createdTime, Date lastLoginTime) {
         this.userName = userName;
@@ -73,7 +73,7 @@ public class User implements IUser, Serializable{
 
     @Override
     public void setLastLoginTime() {
-        this.lastLoginTime = new Date();
+        this.lastLoginTime = new Date(System.currentTimeMillis());
     }
 
 

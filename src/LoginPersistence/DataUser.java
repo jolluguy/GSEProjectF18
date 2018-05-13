@@ -8,7 +8,7 @@ package LoginPersistence;
 import Acquaintance.IUser;
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
@@ -79,7 +79,7 @@ public class DataUser implements IUser, Serializable {
 
     @Override
     public void setLastLoginTime() {
-        this.lastLoginTime = new Date();
+        this.lastLoginTime = new Date(System.currentTimeMillis());
     }
     
 }
