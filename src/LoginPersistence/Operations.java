@@ -31,26 +31,34 @@ public class Operations implements Serializable {
     protected Map<String, DataUser> userMap; //String = IUser.getUserName;
     private final File file = new File("UserSetFile.obj");
     private DataUser user;
+    DatabaseManager database = new DatabaseManager();
 
     private Map getMap() {
-        if (!file.exists()) {
-            userMap = new HashMap<>();
-            userMap.put("admin", new DataUser("admin", "Super", 2, new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()))); // Default SuperUser
-            saveMap();
-        } else {
-            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-                Object obj = ois.readObject();
-                userMap = (Map<String, DataUser>) obj;
-
-            } catch (FileNotFoundException ex) {
-                ex.printStackTrace();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            } catch (ClassNotFoundException ex) {
-                ex.printStackTrace();
-            }
+        
+        int loopCounter = database.countUsers(); //Counts amount of users in DB
+        
+        for(int i = 1; i < loopCounter; i++){
+            
         }
-        return userMap;
+        
+//        if (!file.exists()) {
+//            userMap = new HashMap<>();
+//            userMap.put("admin", new DataUser("admin", "Super", 2, new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()))); // Default SuperUser
+//            saveMap();
+//        } else {
+//            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+//                Object obj = ois.readObject();
+//                userMap = (Map<String, DataUser>) obj;
+//
+//            } catch (FileNotFoundException ex) {
+//                ex.printStackTrace();
+//            } catch (IOException ex) {
+//                ex.printStackTrace();
+//            } catch (ClassNotFoundException ex) {
+//                ex.printStackTrace();
+//            }
+//        }
+//        return userMap;
     }
 
     private void saveMap() {  // Called every time a user is created/updated/deleted
@@ -67,7 +75,6 @@ public class Operations implements Serializable {
         getMap();
         
         saveMap();
-        DatabaseManager database = new DatabaseManager();
         String username = user.getUserName();
         String password = user.getPassword();
         Timestamp createdTime = user.getCreatedTime();
