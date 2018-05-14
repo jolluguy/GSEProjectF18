@@ -19,13 +19,13 @@ public class LoginFacade implements ILoginPersistence, Serializable {
     Operations operations;
 
     private static LoginFacade instance = null;
-    
+
     private LoginFacade() {
-        
+
     }
-    
+
     public static LoginFacade getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new LoginFacade();
         }
         return instance;
@@ -48,19 +48,17 @@ public class LoginFacade implements ILoginPersistence, Serializable {
         operations = new Operations();
         return operations.updateUser(user);
     }
-    
+
     @Override
-    public Collection<IUser> getAllUsers(){
+    public Collection<IUser> getAllUsers() {
         operations = new Operations();
         return operations.getAllUsers();
     }
-    
+
     @Override
     public boolean getUserInfo(String userName) {
         operations = new Operations();
         return operations.isUserInMap(userName);
     }
-    
-
 
 }

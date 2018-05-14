@@ -44,41 +44,22 @@ public class Operations implements Serializable {
         System.out.println("userMap = " + userMap);
         
         return userMap;
+    }
 
-//        if (!file.exists()) {
-//            userMap = new HashMap<>();
-//            userMap.put("admin", new DataUser("admin", "Super", 2, new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()))); // Default SuperUser
-//            saveMap();
-//        } else {
-//            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-//                Object obj = ois.readObject();
-//                userMap = (Map<String, DataUser>) obj;
-//
-//            } catch (FileNotFoundException ex) {
-//                ex.printStackTrace();
-//            } catch (IOException ex) {
-//                ex.printStackTrace();
-//            } catch (ClassNotFoundException ex) {
-//                ex.printStackTrace();
-//            }
+//    private void saveMap() {  // Called every time a user is created/updated
+//        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
+//            oos.writeObject(userMap);
+//        } catch (FileNotFoundException ex) {
+//            ex.printStackTrace();
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
 //        }
-//        return userMap;
-    }
-
-    private void saveMap() {  // Called every time a user is created/updated
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
-            oos.writeObject(userMap);
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
+//    }
 
     public boolean addUser(IUser user) {    // kan ikke bruges som den er til at tilfæje ny bruger da den ikke opretter map
         getMap();
 
-        saveMap();
+//        saveMap();
         String firstName = user.getFirstName();
         String lastName = user.getLastName();
         String phoneNumber = user.getPhoneNumber();
@@ -97,7 +78,7 @@ public class Operations implements Serializable {
         getMap();
         userMap.remove(user.getUserName());
         userMap.put(user.getUserName(), new DataUser(user.getUserName(), user.getPassword(), user.getLevel(), user.getCreatedTime(), user.getLastLoginTime()));
-        saveMap();
+//        saveMap();
         return true;
     }
 
