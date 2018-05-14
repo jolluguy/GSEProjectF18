@@ -18,7 +18,7 @@ public class DatabaseManager {
     String dbPassword = "z0qIbACfFzXvrWfMqNV8ThVbgfyV8k76";
 
     public boolean createUserInDB(IUser user) {
-        
+
         String firstName = user.getFirstName();
         String lastName = user.getLastName();
         String phoneNumber = user.getPhoneNumber();
@@ -28,11 +28,10 @@ public class DatabaseManager {
         int niveau = user.getLevel();
         Timestamp createdTime = user.getCreatedTime();
         Timestamp lastLoginTime = user.getLastLoginTime();
-        
-        try {
+
+        try(Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
 
             Class.forName("org.postgresql.Driver");
-            Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword);
 
             //Query 1
             PreparedStatement st1 = conn.prepareStatement("INSERT INTO login (brugernavn, kodeord, niveau, created_time, last_login_time) "
@@ -65,55 +64,59 @@ public class DatabaseManager {
 
             st4.executeUpdate();
 
-            System.out.println("Query successfull");
+            return true;
 
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
-
-        return true;
 
     }
 
     public boolean updateLastLogin(String userName) {
-        try {
+        try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)){
+            
             Class.forName("org.postgresql.Driver");
-            Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword);
+            
 
             PreparedStatement st = conn.prepareStatement("UPDATE login SET last_login_time = '" + (new Timestamp(System.currentTimeMillis())) + "' WHERE brugernavn = '" + userName + "';");
 
             st.executeUpdate();
 
+            return true;
+
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
 
-        return true;
     }
 
     public boolean updateJob(String userName, int level) {
-        try {
+        try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)){
             Class.forName("org.postgresql.Driver");
-            Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword);
             
+
             PreparedStatement st = conn.prepareStatement("UPDATE login SET niveau = '" + level + "' WHERE brugernavn = '" + userName + "';");
-            
+
             st.executeUpdate();
+
+            return true;
             
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
-        
-        return true;
+
     }
 
     public Collection getAllUsers() {
 
         Collection<IUser> userList = new ArrayList<>();
 
-        try {
+        try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)){
             Class.forName("org.postgresql.Driver");
-            Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword);
+            
             Statement st = conn.createStatement();
             String sql = "SELECT * FROM login";
 
@@ -129,11 +132,10 @@ public class DatabaseManager {
                 System.out.println(username);
                 userList.add(new DataUser(username, password, level, createdTime, lastLoginTime));
             }
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        System.out.println("userList = " + userList);
 
         return userList;
     }
