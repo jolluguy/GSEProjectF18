@@ -15,26 +15,26 @@ import Acquaintance.IService;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Map;
 
 /**
  *
  * @author Rasmus
  */
-public class Case implements ICase{
-    
+public class Case implements ICase {
+
     Collection<IInquiry> inquiryList;
     String responsibleCaseworker;
     Collection<String> affiliatedCaseworkers;
-    Collection<String> responsibleCaseworkerIDList;    // skal det være en collection eller bare en?
     Collection<IMeeting> meetingList;
     Collection<IRepresentation> representationList;
     Collection<ICaseNote> caseNoteList;
     Collection<IService> serviceList;
     Collection<IOffer> offerList;
-    
+
     /**
-     * 
-     * @param inquiry , created by 
+     *
+     * @param inquiry , created by
      * @param responsibleCaseworkerIDList
      * @param meetingDate
      * @param attendingCasworkerIDList
@@ -53,46 +53,62 @@ public class Case implements ICase{
      * @param note
      * @param caseWorkerID
      * @param serviceIDList
-     * @param offerIDList 
+     * @param offerIDList
      */
-        public Case(IInquiry inquiry,
-                Collection<String> responsibleCaseworkerIDList,
-                Date meetingDate, Collection<String> attendingCasworkerIDList, String meetingDescription, String meetingLocation,
-                String cprNumber, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber, String representationType,
-                String note, String caseWorkerID,
-                Collection<Integer> serviceIDList,
-                Collection<Integer> offerIDList) {
+    public Case(IInquiry inquiry,
+            String responsibleCaseworker,
+            Date meetingDate, Collection<String> attendingCasworkerIDList, String meetingDescription, String meetingLocation,
+            String cprNumber, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber, String representationType,
+            String note, String caseWorkerID,
+            Map<Integer, String> serviceIDMap,
+            Map<Integer, String> offerIDMap) {
         
-            inquiryList = new ArrayList<>();
+        // adding a Inquiry to the case
+        inquiryList = new ArrayList<>();
         inquiryList.add(inquiry);
         
-        this.responsibleCaseworkerIDList = new ArrayList<>();
-        for(String s: responsibleCaseworkerIDList){
-            this.responsibleCaseworkerIDList.add(s);
-        }
+        // seting the responsible caseworker
+        this.responsibleCaseworker = responsibleCaseworker;
         
+        // creating a list of caseworkers who has ben affiliated with the case and adding the responsibleCaseworker to the list
+        this.affiliatedCaseworkers = new ArrayList<>();
+       affiliatedCaseworkers.add(this.responsibleCaseworker);
+       addAffiliatedCaseworker(attendingCasworkerIDList);
+                
+        //creates a list to hold meetings and adds the first meeting
         this.meetingList = new ArrayList<>();
-        meetingList.add(new Meeting(meetingDate, responsibleCaseworkerIDList, meetingDescription, meetingLocation));
-        
-        
+        meetingList.add(new Meeting(meetingDate, attendingCasworkerIDList, meetingDescription, meetingLocation));
+
+        // creates a list to hold representants and ads the first representant if one such is added.
         this.representationList = new ArrayList<>();
+        if(!cprNumber.isEmpty()){
         this.representationList.add(new Representation(cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber, representationType));
+        }
         
+        // creates a list to hold casenotes and ads one if one such exist
         this.caseNoteList = new ArrayList<>();
+        if(!note.isEmpty()){
         this.caseNoteList.add(new CaseNote(note, caseWorkerID));
-        
+        }
+
         this.serviceList = new ArrayList<>();
-        for(int i : serviceIDList){
-            this.serviceList.add(new Service(i));
+        for (Map.Entry<Integer, String> entry : serviceIDMap.entrySet()) {
+            this.serviceList.add(new Service(entry.getKey(), entry.getValue()));
         }
-        
-        
+
         this.offerList = new ArrayList<>();
-        for(int i : offerIDList){
-            this.offerList.add(new Offer(i));
+        for (Map.Entry<Integer, String> entry : offerIDMap.entrySet()) {
+            this.offerList.add(new Offer(entry.getKey(), entry.getValue()));
         }
-        
-        // ass method for adding casworkers to the affiliated casworkerlist
-    } 
+
+    }
+
+    private void addAffiliatedCaseworker(Collection<String> casworkerIDList) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
+    private void addAffiliatedCaseworker(String casworkerID) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

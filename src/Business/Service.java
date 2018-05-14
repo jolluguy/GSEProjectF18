@@ -16,13 +16,9 @@ public class Service implements IService {
     int seviceID;
     String serviceDescription;
 
-    public Service(int serviceID) {
+    public Service(int serviceID, String serviceString) {
         this.seviceID = serviceID;
-        this.serviceDescription = getServiceDescription(serviceID);
-    }
-
-    private String getServiceDescription(int serviceID) {
-        throw new UnsupportedOperationException("Not supported yet."); // incert code here that take the service id and returns the service id from wherever it is stored.... maby a hashmap???? make catalouge class again?
+        this.serviceDescription = serviceString;
     }
 
     public int getSeviceID() {

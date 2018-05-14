@@ -7,6 +7,7 @@ package Business;
 
 import Acquaintance.ICase;
 import Acquaintance.IInquiry;
+import java.sql.ResultSet;
 import java.util.Collection;
 import java.util.Date;
 
@@ -145,7 +146,6 @@ public class CaseManager {
             
         } catch (Exception e) {     // to cathc array aout of bound exeptions and the like and return them as false cprNumbers
             return false;
-        }
-    
+        }   
 }
 }

@@ -29,6 +29,8 @@ public class Meeting implements IMeeting {
         this.meetingDescription = meetingDescription;
         this.meetingLocation = meetingLocation;
     }
+    
+    // skriv metode til at fjerne en caseworker fra et møde
 
        
 }
