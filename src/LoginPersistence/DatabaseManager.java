@@ -1,5 +1,6 @@
 package LoginPersistence;
 
+import Acquaintance.IUser;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 public class DatabaseManager {
 
@@ -16,7 +17,18 @@ public class DatabaseManager {
     String dbUsername = "ciouhfgp";
     String dbPassword = "z0qIbACfFzXvrWfMqNV8ThVbgfyV8k76";
 
-    public boolean createUserInDB(String firstName, String lastName, String phoneNumber, String mail, String userName, String password, int niveau, java.sql.Timestamp createdTime, java.sql.Timestamp lastLoginTime) {
+    public boolean createUserInDB(IUser user) {
+        
+        String firstName = user.getFirstName();
+        String lastName = user.getLastName();
+        String phoneNumber = user.getPhoneNumber();
+        String mail = user.getMail();
+        String userName = user.getUserName();
+        String password = user.getPassword();
+        int niveau = user.getLevel();
+        Timestamp createdTime = user.getCreatedTime();
+        Timestamp lastLoginTime = user.getLastLoginTime();
+        
         try {
 
             Class.forName("org.postgresql.Driver");
@@ -95,9 +107,9 @@ public class DatabaseManager {
         return true;
     }
 
-    public List getAllUsers() {
+    public Collection getAllUsers() {
 
-        List<DataUser> userList = new ArrayList();
+        Collection<IUser> userList = new ArrayList<>();
 
         try {
             Class.forName("org.postgresql.Driver");

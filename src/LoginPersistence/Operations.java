@@ -33,7 +33,6 @@ public class Operations implements Serializable {
 
     private Map getMap() {
         System.out.println("getMap called");
-        tempUserList = database.getAllUsers();
         
         userMap = new HashMap<>();
 
@@ -56,23 +55,23 @@ public class Operations implements Serializable {
 //        }
 //    }
 
-    public boolean addUser(IUser user) {    // kan ikke bruges som den er til at tilfæje ny bruger da den ikke opretter map
-        getMap();
-
-//        saveMap();
-        String firstName = user.getFirstName();
-        String lastName = user.getLastName();
-        String phoneNumber = user.getPhoneNumber();
-        String mail = user.getMail();
-        String username = user.getUserName();
-        String password = user.getPassword();
-        int level = user.getLevel();
-        Timestamp createdTime = user.getCreatedTime();
-        Timestamp lastLoginTime = user.getLastLoginTime();
-        database.createUserInDB(firstName, lastName, phoneNumber, mail, username, password, level, createdTime, lastLoginTime);
-
-        return true;
-    }
+//    public boolean addUser(IUser user) {    // kan ikke bruges som den er til at tilfæje ny bruger da den ikke opretter map
+//        getMap();
+//
+////        saveMap();
+////        String firstName = user.getFirstName();
+////        String lastName = user.getLastName();
+////        String phoneNumber = user.getPhoneNumber();
+////        String mail = user.getMail();
+////        String username = user.getUserName();
+////        String password = user.getPassword();
+////        int level = user.getLevel();
+////        Timestamp createdTime = user.getCreatedTime();
+////        Timestamp lastLoginTime = user.getLastLoginTime();
+////        database.createUserInDB(firstName, lastName, phoneNumber, mail, username, password, level, createdTime, lastLoginTime);
+//
+//        return true;
+//    }
 
 //    boolean updateUser(IUser user) {
 //        getMap();
@@ -108,14 +107,5 @@ public class Operations implements Serializable {
             return false;
         }
     }
-
-    Collection<IUser> getAllUsers() {
-        Collection<IUser> col = new ArrayList<>();
-        getMap();
-        for (DataUser i : userMap.values()) {
-            col.add(i);
-
-        }
-        return col;
-    }
+    
 }

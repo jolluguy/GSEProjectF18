@@ -17,6 +17,7 @@ import Acquaintance.ILoginPersistence;
 public class LoginFacade implements ILoginPersistence, Serializable {
 
     Operations operations;
+    DatabaseManager database;
 
     private static LoginFacade instance = null;
 
@@ -39,8 +40,8 @@ public class LoginFacade implements ILoginPersistence, Serializable {
 
     @Override
     public boolean addUser(IUser user) {
-        operations = new Operations();
-        return operations.addUser(user);
+        database = new DatabaseManager();
+        return database.createUserInDB(user);
     }
 
 //    @Override
@@ -61,8 +62,8 @@ public class LoginFacade implements ILoginPersistence, Serializable {
 
     @Override
     public Collection<IUser> getAllUsers() {
-        operations = new Operations();
-        return operations.getAllUsers();
+        database = new DatabaseManager();
+        return database.getAllUsers();
     }
 
     @Override
