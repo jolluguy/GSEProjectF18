@@ -34,7 +34,7 @@ public class DatabaseManager {
             Class.forName("org.postgresql.Driver");
 
             //Query 1
-            PreparedStatement st1 = conn.prepareStatement("INSERT INTO login (brugernavn, kodeord, niveau, created_time, last_login_time) "
+            PreparedStatement st1 = conn.prepareStatement("INSERT INTO login (brugernavn, kodeord, niveau, oprettet, sidste_login) "
                     + "VALUES ('" + userName + "', '" + password + "', " + niveau + ", '" + createdTime + "', '" + lastLoginTime + "');");
 
             st1.executeUpdate();
@@ -73,13 +73,15 @@ public class DatabaseManager {
 
     }
 
-    public boolean updateLastLogin(String userName) {
+    public boolean updateLastLogin(IUser user) {
+        String userName = user.getUserName();
+        
         try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)){
             
             Class.forName("org.postgresql.Driver");
             
 
-            PreparedStatement st = conn.prepareStatement("UPDATE login SET last_login_time = '" + (new Timestamp(System.currentTimeMillis())) + "' WHERE brugernavn = '" + userName + "';");
+            PreparedStatement st = conn.prepareStatement("UPDATE login SET sidste_login = '" + (new Timestamp(System.currentTimeMillis())) + "' WHERE brugernavn = '" + userName + "';");
 
             st.executeUpdate();
 
@@ -92,7 +94,10 @@ public class DatabaseManager {
 
     }
 
-    public boolean updateJob(String userName, int level) {
+    public boolean updateJob(IUser user) {
+        String userName = user.getUserName();
+        int level = user.getLevel();
+        
         try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)){
             Class.forName("org.postgresql.Driver");
             
@@ -126,8 +131,8 @@ public class DatabaseManager {
                 String username = result.getString("brugernavn");
                 String password = result.getString("kodeord");
                 int level = Integer.parseInt(result.getString("niveau"));
-                java.sql.Timestamp createdTime = result.getTimestamp("created_time");
-                java.sql.Timestamp lastLoginTime = result.getTimestamp("last_login_time");
+                java.sql.Timestamp createdTime = result.getTimestamp("oprettet");
+                java.sql.Timestamp lastLoginTime = result.getTimestamp("sidste_login");
 
                 System.out.println(username);
                 userList.add(new DataUser(username, password, level, createdTime, lastLoginTime));
@@ -138,6 +143,63 @@ public class DatabaseManager {
         }
 
         return userList;
+    }
+    
+    public boolean doesUserExist(String userName){
+        int matches = -1;
+        try(Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)){
+            Class.forName("org.postgresql.Driver");
+            
+            Statement st = conn.createStatement();
+            String sql = "SELECT COUNT('brugernavn') FROM login WHERE brugernavn = '" + userName + "';";
+            
+            ResultSet result = st.executeQuery(sql);
+            
+            while(result.next()){
+                matches = result.getInt("count");
+            }
+            
+            if(matches == 1){
+                return true;
+            }            
+            
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return false;
+    }
+    
+    public IUser getUser(String userName){
+        DataUser user = null;
+                
+        try(Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)){
+            Class.forName("org.postgresql.Driver");
+            
+            if(doesUserExist(userName)){
+                Statement st2 = conn.createStatement();
+                String sql2 = "SELECT brugernavn, kodeord, niveau, oprettet, sidste_login FROM login WHERE brugernavn = '" + userName + "';";
+                
+                ResultSet result2 = st2.executeQuery(sql2);
+                
+                while(result2.next()){
+                    String tempUserName = result2.getString("brugernavn");
+                    String tempPassword = result2.getString("kodeord");
+                    int tempLevel = result2.getInt("niveau");
+                    Timestamp tempCreatedTime = result2.getTimestamp("oprettet");
+                    Timestamp tempLastLoginTime = result2.getTimestamp("sidste_login");
+                    
+                    user = new DataUser(tempUserName, tempPassword, tempLevel, tempCreatedTime, tempLastLoginTime);
+                }
+            } else {
+                System.out.println("User does not exist");
+                return null;
+            }
+            
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 
 }

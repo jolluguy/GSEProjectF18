@@ -27,23 +27,22 @@ public class Operations implements Serializable {
 
     protected Map<String, DataUser> userMap; //String = IUser.getUserName;
     protected List<DataUser> tempUserList; //Only for loading in users from DB;
-    private final File file = new File("UserSetFile.obj");
     private DataUser user;
     DatabaseManager database = new DatabaseManager();
 
-    private Map getMap() {
-        System.out.println("getMap called");
-        
-        userMap = new HashMap<>();
-
-        for (DataUser user : tempUserList) {
-            userMap.put(user.getUserName(), user);
-        }
-        System.out.println("tempUserList = " + tempUserList.toString());
-        System.out.println("userMap = " + userMap.toString());
-        
-        return userMap;
-    }
+//    private Map getMap() {
+//        System.out.println("getMap called");
+//        
+//        userMap = new HashMap<>();
+//
+//        for (DataUser user : tempUserList) {
+//            userMap.put(user.getUserName(), user);
+//        }
+//        System.out.println("tempUserList = " + tempUserList.toString());
+//        System.out.println("userMap = " + userMap.toString());
+//        
+//        return userMap;
+//    }
 
 //    private void saveMap() {  // Called every time a user is created/updated
 //        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
@@ -81,31 +80,31 @@ public class Operations implements Serializable {
 //        return true;
 //    }
     
-    boolean updateLastLoginTime(IUser user){
-        String username = user.getUserName();
-        return database.updateLastLogin(username);
-    }
+//    boolean updateLastLoginTime(IUser user){
+//        String username = user.getUserName();
+//        return database.updateLastLogin(username);
+//    }
     
-    boolean updateJob(IUser user){
-        String userName = user.getUserName();
-        int level = user.getLevel();
-        return database.updateJob(userName, level);
-    }
+//    boolean updateJob(IUser user){
+//        String userName = user.getUserName();
+//        int level = user.getLevel();
+//        return database.updateJob(userName, level);
+//    }
 
-    IUser getUser(String userName) {
-        getMap();
-        user = userMap.get(userName);
+//    IUser getUser(String userName) {
+//        getMap();
+//        user = userMap.get(userName);
+//
+//        return user;
+//    }
 
-        return user;
-    }
-
-    boolean isUserInMap(String userName) {
-        getMap();
-        if (userMap.containsKey(userName)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+//    boolean isUserInMap(String userName) {
+//        getMap();
+//        if (userMap.containsKey(userName)) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
     
 }

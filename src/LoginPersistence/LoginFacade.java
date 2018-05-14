@@ -34,8 +34,8 @@ public class LoginFacade implements ILoginPersistence, Serializable {
 
     @Override
     public IUser getUser(String userName) {
-        operations = new Operations();
-        return operations.getUser(userName);
+        database = new DatabaseManager();
+        return database.getUser(userName);
     }
 
     @Override
@@ -43,21 +43,17 @@ public class LoginFacade implements ILoginPersistence, Serializable {
         database = new DatabaseManager();
         return database.createUserInDB(user);
     }
-
-//    @Override
-//    public boolean updateUser(IUser user) {
-//        operations = new Operations();
-//        return operations.updateUser(user);
-//    }
     
     @Override
     public boolean updateLastLoginTime(IUser user){
-        return operations.updateLastLoginTime(user);
+        database = new DatabaseManager();
+        return database.updateLastLogin(user);
     }
     
     @Override
     public boolean updateJob(IUser user){
-        return operations.updateJob(user);
+        database = new DatabaseManager();
+        return database.updateJob(user);
     }
 
     @Override
@@ -68,8 +64,8 @@ public class LoginFacade implements ILoginPersistence, Serializable {
 
     @Override
     public boolean getUserInfo(String userName) {
-        operations = new Operations();
-        return operations.isUserInMap(userName);
+        database = new DatabaseManager();
+        return database.doesUserExist(userName);
     }
 
 }
