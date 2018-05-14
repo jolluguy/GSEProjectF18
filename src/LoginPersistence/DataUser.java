@@ -82,7 +82,7 @@ public class DataUser implements IUser, Serializable {
     }
 
     @Override
-    public void setPassword(String pw) {
+    public void changePassword(String pw) {
         this.password = pw;
     }
 

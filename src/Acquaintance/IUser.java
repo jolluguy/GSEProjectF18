@@ -28,7 +28,7 @@ public interface IUser {
 
     void setLevel(int level);
 
-    void setPassword(String pw);
+    void changePassword(String password);
     
     String getPassword();
     

@@ -84,39 +84,24 @@ public class User implements IUser, Serializable{
     public void setLevel(int level) {
         this.level = level;
     }
-    
-    @Override
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public boolean checkPassword(String password) {
         return this.password.equals(password);
     }
 
+    @Override
     public void changePassword(String password) {
         this.password = password;
+    }
+    
+    @Override
+    public String getPassword() {
+        return password;
     }
 
     @Override
     public void setLastLoginTime() {
         this.lastLoginTime = new Timestamp(System.currentTimeMillis());
-    }
-
-
-    
-    DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
-
-    @Override
-    public String toString() {
-   String str = String.format("%1$-16s\t%2$d\t%3$s\t%4$s", userName, level, df.format(createdTime), df.format(lastLoginTime));
-       return str; 
-//        return (userName + "\t" + level + "\t" + df.format(createdTime) + "\t" + df.format(lastLoginTime));
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
     }
 
     @Override
@@ -127,6 +112,15 @@ public class User implements IUser, Serializable{
     @Override
     public Timestamp getLastLoginTime() {
         return lastLoginTime;
+    }
+    
+    
+    DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
+
+    @Override
+    public String toString() {
+   String str = String.format("%1$-16s\t%2$d\t%3$s\t%4$s", userName, level, df.format(createdTime), df.format(lastLoginTime));
+       return str; 
     }
 
 }
