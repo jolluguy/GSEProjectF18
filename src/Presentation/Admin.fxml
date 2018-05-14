@@ -36,13 +36,11 @@
                            <font>
                               <Font size="15.0" />
                            </font></Label>
+                        <TextField fx:id="firstNameField" layoutX="228.0" layoutY="59.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: F3F3F3; -fx-background-radius: 3;" />
+                        <TextField fx:id="lastNameField" layoutX="228.0" layoutY="113.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: F3F3F3; -fx-background-radius: 3;" />
                         <TextField fx:id="usernameField" layoutX="228.0" layoutY="202.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: F3F3F3; -fx-background-radius: 3;" />
                         <PasswordField fx:id="password1Field" layoutX="228.0" layoutY="261.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: F3F3F3; -fx-background-radius: 3;" />
                         <PasswordField fx:id="password2Field" layoutX="228.0" layoutY="321.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: F3F3F3; -fx-background-radius: 3;" />
-                        <Button fx:id="addUserButton" layoutX="31.0" layoutY="661.0" mnemonicParsing="false" onAction="#createUser" style="-fx-background-color: F3F3F3; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Tilføj bruger">
-                           <font>
-                              <Font size="15.0" />
-                           </font></Button>
                         <RadioButton fx:id="lvl1Radio" layoutX="228.0" layoutY="395.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="145.0" text="Sagsbehandler">
                            <toggleGroup>
                               <ToggleGroup fx:id="levelGroup" />
@@ -55,14 +53,16 @@
                            <font>
                               <Font size="15.0" />
                            </font></RadioButton>
+                        <Button fx:id="addUserButton" layoutX="31.0" layoutY="661.0" mnemonicParsing="false" onAction="#createUser" style="-fx-background-color: F3F3F3; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Tilføj bruger">
+                           <font>
+                              <Font size="15.0" />
+                           </font></Button>
                         <Label fx:id="warningLabel" layoutX="33.0" layoutY="621.0" prefHeight="21.0" prefWidth="727.0" />
                         <Button fx:id="createUserCancelButton" layoutX="152.0" layoutY="661.0" mnemonicParsing="false" onAction="#userCreationClearFields" style="-fx-background-color: F3F3F3; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Annuller">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Button>
-                        <TextField fx:id="lastNameField" layoutX="228.0" layoutY="113.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: F3F3F3; -fx-background-radius: 3;" />
-                        <TextField fx:id="firstNameField" layoutX="228.0" layoutY="59.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: F3F3F3; -fx-background-radius: 3;" />
                         <Label fx:id="firstNameLabel" layoutX="59.0" layoutY="62.0" text="Fornavn">
                            <font>
                               <Font size="15.0" />
