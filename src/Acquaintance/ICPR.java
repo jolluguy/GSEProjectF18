@@ -11,6 +11,5 @@ package Acquaintance;
  */
 public interface ICPR {
    public String getCprNumber();
-   public boolean validateCPR();
    
 }

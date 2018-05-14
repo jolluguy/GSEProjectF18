@@ -356,7 +356,7 @@ public class CaseworkerController implements Initializable {
     
     @FXML
     public void newInquiry(ActionEvent event) {
-        long cprNumber = Long.parseLong(cprTextField.getText(), 10);
+        String cprNumber = cprTextField.getText();
         String problemDescription = descriptionTextAreaInquiry.getText();
         String firstName = firstNameTextField.getText();
         String lastName = lastNameTextField.getText();

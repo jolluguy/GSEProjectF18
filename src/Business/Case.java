@@ -23,6 +23,8 @@ import java.util.Date;
 public class Case implements ICase{
     
     Collection<IInquiry> inquiryList;
+    String responsibleCaseworker;
+    Collection<String> affiliatedCaseworkers;
     Collection<String> responsibleCaseworkerIDList;    // skal det være en collection eller bare en?
     Collection<IMeeting> meetingList;
     Collection<IRepresentation> representationList;
@@ -89,6 +91,8 @@ public class Case implements ICase{
         for(int i : offerIDList){
             this.offerList.add(new Offer(i));
         }
+        
+        // ass method for adding casworkers to the affiliated casworkerlist
     } 
     
 }

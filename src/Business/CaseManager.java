@@ -47,9 +47,6 @@ public class CaseManager {
      */
     public boolean createInquiry(String cprNumber, String problemDescription, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber) {
         Inquiry inquiry = new Inquiry(cprNumber, problemDescription, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
-        if (!inquiry.getCitizen().getCpr().validateCPR()) {
-            return false;
-        }
         return sendInqToDB(inquiry);
     }
 
@@ -137,5 +134,18 @@ public class CaseManager {
         }
         return returnMessage;
     }
+    public boolean validateCPR(String cprNumber) {
+        try {
+             String parts[] = cprNumber.split("-");
+        String birthpart = parts[0];
+        String securitypart = parts[1];
+        
+        return (birthpart.matches("^[0-9]{6}$") && securitypart.matches("^[0-9]{4}$"));         //matches is a predetermenind method for maching the charecters in a string, [0-9] defines a class that contains numbers from  0-9, the ^ indicates that the comparison must start at the end of the string, and the $ indicates that it must continue until the end, the part [0-9]{x} indikates that its only tru if it ran throug exaxtly x charecters and all of them was a number btween 0-9.
+               
+            
+        } catch (Exception e) {     // to cathc array aout of bound exeptions and the like and return them as false cprNumbers
+            return false;
+        }
     
+}
 }
