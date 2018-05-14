@@ -43,10 +43,20 @@ public class LoginFacade implements ILoginPersistence, Serializable {
         return operations.addUser(user);
     }
 
+//    @Override
+//    public boolean updateUser(IUser user) {
+//        operations = new Operations();
+//        return operations.updateUser(user);
+//    }
+    
     @Override
-    public boolean updateUser(IUser user) {
-        operations = new Operations();
-        return operations.updateUser(user);
+    public boolean updateLastLoginTime(IUser user){
+        return operations.updateLastLoginTime(user);
+    }
+    
+    @Override
+    public boolean updateJob(IUser user){
+        return operations.updateJob(user);
     }
 
     @Override

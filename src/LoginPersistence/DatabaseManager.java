@@ -5,15 +5,16 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseManager {
 
     Connection conn;
-    String url = "jdbc:postgresql://horton.elephantsql.com:5432/ksevsemh";
-    String dbUsername = "ksevsemh";
-    String dbPassword = "S_ACh-Y8moY8kuw4BtFMiGDWoqLrzc_o";
+    String url = "jdbc:postgresql://pellefant.db.elephantsql.com:5432/ciouhfgp";
+    String dbUsername = "ciouhfgp";
+    String dbPassword = "z0qIbACfFzXvrWfMqNV8ThVbgfyV8k76";
 
     public boolean createUserInDB(String firstName, String lastName, String phoneNumber, String mail, String userName, String password, int niveau, java.sql.Timestamp createdTime, java.sql.Timestamp lastLoginTime) {
         try {
@@ -49,9 +50,8 @@ public class DatabaseManager {
 
             //Query 4
             PreparedStatement st4 = conn.prepareStatement("INSERT INTO holder_info VALUES('" + userName + "', " + userID + ");");
-            
+
             st4.executeUpdate();
-            
 
             System.out.println("Query successfull");
 
@@ -61,6 +61,38 @@ public class DatabaseManager {
 
         return true;
 
+    }
+
+    public boolean updateLastLogin(String userName) {
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword);
+
+            PreparedStatement st = conn.prepareStatement("UPDATE login SET last_login_time = '" + (new Timestamp(System.currentTimeMillis())) + "' WHERE brugernavn = '" + userName + "';");
+
+            st.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return true;
+    }
+
+    public boolean updateJob(String userName, int level) {
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword);
+            
+            PreparedStatement st = conn.prepareStatement("UPDATE login SET niveau = '" + level + "' WHERE brugernavn = '" + userName + "';");
+            
+            st.executeUpdate();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return true;
     }
 
     public List getAllUsers() {

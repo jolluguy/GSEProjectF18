@@ -34,7 +34,7 @@ public class AccessManager {
         if (checkUser.checkPassword(pw)) {
             userOne = checkUser;
             userOne.setLastLoginTime();
-            if (facade.updateUser(userOne)) {
+            if (facade.updateLastLoginTime(userOne)) {
                 level = userOne.getLevel();
             }
         }

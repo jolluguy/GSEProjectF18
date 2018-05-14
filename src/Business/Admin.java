@@ -43,7 +43,7 @@ public class Admin extends Job {
     boolean changeJob(String userName, String password, int level){
         IUser user = facade.getUser(userName);
         user.setLevel(level);
-        return facade.updateUser(user);
+        return facade.updateJob(user);
     }
     
 

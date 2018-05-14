@@ -40,8 +40,8 @@ public class Operations implements Serializable {
         for (DataUser user : tempUserList) {
             userMap.put(user.getUserName(), user);
         }
-        System.out.println("tempUserList = " + tempUserList);
-        System.out.println("userMap = " + userMap);
+        System.out.println("tempUserList = " + tempUserList.toString());
+        System.out.println("userMap = " + userMap.toString());
         
         return userMap;
     }
@@ -74,12 +74,23 @@ public class Operations implements Serializable {
         return true;
     }
 
-    boolean updateUser(IUser user) {
-        getMap();
-        userMap.remove(user.getUserName());
-        userMap.put(user.getUserName(), new DataUser(user.getUserName(), user.getPassword(), user.getLevel(), user.getCreatedTime(), user.getLastLoginTime()));
-//        saveMap();
-        return true;
+//    boolean updateUser(IUser user) {
+//        getMap();
+//        userMap.remove(user.getUserName());
+//        userMap.put(user.getUserName(), new DataUser(user.getUserName(), user.getPassword(), user.getLevel(), user.getCreatedTime(), user.getLastLoginTime()));
+////        saveMap();
+//        return true;
+//    }
+    
+    boolean updateLastLoginTime(IUser user){
+        String username = user.getUserName();
+        return database.updateLastLogin(username);
+    }
+    
+    boolean updateJob(IUser user){
+        String userName = user.getUserName();
+        int level = user.getLevel();
+        return database.updateJob(userName, level);
     }
 
     IUser getUser(String userName) {

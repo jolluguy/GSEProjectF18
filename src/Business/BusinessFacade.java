@@ -103,8 +103,16 @@ public class BusinessFacade implements IBusiness {
         return loginPersistence.addUser(user);
     }
 
-    public boolean updateUser(IUser user) {
-        return loginPersistence.updateUser(user);
+//    public boolean updateUser(IUser user) {
+//        return loginPersistence.updateUser(user);
+//    }
+    
+    public boolean updateLastLoginTime(IUser user){
+        return loginPersistence.updateLastLoginTime(user);
+    }
+    
+    public boolean updateJob(IUser user){
+        return loginPersistence.updateJob(user);
     }
 
     @Override
