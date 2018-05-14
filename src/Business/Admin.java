@@ -33,7 +33,7 @@ public class Admin extends Job {
     }
     
     boolean createUser(String firstName, String lastName, String userName, String password1, String password2, int level) {
-        if (password1.equals(password2)) {
+        if (password1.equals(password2) && level != -1) {
             return facade.addUser( new User(firstName, lastName, userName, password1, level));
         } else {
             return false;

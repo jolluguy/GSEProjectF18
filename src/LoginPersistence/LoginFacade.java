@@ -16,7 +16,6 @@ import Acquaintance.ILoginPersistence;
  */
 public class LoginFacade implements ILoginPersistence, Serializable {
 
-    Operations operations;
     DatabaseManager database;
 
     private static LoginFacade instance = null;
