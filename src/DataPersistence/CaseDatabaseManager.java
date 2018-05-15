@@ -6,10 +6,6 @@
 package DataPersistence;
 
 import java.sql.Connection;
-import java.sql.Driver;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.Timestamp;
 
 /**
  *
@@ -22,17 +18,5 @@ public class CaseDatabaseManager {
     String dbUsername = "mcheibvh";
     String dbPassword = "keLgH7ysBAb9ly98JEFysr6EwwRGbVY_";
     
-    public void testDatabase(){
-        
-        try(Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)){
-            Class.forName("org.postgresql.Driver");
-            
-            PreparedStatement st = conn.prepareStatement("INSERT INTO aftale(dato, lokation, beskrivelse) VALUES ('" +  new Timestamp(System.currentTimeMillis()) + "', place', 'description');");
-            
-            st.executeUpdate();
-            
-        }catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
+    
 }
