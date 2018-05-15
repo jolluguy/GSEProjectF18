@@ -16,7 +16,7 @@ import Acquaintance.ILoginPersistence;
  */
 public class LoginFacade implements ILoginPersistence, Serializable {
 
-    DatabaseManager database;
+    LoginDatabaseManager database;
 
     private static LoginFacade instance = null;
 
@@ -33,37 +33,37 @@ public class LoginFacade implements ILoginPersistence, Serializable {
 
     @Override
     public IUser getUser(String userName) {
-        database = new DatabaseManager();
+        database = new LoginDatabaseManager();
         return database.getUser(userName);
     }
 
     @Override
     public boolean addUser(IUser user) {
-        database = new DatabaseManager();
+        database = new LoginDatabaseManager();
         return database.createUserInDB(user);
     }
     
     @Override
     public boolean updateLastLoginTime(IUser user){
-        database = new DatabaseManager();
+        database = new LoginDatabaseManager();
         return database.updateLastLogin(user);
     }
     
     @Override
     public boolean updateJob(IUser user){
-        database = new DatabaseManager();
+        database = new LoginDatabaseManager();
         return database.updateJob(user);
     }
 
     @Override
     public Collection<IUser> getAllUsers() {
-        database = new DatabaseManager();
+        database = new LoginDatabaseManager();
         return database.getAllUsers();
     }
 
     @Override
     public boolean getUserInfo(String userName) {
-        database = new DatabaseManager();
+        database = new LoginDatabaseManager();
         return database.doesUserExist(userName);
     }
 

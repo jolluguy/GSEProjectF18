@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class DatabaseManager {
+public class LoginDatabaseManager {
 
     Connection conn;
     String url = "jdbc:postgresql://pellefant.db.elephantsql.com:5432/ciouhfgp";
