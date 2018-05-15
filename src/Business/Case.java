@@ -23,8 +23,16 @@ import java.util.Map;
  */
 public class Case implements ICase {
 
-    Collection<IInquiry> inquiryList;
     String responsibleCaseworker;
+    boolean informedRightsBistander;
+    boolean informedRightsElectronicRegistration;
+    String consent;
+    Collection<String> consentToInformationGathering;
+    String specialCircumstances;
+    String otherActingMunicipality;
+    String otherPayingMunicipality;
+
+    Collection<IInquiry> inquiryList;
     Collection<String> affiliatedCaseworkers;
     Collection<IMeeting> meetingList;
     Collection<IRepresentation> representationList;
@@ -33,9 +41,16 @@ public class Case implements ICase {
     Collection<IOffer> offerList;
 
     /**
-     *
-     * @param inquiry , created by
-     * @param responsibleCaseworkerIDList
+     * Constructor used when creating a new case.
+     * @param inquiry
+     * @param responsibleCaseworker
+     * @param informedRightsBistander
+     * @param informedRightsElectronicRegistration
+     * @param consent
+     * @param consentToInformationGathering
+     * @param specialCircumstances
+     * @param otherActingMunicipality
+     * @param otherPayingMunicipality
      * @param meetingDate
      * @param attendingCasworkerIDList
      * @param meetingDescription
@@ -52,17 +67,24 @@ public class Case implements ICase {
      * @param representationType
      * @param note
      * @param caseWorkerID
-     * @param serviceIDList
-     * @param offerIDList
+     * @param serviceIDMap
+     * @param offerIDMap 
      */
     public Case(IInquiry inquiry,
             String responsibleCaseworker,
+            boolean informedRightsBistander,
+            boolean informedRightsElectronicRegistration,
+            String consent,
+            Collection<String> consentToInformationGathering,
+            String specialCircumstances,
+            String otherActingMunicipality,
+            String otherPayingMunicipality,
             Date meetingDate, Collection<String> attendingCasworkerIDList, String meetingDescription, String meetingLocation,
             String cprNumber, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber, String representationType,
             String note, String caseWorkerID,
             Map<Integer, String> serviceIDMap,
             Map<Integer, String> offerIDMap) {
-        
+
         // adding a Inquiry to the case
         inquiryList = new ArrayList<>();
         inquiryList.add(inquiry);
@@ -70,25 +92,42 @@ public class Case implements ICase {
         // seting the responsible caseworker
         this.responsibleCaseworker = responsibleCaseworker;
         
+        
+        this.informedRightsBistander = informedRightsBistander;
+        this.informedRightsElectronicRegistration = informedRightsElectronicRegistration;
+        this.consent = consent;
+        
+        this.consentToInformationGathering = new ArrayList<>();
+        if (!consentToInformationGathering.isEmpty()){
+            for(String s : consentToInformationGathering){
+                this.consentToInformationGathering.add(s);
+            }
+        }
+        
+        this.specialCircumstances = specialCircumstances;
+        this.otherActingMunicipality = otherActingMunicipality;
+        this.otherPayingMunicipality = otherPayingMunicipality;
+        
+
         // creating a list of caseworkers who has ben affiliated with the case and adding the responsibleCaseworker to the list
         this.affiliatedCaseworkers = new ArrayList<>();
-       affiliatedCaseworkers.add(this.responsibleCaseworker);
-       addAffiliatedCaseworker(attendingCasworkerIDList);
-                
+        affiliatedCaseworkers.add(this.responsibleCaseworker);
+        addAffiliatedCaseworker(attendingCasworkerIDList);
+
         //creates a list to hold meetings and adds the first meeting
         this.meetingList = new ArrayList<>();
         meetingList.add(new Meeting(meetingDate, attendingCasworkerIDList, meetingDescription, meetingLocation));
 
         // creates a list to hold representants and ads the first representant if one such is added.
         this.representationList = new ArrayList<>();
-        if(!cprNumber.isEmpty()){
-        this.representationList.add(new Representation(cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber, representationType));
+        if (!cprNumber.isEmpty()) {
+            this.representationList.add(new Representation(cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber, representationType));
         }
-        
+
         // creates a list to hold casenotes and ads one if one such exist
         this.caseNoteList = new ArrayList<>();
-        if(!note.isEmpty()){
-        this.caseNoteList.add(new CaseNote(note, caseWorkerID));
+        if (!note.isEmpty()) {
+            this.caseNoteList.add(new CaseNote(note, caseWorkerID));
         }
 
         this.serviceList = new ArrayList<>();
@@ -106,7 +145,7 @@ public class Case implements ICase {
     private void addAffiliatedCaseworker(Collection<String> casworkerIDList) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     private void addAffiliatedCaseworker(String casworkerID) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
