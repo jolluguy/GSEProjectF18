@@ -5,27 +5,36 @@
  */
 package Acquaintance;
 
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
  * @author Alexa
  */
 public interface IUser {
+    
+    String getFirstName();
+    
+    String getLastName();
 
     String getUserName();
+    
+    String getPhoneNumber();
+    
+    String getMail();
 
     int getLevel();
 
     void setLevel(int level);
 
-    void setPassword(String pw);
+    void changePassword(String password);
     
     String getPassword();
     
-    Date getCreatedTime();
+    Timestamp getCreatedTime();
     
-    Date getLastLoginTime();
+    Timestamp getLastLoginTime();
 
     public void setLastLoginTime();
 

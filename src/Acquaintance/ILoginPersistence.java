@@ -17,7 +17,11 @@ public interface ILoginPersistence {
 
     boolean addUser(IUser user);
     
-    boolean updateUser(IUser user);
+//    boolean updateUser(IUser user);
+    
+    boolean updateLastLoginTime(IUser user);
+    
+    boolean updateJob(IUser user);
     
     Collection<IUser> getAllUsers();
     

@@ -81,7 +81,8 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="cprTextField" layoutX="440.0" layoutY="255.0" prefHeight="31.0" prefWidth="300.0" />
+                                    <TextField fx:id="CPRBirthField" alignment="CENTER_RIGHT" layoutX="440.0" layoutY="255.0" prefHeight="31.0" prefWidth="200.0" />
+                                    <TextField fx:id="CPRSecuityField" layoutX="668.0" layoutY="256.0" prefHeight="31.0" prefWidth="73.0" />
                                     <TextField fx:id="firstNameTextField" layoutX="440.0" layoutY="307.0" prefHeight="31.0" prefWidth="300.0" />
                                     <TextField fx:id="lastNameTextField" layoutX="440.0" layoutY="359.0" prefHeight="31.0" prefWidth="300.0" />
                                     <TextField fx:id="streetNameTextField" layoutX="440.0" layoutY="414.0" prefHeight="31.0" prefWidth="235.0" />
@@ -97,6 +98,11 @@
                                     <Button fx:id="archiveButton" layoutX="125.0" layoutY="1226.0" mnemonicParsing="false" onAction="#newInquiry" style="-fx-background-color: f3f3f3; -fx-background-radius: 3; -fx-border-color: black; -fx-border-radius: 3;" text="Arkiver" />
                                     <Button fx:id="newCaseButton" layoutX="230.0" layoutY="1226.0" mnemonicParsing="false" style="-fx-background-color: f3f3f3; -fx-background-radius: 3; -fx-border-color: black; -fx-border-radius: 3;" text="Opret ny sag" />
                                     <Label fx:id="inquiryStatusTextField" layoutX="125.0" layoutY="1187.0" prefWidth="900.0" />
+                                    <Label alignment="CENTER" layoutX="641.0" layoutY="256.0" prefHeight="21.0" prefWidth="26.0" text="-">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
                                  </children></AnchorPane>
                           </content>
                         </ScrollPane>

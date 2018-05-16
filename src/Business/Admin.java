@@ -8,7 +8,8 @@ package Business;
 import Acquaintance.IUser;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -31,9 +32,9 @@ public class Admin extends Job {
         return instance;
     }
     
-    boolean createUser(String userName, String password1, String password2, int level) {
-        if (password1.equals(password2)) {
-            return facade.addUser( new User(userName, password1, level, new Date(), new Date()) {});
+    boolean createUser(String firstName, String lastName, String userName, String password1, String password2, int level) {
+        if (password1.equals(password2) && level != -1) {
+            return facade.addUser( new User(firstName, lastName, userName, password1, level));
         } else {
             return false;
         }
@@ -42,7 +43,7 @@ public class Admin extends Job {
     boolean changeJob(String userName, String password, int level){
         IUser user = facade.getUser(userName);
         user.setLevel(level);
-        return facade.updateUser(user);
+        return facade.updateJob(user);
     }
     
 

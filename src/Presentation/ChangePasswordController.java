@@ -6,7 +6,6 @@
 package Presentation;
 
 import Acquaintance.IBusiness;
-import com.sun.java.swing.plaf.windows.resources.windows;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;

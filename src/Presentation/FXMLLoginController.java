@@ -66,8 +66,8 @@ public class FXMLLoginController implements Initializable {
     public void login(ActionEvent event) throws IOException {
         String userName = usernameField.getText().toLowerCase();
         String password = passwordField.getText();
-
-        if (!business.checkCredentials(userName, password)) {
+        
+        if (business.checkCredentials(userName, password) == false) {
             errorLabel.setText("Brugernavn eller password er forkert!");
         } else {
             int result = business.login(userName, password);
@@ -82,6 +82,7 @@ public class FXMLLoginController implements Initializable {
                 appStage.show();
 
             } else if (result == 2) {
+                
                 Parent adminScene = FXMLLoader.load(getClass().getResource("Admin.fxml"));
 
                 Scene newScene = new Scene(adminScene);

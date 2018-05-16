@@ -8,7 +8,7 @@ package Business;
 import Acquaintance.IUser;
 import java.io.Serializable;
 import java.text.DateFormat;
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -16,31 +16,58 @@ import java.util.Date;
  */
 public class User implements IUser, Serializable{
    
-    
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
+    private String mail;
     private String userName;
     private String password;
     private int level;
-    private Date createdTime;
-    private Date lastLoginTime;
+    private Timestamp createdTime;
+    private Timestamp lastLoginTime;
 /**
  * for youse when adding a new user to the system, it aoutomaticaly sets createddate and lastlogontime.
  * @param userName
  * @param password
  * @param level 
  */
-    public User(String userName, String password, int level) {
+    public User(String firstName, String lastName, String userName, String password, int level) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = "88888888"; //NB!! - Telefonnummer skal oprettes automatisk;
+        this.mail = userName + "@sensum.dk";
         this.userName = userName;
         this.password = password;
         this.level = level;
-        this.createdTime = new Date();
-        this.lastLoginTime = new Date();
+        this.createdTime = new Timestamp(System.currentTimeMillis());
+        this.lastLoginTime = new Timestamp(System.currentTimeMillis());
     }
-    public User(String userName, String password, int level, Date createdTime, Date lastLoginTime) {
+    public User(String userName, String password, int level, Timestamp createdTime, Timestamp lastLoginTime) {
         this.userName = userName;
         this.password = password;
         this.level = level;
         this.createdTime = createdTime;
         this.lastLoginTime = lastLoginTime;
+    }
+
+    @Override
+    public String getFirstName() {
+        return firstName;
+    }
+
+    @Override
+    public String getLastName() {
+        return lastName;
+    }
+
+    @Override
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    @Override
+    public String getMail() {
+        return mail;
     }
     
     @Override
@@ -57,26 +84,36 @@ public class User implements IUser, Serializable{
     public void setLevel(int level) {
         this.level = level;
     }
-    
-    @Override
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public boolean checkPassword(String password) {
         return this.password.equals(password);
     }
 
+    @Override
     public void changePassword(String password) {
         this.password = password;
+    }
+    
+    @Override
+    public String getPassword() {
+        return password;
     }
 
     @Override
     public void setLastLoginTime() {
-        this.lastLoginTime = new Date();
+        this.lastLoginTime = new Timestamp(System.currentTimeMillis());
     }
 
+    @Override
+    public Timestamp getCreatedTime() {
+        return createdTime;
+    }
 
+    @Override
+    public Timestamp getLastLoginTime() {
+        return lastLoginTime;
+    }
+    
     
     DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
 
@@ -84,22 +121,6 @@ public class User implements IUser, Serializable{
     public String toString() {
    String str = String.format("%1$-16s\t%2$d\t%3$s\t%4$s", userName, level, df.format(createdTime), df.format(lastLoginTime));
        return str; 
-//        return (userName + "\t" + level + "\t" + df.format(createdTime) + "\t" + df.format(lastLoginTime));
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public Date getCreatedTime() {
-        return createdTime;
-    }
-
-    @Override
-    public Date getLastLoginTime() {
-        return lastLoginTime;
     }
 
 }

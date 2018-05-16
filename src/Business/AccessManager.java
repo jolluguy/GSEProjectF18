@@ -16,9 +16,9 @@ public class AccessManager {
     private static AccessManager instance = null;
 
     private AccessManager() {
-        
+
     }
-    
+
     public static AccessManager getInstance() {
         if (instance == null) {
             instance = new AccessManager();
@@ -28,13 +28,13 @@ public class AccessManager {
 
     public int login(String userName, String pw) {
         int level = -1;
-        IUser user = facade.getUser(userName); //Parsing User due to IUser return
+        IUser user = facade.getUser(userName); //Parsing User below due to IUser return
         User checkUser = new User(user.getUserName(), user.getPassword(), user.getLevel(), user.getCreatedTime(), user.getLastLoginTime());
 
         if (checkUser.checkPassword(pw)) {
             userOne = checkUser;
             userOne.setLastLoginTime();
-            if (facade.updateUser(userOne)) {
+            if (facade.updateLastLoginTime(userOne)) {
                 level = userOne.getLevel();
             }
         }
@@ -46,22 +46,18 @@ public class AccessManager {
     }
 
     public boolean checkCredentials(String userName, String password) {
-        if (facade.getUserInfo(userName)) {
-            IUser user = facade.getUser(userName);
-            if (user.getPassword().equals(password)) {
-
-                return true;
-            }
-
+        IUser user = facade.getUser(userName);
+        if (user.getPassword().equals(password)) {
+            return true;
         }
 
         return false;
     }
-    
-    public boolean changePassword(String oldPassword, String newPassword1, String newPassword2){
-        if(oldPassword.equals(userOne.getPassword())){
-            if(newPassword1.equals(newPassword2)){
-                userOne.setPassword(newPassword1);
+
+    public boolean changePassword(String oldPassword, String newPassword1, String newPassword2) {
+        if (oldPassword.equals(userOne.getPassword())) {
+            if (newPassword1.equals(newPassword2)) {
+                userOne.changePassword(newPassword1);
                 return true;
             }
         }
@@ -71,6 +67,5 @@ public class AccessManager {
     public IUser getUserOne() {
         return userOne;
     }
-    
-    
+
 }

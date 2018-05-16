@@ -16,16 +16,16 @@ import Acquaintance.ILoginPersistence;
  */
 public class LoginFacade implements ILoginPersistence, Serializable {
 
-    Operations operations;
+    LoginDatabaseManager database;
 
     private static LoginFacade instance = null;
-    
+
     private LoginFacade() {
-        
+
     }
-    
+
     public static LoginFacade getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new LoginFacade();
         }
         return instance;
@@ -33,34 +33,38 @@ public class LoginFacade implements ILoginPersistence, Serializable {
 
     @Override
     public IUser getUser(String userName) {
-        operations = new Operations();
-        return operations.getUser(userName);
+        database = new LoginDatabaseManager();
+        return database.getUser(userName);
     }
 
     @Override
     public boolean addUser(IUser user) {
-        operations = new Operations();
-        return operations.addUser(user);
+        database = new LoginDatabaseManager();
+        return database.createUserInDB(user);
+    }
+    
+    @Override
+    public boolean updateLastLoginTime(IUser user){
+        database = new LoginDatabaseManager();
+        return database.updateLastLogin(user);
+    }
+    
+    @Override
+    public boolean updateJob(IUser user){
+        database = new LoginDatabaseManager();
+        return database.updateJob(user);
     }
 
     @Override
-    public boolean updateUser(IUser user) {
-        operations = new Operations();
-        return operations.updateUser(user);
+    public Collection<IUser> getAllUsers() {
+        database = new LoginDatabaseManager();
+        return database.getAllUsers();
     }
-    
-    @Override
-    public Collection<IUser> getAllUsers(){
-        operations = new Operations();
-        return operations.getAllUsers();
-    }
-    
+
     @Override
     public boolean getUserInfo(String userName) {
-        operations = new Operations();
-        return operations.isUserInMap(userName);
+        database = new LoginDatabaseManager();
+        return database.doesUserExist(userName);
     }
-    
-
 
 }
