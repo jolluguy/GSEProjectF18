@@ -41,6 +41,10 @@ public class LoginFacade implements ILoginPersistence, Serializable {
         }
         return instance;
     }
+    
+    public int getAccess(String userName){
+        return database.getAccess(userName);
+    }
 
     @Override
     public IUser getUser(String userName) {

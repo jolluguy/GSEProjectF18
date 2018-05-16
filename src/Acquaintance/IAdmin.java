@@ -16,7 +16,7 @@ public interface IAdmin {
     
    boolean createUser(String firstName, String lastName, String userName, String password1, String password2, boolean active, Timestamp createdTime, Timestamp lastLoginTime);
     
-    boolean changeJob(String userName, String password, boolean active);
+    boolean changeJob(String userName, String password, IJob job);
 
     Collection<IUser> getUserList(); 
     

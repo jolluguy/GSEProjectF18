@@ -6,6 +6,7 @@
 package LoginPersistence;
 
 import Acquaintance.IAdmin;
+import Acquaintance.IJob;
 import Acquaintance.IUser;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class DataAdmin extends DataJob implements IAdmin {
     }
     
     @Override
-    public boolean changeJob(String userName, String password, boolean active){
+    public boolean changeJob(String userName, String password, IJob job){
         IUser user = loginDatabase.getUser(userName);
         user.setJob(job);
         return loginDatabase.updateJob(user);

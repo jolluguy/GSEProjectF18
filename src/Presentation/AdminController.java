@@ -6,6 +6,7 @@
 package Presentation;
 
 import Acquaintance.IBusiness;
+import Acquaintance.IJob;
 import Acquaintance.IUser;
 import java.io.IOException;
 import java.net.URL;
@@ -205,10 +206,10 @@ public class AdminController implements Initializable {
 
             String statusMessage = "";
 
-            boolean changeStatus = business.changeJob(username, password, level);
-            if (changeStatus) {
+            boolean changeJob = business.changeJob(username, password);
+            if (changeJob) {
                 statusMessage = username + "'s job er blevet ændret";
-            } else if (!changeStatus) {
+            } else if (!changeJob) {
                 statusMessage = username + "'s job kunne ikke ændres";
             }
 

@@ -188,18 +188,18 @@ public class LoginDatabaseManager {
             Class.forName("org.postgresql.Driver");
 
             if (doesUserExist(userName)) {
-                Statement st2 = conn.createStatement();
-                String sql2 = "SELECT brugernavn, kodeord, niveau, oprettet, sidste_login FROM login WHERE brugernavn = '" + userName + "';";
+                Statement st = conn.createStatement();
+                String sql = "SELECT brugernavn, kodeord, niveau, oprettet, sidste_login FROM login WHERE brugernavn = '" + userName + "';";
 
-                ResultSet result2 = st2.executeQuery(sql2);
+                ResultSet result = st.executeQuery(sql);
 
-                while (result2.next()) {
-                    int tempUserID = result2.getInt("bruger_id");
-                    String tempUserName = result2.getString("brugernavn");
-                    String tempPassword = result2.getString("kodeord");
-                    boolean tempActive = result2.getBoolean("niveau");
-                    Timestamp tempCreatedTime = result2.getTimestamp("oprettet");
-                    Timestamp tempLastLoginTime = result2.getTimestamp("sidste_login");
+                while (result.next()) {
+                    int tempUserID = result.getInt("bruger_id");
+                    String tempUserName = result.getString("brugernavn");
+                    String tempPassword = result.getString("kodeord");
+                    boolean tempActive = result.getBoolean("niveau");
+                    Timestamp tempCreatedTime = result.getTimestamp("oprettet");
+                    Timestamp tempLastLoginTime = result.getTimestamp("sidste_login");
 
                     user = new DataUser(tempUserID, tempUserName, tempPassword, tempActive, tempCreatedTime, tempLastLoginTime);
                 }
@@ -212,6 +212,36 @@ public class LoginDatabaseManager {
             e.printStackTrace();
         }
         return user;
+    }
+    
+    public int getAccess(String userName) {
+        int access = -1;
+        
+        try(Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)){
+            Class.forName("org.postgresql.Driver");
+            
+            if(doesUserExist(userName)){
+                Statement st = conn.createStatement();
+                String sql = "SELECT login.brugernavn, stilling.adgangsniveau from login "
+                        + "INNER JOIN holder_info on login.brugernavn = holder_info.brugernavn "
+                        + "INNER JOIN bruger on holder_info.bruger_id = bruger.bruger_id "
+                        + "INNER JOIN besidder on bruger.bruger_id = besidder.bruger_id "
+                        + "INNER JOIN Stilling on besidder.stillings_id = stilling.stillings_id "
+                        + "WHERE login.brugernavn = '" + userName + "';";
+                
+                ResultSet result = st.executeQuery(sql);
+                
+                while(result.next()){
+                    String tempUserName = result.getString("brugernavn");
+                    access = result.getInt("adgangsniveau");
+                }
+            } else return access; //returns -1
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return access; //returns access level for the user
     }
 
 }

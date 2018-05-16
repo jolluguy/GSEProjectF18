@@ -11,6 +11,7 @@ import Acquaintance.IInquiry;
 import Acquaintance.IUser;
 import java.util.Collection;
 import Acquaintance.IDataPersistence;
+import Acquaintance.IJob;
 import Acquaintance.ILoginPersistence;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -64,8 +65,13 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public boolean login(String userName, String pw) {
-        return manager.login(userName, pw);
+    public int login(String userName, String password) {
+        return manager.login(userName, password);
+    }
+    
+    @Override
+    public int getAccess(String userName) {
+        return loginPersistence.getAccess(userName);
     }
 
     @Override
@@ -100,8 +106,8 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public boolean changeJob(String userName, String password, boolean active) {
-        return admin.changeJob(userName, password, active);
+    public boolean changeJob(String userName, String password, IJob job) {
+        return admin.changeJob(userName, password, job);
     }
 
     public boolean addUser(IUser user) {

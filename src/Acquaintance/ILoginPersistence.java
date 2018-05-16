@@ -29,4 +29,6 @@ public interface ILoginPersistence {
     boolean getUserInfo(String userName);
     
     void pingDatabase() throws SQLException;
+    
+    int getAccess(String userName);
 }

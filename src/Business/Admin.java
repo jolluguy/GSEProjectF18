@@ -6,6 +6,7 @@
 package Business;
 
 import Acquaintance.IAdmin;
+import Acquaintance.IJob;
 import Acquaintance.IUser;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -36,9 +37,9 @@ public class Admin extends Job implements IAdmin {
     }
     
     @Override
-    public boolean changeJob(String userName, String password, boolean active){
+    public boolean changeJob(String userName, String password, IJob job) {
         IUser user = facade.getUser(userName);
-        user.setActive(active);
+        user.setJob((Job) job); //Parsing IJob to job... Might give some problems.
         return facade.updateJob(user);
     }
     

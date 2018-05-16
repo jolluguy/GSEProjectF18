@@ -19,7 +19,9 @@ public interface IBusiness {
 
     void injectLoginPersistence(ILoginPersistence loginPersistence);
 
-    boolean login(String name, String pw);
+    int login(String name, String pw);
+    
+    int getAccess(String userName);
 
     void logOut();
     
@@ -31,7 +33,7 @@ public interface IBusiness {
     
     boolean createUser(int userID, String firstName, String lastName, String userName, String password1, String password2, boolean active, Timestamp createdTime, Timestamp lastLoginTime);
 
-    boolean changeJob(String userName, String password, boolean active);
+    boolean changeJob(String userName, String password, IJob job);
     
     Collection<IUser> getUserList();
    
