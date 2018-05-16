@@ -24,7 +24,7 @@ class DataCitizen implements ICitizen {
     private String phoneNumber;
     private ICPR cpr;
 
-    public DataCitizen(long cprNumber, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber) {
+    public DataCitizen(String cprNumber, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.roadName = roadName;
@@ -110,7 +110,7 @@ class DataCitizen implements ICitizen {
     }
 
     @Override
-    public long getCprNumber() {
+    public String getCprNumber() {
         return this.cpr.getCprNumber();
     }
 

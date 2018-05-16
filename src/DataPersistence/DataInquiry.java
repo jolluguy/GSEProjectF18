@@ -15,7 +15,7 @@ import Acquaintance.IInquiry;
  */
 public class DataInquiry implements IInquiry {
 
-    private DataCitizen citizen;
+    private ICitizen citizen;
     private String problemDescription;
 
     public DataInquiry(DataCitizen citizen, String problemDescription) {
