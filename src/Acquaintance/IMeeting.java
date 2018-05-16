@@ -5,16 +5,16 @@
  */
 package Acquaintance;
 
+import java.sql.Timestamp;
 import java.util.Collection;
-import java.util.Date;
 
 /**
  *
  * @author Rasmus
  */
 public interface IMeeting {
-    public Date getMeetingDate();
-    public void setMeetingDate(Date date);
+    public Timestamp getMeetingTime();
+    public void setMeetingTime(Timestamp time);
     
     public Collection<String> getAttendingCaseworkerIDs();
     public void removeAttendingCaseworkerID(String caseworkerID); // Tænker der skal være mulighed for at fjerne caseworkers?

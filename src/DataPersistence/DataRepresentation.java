@@ -3,13 +3,13 @@ package DataPersistence;
 import Acquaintance.ICitizen;
 import Acquaintance.IRepresentation;
 
-public class DataRepresentation implements IRepresentation {
-    private ICitizen citizen;
+public class DataRepresentation extends DataPerson implements IRepresentation {
+
     private String representationType;
 
     
     DataRepresentation(String cprNumber, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber, String representationType) {
-        this.citizen = new DataCitizen(cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
+        super(cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
         this.representationType = representationType;
     }
     

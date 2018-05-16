@@ -6,22 +6,22 @@
 package Business;
 
 import Acquaintance.IMeeting;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 
 /**
  *
  * @author Rasmus
  */
 public class Meeting implements IMeeting {
-   Date meetingDate;
-   Collection<String> attendingCasworkerIDList;
-   String meetingDescription;
-   String meetingLocation;
+   private Timestamp meetingTime;
+   private Collection<String> attendingCasworkerIDList;
+   private String meetingDescription;
+   private String meetingLocation;
 
-    public Meeting(Date meetingDate, Collection<String> attendingCasworkerIDList, String meetingDescription, String meetingLocation) {
-        this.meetingDate = meetingDate;
+    public Meeting(Timestamp meetingTime, Collection<String> attendingCasworkerIDList, String meetingDescription, String meetingLocation) {
+        this.meetingTime = meetingTime;
         this.attendingCasworkerIDList = new ArrayList<>();
         for(String s: attendingCasworkerIDList){
             this.attendingCasworkerIDList.add(s);
@@ -33,44 +33,42 @@ public class Meeting implements IMeeting {
     // skriv metode til at fjerne en caseworker fra et møde
 
     @Override
-    public Date getMeetingDate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Timestamp getMeetingTime() {
+        return this.meetingTime;
     }
 
     @Override
-    public void setMeetingDate(Date date) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setMeetingTime(Timestamp time) {
+        this.meetingTime = time;
     }
 
     @Override
     public Collection<String> getAttendingCaseworkerIDs() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.attendingCasworkerIDList;
     }
 
     @Override
     public void removeAttendingCaseworkerID(String caseworkerID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.attendingCasworkerIDList.remove(caseworkerID);
     }
 
     @Override
     public String getMeetingDescription() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.meetingDescription;
     }
 
     @Override
     public void setMeetingDescription(String description) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.meetingDescription = description;
     }
 
     @Override
     public String getMeetingLocation() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.meetingLocation;
     }
 
     @Override
     public void setMeetingLocation(String location) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.meetingLocation = location;
     }
-
-       
 }

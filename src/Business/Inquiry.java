@@ -16,27 +16,27 @@ import java.sql.Timestamp;
 public class Inquiry implements IInquiry{
     
     private String problemDescription;
-    private String inquierer;
+    private String inquirer;
     private boolean citizenAgreement;
-    Timestamp date;
+    private Timestamp time;
     private ICitizen citizen;
     
-    public Inquiry (String problemDescription, String inquierer, boolean citizenAgreement, String cprNumber, String firstName, 
+    public Inquiry (String problemDescription, String inquirer, boolean citizenAgreement, String cprNumber, String firstName, 
             String lastName, String roadName, String houseNumber, String floor, 
             int postalCode, String city, String phoneNumber) {
         
         this.problemDescription = problemDescription;
-        this.inquierer = inquierer;
+        this.inquirer = inquirer;
         this.citizenAgreement = citizenAgreement;
-        this.date = new Timestamp(System.currentTimeMillis());
+        this.time = new Timestamp(System.currentTimeMillis());
         
-        citizen = new Citizen(cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
+        this.citizen = new Citizen(cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
     }
 
    
     @Override
     public ICitizen getCitizen() {
-        return citizen;
+        return this.citizen;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class Inquiry implements IInquiry{
 
     @Override
     public String getProblemDescription() {
-        return problemDescription;
+        return this.problemDescription;
     }
 
     @Override
@@ -55,8 +55,8 @@ public class Inquiry implements IInquiry{
     }
 
     @Override
-    public String getInquierer() {
-        return this.inquierer;
+    public String getInquirer() {
+        return this.inquirer;
     }
 
     @Override
@@ -65,8 +65,7 @@ public class Inquiry implements IInquiry{
     }
 
     @Override
-    public Timestamp getDate() {
-        return this.date;
+    public Timestamp getTime() {
+        return this.time;
     }
-    
 }

@@ -1,6 +1,5 @@
 package Business;
 
-import Acquaintance.ICPR;
 import Acquaintance.ICitizen;
 
 /*

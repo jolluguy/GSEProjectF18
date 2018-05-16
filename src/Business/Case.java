@@ -288,4 +288,14 @@ public class Case implements ICase {
         return otherPayingMunicipality;
     }
 
+    @Override
+    public boolean isInformedRightsBystander() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void addConsentToInformationGathering(String consentToInformationGathering) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,9 +30,9 @@ public class CaseDatabaseManager {
     public boolean saveInquiry(IInquiry inq){
         
         String problemDesc = inq.getProblemDescription();
-        String inquierer = inq.getInquierer();
+        String inquierer = inq.getInquirer();
         boolean agreement = inq.getCitizenAgreement();
-        Timestamp date = inq.getDate();
+        Timestamp date = inq.getTime();
         
         
         try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)){
@@ -41,11 +42,10 @@ public class CaseDatabaseManager {
                     + "VALUES ('" + agreement + "', '" + problemDesc + "', '" + inquierer + "', '" + date + "');");
             st.executeUpdate();
             
-            String inqID = null;
-            
-            Thread.sleep(1000);
-            
-            
+//            Thread.sleep(1000);
+//            String inqID = null;      
+//            Statement st2 = conn.createStatement();
+//            String sql = "SELECT henvendelses_id FROM henvendelse WHERE ";
             
         } catch (Exception ex) {
             ex.printStackTrace();

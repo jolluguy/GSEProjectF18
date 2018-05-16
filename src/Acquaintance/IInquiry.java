@@ -21,9 +21,9 @@ public String getProblemDescription();
 
 public void setProblemDescription(String problemDescription);
 
-public String getInquierer();
+public String getInquirer();
 
 public boolean getCitizenAgreement();
 
-public Timestamp getDate();
+public Timestamp getTime();
 }

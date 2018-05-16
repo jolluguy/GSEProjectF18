@@ -5,7 +5,6 @@
  */
 package DataPersistence;
 
-import Acquaintance.ICPR;
 import Acquaintance.ICitizen;
 import Acquaintance.IInquiry;
 import java.sql.Timestamp;
@@ -16,24 +15,27 @@ import java.sql.Timestamp;
  */
 public class DataInquiry implements IInquiry {
 
-    private ICitizen citizen;
     private String problemDescription;
-    private String inquierer;
+    private String inquirer;
     private boolean citizenAgreement;
-    Timestamp date;
+    private Timestamp time;
+    private ICitizen citizen;
 
-    public DataInquiry(DataCitizen citizen, String problemDescription, String inquierer, boolean citizenAgreement, Timestamp date) {
-        this.citizen = citizen;
-        this.problemDescription = problemDescription;
-        this.inquierer = inquierer;
-        this.citizenAgreement = citizenAgreement;
+    public DataInquiry (String problemDescription, String inquirer, boolean citizenAgreement, String cprNumber, String firstName, 
+            String lastName, String roadName, String houseNumber, String floor, 
+            int postalCode, String city, String phoneNumber) {
         
-        this.date = date;
+        this.problemDescription = problemDescription;
+        this.inquirer = inquirer;
+        this.citizenAgreement = citizenAgreement;
+        this.time = new Timestamp(System.currentTimeMillis());
+        
+        this.citizen = new DataCitizen(cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
     }
 
     @Override
     public ICitizen getCitizen() {
-        return citizen;
+        return this.citizen;
     }
 
     @Override
@@ -43,7 +45,7 @@ public class DataInquiry implements IInquiry {
 
     @Override
     public String getProblemDescription() {
-        return problemDescription;
+        return this.problemDescription;
     }
 
     @Override
@@ -52,8 +54,8 @@ public class DataInquiry implements IInquiry {
     }
 
     @Override
-    public String getInquierer() {
-        return this.inquierer;
+    public String getInquirer() {
+        return this.inquirer;
     }
 
     @Override
@@ -62,8 +64,7 @@ public class DataInquiry implements IInquiry {
     }
 
     @Override
-    public Timestamp getDate() {
-        return this.date;
+    public Timestamp getTime() {
+        return this.time;
     }
-
 }
