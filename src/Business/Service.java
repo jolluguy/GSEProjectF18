@@ -27,6 +27,11 @@ public class Service implements IService {
     public String getServiceDescription() {
         return serviceDescription;
     }
+
+    @Override
+    public int getServiceID() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
      
 }

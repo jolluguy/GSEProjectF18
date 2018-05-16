@@ -37,5 +37,20 @@ CaseNote(String note, String caseWorkerID, int noteID){
         this.auther = caseWorkerID;
         this.noteID = noteID;
     }
+
+    @Override
+    public String getNote() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getNoteID() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getAuthor() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

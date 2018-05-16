@@ -13,10 +13,6 @@ public class DataRepresentation implements IRepresentation {
         this.representationType = representationType;
     }
     
-    @Override
-    public ICitizen getCitizen() {
-        return this.citizen;
-    }
 
     @Override
     public String getRepresentationType() {

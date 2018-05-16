@@ -24,5 +24,12 @@ public class Representation extends Person implements IRepresentation{
     
     
     //implementer get og set representationstype
+
+   
+
+    @Override
+    public String getRepresentationType() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     }
     
