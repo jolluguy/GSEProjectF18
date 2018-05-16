@@ -12,6 +12,7 @@ import Acquaintance.IMeeting;
 import Acquaintance.IOffer;
 import Acquaintance.IRepresentation;
 import Acquaintance.IService;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -42,6 +43,7 @@ public class Case implements ICase {
 
     /**
      * Constructor used when creating a new case.
+     *
      * @param inquiry
      * @param responsibleCaseworker
      * @param informedRightsBistander
@@ -68,7 +70,7 @@ public class Case implements ICase {
      * @param note
      * @param caseWorkerID
      * @param serviceIDMap
-     * @param offerIDMap 
+     * @param offerIDMap
      */
     public Case(IInquiry inquiry,
             String responsibleCaseworker,
@@ -79,7 +81,7 @@ public class Case implements ICase {
             String specialCircumstances,
             String otherActingMunicipality,
             String otherPayingMunicipality,
-            Date meetingDate, Collection<String> attendingCasworkerIDList, String meetingDescription, String meetingLocation,
+            Timestamp meetingDate, Collection<String> attendingCasworkerIDList, String meetingDescription, String meetingLocation,
             String cprNumber, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber, String representationType,
             String note, String caseWorkerID,
             Map<Integer, String> serviceIDMap,
@@ -88,26 +90,24 @@ public class Case implements ICase {
         // adding a Inquiry to the case
         inquiryList = new ArrayList<>();
         inquiryList.add(inquiry);
-        
+
         // seting the responsible caseworker
         this.responsibleCaseworker = responsibleCaseworker;
-        
-        
+
         this.informedRightsBistander = informedRightsBistander;
         this.informedRightsElectronicRegistration = informedRightsElectronicRegistration;
         this.consent = consent;
-        
+
         this.consentToInformationGathering = new ArrayList<>();
-        if (!consentToInformationGathering.isEmpty()){
-            for(String s : consentToInformationGathering){
+        if (!consentToInformationGathering.isEmpty()) {
+            for (String s : consentToInformationGathering) {
                 this.consentToInformationGathering.add(s);
             }
         }
-        
+
         this.specialCircumstances = specialCircumstances;
         this.otherActingMunicipality = otherActingMunicipality;
         this.otherPayingMunicipality = otherPayingMunicipality;
-        
 
         // creating a list of caseworkers who has ben affiliated with the case and adding the responsibleCaseworker to the list
         this.affiliatedCaseworkers = new ArrayList<>();
@@ -142,87 +142,150 @@ public class Case implements ICase {
 
     }
 
-        private void addAffiliatedCaseworker(Collection<String> casworkerIDList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void addAffiliatedCaseworker(Collection<String> caseworkerIDList) {
+        for (String s : caseworkerIDList) {
+            if (!this.affiliatedCaseworkers.contains(s)) {
+                this.affiliatedCaseworkers.add(s);
+            }
+        }
     }
 
     public void addAffiliatedCaseworker(String caseworkerID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (!this.affiliatedCaseworkers.contains(caseworkerID)) {
+            this.affiliatedCaseworkers.add(caseworkerID);
+        }
     }
 
     @Override
     public Collection<IInquiry> getInquiryList() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.inquiryList;
     }
 
     @Override
     public void addInquiryToCase(IInquiry inq) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.inquiryList.add(inq);
     }
 
     @Override
     public String getResponsibleCaseworker() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return responsibleCaseworker;
     }
 
     @Override
     public void setResponsibleCaseworker(String responsibleCaseworkerID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.responsibleCaseworker = responsibleCaseworkerID;
+        addAffiliatedCaseworker(responsibleCaseworkerID);
     }
 
     @Override
     public Collection<String> getAffiliatedCaseworkers() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return affiliatedCaseworkers;
     }
 
     @Override
     public Collection<IMeeting> getMeetingList() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return meetingList;
     }
 
     @Override
     public void addMeeting(IMeeting meeting) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        meetingList.add(meeting);
     }
 
     @Override
     public Collection<IRepresentation> getRepresentationList() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return representationList;
     }
 
     @Override
     public void addRepresentation(IRepresentation representation) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        representationList.add(representation);
     }
 
     @Override
     public Collection<ICaseNote> getCaseNoteList() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return caseNoteList;
     }
 
     @Override
     public void addCaseNote(ICaseNote caseNote) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        caseNoteList.add(caseNote);
     }
 
     @Override
     public Collection<IService> getServiceList() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return serviceList;
     }
 
     @Override
     public void addService(IService service) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        serviceList.add(service);
     }
 
     @Override
     public Collection<IOffer> getOfferList() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return offerList;
     }
 
     @Override
     public void addOffer(IOffer offer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        offerList.add(offer);
+    }
+
+    public boolean isInformedRightsBistander() {
+        return informedRightsBistander;
+    }
+
+    public void setInformedRightsBistander(boolean informedRightsBistander) {
+        this.informedRightsBistander = informedRightsBistander;
+    }
+
+    public void setInformedRightsElectronicRegistration(boolean informedRightsElectronicRegistration) {
+        this.informedRightsElectronicRegistration = informedRightsElectronicRegistration;
+    }
+
+    public void setConsent(String consent) {
+        this.consent = consent;
+    }
+
+    public void setConsentToInformationGathering(Collection<String> consentToInformationGathering) {
+        this.consentToInformationGathering = consentToInformationGathering;
+    }
+
+    public void setSpecialCircumstances(String specialCircumstances) {
+        this.specialCircumstances = specialCircumstances;
+    }
+
+    public void setOtherActingMunicipality(String otherActingMunicipality) {
+        this.otherActingMunicipality = otherActingMunicipality;
+    }
+
+    public void setOtherPayingMunicipality(String otherPayingMunicipality) {
+        this.otherPayingMunicipality = otherPayingMunicipality;
+    }
+
+    public boolean isInformedRightsElectronicRegistration() {
+        return informedRightsElectronicRegistration;
+    }
+
+    public String getConsent() {
+        return consent;
+    }
+
+    public Collection<String> getConsentToInformationGathering() {
+        return consentToInformationGathering;
+    }
+
+    public String getSpecialCircumstances() {
+        return specialCircumstances;
+    }
+
+    public String getOtherActingMunicipality() {
+        return otherActingMunicipality;
+    }
+
+    public String getOtherPayingMunicipality() {
+        return otherPayingMunicipality;
     }
 
 }
