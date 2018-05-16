@@ -5,6 +5,7 @@
  */
 package Acquaintance;
 
+import Business.Job;
 import java.sql.Date;
 import java.sql.Timestamp;
 
@@ -14,9 +15,15 @@ import java.sql.Timestamp;
  */
 public interface IUser {
     
+    IJob getJob();
+    
+    void setJob(Job job);
+    
     String getFirstName();
     
     String getLastName();
+    
+    int getUserID();
 
     String getUserName();
     
@@ -24,9 +31,9 @@ public interface IUser {
     
     String getMail();
 
-    int getLevel();
+    boolean getActive();
 
-    void setLevel(int level);
+    void setActive(boolean active);
 
     void changePassword(String password);
     

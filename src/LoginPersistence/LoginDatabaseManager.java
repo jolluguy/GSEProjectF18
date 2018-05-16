@@ -38,7 +38,7 @@ public class LoginDatabaseManager {
         String mail = user.getMail();
         String userName = user.getUserName();
         String password = user.getPassword();
-        int niveau = user.getLevel();
+        boolean active = user.getActive();
         Timestamp createdTime = user.getCreatedTime();
         Timestamp lastLoginTime = user.getLastLoginTime();
 
@@ -48,7 +48,7 @@ public class LoginDatabaseManager {
 
             //Query 1
             PreparedStatement st1 = conn.prepareStatement("INSERT INTO login (brugernavn, kodeord, niveau, oprettet, sidste_login) "
-                    + "VALUES ('" + userName + "', '" + password + "', " + niveau + ", '" + createdTime + "', '" + lastLoginTime + "');");
+                    + "VALUES ('" + userName + "', '" + password + "', " + active + ", '" + createdTime + "', '" + lastLoginTime + "');");
 
             st1.executeUpdate();
 
@@ -108,12 +108,12 @@ public class LoginDatabaseManager {
 
     public boolean updateJob(IUser user) {
         String userName = user.getUserName();
-        int level = user.getLevel();
+        boolean active = user.getActive();
 
         try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
             Class.forName("org.postgresql.Driver");
 
-            PreparedStatement st = conn.prepareStatement("UPDATE login SET niveau = '" + level + "' WHERE brugernavn = '" + userName + "';");
+            PreparedStatement st = conn.prepareStatement("UPDATE login SET niveau = '" + active + "' WHERE brugernavn = '" + userName + "';");
 
             st.executeUpdate();
 
@@ -139,14 +139,14 @@ public class LoginDatabaseManager {
             ResultSet result = st.executeQuery(sql);
 
             while (result.next()) {
-                String username = result.getString("brugernavn");
+                int userID = result.getInt("bruger_id");
+                String userName = result.getString("brugernavn");
                 String password = result.getString("kodeord");
-                int level = Integer.parseInt(result.getString("niveau"));
+                boolean active = result.getBoolean("niveau");
                 java.sql.Timestamp createdTime = result.getTimestamp("oprettet");
                 java.sql.Timestamp lastLoginTime = result.getTimestamp("sidste_login");
-
-                System.out.println(username);
-                userList.add(new DataUser(username, password, level, createdTime, lastLoginTime));
+                
+                userList.add(new DataUser(userID, userName, password, active, createdTime, lastLoginTime));
             }
 
         } catch (Exception e) {
@@ -194,13 +194,14 @@ public class LoginDatabaseManager {
                 ResultSet result2 = st2.executeQuery(sql2);
 
                 while (result2.next()) {
+                    int tempUserID = result2.getInt("bruger_id");
                     String tempUserName = result2.getString("brugernavn");
                     String tempPassword = result2.getString("kodeord");
-                    int tempLevel = result2.getInt("niveau");
+                    boolean tempActive = result2.getBoolean("niveau");
                     Timestamp tempCreatedTime = result2.getTimestamp("oprettet");
                     Timestamp tempLastLoginTime = result2.getTimestamp("sidste_login");
 
-                    user = new DataUser(tempUserName, tempPassword, tempLevel, tempCreatedTime, tempLastLoginTime);
+                    user = new DataUser(tempUserID, tempUserName, tempPassword, tempActive, tempCreatedTime, tempLastLoginTime);
                 }
             } else {
                 System.out.println("User does not exist");

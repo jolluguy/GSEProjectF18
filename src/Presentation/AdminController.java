@@ -143,7 +143,7 @@ public class AdminController implements Initializable {
             level = 2;
         }
 
-        boolean createUserStatus = business.createUser(firstName, lastName, userName, password1, password2, level);
+        boolean createUserStatus = business.createUser(firstName, lastName, userName, password1, password2, active);
 
         String statusmessage = "";
         if (createUserStatus) {

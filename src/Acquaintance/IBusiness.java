@@ -6,8 +6,8 @@
 package Acquaintance;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.Collection;
-import java.util.List;
 
 /**
  *
@@ -19,7 +19,7 @@ public interface IBusiness {
 
     void injectLoginPersistence(ILoginPersistence loginPersistence);
 
-    int login(String name, String pw);
+    boolean login(String name, String pw);
 
     void logOut();
     
@@ -29,9 +29,9 @@ public interface IBusiness {
     
     boolean checkCredentials(String userName, String password);
     
-    boolean createUser(String firstName, String lastName, String userName, String password1, String password2, int level);
+    boolean createUser(int userID, String firstName, String lastName, String userName, String password1, String password2, boolean active, Timestamp createdTime, Timestamp lastLoginTime);
 
-    boolean changeJob(String userName, String password, int level);
+    boolean changeJob(String userName, String password, boolean active);
     
     Collection<IUser> getUserList();
    

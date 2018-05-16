@@ -13,6 +13,7 @@ import java.util.Collection;
 import Acquaintance.IDataPersistence;
 import Acquaintance.ILoginPersistence;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 /**
  *
@@ -60,11 +61,10 @@ public class BusinessFacade implements IBusiness {
     public void startUp() {
         this.controller = controller.getInstance();
         this.manager = manager.getInstance();
-        this.admin = admin.getInstance();
     }
 
     @Override
-    public int login(String userName, String pw) {
+    public boolean login(String userName, String pw) {
         return manager.login(userName, pw);
     }
 
@@ -95,13 +95,13 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public boolean createUser(String firstName, String lastName, String userName, String password1, String password2, int level) {
-        return admin.createUser(firstName, lastName, userName, password1, password2, level);
+    public boolean createUser(int userID, String firstName, String lastName, String userName, String password1, String password2, boolean active, Timestamp createdTime, Timestamp lastLoginTime) {
+        return admin.createUser(firstName, lastName, userName, password1, password2, active, createdTime, lastLoginTime);
     }
 
     @Override
-    public boolean changeJob(String userName, String password, int level) {
-        return admin.changeJob(userName, password, level);
+    public boolean changeJob(String userName, String password, boolean active) {
+        return admin.changeJob(userName, password, active);
     }
 
     public boolean addUser(IUser user) {
