@@ -10,6 +10,7 @@ import Acquaintance.IInquiry;
 import java.sql.ResultSet;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Map;
 
 /**
  *
@@ -46,8 +47,10 @@ public class CaseManager {
      * @param phoneNumber
      * @return 
      */
-    public boolean createInquiry(String cprNumber, String problemDescription, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber) {
-        Inquiry inquiry = new Inquiry(cprNumber, problemDescription, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
+    public boolean createInquiry(String problemDescription, String inquierer, boolean citizenAgreement, String cprNumber, String firstName, 
+            String lastName, String roadName, String houseNumber, String floor, 
+            int postalCode, String city, String phoneNumber) {
+        Inquiry inquiry = new Inquiry(problemDescription, inquierer, citizenAgreement, cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
         return sendInqToDB(inquiry);
     }
 
@@ -106,15 +109,15 @@ public class CaseManager {
      * @param offerIDList
      * @return 
      */
-     boolean createCase(String cprNumber, String problemDescription, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber,
-                Collection<String> responsibleCaseworkerIDList,
+     boolean createCase(String problemDescription, String inquierer, boolean citizenAgreement, String cprNumber, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber,
+                String responsibleCaseworker, boolean informedRightsBistander, boolean informedRightsElectronicRegistration, String consent, Collection<String> consentToInformationGathering, String specialCircumstances, String otherActingMunicipality, String otherPayingMunicipality,
                 Date meetingDate, Collection<String> attendingCasworkerIDList, String meetingDescription, String meetingLocation,
                 String cprNumberRep, String firstNameRep, String lastNameRep, String roadNameRep, String houseNumberRep, String floorRep, int postalCodeRep, String cityRep, String phoneNumberRep, String representationType,
                 String note, String caseWorkerID,
-                Collection<Integer> serviceIDList,
-                Collection<Integer> offerIDList){
-       IInquiry inquiry = new Inquiry(cprNumber, problemDescription, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
-       ICase case1 = new Case(inquiry, responsibleCaseworkerIDList, meetingDate, attendingCasworkerIDList, meetingDescription, meetingLocation, cprNumberRep, firstNameRep, lastNameRep, roadNameRep, houseNumberRep, floorRep, postalCodeRep, cityRep, phoneNumberRep, representationType, note, caseWorkerID, serviceIDList, offerIDList);
+                Map<Integer, String> serviceIDList,
+                Map<Integer, String> offerIDList){
+       IInquiry inquiry = new Inquiry(problemDescription, inquierer, citizenAgreement, cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
+       ICase case1 = new Case(inquiry, responsibleCaseworker,  informedRightsBistander,  informedRightsElectronicRegistration,  consent, consentToInformationGathering, specialCircumstances, otherActingMunicipality, otherPayingMunicipality, meetingDate, attendingCasworkerIDList, meetingDescription, meetingLocation, cprNumberRep, firstNameRep, lastNameRep, roadNameRep, houseNumberRep, floorRep, postalCodeRep, cityRep, phoneNumberRep, representationType, note, caseWorkerID, serviceIDList, offerIDList);
         
         return sendCaseToDB(case1);
        }

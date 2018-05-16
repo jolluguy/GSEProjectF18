@@ -8,6 +8,7 @@ package Acquaintance;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -40,14 +41,15 @@ public interface IBusiness {
    
    public void startUp();
    
-   boolean newInquiry(String cprNumber, String problemDescription, String firstName, String lastName, String roadName, String houseNumber,
-                       String floor, int postalCode, String city, String phoneNumber);
+   boolean newInquiry(String problemDescription, String inquierer, boolean citizenAgreement, String cprNumber, String firstName, 
+            String lastName, String roadName, String houseNumber, String floor, 
+            int postalCode, String city, String phoneNumber);
 
-public boolean newCase(String cprNumber, String problemDescription, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber,
-                Collection<String> responsibleCaseworkerIDList,
+public boolean newCase(String problemDescription, String inquierer, boolean citizenAgreement, String cprNumber, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber,
+                String responsibleCaseworker, boolean informedRightsBistander, boolean informedRightsElectronicRegistration, String consent, Collection<String> consentToInformationGathering, String specialCircumstances, String otherActingMunicipality, String otherPayingMunicipality,
                 Date meetingDate, Collection<String> attendingCasworkerIDList, String meetingDescription, String meetingLocation,
                 String cprNumberRep, String firstNameRep, String lastNameRep, String roadNameRep, String houseNumberRep, String floorRep, int postalCodeRep, String cityRep, String phoneNumberRep, String representationType,
                 String note, String caseWorkerID,
-                Collection<Integer> serviceIDList,
-                Collection<Integer> offerIDList);
+                Map<Integer, String> serviceIDList,
+                Map<Integer, String> offerIDList);
 }

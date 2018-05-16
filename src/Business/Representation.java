@@ -5,21 +5,24 @@
  */
 package Business;
 
-import Acquaintance.ICitizen;
+
 import Acquaintance.IRepresentation;
 
 /**
  *
  * @author Rasmus
  */
-public class Representation implements IRepresentation{
+public class Representation extends Person implements IRepresentation{
 
-    ICitizen citizen;
+
     String representationType;
 
     public Representation(String cprNumber, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber, String representationType) {
-        this.citizen = new Citizen(cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
+        super(cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
         this.representationType = representationType;
     }
     
-}
+    
+    //implementer get og set representationstype
+    }
+    

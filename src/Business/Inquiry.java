@@ -5,9 +5,9 @@
  */
 package Business;
 
-import Acquaintance.ICPR;
 import Acquaintance.ICitizen;
 import Acquaintance.IInquiry;
+import java.sql.Timestamp;
 
 /**
  *
@@ -16,16 +16,24 @@ import Acquaintance.IInquiry;
 public class Inquiry implements IInquiry{
     
     private String problemDescription;
+    private String inquierer;
+    private boolean citizenAgreement;
+    Timestamp date;
     private ICitizen citizen;
     
-    public Inquiry (String cprNumber, String problemDescription, String firstName, 
+    public Inquiry (String problemDescription, String inquierer, boolean citizenAgreement, String cprNumber, String firstName, 
             String lastName, String roadName, String houseNumber, String floor, 
             int postalCode, String city, String phoneNumber) {
+        
         this.problemDescription = problemDescription;
+        this.inquierer = inquierer;
+        this.citizenAgreement = citizenAgreement;
+        this.date = new Timestamp(System.currentTimeMillis());
         
         citizen = new Citizen(cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
     }
 
+   
     @Override
     public ICitizen getCitizen() {
         return citizen;

@@ -142,7 +142,7 @@ public class Case implements ICase {
 
     }
 
-    private void addAffiliatedCaseworker(Collection<String> casworkerIDList) {
+        private void addAffiliatedCaseworker(Collection<String> casworkerIDList) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
