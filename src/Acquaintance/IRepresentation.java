@@ -10,5 +10,7 @@ package Acquaintance;
  * @author Rasmus
  */
 public interface IRepresentation {
+    public ICitizen getCitizen();
     
+    public String getRepresentationType();
 }
