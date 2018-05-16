@@ -15,7 +15,6 @@ import Acquaintance.IService;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.Map;
 
 /**
@@ -25,7 +24,7 @@ import java.util.Map;
 public class Case implements ICase {
 
     private String responsibleCaseworker;
-    private boolean informedRightsBistander;
+    private boolean informedRightsBystander;
     private boolean informedRightsElectronicRegistration;
     private String consent;
     private Collection<String> consentToInformationGathering;
@@ -33,27 +32,27 @@ public class Case implements ICase {
     private String otherActingMunicipality;
     private String otherPayingMunicipality;
 
-    Collection<IInquiry> inquiryList;
-    Collection<String> affiliatedCaseworkers;
-    Collection<IMeeting> meetingList;
-    Collection<IRepresentation> representationList;
-    Collection<ICaseNote> caseNoteList;
-    Collection<IService> serviceList;
-    Collection<IOffer> offerList;
+    private Collection<IInquiry> inquiryList;
+    private Collection<String> affiliatedCaseworkers;
+    private Collection<IMeeting> meetingList;
+    private Collection<IRepresentation> representationList;
+    private Collection<ICaseNote> caseNoteList;
+    private Collection<IService> serviceList;
+    private Collection<IOffer> offerList;
 
     /**
      * Constructor used when creating a new case.
      *
      * @param inquiry
      * @param responsibleCaseworker
-     * @param informedRightsBistander
+     * @param informedRightsBystander
      * @param informedRightsElectronicRegistration
      * @param consent
      * @param consentToInformationGathering
      * @param specialCircumstances
      * @param otherActingMunicipality
      * @param otherPayingMunicipality
-     * @param meetingDate
+     * @param meetingTime
      * @param attendingCasworkerIDList
      * @param meetingDescription
      * @param meetingLocation
@@ -74,14 +73,14 @@ public class Case implements ICase {
      */
     public Case(IInquiry inquiry,
             String responsibleCaseworker,
-            boolean informedRightsBistander,
+            boolean informedRightsBystander,
             boolean informedRightsElectronicRegistration,
             String consent,
             Collection<String> consentToInformationGathering,
             String specialCircumstances,
             String otherActingMunicipality,
             String otherPayingMunicipality,
-            Timestamp meetingDate, Collection<String> attendingCasworkerIDList, String meetingDescription, String meetingLocation,
+            Timestamp meetingTime, Collection<String> attendingCasworkerIDList, String meetingDescription, String meetingLocation,
             String cprNumber, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber, String representationType,
             String note, String caseWorkerID,
             Map<Integer, String> serviceIDMap,
@@ -94,7 +93,7 @@ public class Case implements ICase {
         // seting the responsible caseworker
         this.responsibleCaseworker = responsibleCaseworker;
 
-        this.informedRightsBistander = informedRightsBistander;
+        this.informedRightsBystander = informedRightsBystander;
         this.informedRightsElectronicRegistration = informedRightsElectronicRegistration;
         this.consent = consent;
 
@@ -116,7 +115,7 @@ public class Case implements ICase {
 
         //creates a list to hold meetings and adds the first meeting
         this.meetingList = new ArrayList<>();
-        meetingList.add(new Meeting(meetingDate, attendingCasworkerIDList, meetingDescription, meetingLocation));
+        meetingList.add(new Meeting(meetingTime, attendingCasworkerIDList, meetingDescription, meetingLocation));
 
         // creates a list to hold representants and ads the first representant if one such is added.
         this.representationList = new ArrayList<>();
@@ -150,6 +149,7 @@ public class Case implements ICase {
         }
     }
 
+    @Override
     public void addAffiliatedCaseworker(String caseworkerID) {
         if (!this.affiliatedCaseworkers.contains(caseworkerID)) {
             this.affiliatedCaseworkers.add(caseworkerID);
@@ -232,12 +232,13 @@ public class Case implements ICase {
         offerList.add(offer);
     }
 
-    public boolean isInformedRightsBistander() {
-        return informedRightsBistander;
+    @Override
+    public boolean isInformedRightsBystander() {
+        return informedRightsBystander;
     }
 
-    public void setInformedRightsBistander(boolean informedRightsBistander) {
-        this.informedRightsBistander = informedRightsBistander;
+    public void setInformedRightsBystander(boolean informedRightsBystander) {
+        this.informedRightsBystander = informedRightsBystander;
     }
 
     public void setInformedRightsElectronicRegistration(boolean informedRightsElectronicRegistration) {
@@ -246,10 +247,6 @@ public class Case implements ICase {
 
     public void setConsent(String consent) {
         this.consent = consent;
-    }
-
-    public void setConsentToInformationGathering(Collection<String> consentToInformationGathering) {
-        this.consentToInformationGathering = consentToInformationGathering;
     }
 
     public void setSpecialCircumstances(String specialCircumstances) {
@@ -264,28 +261,39 @@ public class Case implements ICase {
         this.otherPayingMunicipality = otherPayingMunicipality;
     }
 
+    @Override
     public boolean isInformedRightsElectronicRegistration() {
         return informedRightsElectronicRegistration;
     }
 
+    @Override
     public String getConsent() {
         return consent;
     }
 
+    @Override
     public Collection<String> getConsentToInformationGathering() {
         return consentToInformationGathering;
     }
 
+    @Override
     public String getSpecialCircumstances() {
         return specialCircumstances;
     }
 
+    @Override
     public String getOtherActingMunicipality() {
         return otherActingMunicipality;
     }
 
+    @Override
     public String getOtherPayingMunicipality() {
         return otherPayingMunicipality;
+    }
+
+    @Override
+    public void addConsentToInformationGathering(String consentToInformationGathering) {
+        this.consentToInformationGathering.add(consentToInformationGathering);
     }
 
 }

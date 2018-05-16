@@ -24,7 +24,7 @@ public class BusinessFacade implements IBusiness {
 
     private IDataPersistence dataPersistence;
     private ILoginPersistence loginPersistence;
-    private CaseManager caseManeger;
+    private CaseManager caseManager;
     private AccessManager accessManager; // Delegate all calls conserning users to the manager.
     private Admin admin;
 
@@ -56,7 +56,7 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public void startUp() {
-        this.caseManeger = caseManeger.getInstance();
+        this.caseManager = caseManager.getInstance();
         this.accessManager = accessManager.getInstance();
         this.admin = admin.getInstance();
     }
@@ -131,13 +131,13 @@ public class BusinessFacade implements IBusiness {
     public boolean newInquiry(String problemDescription, String inquierer, boolean citizenAgreement, String cprNumber, String firstName, 
             String lastName, String roadName, String houseNumber, String floor, 
             int postalCode, String city, String phoneNumber) {
-        return caseManeger.createInquiry(problemDescription, inquierer, citizenAgreement, cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
+        return caseManager.createInquiry(problemDescription, inquierer, citizenAgreement, cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
     }
 
-//    // dette kald er forkert og bliver ivaretaget internt i casemaneger
+//    // dette kald er forkert og bliver ivaretaget internt i casemanager
 //    @Override
 //    public boolean sendToDB(IInquiry inquiry) {
-//        return caseManeger.sendInqToDB(inquiry); // kaldt fra GUI
+//        return caseManager.sendInqToDB(inquiry); // kaldt fra GUI
 //    }
 
     public boolean saveInq(IInquiry inquiry) {
@@ -146,13 +146,13 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public boolean newCase(String problemDescription, String inquierer, boolean citizenAgreement, String cprNumber, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber,
-                String responsibleCaseworker, boolean informedRightsBistander, boolean informedRightsElectronicRegistration, String consent, Collection<String> consentToInformationGathering, String specialCircumstances, String otherActingMunicipality, String otherPayingMunicipality,
-                Timestamp meetingDate, Collection<String> attendingCasworkerIDList, String meetingDescription, String meetingLocation,
+                String responsibleCaseworker, boolean informedRightsBystander, boolean informedRightsElectronicRegistration, String consent, Collection<String> consentToInformationGathering, String specialCircumstances, String otherActingMunicipality, String otherPayingMunicipality,
+                Timestamp meetingTime, Collection<String> attendingCasworkerIDList, String meetingDescription, String meetingLocation,
                 String cprNumberRep, String firstNameRep, String lastNameRep, String roadNameRep, String houseNumberRep, String floorRep, int postalCodeRep, String cityRep, String phoneNumberRep, String representationType,
                 String note, String caseWorkerID,
                 Map<Integer, String> serviceIDList,
                 Map<Integer, String> offerIDList){
-        return caseManeger.createCase(problemDescription, inquierer, citizenAgreement, cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber, responsibleCaseworker, informedRightsBistander, informedRightsElectronicRegistration, consent, consentToInformationGathering, specialCircumstances, otherActingMunicipality, otherPayingMunicipality, meetingDate, attendingCasworkerIDList, meetingDescription, meetingLocation, cprNumberRep, firstNameRep, lastNameRep, roadNameRep, houseNumberRep, floorRep, postalCodeRep, cityRep, phoneNumberRep, representationType, note, caseWorkerID, serviceIDList, offerIDList);
+        return caseManager.createCase(problemDescription, inquierer, citizenAgreement, cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber, responsibleCaseworker, informedRightsBystander, informedRightsElectronicRegistration, consent, consentToInformationGathering, specialCircumstances, otherActingMunicipality, otherPayingMunicipality, meetingTime, attendingCasworkerIDList, meetingDescription, meetingLocation, cprNumberRep, firstNameRep, lastNameRep, roadNameRep, houseNumberRep, floorRep, postalCodeRep, cityRep, phoneNumberRep, representationType, note, caseWorkerID, serviceIDList, offerIDList);
     }
     
     boolean saveCase(ICase case1) {
