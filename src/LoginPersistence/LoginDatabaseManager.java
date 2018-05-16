@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -16,6 +17,12 @@ public class LoginDatabaseManager {
     String url = "jdbc:postgresql://pellefant.db.elephantsql.com:5432/ciouhfgp";
     String dbUsername = "ciouhfgp";
     String dbPassword = "z0qIbACfFzXvrWfMqNV8ThVbgfyV8k76";
+    
+    public void pingDatabase() throws SQLException {
+        if (!conn.isValid(0)) {
+            throw new SQLException();
+        }
+    }
 
     public boolean createUserInDB(IUser user) {
 
