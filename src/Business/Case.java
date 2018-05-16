@@ -24,14 +24,14 @@ import java.util.Map;
  */
 public class Case implements ICase {
 
-    String responsibleCaseworker;
-    boolean informedRightsBistander;
-    boolean informedRightsElectronicRegistration;
-    String consent;
-    Collection<String> consentToInformationGathering;
-    String specialCircumstances;
-    String otherActingMunicipality;
-    String otherPayingMunicipality;
+    private String responsibleCaseworker;
+    private boolean informedRightsBistander;
+    private boolean informedRightsElectronicRegistration;
+    private String consent;
+    private Collection<String> consentToInformationGathering;
+    private String specialCircumstances;
+    private String otherActingMunicipality;
+    private String otherPayingMunicipality;
 
     Collection<IInquiry> inquiryList;
     Collection<String> affiliatedCaseworkers;
