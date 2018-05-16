@@ -53,5 +53,20 @@ public class Inquiry implements IInquiry{
     public void setProblemDescription(String problemDescription) {
         this.problemDescription = problemDescription;
     }
+
+    @Override
+    public String getInquierer() {
+        return this.inquierer;
+    }
+
+    @Override
+    public boolean getCitizenAgreement() {
+        return this.citizenAgreement;
+    }
+
+    @Override
+    public Timestamp getDate() {
+        return this.date;
+    }
     
 }

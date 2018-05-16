@@ -8,6 +8,7 @@ package DataPersistence;
 import Acquaintance.ICPR;
 import Acquaintance.ICitizen;
 import Acquaintance.IInquiry;
+import java.sql.Timestamp;
 
 /**
  *
@@ -17,10 +18,17 @@ public class DataInquiry implements IInquiry {
 
     private ICitizen citizen;
     private String problemDescription;
+    private String inquierer;
+    private boolean citizenAgreement;
+    Timestamp date;
 
-    public DataInquiry(DataCitizen citizen, String problemDescription) {
+    public DataInquiry(DataCitizen citizen, String problemDescription, String inquierer, boolean citizenAgreement, Timestamp date) {
         this.citizen = citizen;
         this.problemDescription = problemDescription;
+        this.inquierer = inquierer;
+        this.citizenAgreement = citizenAgreement;
+        
+        this.date = date;
     }
 
     @Override
@@ -41,6 +49,21 @@ public class DataInquiry implements IInquiry {
     @Override
     public void setProblemDescription(String problemDescription) {
         this.problemDescription = problemDescription;
+    }
+
+    @Override
+    public String getInquierer() {
+        return this.inquierer;
+    }
+
+    @Override
+    public boolean getCitizenAgreement() {
+        return this.citizenAgreement;
+    }
+
+    @Override
+    public Timestamp getDate() {
+        return this.date;
     }
 
 }

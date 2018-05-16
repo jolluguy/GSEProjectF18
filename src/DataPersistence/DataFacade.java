@@ -30,8 +30,9 @@ public class DataFacade implements IDataPersistence {
     
     @Override
     public boolean saveInquiry(IInquiry inquiry) {
-        SaveInquiryCSV save = new SaveInquiryCSV(inquiry);
-        return save.saveInquiry();
+//        SaveInquiryCSV save = new SaveInquiryCSV(inquiry);
+//        return save.saveInquiry();
+return true;
     }
 
     @Override

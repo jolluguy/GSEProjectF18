@@ -366,8 +366,12 @@ public class CaseworkerController implements Initializable {
         int postalCode = Integer.parseInt(postalCodeTextField.getText());
         String city = cityTextField.getText();
         String phoneNumber = phoneNumberPrefixTextField.getText() + phoneNumberTextField.getText();
+        String inquierer = "";
+        boolean citizenAgreement = true;
 
-        boolean inquiryMade = business.newInquiry(cprNumber, problemDescription, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
+        boolean inquiryMade = business.newInquiry(problemDescription, inquierer, citizenAgreement, cprNumber, firstName, 
+            lastName, roadName, houseNumber, floor, 
+            postalCode, city, phoneNumber);
 
         if(inquiryMade) {
             System.out.println("Inquiry Made");
