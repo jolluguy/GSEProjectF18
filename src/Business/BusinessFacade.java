@@ -13,8 +13,8 @@ import Acquaintance.IUser;
 import java.util.Collection;
 import Acquaintance.IDataPersistence;
 import Acquaintance.ILoginPersistence;
-import java.util.Date;
 import java.util.Map;
+import java.sql.Timestamp;
 
 /**
  *
@@ -147,7 +147,7 @@ public class BusinessFacade implements IBusiness {
     @Override
     public boolean newCase(String problemDescription, String inquierer, boolean citizenAgreement, String cprNumber, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber,
                 String responsibleCaseworker, boolean informedRightsBistander, boolean informedRightsElectronicRegistration, String consent, Collection<String> consentToInformationGathering, String specialCircumstances, String otherActingMunicipality, String otherPayingMunicipality,
-                Date meetingDate, Collection<String> attendingCasworkerIDList, String meetingDescription, String meetingLocation,
+                Timestamp meetingDate, Collection<String> attendingCasworkerIDList, String meetingDescription, String meetingLocation,
                 String cprNumberRep, String firstNameRep, String lastNameRep, String roadNameRep, String houseNumberRep, String floorRep, int postalCodeRep, String cityRep, String phoneNumberRep, String representationType,
                 String note, String caseWorkerID,
                 Map<Integer, String> serviceIDList,
