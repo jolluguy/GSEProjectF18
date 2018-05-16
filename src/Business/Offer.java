@@ -13,20 +13,22 @@ import Acquaintance.IOffer;
  */
 class Offer implements IOffer {
     
-    int offerID;
-    String offerDescription;
+    private int offerID;
+    private String offerDescription;
 
     Offer(int offerID, String offerSting) {
         this.offerID = offerID;
         this.offerDescription = offerSting;
     }
 
+    @Override
       public int getOfferID() {
-        return offerID;
+        return this.offerID;
     }
 
+    @Override
     public String getOfferDescription() {
-        return offerDescription;
+        return this.offerDescription;
     }
     
     

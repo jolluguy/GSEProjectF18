@@ -13,25 +13,22 @@ import Acquaintance.IService;
  */
 public class Service implements IService {
     
-    int seviceID;
+    int serviceID;
     String serviceDescription;
 
     public Service(int serviceID, String serviceString) {
-        this.seviceID = serviceID;
+        this.serviceID = serviceID;
         this.serviceDescription = serviceString;
     }
 
-    public int getSeviceID() {
-        return seviceID;
-    }
+
+    @Override
     public String getServiceDescription() {
-        return serviceDescription;
+        return this.serviceDescription;
     }
 
     @Override
     public int getServiceID() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.serviceID;
     }
-    
-     
 }

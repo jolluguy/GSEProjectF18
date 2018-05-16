@@ -12,6 +12,16 @@ import java.util.Collection;
  * @author Rasmus
  */
 public interface ICase {
+    public boolean isInformedRightsBystander();
+    public boolean isInformedRightsElectronicRegistration();
+    public String getConsent();
+    public String getSpecialCircumstances();
+    public String getOtherActingMunicipality();
+    public String getOtherPayingMunicipality();
+    
+    public Collection<String> getConsentToInformationGathering();
+    public void addConsentToInformationGathering(String consentToInformationGathering);
+    
     public Collection<IInquiry> getInquiryList();
     public void addInquiryToCase(IInquiry inq);
     

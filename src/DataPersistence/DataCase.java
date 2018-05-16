@@ -10,19 +10,34 @@ import Acquaintance.IService;
 import java.util.Collection;
 
 public class DataCase implements ICase {
-    Collection<IInquiry> inquiryList;
-    String responsibleCaseworker;
-    Collection<String> affiliatedCaseworkers;
-    Collection<IMeeting> meetingList;
-    Collection<IRepresentation> representationList;
-    Collection<ICaseNote> caseNoteList;
-    Collection<IService> serviceList;
-    Collection<IOffer> offerList;
+    private String responsibleCaseworker;
+    private boolean informedRightsBystander;
+    private boolean informedRightsElectronicRegistration;
+    private String consent;
+    private Collection<String> consentToInformationGathering;
+    private String specialCircumstances;
+    private String otherActingMunicipality;
+    private String otherPayingMunicipality;
+    
+    private Collection<IInquiry> inquiryList;
+    private Collection<String> affiliatedCaseworkers;
+    private Collection<IMeeting> meetingList;
+    private Collection<IRepresentation> representationList;
+    private Collection<ICaseNote> caseNoteList;
+    private Collection<IService> serviceList;
+    private Collection<IOffer> offerList;
 
     
     // Alle ting i collections tilføjes via add-metoderne, så vi kan iterere over dem
-    DataCase(String responsibleCw) {
+    DataCase(String responsibleCw, boolean informedRightsBystander, boolean informedRightsElectronicRegistration, String consent, String specialCircumstances,
+            String otherActingMunicipality, String otherPayingMunicipality) {
         this.responsibleCaseworker = responsibleCw;
+        this.informedRightsBystander = informedRightsBystander;
+        this.informedRightsElectronicRegistration = informedRightsElectronicRegistration;
+        this.consent = consent;
+        this.specialCircumstances = specialCircumstances;
+        this.otherActingMunicipality = otherActingMunicipality;
+        this.otherPayingMunicipality = otherPayingMunicipality;
     }
     
     @Override
@@ -103,5 +118,45 @@ public class DataCase implements ICase {
     @Override
     public void addOffer(IOffer offer) {
         this.offerList.add(offer);
+    }
+
+    @Override
+    public boolean isInformedRightsBystander() {
+        return this.informedRightsBystander;
+    }
+
+    @Override
+    public boolean isInformedRightsElectronicRegistration() {
+        return this.informedRightsElectronicRegistration;
+    }
+
+    @Override
+    public String getConsent() {
+        return this.consent;
+    }
+
+    @Override
+    public String getSpecialCircumstances() {
+        return this.specialCircumstances;
+    }
+
+    @Override
+    public String getOtherActingMunicipality() {
+        return this.otherActingMunicipality;
+    }
+
+    @Override
+    public String getOtherPayingMunicipality() {
+        return this.otherPayingMunicipality;
+    }
+
+    @Override
+    public Collection<String> getConsentToInformationGathering() {
+        return this.consentToInformationGathering;
+    }
+
+    @Override
+    public void addConsentToInformationGathering(String consentToInformationGathering) {
+        this.consentToInformationGathering.add(consentToInformationGathering);
     }
 }

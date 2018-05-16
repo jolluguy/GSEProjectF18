@@ -12,9 +12,9 @@ import Acquaintance.ICaseNote;
  * @author Rasmus
  */
 public class CaseNote implements ICaseNote {
-    String note;
-    int noteID;
-    String auther;
+    private String note;
+    private int noteID;
+    private String author;
     
     /**
      * for use when creating a new case, this dosent set the note id sice its given by the db
@@ -23,7 +23,7 @@ public class CaseNote implements ICaseNote {
      */
     CaseNote(String note, String caseWorkerID){
         this.note = note;
-        this.auther = caseWorkerID;
+        this.author = caseWorkerID;
     }
 
     /**
@@ -34,23 +34,23 @@ public class CaseNote implements ICaseNote {
      */
 CaseNote(String note, String caseWorkerID, int noteID){
         this.note = note;
-        this.auther = caseWorkerID;
+        this.author = caseWorkerID;
         this.noteID = noteID;
     }
 
     @Override
     public String getNote() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.note;
     }
 
     @Override
     public int getNoteID() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.noteID;
     }
 
     @Override
     public String getAuthor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.author;
     }
     
 }

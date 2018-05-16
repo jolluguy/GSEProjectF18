@@ -22,7 +22,6 @@ abstract class Person implements IPerson{
     private int postalCode;
     private String city;
     private String phoneNumber;
-    
     private ICPR cpr;
     
     Person (String cprNumber, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber) {

@@ -5,6 +5,8 @@
  */
 package Acquaintance;
 
+import java.sql.Timestamp;
+
 /**
  *
  * @author Rasmus
@@ -18,4 +20,10 @@ public void setCitizen(ICitizen citizen);
 public String getProblemDescription();
 
 public void setProblemDescription(String problemDescription);
+
+public String getInquirer();
+
+public boolean getCitizenAgreement();
+
+public Timestamp getTime();
 }

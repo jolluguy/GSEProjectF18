@@ -1,20 +1,20 @@
 package DataPersistence;
 
 import Acquaintance.IMeeting;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 
 public class DataMeeting implements IMeeting {
-    private Date meetingDate;
+    private Timestamp meetingTime;
     private Collection<String> attendingCaseworkerIDList;
     private String meetingDescription;
     private String meetingLocation;
 
     
     // er lidt usikker på den her constructor
-    DataMeeting(Date meetingDate, Collection<String> attendingCaseworkerIDList, String meetingDescription, String meetingLocation) {
-        this.meetingDate = meetingDate;
+    DataMeeting(Timestamp meetingTime, Collection<String> attendingCaseworkerIDList, String meetingDescription, String meetingLocation) {
+        this.meetingTime = meetingTime;
         this.attendingCaseworkerIDList = new ArrayList<>();
         for(String s: attendingCaseworkerIDList){
             this.attendingCaseworkerIDList.add(s);
@@ -25,13 +25,13 @@ public class DataMeeting implements IMeeting {
     
     
     @Override
-    public Date getMeetingDate() {
-        return this.meetingDate;
+    public Timestamp getMeetingTime() {
+        return this.meetingTime;
     }
 
     @Override
-    public void setMeetingDate(Date date) {
-        this.meetingDate = date;
+    public void setMeetingTime(Timestamp time) {
+        this.meetingTime = time;
     }
 
     @Override
