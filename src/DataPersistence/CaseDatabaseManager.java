@@ -43,6 +43,8 @@ public class CaseDatabaseManager {
             
             String inqID = null;
             
+            Thread.sleep(1000);
+            
             
             
         } catch (Exception ex) {
