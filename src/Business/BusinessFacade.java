@@ -12,6 +12,7 @@ import Acquaintance.IUser;
 import java.util.Collection;
 import Acquaintance.IDataPersistence;
 import Acquaintance.ILoginPersistence;
+import java.sql.SQLException;
 
 /**
  *
@@ -37,6 +38,10 @@ public class BusinessFacade implements IBusiness {
             instance = new BusinessFacade();
         }
         return instance;
+    }
+    
+    public void pingDatabase() throws SQLException {
+        loginPersistence.pingDatabase();
     }
 
     //Data-layer injection

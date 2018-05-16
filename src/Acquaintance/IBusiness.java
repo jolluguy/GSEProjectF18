@@ -5,6 +5,7 @@
  */
 package Acquaintance;
 
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.List;
 
@@ -40,4 +41,7 @@ public interface IBusiness {
    
    boolean newInquiry(long cprNumber, String problemDescription, String firstName, String lastName, String roadName, String houseNumber,
                        String floor, int postalCode, String city, String phoneNumber);
+
+   void pingDatabase() throws SQLException;
+
 }

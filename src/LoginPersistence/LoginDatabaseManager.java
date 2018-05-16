@@ -17,11 +17,17 @@ public class LoginDatabaseManager {
     String url = "jdbc:postgresql://pellefant.db.elephantsql.com:5432/ciouhfgp";
     String dbUsername = "ciouhfgp";
     String dbPassword = "z0qIbACfFzXvrWfMqNV8ThVbgfyV8k76";
-    
+
     public void pingDatabase() throws SQLException {
-        if (!conn.isValid(0)) {
-            throw new SQLException();
+        try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
+            Class.forName("org.postgresql.Driver");
+            if (!conn.isValid(0)) {
+                throw new SQLException();
+            }
+        } catch (ClassNotFoundException cnfe) {
+            cnfe.printStackTrace();
         }
+
     }
 
     public boolean createUserInDB(IUser user) {
@@ -36,7 +42,7 @@ public class LoginDatabaseManager {
         Timestamp createdTime = user.getCreatedTime();
         Timestamp lastLoginTime = user.getLastLoginTime();
 
-        try(Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
+        try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
 
             Class.forName("org.postgresql.Driver");
 
@@ -82,11 +88,10 @@ public class LoginDatabaseManager {
 
     public boolean updateLastLogin(IUser user) {
         String userName = user.getUserName();
-        
-        try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)){
-            
+
+        try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
+
             Class.forName("org.postgresql.Driver");
-            
 
             PreparedStatement st = conn.prepareStatement("UPDATE login SET sidste_login = '" + (new Timestamp(System.currentTimeMillis())) + "' WHERE brugernavn = '" + userName + "';");
 
@@ -104,17 +109,16 @@ public class LoginDatabaseManager {
     public boolean updateJob(IUser user) {
         String userName = user.getUserName();
         int level = user.getLevel();
-        
-        try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)){
+
+        try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
             Class.forName("org.postgresql.Driver");
-            
 
             PreparedStatement st = conn.prepareStatement("UPDATE login SET niveau = '" + level + "' WHERE brugernavn = '" + userName + "';");
 
             st.executeUpdate();
 
             return true;
-            
+
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -126,9 +130,9 @@ public class LoginDatabaseManager {
 
         Collection<IUser> userList = new ArrayList<>();
 
-        try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)){
+        try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
             Class.forName("org.postgresql.Driver");
-            
+
             Statement st = conn.createStatement();
             String sql = "SELECT * FROM login";
 
@@ -144,66 +148,66 @@ public class LoginDatabaseManager {
                 System.out.println(username);
                 userList.add(new DataUser(username, password, level, createdTime, lastLoginTime));
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         return userList;
     }
-    
-    public boolean doesUserExist(String userName){
+
+    public boolean doesUserExist(String userName) {
         int matches = -1;
-        try(Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)){
+        try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
             Class.forName("org.postgresql.Driver");
-            
+
             Statement st = conn.createStatement();
             String sql = "SELECT COUNT('brugernavn') FROM login WHERE brugernavn = '" + userName + "';";
-            
+
             ResultSet result = st.executeQuery(sql);
-            
-            while(result.next()){
+
+            while (result.next()) {
                 matches = result.getInt("count");
             }
-            
-            if(matches == 1){
+
+            if (matches == 1) {
                 return true;
-            }            
-            
-        }catch(Exception e){
+            }
+
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
         return false;
     }
-    
-    public IUser getUser(String userName){
+
+    public IUser getUser(String userName) {
         DataUser user = null;
-                
-        try(Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)){
+
+        try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
             Class.forName("org.postgresql.Driver");
-            
-            if(doesUserExist(userName)){
+
+            if (doesUserExist(userName)) {
                 Statement st2 = conn.createStatement();
                 String sql2 = "SELECT brugernavn, kodeord, niveau, oprettet, sidste_login FROM login WHERE brugernavn = '" + userName + "';";
-                
+
                 ResultSet result2 = st2.executeQuery(sql2);
-                
-                while(result2.next()){
+
+                while (result2.next()) {
                     String tempUserName = result2.getString("brugernavn");
                     String tempPassword = result2.getString("kodeord");
                     int tempLevel = result2.getInt("niveau");
                     Timestamp tempCreatedTime = result2.getTimestamp("oprettet");
                     Timestamp tempLastLoginTime = result2.getTimestamp("sidste_login");
-                    
+
                     user = new DataUser(tempUserName, tempPassword, tempLevel, tempCreatedTime, tempLastLoginTime);
                 }
             } else {
                 System.out.println("User does not exist");
                 return null;
             }
-            
-        }catch (Exception e) {
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return user;

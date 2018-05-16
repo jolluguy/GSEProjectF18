@@ -5,6 +5,7 @@
  */
 package Acquaintance;
 
+import java.sql.SQLException;
 import java.util.Collection;
 
 /**
@@ -26,4 +27,6 @@ public interface ILoginPersistence {
     Collection<IUser> getAllUsers();
     
     boolean getUserInfo(String userName);
+    
+    void pingDatabase() throws SQLException;
 }
