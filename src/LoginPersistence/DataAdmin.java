@@ -33,9 +33,9 @@ public class DataAdmin extends DataJob implements IAdmin {
     }
     
     @Override
-    public boolean changeJob(String userName, String password, IJob job){
+    public boolean changeJob(String userName, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName){
         IUser user = loginDatabase.getUser(userName);
-        user.setJob(job);
+        user.setJob(jobTitle, ID, accessLevel, departmentID, departmentName);
         return loginDatabase.updateJob(user);
     }
 

@@ -33,7 +33,7 @@ public interface IBusiness {
     
     boolean createUser(int userID, String firstName, String lastName, String userName, String password1, String password2, boolean active, Timestamp createdTime, Timestamp lastLoginTime);
 
-    boolean changeJob(String userName, String password, IJob job);
+    boolean changeJob(String userName, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName);
     
     Collection<IUser> getUserList();
    

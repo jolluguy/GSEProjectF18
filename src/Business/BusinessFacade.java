@@ -106,8 +106,8 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public boolean changeJob(String userName, String password, IJob job) {
-        return admin.changeJob(userName, password, job);
+    public boolean changeJob(String userName, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
+        return admin.changeJob(userName, jobTitle, ID, accessLevel, departmentID, departmentName);
     }
 
     public boolean addUser(IUser user) {

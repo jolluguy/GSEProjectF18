@@ -7,9 +7,7 @@ package LoginPersistence;
 
 import Acquaintance.IJob;
 import Acquaintance.IUser;
-import Business.Job;
 import java.io.Serializable;
-import java.nio.file.attribute.UserDefinedFileAttributeView;
 import java.sql.Timestamp;
 
 /**
@@ -142,8 +140,15 @@ public class DataUser implements IUser, Serializable {
     }
 
     @Override
-    public void setJob(Job job) {
-        this.job = job;
+    public void setJob(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
+        if(jobTitle.equalsIgnoreCase("admin")){
+            this.job = new DataAdmin(ID, accessLevel, departmentID, departmentName);
+            
+        } else if(jobTitle.equalsIgnoreCase("caseworker")) {
+            this.job = new DataCaseWorker(ID, accessLevel, departmentID, departmentName);
+            
+        }
+        
     }
     
     

@@ -35,9 +35,9 @@ public class Admin extends Job implements IAdmin {
     }
     
     @Override
-    public boolean changeJob(String userName, String password, IJob job) {
+    public boolean changeJob(String userName, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
         IUser user = facade.getUser(userName);
-        user.setJob((Job) job); //Parsing IJob to job... Might give some problems.
+        user.setJob(jobTitle, ID, accessLevel, departmentID, departmentName); //Parsing IJob to job... Might give some problems.
         return facade.updateJob(user);
     }
     

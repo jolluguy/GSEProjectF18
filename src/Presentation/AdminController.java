@@ -193,23 +193,23 @@ public class AdminController implements Initializable {
     public void changeJob(ActionEvent event) {
         String username = jobUsernameField.getText();
         String password = jobPasswordField.getText();
-        IJob job;
+        String newJob = "";
 
         if (!(jobCaseRadio.isSelected() || jobAdminRadio.isSelected() || jobInactiveRadio.isSelected())) {
             jobWarningLabel.setText("Et job skal vælges før en ændring kan foretages");
         } else {
             if (jobCaseRadio.isSelected()) {
-                job = job;
+                newJob = "CaseWorker";
             } else if (jobAdminRadio.isSelected()) {
-                job = IAdmin;
+                newJob = "Admin";
             } else if (jobInactiveRadio.isSelected()) {
-                job = null;
+                newJob = null;
             }
-            System.out.println("level is " + job);
+            System.out.println("level is " + newJob);
 
             String statusMessage = "";
 
-            boolean changeJob = business.changeJob(username, password, job);
+            boolean changeJob = business.changeJob(username, username, 0, 0, 0, username);
             if (changeJob) {
                 statusMessage = username + "'s job er blevet ændret";
             } else if (!changeJob) {

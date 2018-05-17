@@ -43,7 +43,7 @@ public class User implements IUser, Serializable {
         if (jobtitle.equalsIgnoreCase("admin")) {
             this.job = new Admin(ID, accessLevel, departmentID, departmentName);
 
-        } else if (jobtitle.equalsIgnoreCase("sagsbehandler")) {
+        } else if (jobtitle.equalsIgnoreCase("caseworker")) {
             this.job = new CaseWorker(ID, accessLevel, departmentID, departmentName);
         }
 
@@ -64,8 +64,15 @@ public class User implements IUser, Serializable {
     }
 
     @Override
-    public void setJob(Job job) {
-        this.job = job;
+    public void setJob(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
+        if(jobTitle.equalsIgnoreCase("admin")){
+            this.job = new Admin(ID, accessLevel, departmentID, departmentName);
+            
+        } else if(jobTitle.equalsIgnoreCase("caseworker")) {
+            this.job = new CaseWorker(ID, accessLevel, departmentID, departmentName);
+            
+        }
+        
     }
 
     @Override
