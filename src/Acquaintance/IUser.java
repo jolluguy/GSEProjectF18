@@ -5,8 +5,6 @@
  */
 package Acquaintance;
 
-import Business.Job;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
@@ -42,5 +40,7 @@ public interface IUser {
     Timestamp getLastLoginTime();
 
     public void setLastLoginTime();
+
+    public IAdmin getAdmin();
 
 }

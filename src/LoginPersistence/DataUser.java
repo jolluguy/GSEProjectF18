@@ -5,6 +5,7 @@
  */
 package LoginPersistence;
 
+import Acquaintance.IAdmin;
 import Acquaintance.IJob;
 import Acquaintance.IUser;
 import java.io.Serializable;
@@ -141,6 +142,11 @@ public class DataUser implements IUser, Serializable {
             
         }
         
+    }
+
+    @Override
+    public IAdmin getAdmin() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

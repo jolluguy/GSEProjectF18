@@ -5,6 +5,7 @@
  */
 package Business;
 
+import Acquaintance.IAdmin;
 import Acquaintance.IJob;
 import Acquaintance.IUser;
 import java.io.Serializable;
@@ -61,6 +62,18 @@ public class User implements IUser, Serializable {
         return this.job;
     }
 
+    @Override
+    public IAdmin getAdmin() {
+        
+        if (this.getClass().getSimpleName().equalsIgnoreCase("admin")) {
+            return (Admin) this.job;
+    }
+        else {
+            return null;
+        }
+    }
+    
+    
     @Override
     public void setJob(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
         if(jobTitle.equalsIgnoreCase("admin")){

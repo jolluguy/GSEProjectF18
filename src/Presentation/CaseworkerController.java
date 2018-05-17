@@ -8,6 +8,7 @@ package Presentation;
 import Acquaintance.IBusiness;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -92,7 +93,7 @@ public class CaseworkerController implements Initializable {
     @FXML
     private CheckBox treatmentPsykCheckBox;
     @FXML
-    private CheckBox treamentSpecialDrCheckBox;
+    private CheckBox treatmentSpecialDrCheckBox;
     @FXML
     private CheckBox protectedEmploymentCheckBox;
     @FXML
@@ -342,11 +343,204 @@ public class CaseworkerController implements Initializable {
     @FXML
     private MenuButton menuBar;
 
+    private Map<Integer, String> serviceMap;
+    private Map<Integer, String> offerMap;
 
+    private void fillServiceMap() {
+        if (activity104CheckBox.isSelected()) {
+            serviceMap.put(1, activity104CheckBox.getText());
+        }
+        if (carriage105CheckBox.isSelected()) {
+            serviceMap.put(2, carriage105CheckBox.getText());
+        }
+        if (carriage25CheckBox.isSelected()) {
+            serviceMap.put(3, carriage25CheckBox.getText());
+        }
+        if (carriage5CheckBox.isSelected()) {
+            serviceMap.put(4, carriage5CheckBox.getText());
+        }
+        if (carriage10CheckBox.isSelected()) {
+            serviceMap.put(5, carriage10CheckBox.getText());
+        }
+        if (carriage170CheckBox.isSelected()) {
+            serviceMap.put(6, carriage170CheckBox.getText());
+        }
+        if (carriage172CheckBox.isSelected()) {
+            serviceMap.put(7, carriage172CheckBox.getText());
+        }
+        if (individualCarriageCheckBox.isSelected()) {
+            serviceMap.put(8, individualCarriageCheckBox.getText());
+        }
+        if (treatment101CheckBox.isSelected()) {
+            serviceMap.put(9, treatment101CheckBox.getText());
+        }
+        if (treatment141CheckBox.isSelected()) {
+            serviceMap.put(10, treatment141CheckBox.getText());
+        }
+        if (treatmentTherapyCheckBox.isSelected()) {
+            serviceMap.put(11, treatmentTherapyCheckBox.getText());
+        }
+        if (treatmentPsykCheckBox.isSelected()) {
+            serviceMap.put(12, treatmentPsykCheckBox.getText());
+        }
+        if (treatmentSpecialDrCheckBox.isSelected()) {
+            serviceMap.put(13, treatmentSpecialDrCheckBox.getText());
+        }
+        if (protectedEmploymentCheckBox.isSelected()) {
+            serviceMap.put(14, protectedEmploymentCheckBox.getText());
+        }
+        if (dayReliefCheckBox.isSelected()) {
+            serviceMap.put(15, dayReliefCheckBox.getText());
+        }
+        if (remunerationCheckBox.isSelected()) {
+            serviceMap.put(16, remunerationCheckBox.getText());
+        }
+        if (additionalCostCheckBox.isSelected()) {
+            serviceMap.put(16, additionalCostCheckBox.getText());
+        }
+        if (control126CheckBox.isSelected()) {
+            serviceMap.put(17, control126CheckBox.getText());
+        }
+        if (control127CheckBox.isSelected()) {
+            serviceMap.put(18, control127CheckBox.getText());
+        }
+        if (control128CheckBox.isSelected()) {
+            serviceMap.put(19, control128CheckBox.getText());
+        }
+        if (control125CheckBox.isSelected()) {
+            serviceMap.put(20, control125CheckBox.getText());
+        }
+        if (_24HourReliefCheckBox.isSelected()) {
+            serviceMap.put(21, _24HourReliefCheckBox.getText());
+        }
+        if (longInstitutionalisingCheckBox.isSelected()) {
+            serviceMap.put(22, longInstitutionalisingCheckBox.getText());
+        }
+        if (temporaryInstitutionalising80CheckBox.isSelected()) {
+            serviceMap.put(23, temporaryInstitutionalising80CheckBox.getText());
+        }
+        if (temporaryInstitutionalising107CheckBox.isSelected()) {
+            serviceMap.put(24, temporaryInstitutionalising107CheckBox.getText());
+        }
+        if (temporaryInstitutionalising109CheckBox.isSelected()) {
+            serviceMap.put(25, temporaryInstitutionalising109CheckBox.getText());
+        }
+        if (personalHelp83CheckBox.isSelected()) {
+            serviceMap.put(26, personalHelp83CheckBox.getText());
+        }
+        if (personalHelp95CheckBox.isSelected()) {
+            serviceMap.put(27, personalHelp95CheckBox.getText());
+        }
+        if (practicalHelp83CheckBox.isSelected()) {
+            serviceMap.put(28, practicalHelp83CheckBox.getText());
+        }
+        if (practicalhelp95CheckBox.isSelected()) {
+            serviceMap.put(29, practicalhelp95CheckBox.getText());
+        }
+        if (administrationSupportCheckBox.isSelected()) {
+            serviceMap.put(30, administrationSupportCheckBox.getText());
+        }
+        if (temporaryInstitutionalising110CheckBox.isSelected()) {
+            serviceMap.put(31, temporaryInstitutionalising110CheckBox.getText());
+        }
+        if (shoppingSupportCheckBox.isSelected()) {
+            serviceMap.put(32, shoppingSupportCheckBox.getText());
+        }
+        if (contactSupportCheckBox.isSelected()) {
+            serviceMap.put(33, contactSupportCheckBox.getText());
+        }
+        if (medicinalSupportCheckBox.isSelected()) {
+            serviceMap.put(34, medicinalSupportCheckBox.getText());
+        }
+        if (personalCareCheckBox.isSelected()) {
+            serviceMap.put(35, personalCareCheckBox.getText());
+        }
+        if (practicalSupportCheckBox.isSelected()) {
+            serviceMap.put(36, practicalSupportCheckBox.getText());
+        }
+        if (educationSupportCheckBox.isSelected()) {
+            serviceMap.put(37, educationSupportCheckBox.getText());
+        }
+        if (parentingSupportCheckBox.isSelected()) {
+            serviceMap.put(38, parentingSupportCheckBox.getText());
+        }
+        if (supportPersonCheckBox.isSelected()) {
+            serviceMap.put(39, supportPersonCheckBox.getText());
+        }
+        if (temporaryReplacement84CheckBox.isSelected()) {
+            serviceMap.put(40, temporaryReplacement84CheckBox.getText());
+        }
+        if (temporaryReplacement95CheckBox.isSelected()) {
+            serviceMap.put(41, temporaryReplacement95CheckBox.getText());
+        }
+        if (personalAssistanceCheckBox.isSelected()) {
+            serviceMap.put(42, personalAssistanceCheckBox.getText());
+        }
+        if (contactForDeafblindCheckBox.isSelected()) {
+            serviceMap.put(43, contactForDeafblindCheckBox.getText());
+        }
+        if (companionCheckBox.isSelected()) {
+            serviceMap.put(44, companionCheckBox.getText());
+        }
+        if (kinCare118CheckBox.isSelected()) {
+            serviceMap.put(45, kinCare118CheckBox.getText());
+        }
+        if (kinCare119CheckBox.isSelected()) {
+            serviceMap.put(46, kinCare119CheckBox.getText());
+        }
+        if (aidCheckBox.isSelected()) {
+            serviceMap.put(47, aidCheckBox.getText());
+        }
+        if (carAidCheckBox.isSelected()) {
+            serviceMap.put(48, carAidCheckBox.getText());
+        }
+        if (furnishingAidCheckBox.isSelected()) {
+            serviceMap.put(49, furnishingAidCheckBox.getText());
+        }
+        if (goodsAidCheckBox.isSelected()) {
+            serviceMap.put(50, goodsAidCheckBox.getText());
+        }
+        if (rehabilitation85CheckBox.isSelected()) {
+            serviceMap.put(51, rehabilitation85CheckBox.getText());
+        }
+        if (rehabilitation86CheckBox.isSelected()) {
+            serviceMap.put(52, rehabilitation86CheckBox.getText());
+        }
+        if (rehabilitation102CheckBox.isSelected()) {
+            serviceMap.put(53, rehabilitation102CheckBox.getText());
+        }
+        if (maintainingAbility85CheckBox.isSelected()) {
+            serviceMap.put(54, maintainingAbility85CheckBox.getText());
+        }
+        if (maintainingAbility86CheckBox.isSelected()) {
+            serviceMap.put(55, maintainingAbility86CheckBox.getText());
+        }
+        if (maintainingAbility102CheckBox.isSelected()) {
+            serviceMap.put(56, rehabilitation102CheckBox.getText());
+        }
+        if (compensatingSpecialEducationCheckBox.isSelected()) {
+            serviceMap.put(57, compensatingSpecialEducationCheckBox.getText());
+        }
+        if (youthEducationSpecialNeedsCheckBox.isSelected()) {
+            serviceMap.put(58, youthEducationSpecialNeedsCheckBox.getText());
+        }
+        if (counselingCheckBox.isSelected()) {
+            serviceMap.put(59, counselingCheckBox.getText());
+        }
+        if (supportOrContactPersonCheckBox.isSelected()) {
+            serviceMap.put(60, supportOrContactPersonCheckBox.getText());
+        }
+
+    }
+
+    private void fillOfferMap() {
+
+    }    
+
+    
     /**
      * Initializes the controller class.
      */
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -356,7 +550,7 @@ public class CaseworkerController implements Initializable {
     
     @FXML
     public void newInquiry(ActionEvent event) {
-        long cprNumber = Long.parseLong(cprTextField.getText(), 10);
+        String cprNumber = cprTextField.getText();
         String problemDescription = descriptionTextAreaInquiry.getText();
         String firstName = firstNameTextField.getText();
         String lastName = lastNameTextField.getText();
@@ -366,8 +560,15 @@ public class CaseworkerController implements Initializable {
         int postalCode = Integer.parseInt(postalCodeTextField.getText());
         String city = cityTextField.getText();
         String phoneNumber = phoneNumberPrefixTextField.getText() + phoneNumberTextField.getText();
+        
+        
+        //IMPLEMENT!
+        String inquirer = "";
+        boolean citizenAgreement = true;
 
-        boolean inquiryMade = business.newInquiry(cprNumber, problemDescription, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
+        boolean inquiryMade = business.newInquiry(problemDescription, inquirer, citizenAgreement, cprNumber, firstName, 
+            lastName, roadName, houseNumber, floor, 
+            postalCode, city, phoneNumber);
 
         if(inquiryMade) {
             System.out.println("Inquiry Made");
@@ -603,7 +804,7 @@ public class CaseworkerController implements Initializable {
             treatment141CheckBox.setDisable(false);
             treatmentTherapyCheckBox.setDisable(false);
             treatmentPsykCheckBox.setDisable(false);
-            treamentSpecialDrCheckBox.setDisable(false);
+            treatmentSpecialDrCheckBox.setDisable(false);
 
         } else if (!treatmentCheckBox.isSelected()) {
 
@@ -611,13 +812,13 @@ public class CaseworkerController implements Initializable {
             treatment141CheckBox.setDisable(true);
             treatmentTherapyCheckBox.setDisable(true);
             treatmentPsykCheckBox.setDisable(true);
-            treamentSpecialDrCheckBox.setDisable(true);
+            treatmentSpecialDrCheckBox.setDisable(true);
 
             treatment101CheckBox.setSelected(false);
             treatment141CheckBox.setSelected(false);
             treatmentTherapyCheckBox.setSelected(false);
             treatmentPsykCheckBox.setSelected(false);
-            treamentSpecialDrCheckBox.setSelected(false);
+            treatmentSpecialDrCheckBox.setSelected(false);
         }
     }
 

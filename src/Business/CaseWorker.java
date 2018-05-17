@@ -25,8 +25,4 @@ public class CaseWorker extends Job implements ICaseWorker {
     public Collection<IUser> getUserList() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
-    
-       
 }

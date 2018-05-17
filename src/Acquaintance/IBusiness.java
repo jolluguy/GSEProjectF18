@@ -8,6 +8,7 @@ package Acquaintance;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Collection;
+import java.util.Map;
 
 /**
  *
@@ -37,13 +38,20 @@ public interface IBusiness {
     
     Collection<IUser> getUserList();
    
-   public boolean sendToDB(IInquiry inquiry);
+    public void startUp();
    
-   public void startUp();
-   
-   boolean newInquiry(long cprNumber, String problemDescription, String firstName, String lastName, String roadName, String houseNumber,
-                       String floor, int postalCode, String city, String phoneNumber);
+    void pingDatabase() throws SQLException;
+    
+    boolean newInquiry(String problemDescription, String inquierer, boolean citizenAgreement, String cprNumber, String firstName, 
+            String lastName, String roadName, String houseNumber, String floor, 
+            int postalCode, String city, String phoneNumber);
 
-   void pingDatabase() throws SQLException;
+    public boolean newCase(String problemDescription, String inquierer, boolean citizenAgreement, String cprNumber, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber,
+                String responsibleCaseworker, boolean informedRightsBistander, boolean informedRightsElectronicRegistration, String consent, Collection<String> consentToInformationGathering, String specialCircumstances, String otherActingMunicipality, String otherPayingMunicipality,
+                Timestamp meetingDate, Collection<String> attendingCasworkerIDList, String meetingDescription, String meetingLocation,
+                String cprNumberRep, String firstNameRep, String lastNameRep, String roadNameRep, String houseNumberRep, String floorRep, int postalCodeRep, String cityRep, String phoneNumberRep, String representationType,
+                String note, String caseWorkerID,
+                Map<Integer, String> serviceIDList,
+                Map<Integer, String> offerIDList);
 
 }

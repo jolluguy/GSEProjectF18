@@ -5,6 +5,7 @@
  */
 package DataPersistence;
 
+import Acquaintance.ICase;
 import Acquaintance.IInquiry;
 import Acquaintance.IDataPersistence;
 
@@ -14,7 +15,7 @@ import Acquaintance.IDataPersistence;
  */
 public class DataFacade implements IDataPersistence {
     
-    private static DataFacade instance = null;
+    private static DataFacade instance;
     
     private DataFacade() {
         
@@ -31,6 +32,11 @@ public class DataFacade implements IDataPersistence {
     public boolean saveInquiry(IInquiry inquiry) {
         SaveInquiryCSV save = new SaveInquiryCSV(inquiry);
         return save.saveInquiry();
+    }
+    
+    @Override
+    public boolean saveCase(ICase case1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

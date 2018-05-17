@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DataPersistence;
 
 import Acquaintance.IInquiry;
@@ -20,10 +15,9 @@ public class SaveInquiryCSV {
     IInquiry inq;
 
     SaveInquiryCSV(IInquiry inquiry) {
-        this.inq = new DataInquiry(new DataCitizen(inquiry.getCitizen().getCprNumber(), inquiry.getCitizen().getFirstName(), 
-                inquiry.getCitizen().getLastName(), inquiry.getCitizen().getRoadName(), inquiry.getCitizen().getHouseNumber(), 
-                inquiry.getCitizen().getFloor(), inquiry.getCitizen().getPostalCode(), inquiry.getCitizen().getCity(), inquiry.getCitizen().getPhoneNumber()),
-                inquiry.getProblemDescription());
+        this.inq = new DataInquiry(inq.getProblemDescription(), inq.getInquirer(), inq.getCitizenAgreement(), inq.getCitizen().getCprNumber(), inq.getCitizen().getFirstName(), 
+            inq.getCitizen().getLastName(), inq.getCitizen().getRoadName(), inq.getCitizen().getHouseNumber(), inq.getCitizen().getFloor(), 
+            inq.getCitizen().getPostalCode(), inq.getCitizen().getCity(), inq.getCitizen().getPhoneNumber());
     }
     
     boolean saveInquiry(){

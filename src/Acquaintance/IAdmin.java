@@ -14,10 +14,10 @@ import java.util.Collection;
  */
 public interface IAdmin {
     
-   boolean createUser(String firstName, String lastName, String userName, String password1, String password2, boolean active, Timestamp createdTime, Timestamp lastLoginTime);
+    public boolean createUser(String firstName, String lastName, String userName, String password1, String password2, boolean active, Timestamp createdTime, Timestamp lastLoginTime);
     
-    boolean changeJob(String userName, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName);
+    public boolean changeJob(String userName, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName);
 
-    Collection<IUser> getUserList(); 
+    public Collection<IUser> getUserList(); 
     
 }

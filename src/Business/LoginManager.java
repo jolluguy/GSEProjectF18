@@ -6,7 +6,6 @@
 package Business;
 
 import Acquaintance.IUser;
-import java.util.Collection;
 
 /**
  *
@@ -64,6 +63,13 @@ public class LoginManager {
         return userOne;
     }
     
-    
-    
+    public boolean changePassword(String oldPassword, String newPassword1, String newPassword2) {
+        if (oldPassword.equals(userOne.getPassword())) {
+            if (newPassword1.equals(newPassword2)) {
+                userOne.changePassword(newPassword1);
+                return true;
+            }
+        }
+        return false;
+    }
 }
