@@ -5,6 +5,7 @@
  */
 package Acquaintance;
 
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Date;
@@ -22,6 +23,8 @@ public interface IBusiness {
     void injectLoginPersistence(ILoginPersistence loginPersistence);
 
     int login(String name, String pw);
+    
+    int getAccess(String userName);
 
     void logOut();
     
@@ -31,9 +34,9 @@ public interface IBusiness {
     
     boolean checkCredentials(String userName, String password);
     
-    boolean createUser(String firstName, String lastName, String userName, String password1, String password2, int level);
+    boolean createUser(int userID, String firstName, String lastName, String userName, String password1, String password2, boolean active, Timestamp createdTime, Timestamp lastLoginTime);
 
-    boolean changeJob(String userName, String password, int level);
+    boolean changeJob(String userName, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName);
     
     Collection<IUser> getUserList();
    
@@ -53,4 +56,6 @@ public interface IBusiness {
                 String note, String caseWorkerID,
                 Map<Integer, String> serviceIDList,
                 Map<Integer, String> offerIDList);
+
+    void pingDatabase() throws SQLException;
 }

@@ -9,6 +9,7 @@ import Acquaintance.IUser;
 import java.io.Serializable;
 import java.util.Collection;
 import Acquaintance.ILoginPersistence;
+import java.sql.SQLException;
 
 /**
  *
@@ -16,12 +17,22 @@ import Acquaintance.ILoginPersistence;
  */
 public class LoginFacade implements ILoginPersistence, Serializable {
 
-    LoginDatabaseManager database;
+    LoginDatabaseManager database = new LoginDatabaseManager();
 
     private static LoginFacade instance = null;
 
     private LoginFacade() {
 
+    }
+
+    /**
+     *
+     * @throws SQLException
+     */
+    @Override
+    public void pingDatabase() throws SQLException {
+
+        database.pingDatabase();
     }
 
     public static LoginFacade getInstance() {
@@ -30,40 +41,44 @@ public class LoginFacade implements ILoginPersistence, Serializable {
         }
         return instance;
     }
+    
+    public int getAccess(String userName){
+        return database.getAccess(userName);
+    }
 
     @Override
     public IUser getUser(String userName) {
-        database = new LoginDatabaseManager();
+
         return database.getUser(userName);
     }
 
     @Override
     public boolean addUser(IUser user) {
-        database = new LoginDatabaseManager();
+
         return database.createUserInDB(user);
     }
-    
+
     @Override
-    public boolean updateLastLoginTime(IUser user){
-        database = new LoginDatabaseManager();
+    public boolean updateLastLoginTime(IUser user) {
+
         return database.updateLastLogin(user);
     }
-    
+
     @Override
-    public boolean updateJob(IUser user){
-        database = new LoginDatabaseManager();
+    public boolean updateJob(IUser user) {
+
         return database.updateJob(user);
     }
 
     @Override
     public Collection<IUser> getAllUsers() {
-        database = new LoginDatabaseManager();
+
         return database.getAllUsers();
     }
 
     @Override
     public boolean getUserInfo(String userName) {
-        database = new LoginDatabaseManager();
+
         return database.doesUserExist(userName);
     }
 

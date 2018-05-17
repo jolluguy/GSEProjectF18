@@ -45,4 +45,7 @@ public interface ICase {
     
     public Collection<IOffer> getOfferList();
     public void addOffer(IOffer offer);
+    
+    public boolean getInformedRightsBistander();
+    public boolean getInformedRightsElectronicRegistration();
 }

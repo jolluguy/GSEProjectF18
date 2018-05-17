@@ -21,6 +21,8 @@ public class Inquiry implements IInquiry{
     private Timestamp time;
     private ICitizen citizen;
     
+    
+    //Normal Inquiry constructor
     public Inquiry (String problemDescription, String inquirer, boolean citizenAgreement, String cprNumber, String firstName, 
             String lastName, String roadName, String houseNumber, String floor, 
             int postalCode, String city, String phoneNumber) {
@@ -33,6 +35,19 @@ public class Inquiry implements IInquiry{
         this.citizen = new Citizen(cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
     }
 
+    //Inquiry constructor for when it comes from the database
+    public Inquiry (String problemDescription, String inquirer, boolean citizenAgreement, String cprNumber, String firstName, 
+            String lastName, String roadName, String houseNumber, String floor, 
+            int postalCode, String city, String phoneNumber, Timestamp date) {
+        
+        this.problemDescription = problemDescription;
+        this.inquirer = inquirer;
+        this.citizenAgreement = citizenAgreement;
+        this.time = date;
+        
+        this.citizen = new Citizen(cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
+    }
+    
    
     @Override
     public ICitizen getCitizen() {

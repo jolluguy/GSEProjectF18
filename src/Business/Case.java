@@ -287,6 +287,12 @@ public class Case implements ICase {
     public String getOtherPayingMunicipality() {
         return otherPayingMunicipality;
     }
+    public boolean getInformedRightsBistander(){
+        return informedRightsBistander;
+    }
+    public boolean getInformedRightsElectronicRegistration(){
+        return informedRightsElectronicRegistration;
+    }
 
     @Override
     public boolean isInformedRightsBystander() {

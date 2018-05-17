@@ -3,22 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business;
+package LoginPersistence;
 
 import Acquaintance.ICaseWorker;
 
 /**
  *
- * @author Rasmus
+ * @author Rol's studie PC
  */
-public class CaseWorker extends Job implements ICaseWorker {
+public class DataCaseWorker extends DataJob implements ICaseWorker {
     
-    
-    
-    public CaseWorker(int ID, int accessLevel, int departmentID, String departmentName) {
+    public DataCaseWorker(int ID, int accessLevel, int departmentID, String departmentName) {
         super(ID, accessLevel, departmentID, departmentName);
     }
     
-    
-       
 }

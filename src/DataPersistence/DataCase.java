@@ -159,4 +159,14 @@ public class DataCase implements ICase {
     public void addConsentToInformationGathering(String consentToInformationGathering) {
         this.consentToInformationGathering.add(consentToInformationGathering);
     }
+
+    @Override
+    public boolean getInformedRightsBistander() {
+        return informedRightsBystander;
+    }
+
+    @Override
+    public boolean getInformedRightsElectronicRegistration() {
+        return informedRightsElectronicRegistration;
+    }
 }

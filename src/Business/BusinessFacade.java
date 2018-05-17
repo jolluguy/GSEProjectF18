@@ -12,9 +12,11 @@ import Acquaintance.IInquiry;
 import Acquaintance.IUser;
 import java.util.Collection;
 import Acquaintance.IDataPersistence;
+import Acquaintance.IJob;
 import Acquaintance.ILoginPersistence;
-import java.util.Map;
+import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.Map;
 
 /**
  *
@@ -41,6 +43,10 @@ public class BusinessFacade implements IBusiness {
         }
         return instance;
     }
+    
+    public void pingDatabase() throws SQLException {
+        loginPersistence.pingDatabase();
+    }
 
     //Data-layer injection
     @Override
@@ -58,12 +64,18 @@ public class BusinessFacade implements IBusiness {
     public void startUp() {
         this.caseManeger = caseManeger.getInstance();
         this.accessManager = accessManager.getInstance();
-        this.admin = admin.getInstance();
+//        this.admin = admin.getInstance();
+        
     }
 
     @Override
-    public int login(String userName, String pw) {
-        return accessManager.login(userName, pw);
+    public int login(String userName, String password) {
+        return accessManager.login(userName, password);
+    }
+    
+    @Override
+    public int getAccess(String userName) {
+        return loginPersistence.getAccess(userName);
     }
 
     @Override
@@ -93,13 +105,13 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public boolean createUser(String firstName, String lastName, String userName, String password1, String password2, int level) {
-        return admin.createUser(firstName, lastName, userName, password1, password2, level);
+    public boolean createUser(int userID, String firstName, String lastName, String userName, String password1, String password2, boolean active, Timestamp createdTime, Timestamp lastLoginTime) {
+        return admin.createUser(firstName, lastName, userName, password1, password2, active, createdTime, lastLoginTime);
     }
 
     @Override
-    public boolean changeJob(String userName, String password, int level) {
-        return admin.changeJob(userName, password, level);
+    public boolean changeJob(String userName, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
+        return admin.changeJob(userName, jobTitle, ID, accessLevel, departmentID, departmentName);
     }
 
     public boolean addUser(IUser user) {
@@ -166,5 +178,4 @@ public class BusinessFacade implements IBusiness {
     boolean saveCase(ICase case1) {
         return dataPersistence.saveCase(case1);
     }
-
 }

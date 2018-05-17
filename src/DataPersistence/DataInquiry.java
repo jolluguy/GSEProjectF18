@@ -20,7 +20,17 @@ public class DataInquiry implements IInquiry {
     private boolean citizenAgreement;
     private Timestamp time;
     private ICitizen citizen;
-
+    
+    
+    //For getters, with regards to the constructor for the inquiry from the database
+    private String concatenatedAddress;
+    private String firstName;
+    private String lastName;
+    private String cprNumber;
+    private String phoneNumber;
+    
+    
+    //The standard constructor for making a DataInquiry
     public DataInquiry (String problemDescription, String inquirer, boolean citizenAgreement, String cprNumber, String firstName, 
             String lastName, String roadName, String houseNumber, String floor, 
             int postalCode, String city, String phoneNumber) {
@@ -32,6 +42,22 @@ public class DataInquiry implements IInquiry {
         
         this.citizen = new DataCitizen(cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
     }
+    //Contructor for when the inquiry comes from the database
+    public DataInquiry (String problemDescription, String inquirer, boolean citizenAgreement, String cprNumber, String firstName, 
+            String lastName, String address, String phoneNumber, Timestamp date) {
+        
+        this.problemDescription = problemDescription;
+        this.inquirer = inquirer;
+        this.citizenAgreement = citizenAgreement;
+        this.time = date;
+        //this.citizen = new DataCitizen(cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
+        
+        this.concatenatedAddress = address;
+        this.cprNumber = cprNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        }
 
     @Override
     public ICitizen getCitizen() {
@@ -66,5 +92,23 @@ public class DataInquiry implements IInquiry {
     @Override
     public Timestamp getTime() {
         return this.time;
+    }
+    
+    
+    
+    public String getConcatenatedAddress(){
+        return this.concatenatedAddress;
+    }
+    public String getPhoneNumber(){
+        return phoneNumber;
+    }
+    public String getFirstName(){
+        return firstName;
+    }
+    public String getLastName(){
+        return lastName;
+    }
+    public String getCPRNumber(){
+        return cprNumber;
     }
 }
