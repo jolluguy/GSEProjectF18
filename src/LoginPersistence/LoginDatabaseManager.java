@@ -141,7 +141,7 @@ public class LoginDatabaseManager {
             while (result.next()) {
                 String userName = result.getString("brugernavn");
                 String password = result.getString("kodeord");
-                boolean active = result.getBoolean("niveau");
+                boolean active = result.getBoolean("aktiv");
                 java.sql.Timestamp createdTime = result.getTimestamp("oprettet");
                 java.sql.Timestamp lastLoginTime = result.getTimestamp("sidste_login");
                 
