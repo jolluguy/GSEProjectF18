@@ -23,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
@@ -62,12 +63,6 @@ public class AdminController implements Initializable {
     private ObservableList<String> obsList;
     @FXML
     private Button refreshButton;
-    @FXML
-    private RadioButton lvl1Radio;
-    @FXML
-    private ToggleGroup levelGroup;
-    @FXML
-    private RadioButton lvl2Radio;
     @FXML
     private Label warningLabel;
     @FXML
@@ -110,6 +105,10 @@ public class AdminController implements Initializable {
     private Label firstNameLabel;
     @FXML
     private Label lastNameLabel;
+    @FXML
+    private ChoiceBox<?> setJobChoicebox;
+    @FXML
+    private ChoiceBox<?> setDepartmentChoiceBox;
 
     /**
      * Initializes the controller class.
@@ -136,17 +135,7 @@ public class AdminController implements Initializable {
         String userName = usernameField.getText().toLowerCase();
         String password1 = password1Field.getText();
         String password2 = password2Field.getText();
-        int level = -1;
-
-        if (!(lvl1Radio.isSelected() || lvl2Radio.isSelected())) {
-            warningLabel.setText("En jobtitel skal vælges før ændringen kan foretages");
-        }
-
-        if (lvl1Radio.isSelected()) {
-            level = 1;
-        } else if (lvl2Radio.isSelected()) {
-            level = 2;
-        }
+        
 
         boolean createUserStatus = business.createUser(-1, firstName, lastName, userName, password1, password2, true, new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()));
 
