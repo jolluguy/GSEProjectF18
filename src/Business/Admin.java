@@ -25,24 +25,19 @@ public class Admin extends Job {
         
     }
     
-    public static Admin getInstance() {
-        if (instance == null) {
-            instance = new Admin();
-        }
-        return instance;
-    }
-    
-    boolean createUser(String firstName, String lastName, String userName, String password1, String password2, int level) {
-        if (password1.equals(password2) && level != -1) {
-            return facade.addUser( new User(firstName, lastName, userName, password1, level));
+    @Override
+    public boolean createUser(String firstName, String lastName, String userName, String password1, String password2, boolean active, Timestamp createdTime, Timestamp lastLoginTime) {
+        if (password1.equals(password2)) {
+            return facade.addUser( new User(firstName, lastName, userName, password2, active, lastName, super.getID(), super.getAccessLevel(), super.getDepartment().getDepartmentID(), lastName, createdTime, lastLoginTime));
         } else {
             return false;
         }
     }
     
-    boolean changeJob(String userName, String password, int level){
+    @Override
+    public boolean changeJob(String userName, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
         IUser user = facade.getUser(userName);
-        user.setLevel(level);
+        user.setJob(jobTitle, ID, accessLevel, departmentID, departmentName); //Parsing IJob to job... Might give some problems.
         return facade.updateJob(user);
     }
     

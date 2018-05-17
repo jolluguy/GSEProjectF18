@@ -7,11 +7,14 @@
 package Business;
 
 import Acquaintance.IBusiness;
+import Acquaintance.ICase;
 import Acquaintance.IInquiry;
 import Acquaintance.IUser;
 import java.util.Collection;
 import Acquaintance.IDataPersistence;
 import Acquaintance.ILoginPersistence;
+import java.util.Map;
+import java.sql.Timestamp;
 
 /**
  *
@@ -21,8 +24,8 @@ public class BusinessFacade implements IBusiness {
 
     private IDataPersistence dataPersistence;
     private ILoginPersistence loginPersistence;
-    private BusinessManager controller;
-    private AccessManager manager; // Delegate all calls conserning users to the manager.
+    private CaseManager caseManager;
+    private AccessManager accessManager; // Delegate all calls conserning users to the manager.
     private Admin admin;
 
     //BusinessLayer instance
@@ -53,33 +56,33 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public void startUp() {
-        this.controller = controller.getInstance();
-        this.manager = manager.getInstance();
+        this.caseManager = caseManager.getInstance();
+        this.accessManager = accessManager.getInstance();
         this.admin = admin.getInstance();
     }
 
     @Override
     public int login(String userName, String pw) {
-        return manager.login(userName, pw);
+        return accessManager.login(userName, pw);
     }
 
     @Override
     public void logOut() { //later: Need to return true before scenechange
-        manager.logOut();
+        accessManager.logOut();
     }
     
     @Override
     public boolean changePassword(String oldPassword, String newPassword1, String newPassword2){
-        return manager.changePassword(oldPassword, newPassword1, newPassword2);
+        return accessManager.changePassword(oldPassword, newPassword1, newPassword2);
     }
     
     public IUser getUserOne() {
-        return manager.getUserOne();
+        return accessManager.getUserOne();
     }
 
     @Override
     public boolean checkCredentials(String userName, String password) {
-        return manager.checkCredentials(userName, password);
+        return accessManager.checkCredentials(userName, password);
     }
     
     public boolean getUserInfo(String userName) {
@@ -95,8 +98,8 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public boolean changeJob(String userName, String password, int level) {
-        return admin.changeJob(userName, password, level);
+    public boolean changeJob(String userName, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
+        return admin.changeJob(userName, jobTitle, ID, accessLevel, departmentID, departmentName);
     }
 
     public boolean addUser(IUser user) {
@@ -125,19 +128,35 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public boolean newInquiry(long cprNumber, String problemDescription, String firstName, String lastName, String roadName, String houseNumber,
-            String floor, int postalCode, String city, String phoneNumber) {
-        return controller.createInquiry(cprNumber, problemDescription, firstName, lastName, roadName, houseNumber,
-                floor, postalCode, city, phoneNumber);
+    public boolean newInquiry(String problemDescription, String inquierer, boolean citizenAgreement, String cprNumber, String firstName, 
+            String lastName, String roadName, String houseNumber, String floor, 
+            int postalCode, String city, String phoneNumber) {
+        return caseManager.createInquiry(problemDescription, inquierer, citizenAgreement, cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
     }
 
-    @Override
-    public boolean sendToDB(IInquiry inquiry) {
-        return controller.sendToDB(inquiry); // kaldt fra GUI
-    }
+//    // dette kald er forkert og bliver ivaretaget internt i casemanager
+//    @Override
+//    public boolean sendToDB(IInquiry inquiry) {
+//        return caseManager.sendInqToDB(inquiry); // kaldt fra GUI
+//    }
 
     public boolean saveInq(IInquiry inquiry) {
         return dataPersistence.saveInquiry(inquiry); // kaldt fra Controller
+    }
+
+    @Override
+    public boolean newCase(String problemDescription, String inquierer, boolean citizenAgreement, String cprNumber, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber,
+                String responsibleCaseworker, boolean informedRightsBystander, boolean informedRightsElectronicRegistration, String consent, Collection<String> consentToInformationGathering, String specialCircumstances, String otherActingMunicipality, String otherPayingMunicipality,
+                Timestamp meetingTime, Collection<String> attendingCasworkerIDList, String meetingDescription, String meetingLocation,
+                String cprNumberRep, String firstNameRep, String lastNameRep, String roadNameRep, String houseNumberRep, String floorRep, int postalCodeRep, String cityRep, String phoneNumberRep, String representationType,
+                String note, String caseWorkerID,
+                Map<Integer, String> serviceIDList,
+                Map<Integer, String> offerIDList){
+        return caseManager.createCase(problemDescription, inquierer, citizenAgreement, cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber, responsibleCaseworker, informedRightsBystander, informedRightsElectronicRegistration, consent, consentToInformationGathering, specialCircumstances, otherActingMunicipality, otherPayingMunicipality, meetingTime, attendingCasworkerIDList, meetingDescription, meetingLocation, cprNumberRep, firstNameRep, lastNameRep, roadNameRep, houseNumberRep, floorRep, postalCodeRep, cityRep, phoneNumberRep, representationType, note, caseWorkerID, serviceIDList, offerIDList);
+    }
+    
+    boolean saveCase(ICase case1) {
+        return dataPersistence.saveCase(case1);
     }
 
 }

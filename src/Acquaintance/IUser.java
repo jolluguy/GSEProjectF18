@@ -14,6 +14,10 @@ import java.sql.Timestamp;
  */
 public interface IUser {
     
+    IJob getJob();
+    
+    void setJob(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName);
+    
     String getFirstName();
     
     String getLastName();

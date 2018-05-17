@@ -41,6 +41,14 @@ public class User implements IUser, Serializable{
         this.level = level;
         this.createdTime = new Timestamp(System.currentTimeMillis());
         this.lastLoginTime = new Timestamp(System.currentTimeMillis());
+
+        if (jobtitle.equalsIgnoreCase("admin")) {
+            this.job = new Admin(ID, accessLevel, departmentID, departmentName);
+
+        } else if (jobtitle.equalsIgnoreCase("caseworker")) {
+            this.job = new CaseWorker(ID, accessLevel, departmentID, departmentName);
+        }
+
     }
     public User(String userName, String password, int level, Timestamp createdTime, Timestamp lastLoginTime) {
         this.userName = userName;
@@ -48,6 +56,23 @@ public class User implements IUser, Serializable{
         this.level = level;
         this.createdTime = createdTime;
         this.lastLoginTime = lastLoginTime;
+    }
+    
+    @Override
+    public Job getJob() {
+        return job;
+    }
+
+    @Override
+    public void setJob(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
+        if(jobTitle.equalsIgnoreCase("admin")){
+            this.job = new Admin(ID, accessLevel, departmentID, departmentName);
+            
+        } else if(jobTitle.equalsIgnoreCase("caseworker")) {
+            this.job = new CaseWorker(ID, accessLevel, departmentID, departmentName);
+            
+        }
+        
     }
 
     @Override

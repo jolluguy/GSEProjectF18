@@ -7,12 +7,15 @@ package Acquaintance;
 
 /**
  *
- * @author Alexa
+ * @author rasmus
  */
-public interface IDataPersistence {
+public interface IJob {
     
-    public boolean saveInquiry(IInquiry inquiry);
+    int getID();
 
-    public boolean saveCase(ICase case1);
+    int getAccessLevel();
+    
+    public IDepartment getDepartment();
     
 }
+

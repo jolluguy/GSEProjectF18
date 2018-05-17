@@ -7,7 +7,6 @@ package LoginPersistence;
 
 import Acquaintance.IUser;
 import java.io.Serializable;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
@@ -116,5 +115,25 @@ public class DataUser implements IUser, Serializable {
     public void setLastLoginTime() {
         this.lastLoginTime = new Timestamp(System.currentTimeMillis());
     }
+
+    @Override
+    public IJob getJob() {
+        return job;
+    }
+
+    @Override
+    public void setJob(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
+        if(jobTitle.equalsIgnoreCase("admin")){
+            this.job = new DataAdmin(ID, accessLevel, departmentID, departmentName);
+            
+        } else if(jobTitle.equalsIgnoreCase("caseworker")) {
+            this.job = new DataCaseWorker(ID, accessLevel, departmentID, departmentName);
+            
+        }
+        
+    }
+    
+    
+
     
 }

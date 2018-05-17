@@ -5,12 +5,37 @@
  */
 package Business;
 
+import Acquaintance.IDepartment;
+import Acquaintance.IJob;
+
 /**
  *
  * @author Rasmus
  */
-public abstract class Job {
+public abstract class Job implements IJob {    
+    private int ID;
+    private int accessLevel;
+    private Department department;
 
-    private boolean active;
+    public Job(int ID, int accessLevel, int departmentID, String departmentName) {
+        this.ID = ID;
+        this.accessLevel = accessLevel;
+        this.department = new Department(departmentID, departmentName);
+    }
 
+    @Override
+    public int getID() {
+        return ID;
+    }
+
+    @Override
+    public int getAccessLevel() {
+        return accessLevel;
+    }
+    
+    @Override
+    public IDepartment getDepartment() {
+        return this.department;
+    }
+    
 }
