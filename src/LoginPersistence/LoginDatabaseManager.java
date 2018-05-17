@@ -134,19 +134,18 @@ public class LoginDatabaseManager {
             Class.forName("org.postgresql.Driver");
 
             Statement st = conn.createStatement();
-            String sql = "SELECT * FROM login";
+            String sql = "SELECT login.brugernavn, login.kodeord, login.aktiv, login.oprettet, login.sidste_login FROM login";
 
             ResultSet result = st.executeQuery(sql);
 
             while (result.next()) {
-                int userID = result.getInt("bruger_id");
                 String userName = result.getString("brugernavn");
                 String password = result.getString("kodeord");
                 boolean active = result.getBoolean("niveau");
                 java.sql.Timestamp createdTime = result.getTimestamp("oprettet");
                 java.sql.Timestamp lastLoginTime = result.getTimestamp("sidste_login");
                 
-                userList.add(new DataUser(userID, userName, password, active, createdTime, lastLoginTime));
+                userList.add(new DataUser(userName, password, active, createdTime, lastLoginTime));
             }
 
         } catch (Exception e) {
@@ -189,19 +188,19 @@ public class LoginDatabaseManager {
 
             if (doesUserExist(userName)) {
                 Statement st = conn.createStatement();
-                String sql = "SELECT brugernavn, kodeord, niveau, oprettet, sidste_login FROM login WHERE brugernavn = '" + userName + "';";
+                String sql = "SELECT brugernavn, kodeord, aktiv, oprettet, sidste_login FROM login "
+                        + "WHERE brugernavn = '" + userName + "';";
 
                 ResultSet result = st.executeQuery(sql);
 
                 while (result.next()) {
-                    int tempUserID = result.getInt("bruger_id");
                     String tempUserName = result.getString("brugernavn");
                     String tempPassword = result.getString("kodeord");
-                    boolean tempActive = result.getBoolean("niveau");
+                    boolean tempActive = result.getBoolean("aktiv");
                     Timestamp tempCreatedTime = result.getTimestamp("oprettet");
                     Timestamp tempLastLoginTime = result.getTimestamp("sidste_login");
 
-                    user = new DataUser(tempUserID, tempUserName, tempPassword, tempActive, tempCreatedTime, tempLastLoginTime);
+                    user = new DataUser(tempUserName, tempPassword, tempActive, tempCreatedTime, tempLastLoginTime);
                 }
             } else {
                 System.out.println("User does not exist");
@@ -213,6 +212,8 @@ public class LoginDatabaseManager {
         }
         return user;
     }
+    
+    
     
     public int getAccess(String userName) {
         int access = -1;

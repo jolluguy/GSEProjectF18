@@ -22,8 +22,6 @@ public interface IUser {
     String getFirstName();
     
     String getLastName();
-    
-    int getUserID();
 
     String getUserName();
     

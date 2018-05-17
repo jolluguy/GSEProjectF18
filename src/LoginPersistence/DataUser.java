@@ -20,7 +20,6 @@ public class DataUser implements IUser, Serializable {
     private String lastName;
     private String phoneNumber;
     private String mail;
-    private int userID;
     private String userName;
     private String password;
     private boolean active;
@@ -47,8 +46,7 @@ public class DataUser implements IUser, Serializable {
         }
     }
     
-    public DataUser(int userID, String userName, String password, boolean active, Timestamp createdTime, Timestamp lastLoginTime) {
-        this.userID = userID;
+    public DataUser(String userName, String password, boolean active, Timestamp createdTime, Timestamp lastLoginTime) {
         this.userName = userName;
         this.password = password;
         this.active = active;
@@ -75,13 +73,7 @@ public class DataUser implements IUser, Serializable {
     @Override
     public String getMail(){
         return mail;
-    }
-
-    @Override
-    public int getUserID() {
-        return userID;
-    }
-    
+    }    
     
     @Override
     public String getUserName() {

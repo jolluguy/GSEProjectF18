@@ -6,7 +6,6 @@
 package Business;
 
 import Acquaintance.IUser;
-import Presentation.AdminController;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.sql.Timestamp;
@@ -21,7 +20,6 @@ public class User implements IUser, Serializable {
     private String lastName;
     private String phoneNumber;
     private String mail;
-    private int userID;
     private String userName;
     private String password;
     private boolean active;
@@ -50,7 +48,6 @@ public class User implements IUser, Serializable {
     }
 
     public User(String userName, String password, boolean active, Timestamp createdTime, Timestamp lastLoginTime) {
-        this.userID = userID;
         this.userName = userName;
         this.password = password;
         this.active = active;
@@ -93,11 +90,6 @@ public class User implements IUser, Serializable {
     @Override
     public String getMail() {
         return mail;
-    }
-    
-    @Override
-    public int getUserID() {
-        return userID;
     }
 
     @Override
