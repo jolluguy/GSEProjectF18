@@ -7,7 +7,7 @@ package Acquaintance;
 
 /**
  *
- * @author Rol's studie PC
+ * @author rasmus
  */
 public interface IJob {
     
@@ -15,4 +15,7 @@ public interface IJob {
 
     int getAccessLevel();
     
+    public IDepartment getDepartment();
+    
 }
+

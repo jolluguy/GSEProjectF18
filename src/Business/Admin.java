@@ -28,7 +28,7 @@ public class Admin extends Job implements IAdmin {
     @Override
     public boolean createUser(String firstName, String lastName, String userName, String password1, String password2, boolean active, Timestamp createdTime, Timestamp lastLoginTime) {
         if (password1.equals(password2)) {
-            return facade.addUser( new User(firstName, lastName, userName, password2, active, lastName, ID, accessLevel, ID, lastName, createdTime, lastLoginTime));
+            return facade.addUser( new User(firstName, lastName, userName, password2, active, lastName, super.getID(), super.getAccessLevel(), super.getDepartment().getDepartmentID(), lastName, createdTime, lastLoginTime));
         } else {
             return false;
         }

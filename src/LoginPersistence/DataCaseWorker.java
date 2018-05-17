@@ -6,6 +6,7 @@
 package LoginPersistence;
 
 import Acquaintance.ICaseWorker;
+import Acquaintance.IDepartment;
 
 /**
  *
@@ -15,6 +16,11 @@ public class DataCaseWorker extends DataJob implements ICaseWorker {
     
     public DataCaseWorker(int ID, int accessLevel, int departmentID, String departmentName) {
         super(ID, accessLevel, departmentID, departmentName);
+    }
+
+    @Override
+    public IDepartment getDepartment() {
+        return super.getDepartment();
     }
     
 }

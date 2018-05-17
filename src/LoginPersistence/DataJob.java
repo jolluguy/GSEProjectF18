@@ -14,9 +14,9 @@ import Acquaintance.IJob;
  */
 public abstract class DataJob implements IJob {
     
-    int ID;
-    int accessLevel;
-    IDepartment department;
+    private int ID;
+    private int accessLevel;
+    private IDepartment department;
     
 
     public DataJob(int ID, int accessLevel, int departmentID, String departmentName) {
@@ -33,6 +33,11 @@ public abstract class DataJob implements IJob {
     @Override
     public int getAccessLevel() {
         return accessLevel;
+    }
+    
+    @Override
+    public IDepartment getDepartment() {
+        return this.department;
     }
     
 }
