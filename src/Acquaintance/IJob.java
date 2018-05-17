@@ -5,6 +5,8 @@
  */
 package Acquaintance;
 
+import java.util.Collection;
+
 /**
  *
  * @author Rol's studie PC
@@ -14,5 +16,7 @@ public interface IJob {
     int getID();
 
     int getAccessLevel();
+    
+    Collection<IUser> getUserList();
     
 }

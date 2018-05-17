@@ -10,6 +10,7 @@ import Acquaintance.IJob;
 import Acquaintance.IUser;
 import java.util.Collection;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,7 +19,7 @@ import java.sql.Timestamp;
 public class Admin extends Job implements IAdmin {
 
     private BusinessFacade facade = BusinessFacade.getInstance();
-
+    
     
 
     public Admin(int ID, int accessLevel, int departmentID, String departmentName) {
@@ -45,7 +46,7 @@ public class Admin extends Job implements IAdmin {
 
     @Override
     public Collection<IUser> getUserList() {
-        
+        System.out.println("test");
         return facade.getAllUsers();
         
 //        ArrayList<IUser> tempList = new ArrayList<>();

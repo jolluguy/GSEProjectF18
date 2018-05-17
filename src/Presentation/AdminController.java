@@ -117,6 +117,7 @@ public class AdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        
         userOneLabel.setText(business.getUserOne().getUserName() + "");
 
 //        Load listview

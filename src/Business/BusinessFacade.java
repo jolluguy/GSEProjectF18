@@ -11,7 +11,6 @@ import Acquaintance.IInquiry;
 import Acquaintance.IUser;
 import java.util.Collection;
 import Acquaintance.IDataPersistence;
-import Acquaintance.IJob;
 import Acquaintance.ILoginPersistence;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -25,6 +24,7 @@ public class BusinessFacade implements IBusiness {
     private IDataPersistence dataPersistence;
     private ILoginPersistence loginPersistence;
     private BusinessManager controller;
+    private LoginManager login;
     private AccessManager manager; // Delegate all calls conserning users to the manager.
     private Admin admin;
 
@@ -62,11 +62,12 @@ public class BusinessFacade implements IBusiness {
     public void startUp() {
         this.controller = controller.getInstance();
         this.manager = manager.getInstance();
+        this.login = login.getInstance();
     }
 
     @Override
     public int login(String userName, String password) {
-        return manager.login(userName, password);
+        return login.login(userName, password);
     }
     
     @Override
@@ -76,7 +77,7 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public void logOut() { //later: Need to return true before scenechange
-        manager.logOut();
+        login.logOut();
     }
     
     @Override
@@ -85,12 +86,12 @@ public class BusinessFacade implements IBusiness {
     }
     
     public IUser getUserOne() {
-        return manager.getUserOne();
+        return login.getUserOne();
     }
 
     @Override
     public boolean checkCredentials(String userName, String password) {
-        return manager.checkCredentials(userName, password);
+        return login.checkCredentials(userName, password);
     }
     
     public boolean getUserInfo(String userName) {
@@ -128,7 +129,8 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public Collection<IUser> getUserList() {
-        return admin.getUserList();
+        System.out.println(login.getUserOne().getJob());
+        return login.getUserOne().getJob().getUserList();
     }
 
     Collection<IUser> getAllUsers() {

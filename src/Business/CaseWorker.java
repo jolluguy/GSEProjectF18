@@ -6,6 +6,8 @@
 package Business;
 
 import Acquaintance.ICaseWorker;
+import Acquaintance.IUser;
+import java.util.Collection;
 
 /**
  *
@@ -18,6 +20,12 @@ public class CaseWorker extends Job implements ICaseWorker {
     public CaseWorker(int ID, int accessLevel, int departmentID, String departmentName) {
         super(ID, accessLevel, departmentID, departmentName);
     }
+
+    @Override
+    public Collection<IUser> getUserList() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     
     
        

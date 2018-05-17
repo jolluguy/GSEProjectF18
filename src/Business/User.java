@@ -5,6 +5,7 @@
  */
 package Business;
 
+import Acquaintance.IJob;
 import Acquaintance.IUser;
 import java.io.Serializable;
 import java.text.DateFormat;
@@ -25,7 +26,7 @@ public class User implements IUser, Serializable {
     private boolean active;
     private Timestamp createdTime;
     private Timestamp lastLoginTime;
-    private Job job;
+    private IJob job;
 
     public User(String firstName, String lastName, String userName, String password, boolean active, String jobtitle, int ID, int accessLevel, int departmentID, String departmentName, Timestamp createdTime, Timestamp lastLoginTime) {
         this.firstName = firstName;
@@ -56,8 +57,8 @@ public class User implements IUser, Serializable {
     }
     
     @Override
-    public Job getJob() {
-        return job;
+    public IJob getJob() {
+        return this.job;
     }
 
     @Override
