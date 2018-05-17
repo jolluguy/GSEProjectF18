@@ -5,9 +5,9 @@
  */
 package Business;
 
-import Acquaintance.ICPR;
 import Acquaintance.ICitizen;
 import Acquaintance.IInquiry;
+import java.sql.Timestamp;
 
 /**
  *
@@ -16,19 +16,27 @@ import Acquaintance.IInquiry;
 public class Inquiry implements IInquiry{
     
     private String problemDescription;
+    private String inquirer;
+    private boolean citizenAgreement;
+    private Timestamp time;
     private ICitizen citizen;
     
-    public Inquiry (long cprNumber, String problemDescription, String firstName, 
+    public Inquiry (String problemDescription, String inquirer, boolean citizenAgreement, String cprNumber, String firstName, 
             String lastName, String roadName, String houseNumber, String floor, 
             int postalCode, String city, String phoneNumber) {
-        this.problemDescription = problemDescription;
         
-        citizen = new Citizen(cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
+        this.problemDescription = problemDescription;
+        this.inquirer = inquirer;
+        this.citizenAgreement = citizenAgreement;
+        this.time = new Timestamp(System.currentTimeMillis());
+        
+        this.citizen = new Citizen(cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
     }
 
+   
     @Override
     public ICitizen getCitizen() {
-        return citizen;
+        return this.citizen;
     }
 
     @Override
@@ -38,12 +46,26 @@ public class Inquiry implements IInquiry{
 
     @Override
     public String getProblemDescription() {
-        return problemDescription;
+        return this.problemDescription;
     }
 
     @Override
     public void setProblemDescription(String problemDescription) {
         this.problemDescription = problemDescription;
     }
-    
+
+    @Override
+    public String getInquirer() {
+        return this.inquirer;
+    }
+
+    @Override
+    public boolean getCitizenAgreement() {
+        return this.citizenAgreement;
+    }
+
+    @Override
+    public Timestamp getTime() {
+        return this.time;
+    }
 }

@@ -5,24 +5,24 @@
  */
 package Business;
 
-import Acquaintance.IAdmin;
-import Acquaintance.IJob;
 import Acquaintance.IUser;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
  *
  * @author Rasmus
  */
-public class Admin extends Job implements IAdmin {
+public class Admin extends Job {
 
     private BusinessFacade facade = BusinessFacade.getInstance();
 
-    
+    private static Admin instance = null;
 
-    public Admin(int ID, int accessLevel, int departmentID, String departmentName) {
-        super(ID, accessLevel, departmentID, departmentName);
+    private Admin() {
+        
     }
     
     @Override
@@ -43,17 +43,13 @@ public class Admin extends Job implements IAdmin {
     
 
 
-    @Override
-    public Collection<IUser> getUserList() {
-        
-        return facade.getAllUsers();
-        
-//        ArrayList<IUser> tempList = new ArrayList<>();
-//        for(IUser i : facade.getAllUsers()){
-//            tempList.add(new User(i.getUserName(), i.getPassword(), i.getActive(), i.getCreatedTime(), i.getLastLoginTime()));
-//        }
-//            
-//        return tempList;
+    Collection<IUser> getUserList() {
+        ArrayList<IUser> tempList = new ArrayList<>();
+        for(IUser i : facade.getAllUsers()){
+            tempList.add(new User(i.getUserName(), i.getPassword(), i.getLevel(), i.getCreatedTime(), i.getLastLoginTime()));
+        }
+            
+        return tempList;
     }
     
     

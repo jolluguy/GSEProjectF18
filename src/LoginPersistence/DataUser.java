@@ -5,7 +5,6 @@
  */
 package LoginPersistence;
 
-import Acquaintance.IJob;
 import Acquaintance.IUser;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -20,42 +19,31 @@ public class DataUser implements IUser, Serializable {
     private String lastName;
     private String phoneNumber;
     private String mail;
-    private int userID;
-    private String userName;
+    private final String userName;
     private String password;
-    private boolean active;
-    private Timestamp createdTime;
+    private int level;
+    private final Timestamp createdTime;
     private Timestamp lastLoginTime;
-    private IJob job;
 
-    public DataUser(String firstName, String lastName, String userName, String password, boolean active, String jobtitle, int ID, int accessLevel, int departmentID, String departmentName, Timestamp createdTime, Timestamp lastLoginTime) {
+    public DataUser(String userName, String password, int level, Timestamp createdTime, Timestamp lastLoginTime) {
+        this.userName = userName;
+        this.password = password;
+        this.level = level;
+        this.createdTime = createdTime;
+        this.lastLoginTime = lastLoginTime;
+    }   
+
+    public DataUser(String firstName, String lastName, String phoneNumber, String mail, String userName, String password, int level, Timestamp createdTime, Timestamp lastLoginTime) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.phoneNumber = "88888888"; //NB!! - TelefonNummer skal oprettes automatisk;
-        this.mail = userName + "@sensum.dk";
+        this.phoneNumber = phoneNumber;
+        this.mail = mail;
         this.userName = userName;
         this.password = password;
-        this.active = active;
-        this.createdTime = new Timestamp(System.currentTimeMillis());
-        this.lastLoginTime = new Timestamp(System.currentTimeMillis());
-
-        if (jobtitle.equalsIgnoreCase("admin")) {
-            this.job = new DataAdmin(ID, accessLevel, departmentID, departmentName);
-
-        } else if (jobtitle.equalsIgnoreCase("sagsbehandler")) {
-            this.job = new DataCaseWorker(ID, accessLevel, departmentID, departmentName);
-        }
-    }
-    
-    public DataUser(int userID, String userName, String password, boolean active, Timestamp createdTime, Timestamp lastLoginTime) {
-        this.userID = userID;
-        this.userName = userName;
-        this.password = password;
-        this.active = active;
+        this.level = level;
         this.createdTime = createdTime;
         this.lastLoginTime = lastLoginTime;
     }
-    
     
     @Override
     public String getFirstName(){
@@ -76,12 +64,6 @@ public class DataUser implements IUser, Serializable {
     public String getMail(){
         return mail;
     }
-
-    @Override
-    public int getUserID() {
-        return userID;
-    }
-    
     
     @Override
     public String getUserName() {
@@ -89,13 +71,13 @@ public class DataUser implements IUser, Serializable {
     }
 
     @Override
-    public boolean getActive() {
-        return active;
+    public int getLevel() {
+        return level;
     }
 
     @Override
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     @Override
@@ -108,9 +90,9 @@ public class DataUser implements IUser, Serializable {
         this.lastLoginTime = lastLoginTime;
     }
     
-    void updateUser(String password, boolean active, Timestamp lastLoginTime){
+    void updateUser(String password, int level, Timestamp lastLoginTime){
         this.password = password;
-        this.active = active;
+        this.level = level;
         this.lastLoginTime = lastLoginTime;
     }
 
