@@ -16,6 +16,11 @@ import java.util.Map;
  */
 public interface IBusiness {
 
+
+    Collection<IJob> getJobList();
+    
+    Collection<IDepartment> getdepartmentList();
+
     void injectDataPersistence(IDataPersistence dataPersistence);
 
     void injectLoginPersistence(ILoginPersistence loginPersistence);

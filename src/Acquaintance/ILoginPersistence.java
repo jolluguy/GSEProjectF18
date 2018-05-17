@@ -31,4 +31,8 @@ public interface ILoginPersistence {
     void pingDatabase() throws SQLException;
     
     int getAccess(String userName);
+
+    public Collection<IJob> getJobList();
+
+    public Collection<IDepartment> getDepartmentList();
 }

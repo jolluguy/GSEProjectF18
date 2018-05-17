@@ -19,4 +19,6 @@ public interface IJob {
     
     Collection<IUser> getUserList();
     
+    String getJob();
+    
 }

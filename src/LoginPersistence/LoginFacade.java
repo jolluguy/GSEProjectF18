@@ -5,6 +5,8 @@
  */
 package LoginPersistence;
 
+import Acquaintance.IDepartment;
+import Acquaintance.IJob;
 import Acquaintance.IUser;
 import java.io.Serializable;
 import java.util.Collection;
@@ -80,6 +82,16 @@ public class LoginFacade implements ILoginPersistence, Serializable {
     public boolean getUserInfo(String userName) {
 
         return database.doesUserExist(userName);
+    }
+
+    @Override
+    public Collection<IJob> getJobList() {
+        return database.getJobList();
+    }
+
+    @Override
+    public Collection<IDepartment> getDepartmentList() {
+        return database.getDepartmentList();
     }
 
 }

@@ -12,6 +12,8 @@ import Acquaintance.IInquiry;
 import Acquaintance.IUser;
 import java.util.Collection;
 import Acquaintance.IDataPersistence;
+import Acquaintance.IDepartment;
+import Acquaintance.IJob;
 import Acquaintance.ILoginPersistence;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -168,4 +170,14 @@ public class BusinessFacade implements IBusiness {
         return dataPersistence.saveCase(case1);
     }
 
+    @Override
+    public Collection<IJob> getJobList(){
+        return loginPersistence.getJobList();
+        
+    }
+
+    @Override
+    public Collection<IDepartment> getdepartmentList() {
+        return loginPersistence.getDepartmentList();
+    }
 }

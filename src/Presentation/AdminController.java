@@ -8,11 +8,13 @@ package Presentation;
 import Acquaintance.IAdmin;
 import Acquaintance.IBusiness;
 import Acquaintance.ICaseWorker;
+import Acquaintance.IDepartment;
 import Acquaintance.IJob;
 import Acquaintance.IUser;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
+import java.util.Collection;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -40,6 +42,9 @@ import javafx.stage.Stage;
  * @author Alexa
  */
 public class AdminController implements Initializable {
+    
+    Collection<IJob> jobList;
+    Collection<IDepartment> departmentList;
 
     @FXML
     private Label usernameLabel;
@@ -106,9 +111,9 @@ public class AdminController implements Initializable {
     @FXML
     private Label lastNameLabel;
     @FXML
-    private ChoiceBox<?> setJobChoicebox;
+    private ChoiceBox<String> setJobChoicebox;
     @FXML
-    private ChoiceBox<?> setDepartmentChoiceBox;
+    private ChoiceBox<String> setDepartmentChoiceBox;
 
     /**
      * Initializes the controller class.
@@ -119,6 +124,17 @@ public class AdminController implements Initializable {
         
         userOneLabel.setText(business.getUserOne().getUserName() + "");
 
+        //filling choceboxes
+        jobList = business.getJobList();
+        for(IJob j: jobList){
+            setJobChoicebox.getItems().add(j.getJob());
+        }
+        departmentList = business.getdepartmentList();
+        for(IDepartment d : departmentList){
+            setDepartmentChoiceBox.getItems().add(d.getDepartmentName());
+        }
+        
+        
 //        Load listview
         obsList = FXCollections.observableArrayList();
         userListview.setItems(obsList);
@@ -153,8 +169,7 @@ public class AdminController implements Initializable {
         usernameField.clear();
         password1Field.clear();
         password2Field.clear();
-        lvl1Radio.setSelected(false);
-        lvl2Radio.setSelected(false);
+
     }
 
     @FXML
@@ -162,8 +177,6 @@ public class AdminController implements Initializable {
         usernameField.clear();
         password1Field.clear();
         password2Field.clear();
-        lvl1Radio.setSelected(false);
-        lvl2Radio.setSelected(false);
         warningLabel.setText("");
     }
 
@@ -233,4 +246,12 @@ public class AdminController implements Initializable {
             obsList.add(i.toString());
         }
     }
+    IJob getJob(ChoiceBox<String> choicebox){
+        PresJob job;
+        for(IJob j: jobList){
+            if(j.getJob().equalsIgnoreCase(choicebox.getValue()))
+                job = new PresJob()...skrinv konstruktor i jobene...
+        }
+    }
+    
 }
