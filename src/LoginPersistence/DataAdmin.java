@@ -6,7 +6,7 @@
 package LoginPersistence;
 
 import Acquaintance.IAdmin;
-import Acquaintance.IJob;
+import Acquaintance.IDepartment;
 import Acquaintance.IUser;
 import java.sql.Timestamp;
 import java.util.Collection;
@@ -17,7 +17,7 @@ import java.util.Collection;
  */
 public class DataAdmin extends DataJob implements IAdmin {
     
-    LoginDatabaseManager loginDatabase;
+    private LoginDatabaseManager loginDatabase;
 
     public DataAdmin(int ID, int accessLevel, int departmentID, String departmentName) {
         super(ID, accessLevel, departmentID, departmentName);
@@ -25,11 +25,11 @@ public class DataAdmin extends DataJob implements IAdmin {
     
     @Override
     public boolean createUser(String firstName, String lastName, String userName, String password1, String password2, boolean active, Timestamp createdTime, Timestamp lastLoginTime) {
-        if (password1.equals(password2)) {
-            return loginDatabase.createUserInDB(new DataUser(firstName, lastName, userName, password2, active, lastName, ID, accessLevel, ID, lastName, createdTime, lastLoginTime));
-        } else {
+//        if (password1.equals(password2)) {
+//            return loginDatabase.createUserInDB(new DataUser(firstName, lastName, userName, password2, active, , super.getID(), super.getAccessLevel(), super.getDepartment().getDepartmentID(), super.getDepartment().getDepartmentName(), createdTime, lastLoginTime));
+//        } else {
             return false;
-        }
+//        }
     }
     
     @Override
@@ -42,6 +42,11 @@ public class DataAdmin extends DataJob implements IAdmin {
     @Override
     public Collection<IUser> getUserList() {
         return loginDatabase.getAllUsers();
+    }
+
+    @Override
+    public IDepartment getDepartment() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

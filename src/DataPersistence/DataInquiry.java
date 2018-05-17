@@ -5,9 +5,9 @@
  */
 package DataPersistence;
 
-import Acquaintance.ICPR;
 import Acquaintance.ICitizen;
 import Acquaintance.IInquiry;
+import java.sql.Timestamp;
 
 /**
  *
@@ -15,17 +15,27 @@ import Acquaintance.IInquiry;
  */
 public class DataInquiry implements IInquiry {
 
-    private DataCitizen citizen;
     private String problemDescription;
+    private String inquirer;
+    private boolean citizenAgreement;
+    private Timestamp time;
+    private ICitizen citizen;
 
-    public DataInquiry(DataCitizen citizen, String problemDescription) {
-        this.citizen = citizen;
+    public DataInquiry (String problemDescription, String inquirer, boolean citizenAgreement, String cprNumber, String firstName, 
+            String lastName, String roadName, String houseNumber, String floor, 
+            int postalCode, String city, String phoneNumber) {
+        
         this.problemDescription = problemDescription;
+        this.inquirer = inquirer;
+        this.citizenAgreement = citizenAgreement;
+        this.time = new Timestamp(System.currentTimeMillis());
+        
+        this.citizen = new DataCitizen(cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
     }
 
     @Override
     public ICitizen getCitizen() {
-        return citizen;
+        return this.citizen;
     }
 
     @Override
@@ -35,7 +45,7 @@ public class DataInquiry implements IInquiry {
 
     @Override
     public String getProblemDescription() {
-        return problemDescription;
+        return this.problemDescription;
     }
 
     @Override
@@ -43,4 +53,18 @@ public class DataInquiry implements IInquiry {
         this.problemDescription = problemDescription;
     }
 
+    @Override
+    public String getInquirer() {
+        return this.inquirer;
+    }
+
+    @Override
+    public boolean getCitizenAgreement() {
+        return this.citizenAgreement;
+    }
+
+    @Override
+    public Timestamp getTime() {
+        return this.time;
+    }
 }

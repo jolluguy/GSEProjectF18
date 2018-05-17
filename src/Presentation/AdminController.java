@@ -5,14 +5,10 @@
  */
 package Presentation;
 
-import Acquaintance.IAdmin;
 import Acquaintance.IBusiness;
-import Acquaintance.ICaseWorker;
-import Acquaintance.IJob;
 import Acquaintance.IUser;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Timestamp;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -147,7 +143,7 @@ public class AdminController implements Initializable {
             level = 2;
         }
 
-        boolean createUserStatus = business.createUser(-1, firstName, lastName, userName, password1, password2, true, new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()));
+        boolean createUserStatus = business.createUser(firstName, lastName, userName, password1, password2, level);
 
         String statusmessage = "";
         if (createUserStatus) {
@@ -212,7 +208,7 @@ public class AdminController implements Initializable {
             boolean changeJob = business.changeJob(username, username, 0, 0, 0, username);
             if (changeJob) {
                 statusMessage = username + "'s job er blevet ændret";
-            } else if (!changeJob) {
+            } else if (!changeStatus) {
                 statusMessage = username + "'s job kunne ikke ændres";
             }
 

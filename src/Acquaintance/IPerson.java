@@ -9,7 +9,7 @@ package Acquaintance;
  *
  * @author Rasmus
  */
-public interface ICitizen {
+public interface IPerson {
    public String getFirstName();  
    public void setFirstName(String firstName);
    public String getLastName();

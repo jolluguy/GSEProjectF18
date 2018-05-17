@@ -27,17 +27,18 @@ public class AccessManager {
     }
 
     public int login(String userName, String pw) {
-        int access = -1;
+        int level = -1;
         IUser user = facade.getUser(userName); //Parsing User below due to IUser return
-        User checkUser = new User(user.getUserName(), user.getPassword(), user.getActive(), user.getCreatedTime(), user.getLastLoginTime());
+        User checkUser = new User(user.getUserName(), user.getPassword(), user.getLevel(), user.getCreatedTime(), user.getLastLoginTime());
 
         if (checkUser.checkPassword(pw)) {
             userOne = checkUser;
+            userOne.setLastLoginTime();
             if (facade.updateLastLoginTime(userOne)) {
-                access = facade.getAccess(checkUser.getUserName());
+                level = userOne.getLevel();
             }
         }
-        return access;
+        return level;
     }
 
     public void logOut() {

@@ -9,7 +9,6 @@ import Acquaintance.IBusiness;
 import Acquaintance.IUser;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -47,15 +46,13 @@ public class FXMLLoginController implements Initializable {
     private Label errorLabel;
     @FXML
     private Label errorLabel2;
-    @FXML
-    private Label connectionWarningLabel;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        new Pinger().run();
+
     }
 
     @FXML
@@ -65,36 +62,11 @@ public class FXMLLoginController implements Initializable {
         System.exit(0);
     }
 
-    public class Pinger implements Runnable {
-
-        @Override
-        public void run() {
-            connectionWarningLabel.setText("Test");
-            try {
-                business.pingDatabase();
-            } catch (SQLException e) {
-                connectionWarningLabel.setText("Ingen forbindelse til databasen.");
-            }
-
-        }
-
-    }
-
-//    @FXML
-//    private void pingDatabase() {
-//        connectionWarningLabel.setText("Test");
-//        try {
-//            business.pingDatabase();
-//        } catch (SQLException e) {
-//            connectionWarningLabel.setText("Ingen forbindelse til databasen.");
-//        }
-//    }
-
     @FXML
     public void login(ActionEvent event) throws IOException {
         String userName = usernameField.getText().toLowerCase();
         String password = passwordField.getText();
-
+        
         if (business.checkCredentials(userName, password) == false) {
             errorLabel.setText("Brugernavn eller password er forkert!");
         } else {
@@ -110,7 +82,7 @@ public class FXMLLoginController implements Initializable {
                 appStage.show();
 
             } else if (result == 2) {
-
+                
                 Parent adminScene = FXMLLoader.load(getClass().getResource("Admin.fxml"));
 
                 Scene newScene = new Scene(adminScene);
