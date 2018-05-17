@@ -17,7 +17,7 @@ public interface IUser {
     
     IJob getJob();
     
-    void setJob(Job job);
+    void setJob(IJob job);
     
     String getFirstName();
     

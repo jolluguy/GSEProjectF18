@@ -8,9 +8,7 @@ package Business;
 import Acquaintance.IAdmin;
 import Acquaintance.IJob;
 import Acquaintance.IUser;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 /**

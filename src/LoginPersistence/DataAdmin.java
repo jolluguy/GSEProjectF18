@@ -9,7 +9,6 @@ import Acquaintance.IAdmin;
 import Acquaintance.IJob;
 import Acquaintance.IUser;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Collection;
 
 /**
