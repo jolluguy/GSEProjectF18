@@ -9,6 +9,7 @@ import Acquaintance.IInquiry;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
@@ -46,12 +47,61 @@ public class CaseDatabaseManager {
 //            String inqID = null;      
 //            Statement st2 = conn.createStatement();
 //            String sql = "SELECT henvendelses_id FROM henvendelse WHERE ";
-            
+            return true;
         } catch (Exception ex) {
             ex.printStackTrace();
             return false;
         }
-        return true;
     }
     
+    public boolean doesInquiryExist(String inqID){
+        int matches = -1;
+        try(Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)){
+            Class.forName("org.postgresql.Driver");
+            
+            Statement st = conn.createStatement();
+            String sql = "SELECT COUNT('henvendelses_id') FROM henvendelse WHERE henvendelses_id = '" + inqID + "';";
+            ResultSet result = st.executeQuery(sql);
+            
+            while(result.next()){
+                matches = result.getInt("count");
+            }
+            
+            if (matches == 1) {
+                return true;
+            }
+            
+        }   catch (Exception ex) {
+                ex.printStackTrace();
+                return false;
+            }
+        return false;
+    }   
+    
+    public IInquiry getInquiry(String inqID){
+        DataInquiry inquiry = null;
+        try(Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)){
+            Class.forName("org.postgresql.Driver");
+            
+            if (doesInquiryExist(inqID)) {
+                Statement st = conn.createStatement();
+                String sql = "SELECT henvendelse.indforstået, henvendelse.problembeskrivelse, henvendelse.henvender, henvendelse.henvendelses_dato FROM henvendelse WHERE henvendelses_id = '" + inqID + "';";
+                ResultSet result = st.executeQuery(sql);
+                
+                while(result.next()){
+                    boolean tempAgreement = result.getBoolean("indforstået");
+                    String tempProblemDesc = result.getString("problembeskrivelse");
+                    String tempInquirer = result.getString("henvender");
+                    Timestamp tempTimeStamp = result.getTimestamp("henvendelses_dato");
+                    
+                    inquiry = new DataInquiry(tempProblemDesc, tempInquirer, tempAgreement);
+                    
+                }
+            }
+            
+        }   catch (Exception ex) {
+            ex.printStackTrace();
+            }
+        return null; //CHANGE!!!!!!!!!!!!!!
+    }   
 }
