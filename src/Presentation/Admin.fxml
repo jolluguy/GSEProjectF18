@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
@@ -41,18 +42,6 @@
                         <TextField fx:id="usernameField" layoutX="228.0" layoutY="202.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: F3F3F3; -fx-background-radius: 3;" />
                         <PasswordField fx:id="password1Field" layoutX="228.0" layoutY="261.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: F3F3F3; -fx-background-radius: 3;" />
                         <PasswordField fx:id="password2Field" layoutX="228.0" layoutY="321.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: F3F3F3; -fx-background-radius: 3;" />
-                        <RadioButton fx:id="lvl1Radio" layoutX="228.0" layoutY="395.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="145.0" text="Sagsbehandler">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="levelGroup" />
-                           </toggleGroup>
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </RadioButton>
-                        <RadioButton fx:id="lvl2Radio" layoutX="228.0" layoutY="427.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="112.0" text="Admin" toggleGroup="$levelGroup">
-                           <font>
-                              <Font size="15.0" />
-                           </font></RadioButton>
                         <Button fx:id="addUserButton" layoutX="31.0" layoutY="661.0" mnemonicParsing="false" onAction="#createUser" style="-fx-background-color: F3F3F3; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Tilføj bruger">
                            <font>
                               <Font size="15.0" />
@@ -75,6 +64,18 @@
                         </Label>
                         <Label layoutX="57.0" layoutY="170.0" opacity="0.5" text="Login data:" />
                         <Label layoutX="59.0" layoutY="31.0" opacity="0.4" text="Medarbejder data:" />
+                        <Label layoutX="230.0" layoutY="361.0" text="Stilling">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="397.0" layoutY="361.0" text="Afdeling">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="setJobChoicebox" layoutX="230.0" layoutY="382.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="setDepartmentChoiceBox" layoutX="397.0" layoutY="382.0" prefWidth="150.0" />
                      </children>
                   </AnchorPane>
             </content>

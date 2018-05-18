@@ -6,6 +6,7 @@
 package Business;
 
 import Acquaintance.IUser;
+import java.util.Collection;
 
 /**
  *
@@ -15,7 +16,7 @@ public class LoginManager {
     
     private static BusinessFacade facade = BusinessFacade.getInstance();
     
-    private IUser userOne; //userOne due to future plans of multiple user access at once
+    private User userOne; //userOne due to future plans of multiple user access at once
     
     private static LoginManager instance;
     
@@ -59,7 +60,7 @@ public class LoginManager {
         return false;
     }
     
-    public IUser getUserOne() {
+    public User getUserOne() {
         return userOne;
     }
     
@@ -71,5 +72,22 @@ public class LoginManager {
             }
         }
         return false;
+    }
+
+    Collection<IUser> getAllUsers() {
+        return facade.getAllUsers();
+    }
+
+    boolean updateJob(IUser user) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    boolean addUser(String firstName, String lastName, String userName, String password, String jobtitle, int jobID, int accessLevel, int departmentID, String departmentName) {
+        IUser user = new User(firstName, lastName, userName, password, jobtitle, jobID, accessLevel, departmentID, departmentName);
+        return facade.addUser(user);
+    }
+
+    IUser getUser(String userName) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

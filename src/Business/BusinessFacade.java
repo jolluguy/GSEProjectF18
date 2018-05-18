@@ -12,6 +12,8 @@ import Acquaintance.IInquiry;
 import Acquaintance.IUser;
 import java.util.Collection;
 import Acquaintance.IDataPersistence;
+import Acquaintance.IDepartment;
+import Acquaintance.IJob;
 import Acquaintance.ILoginPersistence;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -101,8 +103,8 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public boolean createUser(int userID, String firstName, String lastName, String userName, String password1, String password2, boolean active, Timestamp createdTime, Timestamp lastLoginTime) {
-        return loginManager.getUserOne().getAdmin().createUser(firstName, lastName, userName, password1, password2, active, createdTime, lastLoginTime);
+    public boolean createUser(String firstName, String lastName, String userName, String password1, String password2, String jobtitle, int jobID, int accessLevel, int departmentID, String departmentName) {
+        return loginManager.getUserOne().getAdmin().createUser(firstName, lastName, userName, password1, password2, jobtitle, jobID, accessLevel, departmentID, departmentName);
     }
 
     @Override
@@ -129,7 +131,7 @@ public class BusinessFacade implements IBusiness {
     @Override
     public Collection<IUser> getUserList() {
         System.out.println(loginManager.getUserOne().getJob());
-        return loginManager.getUserOne().getJob().getUserList();
+                return loginManager.getUserOne().getAdmin().getUserList();
     }
 
     Collection<IUser> getAllUsers() {
@@ -168,4 +170,14 @@ public class BusinessFacade implements IBusiness {
         return dataPersistence.saveCase(case1);
     }
 
+    @Override
+    public Collection<IJob> getJobList(){
+        return loginPersistence.getJobList();
+        
+    }
+
+    @Override
+    public Collection<IDepartment> getdepartmentList() {
+        return loginPersistence.getDepartmentList();
+    }
 }

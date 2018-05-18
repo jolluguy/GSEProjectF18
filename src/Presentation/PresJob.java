@@ -3,39 +3,44 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business;
+package Presentation;
 
+import Acquaintance.IDepartment;
 import Acquaintance.IJob;
+import Acquaintance.IUser;
+import java.util.Collection;
 
 /**
  *
  * @author Rasmus
  */
-public abstract class Job implements IJob {
-
+public class PresJob implements IJob {
+    
     private int ID;
     private int accessLevel;
-    private Department department;
+    private IDepartment department;
     private String jobTitle;
-    
 
-    public Job(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
+    public PresJob(String jobTitle, int ID, int accessLevel) {
         this.jobTitle = jobTitle;
         this.ID = ID;
         this.accessLevel = accessLevel;
-        this.department = new Department(departmentID, departmentName);
-
+        this.department = null;
+        
     }
-
+    
+    
+    
     @Override
     public int getID() {
-        return ID;
+        return this.ID;
     }
 
     @Override
     public int getAccessLevel() {
-        return accessLevel;
+        return this.accessLevel;
     }
+
     
     @Override
     public String getJobTitle(){
@@ -44,8 +49,7 @@ public abstract class Job implements IJob {
 }
 
     @Override
-    public Department getDepartment() {
-        return department;
+    public IDepartment getDepartment() {
+       return this.department;
     }
-    
 }

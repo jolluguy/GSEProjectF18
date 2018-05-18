@@ -16,6 +16,11 @@ import java.util.Map;
  */
 public interface IBusiness {
 
+
+    Collection<IJob> getJobList();
+    
+    Collection<IDepartment> getdepartmentList();
+
     void injectDataPersistence(IDataPersistence dataPersistence);
 
     void injectLoginPersistence(ILoginPersistence loginPersistence);
@@ -32,7 +37,7 @@ public interface IBusiness {
     
     boolean checkCredentials(String userName, String password);
     
-    boolean createUser(int userID, String firstName, String lastName, String userName, String password1, String password2, boolean active, Timestamp createdTime, Timestamp lastLoginTime);
+    public boolean createUser(String firstName, String lastName, String userName, String password1, String password2, String jobtitle, int jobID, int accessLevel, int departmentID, String departmentName);
 
     boolean changeJob(String userName, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName);
     

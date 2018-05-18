@@ -1,0 +1,33 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Presentation;
+
+import Acquaintance.IDepartment;
+
+/**
+ *
+ * @author Rasmus
+ */
+public class PresDepartment implements IDepartment{
+
+     int departmentID;
+    String departmentName;
+
+    public PresDepartment(int departmentID, String departmentName) {
+        this.departmentID = departmentID;
+        this.departmentName = departmentName;
+    }
+
+    @Override
+    public int getDepartmentID() {
+        return departmentID;
+    }
+
+    @Override
+    public String getDepartmentName() {
+        return departmentName;
+    }
+}

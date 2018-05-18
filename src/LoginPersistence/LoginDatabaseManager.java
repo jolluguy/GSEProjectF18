@@ -1,5 +1,7 @@
 package LoginPersistence;
 
+import Acquaintance.IDepartment;
+import Acquaintance.IJob;
 import Acquaintance.IUser;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -243,6 +245,55 @@ public class LoginDatabaseManager {
         }
         
         return access; //returns access level for the user
+    }
+
+    Collection<IJob> getJobList() {
+        Collection<IJob> joblist = new ArrayList<>();
+        
+         try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
+            Class.forName("org.postgresql.Driver");
+
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM stilling";
+
+            ResultSet result = st.executeQuery(sql);
+
+            while (result.next()) {
+                String jobTitle = result.getString("stillings_titel");
+                int accessLevel = result.getInt("adgangsniveau");
+                int jobID = result.getInt("stillings_id");
+                
+                joblist.add(new DataJob(jobTitle, jobID, accessLevel));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return joblist;
+    }
+
+    Collection<IDepartment> getDepartmentList() {
+    Collection<IDepartment> depList = new ArrayList<>();
+        
+         try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
+            Class.forName("org.postgresql.Driver");
+
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM afdeling";
+
+            ResultSet result = st.executeQuery(sql);
+
+            while (result.next()) {
+                String departmentName = result.getString("afdelings_navn");
+                int departmentID = result.getInt("afdelings_id");
+                
+                depList.add(new DataDepartment(departmentID, departmentName));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return depList;    
     }
 
 }

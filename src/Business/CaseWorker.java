@@ -14,15 +14,9 @@ import java.util.Collection;
  * @author Rasmus
  */
 public class CaseWorker extends Job implements ICaseWorker {
-    
-    
-    
-    public CaseWorker(int ID, int accessLevel, int departmentID, String departmentName) {
-        super(ID, accessLevel, departmentID, departmentName);
+
+    public CaseWorker(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
+        super(jobTitle, ID, accessLevel, departmentID, departmentName);
     }
 
-    @Override
-    public Collection<IUser> getUserList() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

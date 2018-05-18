@@ -8,11 +8,13 @@ package Presentation;
 import Acquaintance.IAdmin;
 import Acquaintance.IBusiness;
 import Acquaintance.ICaseWorker;
+import Acquaintance.IDepartment;
 import Acquaintance.IJob;
 import Acquaintance.IUser;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
+import java.util.Collection;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,6 +25,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
@@ -39,6 +42,9 @@ import javafx.stage.Stage;
  * @author Alexa
  */
 public class AdminController implements Initializable {
+
+    Collection<IJob> jobList;
+    Collection<IDepartment> departmentList;
 
     @FXML
     private Label usernameLabel;
@@ -62,12 +68,6 @@ public class AdminController implements Initializable {
     private ObservableList<String> obsList;
     @FXML
     private Button refreshButton;
-    @FXML
-    private RadioButton lvl1Radio;
-    @FXML
-    private ToggleGroup levelGroup;
-    @FXML
-    private RadioButton lvl2Radio;
     @FXML
     private Label warningLabel;
     @FXML
@@ -110,6 +110,10 @@ public class AdminController implements Initializable {
     private Label firstNameLabel;
     @FXML
     private Label lastNameLabel;
+    @FXML
+    private ChoiceBox<String> setJobChoicebox;
+    @FXML
+    private ChoiceBox<String> setDepartmentChoiceBox;
 
     /**
      * Initializes the controller class.
@@ -117,8 +121,18 @@ public class AdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        
         userOneLabel.setText(business.getUserOne().getUserName() + "");
+
+        //filling choceboxes
+        jobList = business.getJobList();
+        for (IJob j : jobList) {
+            setJobChoicebox.getItems().add(j.getJobTitle());
+            // inplementer noget til inactive
+        }
+        departmentList = business.getdepartmentList();
+        for (IDepartment d : departmentList) {
+            setDepartmentChoiceBox.getItems().add(d.getDepartmentName());
+        }
 
 //        Load listview
         obsList = FXCollections.observableArrayList();
@@ -136,19 +150,10 @@ public class AdminController implements Initializable {
         String userName = usernameField.getText().toLowerCase();
         String password1 = password1Field.getText();
         String password2 = password2Field.getText();
-        int level = -1;
+        PresJob job = getJob(setJobChoicebox, setDepartmentChoiceBox);
+        PresDepartment dep = getDepartment(setJobChoicebox);
 
-        if (!(lvl1Radio.isSelected() || lvl2Radio.isSelected())) {
-            warningLabel.setText("En jobtitel skal vælges før ændringen kan foretages");
-        }
-
-        if (lvl1Radio.isSelected()) {
-            level = 1;
-        } else if (lvl2Radio.isSelected()) {
-            level = 2;
-        }
-
-        boolean createUserStatus = business.createUser(-1, firstName, lastName, userName, password1, password2, true, new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()));
+        boolean createUserStatus = business.createUser(firstName, lastName, userName, password1, password2, job.getJobTitle(), job.getID(), job.getAccessLevel(), dep.departmentID, dep.getDepartmentName());
 
         String statusmessage = "";
         if (createUserStatus) {
@@ -164,8 +169,7 @@ public class AdminController implements Initializable {
         usernameField.clear();
         password1Field.clear();
         password2Field.clear();
-        lvl1Radio.setSelected(false);
-        lvl2Radio.setSelected(false);
+
     }
 
     @FXML
@@ -173,8 +177,6 @@ public class AdminController implements Initializable {
         usernameField.clear();
         password1Field.clear();
         password2Field.clear();
-        lvl1Radio.setSelected(false);
-        lvl2Radio.setSelected(false);
         warningLabel.setText("");
     }
 
@@ -244,4 +246,30 @@ public class AdminController implements Initializable {
             obsList.add(i.toString());
         }
     }
+
+    /**
+     *
+     * @param choicebox
+     * @return
+     */
+    PresJob getJob(ChoiceBox<String> choiceboxJob, ChoiceBox<String> choiceboxDepartment) {
+        PresJob job = null;
+        for (IJob j : jobList) {
+            if (j.getJobTitle().equalsIgnoreCase(choiceboxJob.getValue())) {
+                job = new PresJob(j.getJobTitle(), j.getID(), j.getAccessLevel());
+            }
+        }
+        return job;
+    }
+
+    private PresDepartment getDepartment(ChoiceBox<String> choiceboxDepartment) {
+       PresDepartment dep = null;
+       for(IDepartment d : departmentList){
+           if(d.getDepartmentName().equalsIgnoreCase(choiceboxDepartment.getValue())){
+               dep = new PresDepartment(d.getDepartmentID(), d.getDepartmentName());
+           }
+       }
+       return dep;
+    }
+
 }

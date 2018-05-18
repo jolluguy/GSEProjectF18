@@ -28,7 +28,7 @@ public class DataUser implements IUser, Serializable {
     private Timestamp lastLoginTime;
     private IJob job;
 
-    public DataUser(String firstName, String lastName, String userName, String password, boolean active, String jobtitle, int ID, int accessLevel, int departmentID, String departmentName, Timestamp createdTime, Timestamp lastLoginTime) {
+    public DataUser(String firstName, String lastName, String userName, String password, boolean active, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName, Timestamp createdTime, Timestamp lastLoginTime) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = "88888888"; //NB!! - TelefonNummer skal oprettes automatisk;
@@ -39,12 +39,9 @@ public class DataUser implements IUser, Serializable {
         this.createdTime = new Timestamp(System.currentTimeMillis());
         this.lastLoginTime = new Timestamp(System.currentTimeMillis());
 
-        if (jobtitle.equalsIgnoreCase("admin")) {
-            this.job = new DataAdmin(ID, accessLevel, departmentID, departmentName);
 
-        } else if (jobtitle.equalsIgnoreCase("sagsbehandler")) {
-            this.job = new DataCaseWorker(ID, accessLevel, departmentID, departmentName);
-        }
+            this.job = new DataJob(jobTitle, ID, accessLevel, departmentID, departmentName);
+
     }
     
     public DataUser(String userName, String password, boolean active, Timestamp createdTime, Timestamp lastLoginTime) {
@@ -134,22 +131,7 @@ public class DataUser implements IUser, Serializable {
 
     @Override
     public void setJob(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
-        if(jobTitle.equalsIgnoreCase("admin")){
-            this.job = new DataAdmin(ID, accessLevel, departmentID, departmentName);
-            
-        } else if(jobTitle.equalsIgnoreCase("caseworker")) {
-            this.job = new DataCaseWorker(ID, accessLevel, departmentID, departmentName);
-            
-        }
         
+            this.job = new DataJob(jobTitle, ID, accessLevel, departmentID, departmentName);
     }
-
-    @Override
-    public IAdmin getAdmin() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
-
-    
 }

@@ -41,6 +41,6 @@ public interface IUser {
 
     public void setLastLoginTime();
 
-    public IAdmin getAdmin();
+//    public IAdmin getAdmin();
 
 }
