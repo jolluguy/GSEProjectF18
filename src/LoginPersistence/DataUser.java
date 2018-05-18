@@ -17,6 +17,7 @@ import java.sql.Timestamp;
  */
 public class DataUser implements IUser, Serializable {
     
+    private int userID;
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -133,5 +134,10 @@ public class DataUser implements IUser, Serializable {
     public void setJob(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
         
             this.job = new DataJob(jobTitle, ID, accessLevel, departmentID, departmentName);
+    }
+
+    @Override
+    public int getUserID() {
+       return this.userID;
     }
 }

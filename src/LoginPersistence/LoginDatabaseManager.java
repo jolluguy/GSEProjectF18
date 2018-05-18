@@ -95,7 +95,7 @@ public class LoginDatabaseManager {
 
             Class.forName("org.postgresql.Driver");
 
-            PreparedStatement st = conn.prepareStatement("UPDATE login SET sidste_login = '" + (new Timestamp(System.currentTimeMillis())) + "' WHERE brugernavn = '" + userName + "';");
+            PreparedStatement st = conn.prepareStatement("UPDATE login SET sidste_login = '" + (user.getLastLoginTime()) + "' WHERE brugernavn = '" + userName + "';");
 
             st.executeUpdate();
 

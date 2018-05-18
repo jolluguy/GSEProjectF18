@@ -90,10 +90,10 @@ public class BusinessFacade implements IBusiness {
         return loginManager.getUserOne();
     }
 
-    @Override
-    public boolean checkCredentials(String userName, String password) {
-        return loginManager.checkCredentials(userName, password);
-    }
+//    @Override
+//    public boolean checkCredentials(String userName, String password) {
+//        return loginManager.checkCredentials(userName, password);
+//    }
     
     public boolean getUserInfo(String userName) {
         return loginPersistence.getUserInfo(userName);

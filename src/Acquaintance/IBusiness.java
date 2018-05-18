@@ -34,8 +34,8 @@ public interface IBusiness {
     boolean changePassword(String oldPassword, String newPassword1, String newPassword2);
     
     IUser getUserOne();
-    
-    boolean checkCredentials(String userName, String password);
+//    
+//    boolean checkCredentials(String userName, String password);
     
     public boolean createUser(String firstName, String lastName, String userName, String password1, String password2, String jobtitle, int jobID, int accessLevel, int departmentID, String departmentName);
 
