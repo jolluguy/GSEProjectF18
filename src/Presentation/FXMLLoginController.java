@@ -100,27 +100,31 @@ public class FXMLLoginController implements Initializable {
         } else {
             int result = business.login(userName, password);
 
-            if (result == 1) {
-
-                Parent caseworkerScene = FXMLLoader.load(getClass().getResource("Caseworker.fxml"));
-
-                Scene newScene = new Scene(caseworkerScene);
-                Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                appStage.setScene(newScene);
-                appStage.show();
-
-            } else if (result == 2) {
-
-                Parent adminScene = FXMLLoader.load(getClass().getResource("Admin.fxml"));
-
-                Scene newScene = new Scene(adminScene);
-                Stage appstage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                appstage.setScene(newScene);
-                appstage.show();
-
-            } else if (result == 0) {
-                errorLabel.setText("ADGANG NÆGTET! - Denne bruger er inaktiv!");
-                errorLabel2.setText("Kontakt IT-Support for hjælp");
+            switch (result) {
+                case 1:
+                    {
+                        Parent caseworkerScene = FXMLLoader.load(getClass().getResource("Caseworker.fxml"));
+                        Scene newScene = new Scene(caseworkerScene);
+                        Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        appStage.setScene(newScene);
+                        appStage.show();
+                        break;
+                    }
+                case 2:
+                    {
+                        Parent adminScene = FXMLLoader.load(getClass().getResource("Admin.fxml"));
+                        Scene newScene = new Scene(adminScene);
+                        Stage appstage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        appstage.setScene(newScene);
+                        appstage.show();
+                        break;
+                    }
+                case 0:
+                    errorLabel.setText("ADGANG NÆGTET! - Denne bruger er inaktiv!");
+                    errorLabel2.setText("Kontakt IT-Support for hjælp");
+                    break;
+                default:
+                    break;
             }
 
         }
