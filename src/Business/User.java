@@ -117,10 +117,10 @@ public class User implements IUser, Serializable {
     }
 
 //    @Override
-    Admin getAdmin() {
+    Job getAdmin() {
         
         if (this.getClass().getSimpleName().equalsIgnoreCase("admin")) {
-            return (Admin) this.job;
+            return this.job;
     }
         else {
             return null;

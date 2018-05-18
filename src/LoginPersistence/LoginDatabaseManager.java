@@ -212,8 +212,8 @@ public class LoginDatabaseManager {
                         + "INNER JOIN tilhører ON bruger.bruger_id = tilhører.bruger_id "
                         + "INNER JOIN afdeling ON tilhører.afdelings_id = afdeling.afdelings_id "
                         + "INNER JOIN besidder ON bruger.bruger_id = besidder.bruger_id "
-                        + "INNER JOIN stilling ON besidder.stillings_id = stilling.stillings_id"
-                         + "WHERE login.brugernavn = '" + userName + "';";
+                        + "INNER JOIN stilling ON besidder.stillings_id = stilling.stillings_id "
+                        + "WHERE login.brugernavn = '" + userName + "';";
 
                 ResultSet result = st.executeQuery(sql);
 

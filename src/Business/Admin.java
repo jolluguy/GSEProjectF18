@@ -26,7 +26,7 @@ public class Admin extends Job implements IAdmin {
     
     
     
-//    @Override
+    @Override
     public boolean createUser(String firstName, String lastName, String userName, String password1, String password2, String jobtitle, int jobID, int accessLevel, int departmentID, String departmentName) {
         if (password1.equals(password2)) {
             return loginManeger.addUser(firstName, lastName, userName, password2, jobtitle, jobID, accessLevel, departmentID, departmentName);
@@ -44,6 +44,7 @@ public class Admin extends Job implements IAdmin {
     
 
 
+    @Override
     public Collection<IUser> getUserList() {
         System.out.println("test");
         return loginManeger.getAllUsers();

@@ -104,12 +104,12 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public boolean createUser(String firstName, String lastName, String userName, String password1, String password2, String jobtitle, int jobID, int accessLevel, int departmentID, String departmentName) {
-        return loginManager.getUserOne().getAdmin().createUser(firstName, lastName, userName, password1, password2, jobtitle, jobID, accessLevel, departmentID, departmentName);
+        return loginManager.getUserOne().getJob().createUser(firstName, lastName, userName, password1, password2, jobtitle, jobID, accessLevel, departmentID, departmentName);
     }
 
     @Override
     public boolean changeJob(String userName, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
-        return loginManager.getUserOne().getAdmin().changeJob(userName, jobTitle, ID, accessLevel, departmentID, departmentName);
+        return loginManager.getUserOne().getJob().changeJob(userName, jobTitle, ID, accessLevel, departmentID, departmentName);
     }
 
     public boolean addUser(IUser user) {
@@ -131,7 +131,7 @@ public class BusinessFacade implements IBusiness {
     @Override
     public Collection<IUser> getUserList() {
         System.out.println(loginManager.getUserOne().getJob());
-                return loginManager.getUserOne().getAdmin().getUserList();
+                return loginManager.getUserOne().getJob().getUserList();
     }
 
     Collection<IUser> getAllUsers() {
