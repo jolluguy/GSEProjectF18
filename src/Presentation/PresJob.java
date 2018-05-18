@@ -19,7 +19,7 @@ public class PresJob implements IJob {
     private int ID;
     private int accessLevel;
     private IDepartment department;
-    String jobTitle;
+    private String jobTitle;
 
     public PresJob(String jobTitle, int ID, int accessLevel, IDepartment department) {
         this.jobTitle = jobTitle;

@@ -126,7 +126,7 @@ public class AdminController implements Initializable {
         //filling choceboxes
         jobList = business.getJobList();
         for (IJob j : jobList) {
-            setJobChoicebox.getItems().add(j.getJob());
+            setJobChoicebox.getItems().add(j.getJobTitle());
             // inplementer noget til inactive
         }
         departmentList = business.getdepartmentList();
@@ -150,11 +150,10 @@ public class AdminController implements Initializable {
         String userName = usernameField.getText().toLowerCase();
         String password1 = password1Field.getText();
         String password2 = password2Field.getText();
-        String jobTitle = setJobChoicebox.getValue();
         PresJob job = getJob(setJobChoicebox, setDepartmentChoiceBox);
         PresDepartment dep = getDepartment(setJobChoicebox);
 
-        boolean createUserStatus = business.createUser(firstName, lastName, userName, password1, password2, jobTitle, job.getID(), job.getAccessLevel(), dep.departmentID, dep.getDepartmentName());
+        boolean createUserStatus = business.createUser(firstName, lastName, userName, password1, password2, job.getJobTitle(), job.getID(), job.getAccessLevel(), dep.departmentID, dep.getDepartmentName());
 
         String statusmessage = "";
         if (createUserStatus) {
@@ -257,8 +256,8 @@ public class AdminController implements Initializable {
         PresJob job = null;
         PresDepartment tempDep = getDepartment(choiceboxDepartment);
         for (IJob j : jobList) {
-            if (j.getJob().equalsIgnoreCase(choiceboxJob.getValue())) {
-                job = new PresJob(j.getID(), j.getAccessLevel(), new PresDepartment(tempDep.getDepartmentID(), tempDep.getDepartmentName()));
+            if (j.getJobTitle().equalsIgnoreCase(choiceboxJob.getValue())) {
+                job = new PresJob(j.getJobTitle(), j.getID(), j.getAccessLevel(), new PresDepartment(tempDep.getDepartmentID(), tempDep.getDepartmentName()));
             }
         }
         return job;
