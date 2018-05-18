@@ -534,8 +534,62 @@ public class CaseworkerController implements Initializable {
     }
 
     private void fillOfferMap() {
-
-    }    
+        if(adultMedicalTreatmentCheckBox.isSelected()) {
+            offerMap.put(1, adultMedicalTreatmentCheckBox.getText());
+        }
+        if(activityAndSocialOfferCheckBox.isSelected()) {
+            offerMap.put(2, activityAndSocialOfferCheckBox.getText());
+        }
+        if(protectedEmploymentOfferCheckBox.isSelected()) {
+            offerMap.put(3, protectedEmploymentOfferCheckBox.getText());
+        }
+        if(adultDailyTreatmentCheckBoc.isSelected()) {
+            offerMap.put(4, adultDailyTreatmentCheckBoc.getText());
+        }
+        if(educationOfferCheckBox.isSelected()) {
+            offerMap.put(5, educationOfferCheckBox.getText());
+        }
+        if(standardCareHomeCheckBox.isSelected()) {
+            offerMap.put(6, standardCareHomeCheckBox.getText());
+        }
+        if(standardElderCareHomeCheckBox.isSelected()) {
+            offerMap.put(7, standardElderCareHomeCheckBox.getText());
+        }
+        if(communityHomeCheckBox.isSelected()) {
+            offerMap.put(8, communityHomeCheckBox.getText());
+        }
+        if(adultDayCareCheckBox.isSelected()) {
+            offerMap.put(9, adultDayCareCheckBox.getText());
+        }
+        if(hostelryCheckBox.isSelected()) {
+            offerMap.put(10, hostelryCheckBox.getText());
+        }
+        if(crisisCenterCheckBox.isSelected()) {
+            offerMap.put(11, crisisCenterCheckBox.getText());
+        }
+        if(safeHousingCheckBox.isSelected()) {
+            offerMap.put(12, safeHousingCheckBox.getText());
+        }
+        if(longTermSafeHousingCheckBox.isSelected()) {
+            offerMap.put(13, longTermSafeHousingCheckBox.getText());
+        }
+        if(temporaryHousingCheckBox.isSelected()) {
+            offerMap.put(14, temporaryHousingCheckBox.getText());
+        }
+        if(nursingHomeCheckBox.isSelected()) {
+            offerMap.put(15, nursingHomeCheckBox.getText());
+        }
+        if(rehabilitationgOfferCheckBox.isSelected()) {
+            offerMap.put(16, rehabilitationgOfferCheckBox.getText());
+        }
+        if(adultOutboundOffersCheckBox.isSelected()) {
+            offerMap.put(17, adultOutboundOffersCheckBox.getText());
+        }
+        if (governmentApprovedOfferCheckBox.isSelected()) {
+            offerMap.put(18, governmentApprovedOfferCheckBox.getText());
+        }
+    
+    }  
 
     
     /**
