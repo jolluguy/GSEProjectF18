@@ -42,7 +42,7 @@ import javafx.stage.Stage;
  * @author Alexa
  */
 public class AdminController implements Initializable {
-    
+
     Collection<IJob> jobList;
     Collection<IDepartment> departmentList;
 
@@ -121,20 +121,19 @@ public class AdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        
         userOneLabel.setText(business.getUserOne().getUserName() + "");
 
         //filling choceboxes
         jobList = business.getJobList();
-        for(IJob j: jobList){
+        for (IJob j : jobList) {
             setJobChoicebox.getItems().add(j.getJob());
+            // inplementer noget til inactive
         }
         departmentList = business.getdepartmentList();
-        for(IDepartment d : departmentList){
+        for (IDepartment d : departmentList) {
             setDepartmentChoiceBox.getItems().add(d.getDepartmentName());
         }
-        
-        
+
 //        Load listview
         obsList = FXCollections.observableArrayList();
         userListview.setItems(obsList);
@@ -151,9 +150,11 @@ public class AdminController implements Initializable {
         String userName = usernameField.getText().toLowerCase();
         String password1 = password1Field.getText();
         String password2 = password2Field.getText();
-        
+        String jobTitle = setJobChoicebox.getValue();
+        PresJob job = getJob(setJobChoicebox, setDepartmentChoiceBox);
+        PresDepartment dep = getDepartment(setJobChoicebox);
 
-        boolean createUserStatus = business.createUser(-1, firstName, lastName, userName, password1, password2, true, new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()));
+        boolean createUserStatus = business.createUser(firstName, lastName, userName, password1, password2, jobTitle, job.getID(), job.getAccessLevel(), dep.departmentID, dep.getDepartmentName());
 
         String statusmessage = "";
         if (createUserStatus) {
@@ -246,12 +247,31 @@ public class AdminController implements Initializable {
             obsList.add(i.toString());
         }
     }
-    IJob getJob(ChoiceBox<String> choicebox){
-        PresJob job;
-        for(IJob j: jobList){
-            if(j.getJob().equalsIgnoreCase(choicebox.getValue()))
-                job = new PresJob()...skrinv konstruktor i jobene...
+
+    /**
+     *
+     * @param choicebox
+     * @return
+     */
+    PresJob getJob(ChoiceBox<String> choiceboxJob, ChoiceBox<String> choiceboxDepartment) {
+        PresJob job = null;
+        PresDepartment tempDep = getDepartment(choiceboxDepartment);
+        for (IJob j : jobList) {
+            if (j.getJob().equalsIgnoreCase(choiceboxJob.getValue())) {
+                job = new PresJob(j.getID(), j.getAccessLevel(), new PresDepartment(tempDep.getDepartmentID(), tempDep.getDepartmentName()));
+            }
         }
+        return job;
     }
-    
+
+    private PresDepartment getDepartment(ChoiceBox<String> choiceboxDepartment) {
+       PresDepartment dep = null;
+       for(IDepartment d : departmentList){
+           if(d.getDepartmentName().equalsIgnoreCase(choiceboxDepartment.getValue())){
+               dep = new PresDepartment(d.getDepartmentID(), d.getDepartmentName());
+           }
+       }
+       return dep;
+    }
+
 }

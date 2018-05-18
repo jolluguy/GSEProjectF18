@@ -103,8 +103,8 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public boolean createUser(int userID, String firstName, String lastName, String userName, String password1, String password2, boolean active, Timestamp createdTime, Timestamp lastLoginTime) {
-        return loginManager.getUserOne().getAdmin().createUser(firstName, lastName, userName, password1, password2, active, createdTime, lastLoginTime);
+    public boolean createUser(String firstName, String lastName, String userName, String password1, String password2, String jobtitle, int jobID, int accessLevel, int departmentID, String departmentName) {
+        return loginManager.getUserOne().getAdmin().createUser(firstName, lastName, userName, password1, password2, jobtitle, jobID, accessLevel, departmentID, departmentName);
     }
 
     @Override

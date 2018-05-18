@@ -23,7 +23,7 @@ public class DataAdmin extends DataJob implements IAdmin {
         super(ID, accessLevel, departmentID, departmentName);
     }
     
-    @Override
+
     public boolean createUser(String firstName, String lastName, String userName, String password1, String password2, boolean active, Timestamp createdTime, Timestamp lastLoginTime) {
         if (password1.equals(password2)) {
             return loginDatabase.createUserInDB(new DataUser(firstName, lastName, userName, password2, active, lastName, ID, accessLevel, ID, lastName, createdTime, lastLoginTime));
@@ -42,6 +42,11 @@ public class DataAdmin extends DataJob implements IAdmin {
     @Override
     public Collection<IUser> getUserList() {
         return loginDatabase.getAllUsers();
+    }
+
+    @Override
+    public String getJob() {
+        this.jobTitle;
     }
     
 }

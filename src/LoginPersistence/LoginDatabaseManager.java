@@ -1,5 +1,7 @@
 package LoginPersistence;
 
+import Acquaintance.IDepartment;
+import Acquaintance.IJob;
 import Acquaintance.IUser;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -243,6 +245,14 @@ public class LoginDatabaseManager {
         }
         
         return access; //returns access level for the user
+    }
+
+    Collection<IJob> getJobList() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    Collection<IDepartment> getDepartmentList() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

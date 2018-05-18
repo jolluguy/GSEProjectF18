@@ -16,9 +16,17 @@ import java.util.Collection;
  */
 public class PresJob implements IJob {
     
-    int ID;
-    int accessLevel;
-    IDepartment department;
+    private int ID;
+    private int accessLevel;
+    private IDepartment department;
+
+    public PresJob(int ID, int accessLevel, IDepartment department) {
+        this.ID = ID;
+        this.accessLevel = accessLevel;
+        this.department = department;
+    }
+    
+    
     
     @Override
     public int getID() {
@@ -39,10 +47,10 @@ public class PresJob implements IJob {
     public String getJob(){
         String name = this.getClass().getSimpleName();
         if(name.contains("dmin")){
-            return "admin";
+            return "Admin";
         }
         else if (name.contains("ase")){
-        return "caseworker";
+        return "Sagsbahandler";
     }
         return null;
     

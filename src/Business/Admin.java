@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 public class Admin extends Job implements IAdmin {
 
-    private BusinessFacade facade = BusinessFacade.getInstance();
+    private LoginManager loginManeger = LoginManager.getInstance();
     
     
 
@@ -26,10 +26,10 @@ public class Admin extends Job implements IAdmin {
         super(ID, accessLevel, departmentID, departmentName);
     }
     
-    @Override
-    public boolean createUser(String firstName, String lastName, String userName, String password1, String password2, boolean active, Timestamp createdTime, Timestamp lastLoginTime) {
+//    @Override
+    public boolean createUser(String firstName, String lastName, String userName, String password1, String password2, String jobtitle, int jobID, int accessLevel, int departmentID, String departmentName) {
         if (password1.equals(password2)) {
-            return facade.addUser( new User(firstName, lastName, userName, password2, active, lastName, ID, accessLevel, ID, lastName, createdTime, lastLoginTime));
+            return loginManeger.addUser(firstName, lastName, userName, password2, jobtitle, jobID, accessLevel, departmentID, departmentName);
         } else {
             return false;
         }
@@ -37,9 +37,9 @@ public class Admin extends Job implements IAdmin {
     
     @Override
     public boolean changeJob(String userName, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
-        IUser user = facade.getUser(userName);
+        IUser user = loginManeger.getUser(userName);
         user.setJob(jobTitle, ID, accessLevel, departmentID, departmentName); //Parsing IJob to job... Might give some problems.
-        return facade.updateJob(user);
+        return loginManeger.updateJob(user);
     }
     
 
@@ -47,7 +47,7 @@ public class Admin extends Job implements IAdmin {
     @Override
     public Collection<IUser> getUserList() {
         System.out.println("test");
-        return facade.getAllUsers();
+        return loginManeger.getAllUsers();
         
 //        ArrayList<IUser> tempList = new ArrayList<>();
 //        for(IUser i : facade.getAllUsers()){
@@ -56,6 +56,8 @@ public class Admin extends Job implements IAdmin {
 //            
 //        return tempList;
     }
+
+
     
     
 }

@@ -34,4 +34,16 @@ public abstract class Job implements IJob {
         return accessLevel;
     }
     
+    public String getJob(){
+        String name = this.getClass().getSimpleName();
+        if(name.contains("dmin")){
+            return "Admin";
+        }
+        else if (name.contains("ase")){
+        return "Sagsbahandler";
+    }
+        return null;
+    
+}
+    
 }

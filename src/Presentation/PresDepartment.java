@@ -5,10 +5,29 @@
  */
 package Presentation;
 
+import Acquaintance.IDepartment;
+
 /**
  *
  * @author Rasmus
  */
-public class PresDepartment {
-    
+public class PresDepartment implements IDepartment{
+
+     int departmentID;
+    String departmentName;
+
+    public PresDepartment(int departmentID, String departmentName) {
+        this.departmentID = departmentID;
+        this.departmentName = departmentName;
+    }
+
+    @Override
+    public int getDepartmentID() {
+        return departmentID;
+    }
+
+    @Override
+    public String getDepartmentName() {
+        return departmentName;
+    }
 }
