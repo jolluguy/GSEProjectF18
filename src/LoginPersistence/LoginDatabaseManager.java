@@ -136,18 +136,34 @@ public class LoginDatabaseManager {
             Class.forName("org.postgresql.Driver");
 
             Statement st = conn.createStatement();
-            String sql = "SELECT login.brugernavn, login.kodeord, login.aktiv, login.oprettet, login.sidste_login FROM login";
+            String sql = "SELECT * FROM login "
+                        + "INNER JOIN holder_info ON login.brugernavn = holder_info.brugernavn "
+                        + "INNER JOIN bruger ON holder_info.bruger_id = bruger.bruger_id "
+                        + "INNER JOIN tilhører ON bruger.bruger_id = tilhører.bruger_id "
+                        + "INNER JOIN afdeling ON tilhører.afdelings_id = afdeling.afdelings_id "
+                        + "INNER JOIN besidder ON bruger.bruger_id = besidder.bruger_id "
+                        + "INNER JOIN stilling ON besidder.stillings_id = stilling.stillings_id";
 
             ResultSet result = st.executeQuery(sql);
 
             while (result.next()) {
-                String userName = result.getString("brugernavn");
-                String password = result.getString("kodeord");
-                boolean active = result.getBoolean("aktiv");
-                java.sql.Timestamp createdTime = result.getTimestamp("oprettet");
-                java.sql.Timestamp lastLoginTime = result.getTimestamp("sidste_login");
-                
-                userList.add(new DataUser(userName, password, active, createdTime, lastLoginTime));
+                int tempUserID = result.getInt("bruger_id");
+                    String tempFirstName = result.getString("fornavn");
+                    String tempLastName = result.getString("efternavn");
+                    String tempPhone = result.getString("telefonnummer");
+                    String tempEmail = result.getString("mail");
+                    String tempUserName = result.getString("brugernavn");
+                    String tempPassword = result.getString("kodeord");
+                    boolean tempActive = result.getBoolean("aktiv");
+                    Timestamp tempCreatedTime = result.getTimestamp("oprettet");
+                    Timestamp tempLastLoginTime = result.getTimestamp("sidste_login");
+                    String tempJobTitle = result.getString("stillings_titel");
+                    int tempJobID = result.getInt("stillings_id");
+                    int tempAccess = result.getInt("adgangsniveau");
+                    int tempDepartmentID = result.getInt("afdelings_id");
+                    String tempDepartmentName = result.getString("afdelings_navn");
+
+                userList.add(new DataUser(tempUserID, tempFirstName, tempLastName, tempPhone, tempEmail, tempUserName, tempPassword, tempActive, tempCreatedTime, tempLastLoginTime, tempJobTitle, tempJobID, tempAccess, tempDepartmentID, tempDepartmentName));
             }
 
         } catch (Exception e) {
@@ -190,19 +206,35 @@ public class LoginDatabaseManager {
 
             if (doesUserExist(userName)) {
                 Statement st = conn.createStatement();
-                String sql = "SELECT brugernavn, kodeord, aktiv, oprettet, sidste_login FROM login "
-                        + "WHERE brugernavn = '" + userName + "';";
+                String sql = "SELECT * FROM login "
+                        + "INNER JOIN holder_info ON login.brugernavn = holder_info.brugernavn "
+                        + "INNER JOIN bruger ON holder_info.bruger_id = bruger.bruger_id "
+                        + "INNER JOIN tilhører ON bruger.bruger_id = tilhører.bruger_id "
+                        + "INNER JOIN afdeling ON tilhører.afdelings_id = afdeling.afdelings_id "
+                        + "INNER JOIN besidder ON bruger.bruger_id = besidder.bruger_id "
+                        + "INNER JOIN stilling ON besidder.stillings_id = stilling.stillings_id"
+                         + "WHERE login.brugernavn = '" + userName + "';";
 
                 ResultSet result = st.executeQuery(sql);
 
                 while (result.next()) {
+                    int tempUserID = result.getInt("bruger_id");
+                    String tempFirstName = result.getString("fornavn");
+                    String tempLastName = result.getString("efternavn");
+                    String tempPhone = result.getString("telefonnummer");
+                    String tempEmail = result.getString("mail");
                     String tempUserName = result.getString("brugernavn");
                     String tempPassword = result.getString("kodeord");
                     boolean tempActive = result.getBoolean("aktiv");
                     Timestamp tempCreatedTime = result.getTimestamp("oprettet");
                     Timestamp tempLastLoginTime = result.getTimestamp("sidste_login");
+                    String tempJobTitle = result.getString("stillings_titel");
+                    int tempJobID = result.getInt("stillings_id");
+                    int tempAccess = result.getInt("adgangsniveau");
+                    int tempDepartmentID = result.getInt("afdelings_id");
+                    String tempDepartmentName = result.getString("afdelings_navn");
 
-                    user = new DataUser(tempUserName, tempPassword, tempActive, tempCreatedTime, tempLastLoginTime);
+                    user = new DataUser(tempUserID, tempFirstName, tempLastName, tempPhone, tempEmail, tempUserName, tempPassword, tempActive, tempCreatedTime, tempLastLoginTime, tempJobTitle, tempJobID, tempAccess, tempDepartmentID, tempDepartmentName);
                 }
             } else {
                 System.out.println("User does not exist");
@@ -214,16 +246,14 @@ public class LoginDatabaseManager {
         }
         return user;
     }
-    
-    
-    
+
     public int getAccess(String userName) {
         int access = -1;
-        
-        try(Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)){
+
+        try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
             Class.forName("org.postgresql.Driver");
-            
-            if(doesUserExist(userName)){
+
+            if (doesUserExist(userName)) {
                 Statement st = conn.createStatement();
                 String sql = "SELECT login.brugernavn, stilling.adgangsniveau from login "
                         + "INNER JOIN holder_info on login.brugernavn = holder_info.brugernavn "
@@ -231,26 +261,27 @@ public class LoginDatabaseManager {
                         + "INNER JOIN besidder on bruger.bruger_id = besidder.bruger_id "
                         + "INNER JOIN Stilling on besidder.stillings_id = stilling.stillings_id "
                         + "WHERE login.brugernavn = '" + userName + "';";
-                
+
                 ResultSet result = st.executeQuery(sql);
-                
-                while(result.next()){
+
+                while (result.next()) {
                     String tempUserName = result.getString("brugernavn");
                     access = result.getInt("adgangsniveau");
                 }
-            } else return access; //returns -1
-            
-        }catch(Exception e){
+            } else {
+                return access; //returns -1
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return access; //returns access level for the user
     }
 
     Collection<IJob> getJobList() {
         Collection<IJob> joblist = new ArrayList<>();
-        
-         try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
+
+        try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
             Class.forName("org.postgresql.Driver");
 
             Statement st = conn.createStatement();
@@ -262,7 +293,7 @@ public class LoginDatabaseManager {
                 String jobTitle = result.getString("stillings_titel");
                 int accessLevel = result.getInt("adgangsniveau");
                 int jobID = result.getInt("stillings_id");
-                
+
                 joblist.add(new DataJob(jobTitle, jobID, accessLevel));
             }
 
@@ -273,9 +304,9 @@ public class LoginDatabaseManager {
     }
 
     Collection<IDepartment> getDepartmentList() {
-    Collection<IDepartment> depList = new ArrayList<>();
-        
-         try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
+        Collection<IDepartment> depList = new ArrayList<>();
+
+        try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
             Class.forName("org.postgresql.Driver");
 
             Statement st = conn.createStatement();
@@ -286,14 +317,14 @@ public class LoginDatabaseManager {
             while (result.next()) {
                 String departmentName = result.getString("afdelings_navn");
                 int departmentID = result.getInt("afdelings_id");
-                
+
                 depList.add(new DataDepartment(departmentID, departmentName));
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return depList;    
+        return depList;
     }
 
 }
