@@ -17,8 +17,12 @@ public interface IJob {
 
     int getAccessLevel();
     
-    Collection<IUser> getUserList();
+//    Collection<IUser> getUserList();
     
-    String getJob();
+    public String getJobTitle();
+    
+    public IDepartment getDepartment();
+    
+//    String getJob();
     
 }

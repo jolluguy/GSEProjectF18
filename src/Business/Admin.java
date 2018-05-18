@@ -19,12 +19,12 @@ import java.util.ArrayList;
 public class Admin extends Job implements IAdmin {
 
     private LoginManager loginManeger = LoginManager.getInstance();
-    
-    
 
-    public Admin(int ID, int accessLevel, int departmentID, String departmentName) {
-        super(ID, accessLevel, departmentID, departmentName);
+    public Admin(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
+        super(jobTitle, ID, accessLevel, departmentID, departmentName);
     }
+    
+    
     
 //    @Override
     public boolean createUser(String firstName, String lastName, String userName, String password1, String password2, String jobtitle, int jobID, int accessLevel, int departmentID, String departmentName) {
@@ -44,7 +44,6 @@ public class Admin extends Job implements IAdmin {
     
 
 
-    @Override
     public Collection<IUser> getUserList() {
         System.out.println("test");
         return loginManeger.getAllUsers();

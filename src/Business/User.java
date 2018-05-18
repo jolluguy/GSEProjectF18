@@ -29,7 +29,7 @@ public class User implements IUser, Serializable {
     private String phoneNumber;
     private String mail;
     private int userID = 0;
-    private IJob job;
+    private Job job;
 
     /**
      * For creating a new user for the system.
@@ -37,13 +37,13 @@ public class User implements IUser, Serializable {
      * @param lastName
      * @param userName
      * @param password
-     * @param jobtitle
+     * @param jobTitle
      * @param jobID
      * @param accessLevel
      * @param departmentID
      * @param departmentName 
      */
-    public User(String firstName, String lastName, String userName, String password, String jobtitle, int jobID, int accessLevel, int departmentID, String departmentName) {
+    public User(String firstName, String lastName, String userName, String password, String jobTitle, int jobID, int accessLevel, int departmentID, String departmentName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = "88888888"; //NB!! - TelefonNummer skal oprettes automatisk;
@@ -54,11 +54,11 @@ public class User implements IUser, Serializable {
         this.createdTime = new Timestamp(System.currentTimeMillis());
         this.lastLoginTime = new Timestamp(System.currentTimeMillis());
 
-        if (jobtitle.equalsIgnoreCase("admin")) {
-            this.job = new Admin(jobID, accessLevel, departmentID, departmentName);
+        if (jobTitle.equalsIgnoreCase("admin")) {
+            this.job = new Admin(jobTitle, jobID, accessLevel, departmentID, departmentName);
 
-        } else if (jobtitle.equalsIgnoreCase("sagsbehandler")) {
-            this.job = new CaseWorker(jobID, accessLevel, departmentID, departmentName);
+        } else if (jobTitle.equalsIgnoreCase("sagsbehandler")) {
+            this.job = new CaseWorker(jobTitle, jobID, accessLevel, departmentID, departmentName);
         }
 
     }
@@ -84,7 +84,7 @@ public class User implements IUser, Serializable {
     }
     
     @Override
-    public IJob getJob() {
+    public Job getJob() {
         return this.job;
     }
 
@@ -103,10 +103,10 @@ public class User implements IUser, Serializable {
     @Override
     public void setJob(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
         if(jobTitle.equalsIgnoreCase("admin")){
-            this.job = new Admin(ID, accessLevel, departmentID, departmentName);
+            this.job = new Admin(jobTitle, ID, accessLevel, departmentID, departmentName);
             
         } else if(jobTitle.equalsIgnoreCase("caseworker")) {
-            this.job = new CaseWorker(ID, accessLevel, departmentID, departmentName);
+            this.job = new CaseWorker(jobTitle, ID, accessLevel, departmentID, departmentName);
             
         }
         

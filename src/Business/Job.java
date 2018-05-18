@@ -13,15 +13,18 @@ import Acquaintance.IJob;
  */
 public abstract class Job implements IJob {
 
-    int ID;
-    int accessLevel;
-    Department department;
+    private int ID;
+    private int accessLevel;
+    private Department department;
+    private String jobTitle;
     
 
-    public Job(int ID, int accessLevel, int departmentID, String departmentName) {
+    public Job(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
+        this.jobTitle = jobTitle;
         this.ID = ID;
         this.accessLevel = accessLevel;
         this.department = new Department(departmentID, departmentName);
+
     }
 
     @Override
@@ -34,16 +37,15 @@ public abstract class Job implements IJob {
         return accessLevel;
     }
     
-    public String getJob(){
-        String name = this.getClass().getSimpleName();
-        if(name.contains("dmin")){
-            return "Admin";
-        }
-        else if (name.contains("ase")){
-        return "Sagsbahandler";
-    }
-        return null;
+    @Override
+    public String getJobTitle(){
+        return this.jobTitle;
     
 }
+
+    @Override
+    public Department getDepartment() {
+        return department;
+    }
     
 }

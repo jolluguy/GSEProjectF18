@@ -19,11 +19,14 @@ public class PresJob implements IJob {
     private int ID;
     private int accessLevel;
     private IDepartment department;
+    String jobTitle;
 
-    public PresJob(int ID, int accessLevel, IDepartment department) {
+    public PresJob(String jobTitle, int ID, int accessLevel, IDepartment department) {
+        this.jobTitle = jobTitle;
         this.ID = ID;
         this.accessLevel = accessLevel;
         this.department = department;
+        
     }
     
     
@@ -35,24 +38,18 @@ public class PresJob implements IJob {
 
     @Override
     public int getAccessLevel() {
-        return this.getAccessLevel();
+        return this.accessLevel;
     }
 
-    @Override
-    public Collection<IUser> getUserList() {
-        return this.getUserList();
-    }
     
     @Override
-    public String getJob(){
-        String name = this.getClass().getSimpleName();
-        if(name.contains("dmin")){
-            return "Admin";
-        }
-        else if (name.contains("ase")){
-        return "Sagsbahandler";
-    }
-        return null;
+    public String getJobTitle(){
+        return this.jobTitle;
     
 }
+
+    @Override
+    public IDepartment getDepartment() {
+       return this.department;
+    }
 }

@@ -75,7 +75,7 @@ public class LoginManager {
     }
 
     Collection<IUser> getAllUsers() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return facade.getAllUsers();
     }
 
     boolean updateJob(IUser user) {

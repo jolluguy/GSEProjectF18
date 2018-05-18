@@ -15,7 +15,7 @@ import java.util.Collection;
  *
  * @author Rol's studie PC
  */
-public class DataAdmin extends DataJob implements IAdmin {
+public class DataAdmin implements IAdmin {
     
     LoginDatabaseManager loginDatabase;
 

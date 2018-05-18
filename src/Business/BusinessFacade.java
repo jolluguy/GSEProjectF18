@@ -131,7 +131,7 @@ public class BusinessFacade implements IBusiness {
     @Override
     public Collection<IUser> getUserList() {
         System.out.println(loginManager.getUserOne().getJob());
-        return loginManager.getUserOne().getJob().getUserList();
+                return loginManager.getUserOne().getAdmin().getUserList();
     }
 
     Collection<IUser> getAllUsers() {
