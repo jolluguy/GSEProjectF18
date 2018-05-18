@@ -19,7 +19,7 @@ import java.sql.SQLException;
  */
 public class LoginFacade implements ILoginPersistence, Serializable {
 
-    LoginDatabaseManager database = new LoginDatabaseManager();
+    private LoginDatabaseManager database = new LoginDatabaseManager();
 
     private static LoginFacade instance = null;
 

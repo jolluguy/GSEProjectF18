@@ -21,11 +21,11 @@ public class PresJob implements IJob {
     private IDepartment department;
     private String jobTitle;
 
-    public PresJob(String jobTitle, int ID, int accessLevel, IDepartment department) {
+    public PresJob(String jobTitle, int ID, int accessLevel) {
         this.jobTitle = jobTitle;
         this.ID = ID;
         this.accessLevel = accessLevel;
-        this.department = department;
+        this.department = null;
         
     }
     

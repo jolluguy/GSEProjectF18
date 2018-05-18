@@ -25,12 +25,34 @@ public class DataJob implements IJob {
     private IDepartment department;
     
 
+    /**
+     * this is used when getting or creating users
+     * @param jobTitle
+     * @param ID
+     * @param accessLevel
+     * @param departmentID
+     * @param departmentName 
+     */
     public DataJob(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
         this.JobTitle = jobTitle;
         this.ID = ID;
         this.accessLevel = accessLevel;
         this.department = new DataDepartment(departmentID, departmentName);
     }
+    
+    /**
+     * this is used when sending a joblist to the GUI
+     * @param jobTitle
+     * @param ID
+     * @param accessLevel 
+     */
+    public DataJob(String jobTitle, int ID, int accessLevel) {
+        this.JobTitle = jobTitle;
+        this.ID = ID;
+        this.accessLevel = accessLevel;
+        this.department = null;
+    }
+
 
     @Override
     public int getID() {
@@ -69,12 +91,12 @@ public class DataJob implements IJob {
 
     @Override
     public String getJobTitle() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.JobTitle;
     }
 
     @Override
     public IDepartment getDepartment() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.department;
     }
     
 }

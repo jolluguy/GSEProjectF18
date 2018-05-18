@@ -254,10 +254,9 @@ public class AdminController implements Initializable {
      */
     PresJob getJob(ChoiceBox<String> choiceboxJob, ChoiceBox<String> choiceboxDepartment) {
         PresJob job = null;
-        PresDepartment tempDep = getDepartment(choiceboxDepartment);
         for (IJob j : jobList) {
             if (j.getJobTitle().equalsIgnoreCase(choiceboxJob.getValue())) {
-                job = new PresJob(j.getJobTitle(), j.getID(), j.getAccessLevel(), new PresDepartment(tempDep.getDepartmentID(), tempDep.getDepartmentName()));
+                job = new PresJob(j.getJobTitle(), j.getID(), j.getAccessLevel());
             }
         }
         return job;
