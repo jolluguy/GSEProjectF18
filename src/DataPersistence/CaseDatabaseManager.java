@@ -321,6 +321,7 @@ public class CaseDatabaseManager {
                 String specialCircumstances = result.getString("særlige_forhold");
                 String otherActingMunicipality = result.getString("anden_handlingskommune");
                 String otherPayingMunicipality = result.getString("anden_betalingskommune");
+                
                 caseList.add(new DataCase(responsibleCw, informedRightsBystander, informedRightsElectronicRegistration, consent, specialCircumstances, otherActingMunicipality, otherPayingMunicipality));
             }
         }   catch (Exception ex) {
