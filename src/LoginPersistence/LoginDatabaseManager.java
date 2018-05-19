@@ -224,7 +224,7 @@ public class LoginDatabaseManager {
         try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
             Class.forName("org.postgresql.Driver");
 
-            if (doesUserExist(userName)) {
+
                 Statement st = conn.createStatement();
                 String sql = "SELECT * FROM login "
                         + "INNER JOIN holder_info ON login.brugernavn = holder_info.brugernavn "
@@ -256,10 +256,6 @@ public class LoginDatabaseManager {
 
                     user = new DataUser(tempUserID, tempFirstName, tempLastName, tempPhone, tempEmail, tempUserName, tempPassword, tempActive, tempCreatedTime, tempLastLoginTime, tempJobTitle, tempJobID, tempAccess, tempDepartmentID, tempDepartmentName);
                 }
-            } else {
-                System.out.println("User does not exist");
-                return null;
-            }
 
         } catch (Exception e) {
             e.printStackTrace();

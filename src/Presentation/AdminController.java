@@ -136,14 +136,9 @@ public class AdminController implements Initializable {
         }
 
 //        Load listview
-        DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
         obsList = FXCollections.observableArrayList();
         userListview.setItems(obsList);
-        for (IUser i : business.getUserList()) {
-            obsList.add(String.format("%1$-16s\t%2$s\t%3$s\t%4$s", i.getUserName(), i.getActive(), df.format(i.getCreatedTime()), df.format(i.getLastLoginTime())));
-//            obsList.add(String.format("%1$-16s\t%2$s\t%3$s\t%4$s", i.getUserName(), i.getActive(), i.getCreatedTime().toString(), i.getLastLoginTime().toString()));
-        }
-//        obsList.addAll(business.getUserList().toString());
+        fillUserList();
     }
 
     @FXML
@@ -245,10 +240,15 @@ public class AdminController implements Initializable {
     @FXML
     public void refreshListview(ActionEvent event) {
         obsList.clear();
-        for (IUser i : business.getUserList()) {
-            obsList.add(i.toString());
-        }
+        fillUserList();
     }
+    
+    void fillUserList(){
+        DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
+ for (IUser i : business.getUserList()) {
+            obsList.add(String.format("%1$-16s\t%2$s\t%3$s\t%4$s", i.getUserName(), i.getActive(), df.format(i.getCreatedTime()), df.format(i.getLastLoginTime())));
+ }
+ }
 
     /**
      *
