@@ -36,7 +36,7 @@
                                           <Font size="36.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="123.0" layoutY="162.0" text="Borgeroplysninger" underline="true">
+                                    <Label layoutX="123.0" layoutY="136.0" text="Borgeroplysninger" underline="true">
                                        <font>
                                           <Font size="28.0" />
                                        </font>
@@ -46,63 +46,70 @@
                                           <Font size="28.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="192.0" layoutY="257.0" text="CPR">
+                                    <Label layoutX="192.0" layoutY="231.0" text="CPR">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="192.0" layoutY="309.0" text="Fornavn">
+                                    <Label layoutX="192.0" layoutY="283.0" text="Fornavn">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="191.0" layoutY="361.0" text="Efternavn">
+                                    <Label layoutX="191.0" layoutY="335.0" text="Efternavn">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="192.0" layoutY="416.0" text="Vejnavn &amp; nr.">
+                                    <Label layoutX="192.0" layoutY="390.0" text="Vejnavn &amp; nr.">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="192.0" layoutY="470.0" text="Evt. etage">
+                                    <Label layoutX="192.0" layoutY="444.0" text="Evt. etage">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="193.0" layoutY="527.0" text="Postnummer &amp; by">
+                                    <Label layoutX="193.0" layoutY="501.0" text="Postnummer &amp; by">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="193.0" layoutY="582.0" text="Telefonnummer">
+                                    <Label layoutX="193.0" layoutY="556.0" text="Telefonnummer">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="CPRBirthField" alignment="CENTER_RIGHT" layoutX="440.0" layoutY="255.0" prefHeight="31.0" prefWidth="200.0" />
-                                    <TextField fx:id="CPRSecuityField" layoutX="668.0" layoutY="256.0" prefHeight="31.0" prefWidth="73.0" />
-                                    <TextField fx:id="firstNameTextField" layoutX="440.0" layoutY="307.0" prefHeight="31.0" prefWidth="300.0" />
-                                    <TextField fx:id="lastNameTextField" layoutX="440.0" layoutY="359.0" prefHeight="31.0" prefWidth="300.0" />
-                                    <TextField fx:id="streetNameTextField" layoutX="440.0" layoutY="414.0" prefHeight="31.0" prefWidth="235.0" />
-                                    <TextField fx:id="streetNumberTextField" layoutX="696.0" layoutY="414.0" prefHeight="31.0" prefWidth="45.0" />
-                                    <TextField fx:id="floorTextField" layoutX="440.0" layoutY="468.0" prefHeight="31.0" prefWidth="300.0" />
-                                    <TextField fx:id="postalCodeTextField" layoutX="440.0" layoutY="525.0" prefHeight="31.0" prefWidth="74.0" />
-                                    <TextField fx:id="cityTextField" layoutX="545.0" layoutY="525.0" prefHeight="31.0" prefWidth="195.0" />
-                                    <TextField fx:id="phoneNumberPrefixTextField" layoutX="440.0" layoutY="580.0" prefHeight="31.0" prefWidth="45.0" text="+45" />
-                                    <TextField fx:id="phoneNumberTextField" layoutX="506.0" layoutY="580.0" prefHeight="31.0" prefWidth="235.0" />
-                                    <Button fx:id="cprInfoButton" focusTraversable="false" layoutX="763.0" layoutY="255.0" mnemonicParsing="false" style="-fx-background-color: f3f3f3; -fx-background-radius: 3; -fx-border-color: black; -fx-border-radius: 3;" text="Hent info" />
-                                    <Label layoutX="532.0" layoutY="224.0" text="Eks: 123456-1234" textFill="#bfbfbf" />
+                                    <TextField fx:id="CPRBirthField" alignment="CENTER_RIGHT" layoutX="440.0" layoutY="229.0" onKeyTyped="#checkCPRValidity" prefHeight="31.0" prefWidth="200.0" />
+                                    <TextField fx:id="CPRSecuityField" layoutX="668.0" layoutY="230.0" onKeyTyped="#checkCPRValidity" prefHeight="31.0" prefWidth="73.0" />
+                                    <TextField fx:id="firstNameTextField" layoutX="440.0" layoutY="281.0" prefHeight="31.0" prefWidth="300.0" />
+                                    <TextField fx:id="lastNameTextField" layoutX="440.0" layoutY="333.0" prefHeight="31.0" prefWidth="300.0" />
+                                    <TextField fx:id="streetNameTextField" layoutX="440.0" layoutY="388.0" prefHeight="31.0" prefWidth="235.0" />
+                                    <TextField fx:id="streetNumberTextField" layoutX="696.0" layoutY="388.0" prefHeight="31.0" prefWidth="45.0" />
+                                    <TextField fx:id="floorTextField" layoutX="440.0" layoutY="442.0" prefHeight="31.0" prefWidth="300.0" />
+                                    <TextField fx:id="postalCodeTextField" layoutX="440.0" layoutY="499.0" prefHeight="31.0" prefWidth="74.0" />
+                                    <TextField fx:id="cityTextField" layoutX="545.0" layoutY="499.0" prefHeight="31.0" prefWidth="195.0" />
+                                    <TextField fx:id="phoneNumberPrefixTextField" layoutX="440.0" layoutY="554.0" prefHeight="31.0" prefWidth="45.0" text="+45" />
+                                    <TextField fx:id="phoneNumberTextField" layoutX="506.0" layoutY="554.0" prefHeight="31.0" prefWidth="235.0" />
+                                    <Button fx:id="cprInfoButton" focusTraversable="false" layoutX="763.0" layoutY="229.0" mnemonicParsing="false" style="-fx-background-color: f3f3f3; -fx-background-radius: 3; -fx-border-color: black; -fx-border-radius: 3;" text="Hent info" />
+                                    <Label layoutX="532.0" layoutY="198.0" text="Eks: 123456-1234" textFill="#bfbfbf" />
                                     <TextArea fx:id="descriptionTextAreaInquiry" layoutX="125.0" layoutY="702.0" prefHeight="445.0" prefWidth="900.0" />
                                     <Button fx:id="archiveButton" layoutX="125.0" layoutY="1226.0" mnemonicParsing="false" onAction="#newInquiry" style="-fx-background-color: f3f3f3; -fx-background-radius: 3; -fx-border-color: black; -fx-border-radius: 3;" text="Arkiver" />
-                                    <Button fx:id="newCaseButton" layoutX="230.0" layoutY="1226.0" mnemonicParsing="false" style="-fx-background-color: f3f3f3; -fx-background-radius: 3; -fx-border-color: black; -fx-border-radius: 3;" text="Opret ny sag" />
+                                    <Button fx:id="newCaseButton" layoutX="230.0" layoutY="1226.0" mnemonicParsing="false" onAction="#newCase" style="-fx-background-color: f3f3f3; -fx-background-radius: 3; -fx-border-color: black; -fx-border-radius: 3;" text="Opret ny sag" />
                                     <Label fx:id="inquiryStatusTextField" layoutX="125.0" layoutY="1187.0" prefWidth="900.0" />
-                                    <Label alignment="CENTER" layoutX="641.0" layoutY="256.0" prefHeight="21.0" prefWidth="26.0" text="-">
+                                    <Label alignment="CENTER" layoutX="641.0" layoutY="230.0" prefHeight="21.0" prefWidth="26.0" text="-">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
+                                    <TextField fx:id="inquirerTextField" layoutX="440.0" layoutY="606.0" prefHeight="31.0" prefWidth="300.0" />
+                                    <Label layoutX="193.0" layoutY="608.0" text="Henvender">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="cprSyntaxLabel" disable="true" layoutX="532.0" layoutY="261.0" text="Does not match CPR syntax" textFill="RED" visible="false" />
                                  </children></AnchorPane>
                           </content>
                         </ScrollPane>

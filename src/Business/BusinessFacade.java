@@ -163,7 +163,15 @@ public class BusinessFacade implements IBusiness {
                 String note, String caseWorkerID,
                 Map<Integer, String> serviceIDList,
                 Map<Integer, String> offerIDList){
-        return caseManager.createCase(problemDescription, inquirer, citizenAgreement, cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber, responsibleCaseworker, informedRightsBystander, informedRightsElectronicRegistration, consent, consentToInformationGathering, specialCircumstances, otherActingMunicipality, otherPayingMunicipality, meetingTime, attendingCasworkerIDList, meetingDescription, meetingLocation, cprNumberRep, firstNameRep, lastNameRep, roadNameRep, houseNumberRep, floorRep, postalCodeRep, cityRep, phoneNumberRep, representationType, note, caseWorkerID, serviceIDList, offerIDList);
+        return caseManager.createCase(problemDescription, inquirer, citizenAgreement, 
+                cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, 
+                city, phoneNumber, responsibleCaseworker, informedRightsBystander, 
+                informedRightsElectronicRegistration, consent, consentToInformationGathering, 
+                specialCircumstances, otherActingMunicipality, otherPayingMunicipality, 
+                meetingTime, attendingCasworkerIDList, meetingDescription, meetingLocation, 
+                cprNumberRep, firstNameRep, lastNameRep, roadNameRep, houseNumberRep, 
+                floorRep, postalCodeRep, cityRep, phoneNumberRep, representationType, 
+                note, caseWorkerID, serviceIDList, offerIDList);
     }
     
     boolean saveCase(ICase case1) {
@@ -179,5 +187,10 @@ public class BusinessFacade implements IBusiness {
     @Override
     public Collection<IDepartment> getdepartmentList() {
         return loginPersistence.getDepartmentList();
+    }
+    @Override
+    public boolean validateCPR(String cpr){
+        boolean result = caseManager.validateCPR(cpr);
+        return result;
     }
 }

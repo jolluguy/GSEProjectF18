@@ -58,5 +58,5 @@ public interface IBusiness {
                 String note, String caseWorkerID,
                 Map<Integer, String> serviceIDList,
                 Map<Integer, String> offerIDList);
-
+    public boolean validateCPR(String cpr);
 }

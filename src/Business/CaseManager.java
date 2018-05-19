@@ -135,15 +135,15 @@ public class CaseManager {
     }
     public boolean validateCPR(String cprNumber) {
         try {
-             String parts[] = cprNumber.split("-");
-        String birthpart = parts[0];
-        String securitypart = parts[1];
+            String parts[] = cprNumber.split("-");
+            String birthpart = parts[0];
+            String securitypart = parts[1];
         
-        return (birthpart.matches("^[0-9]{6}$") && securitypart.matches("^[0-9]{4}$"));         //matches is a predetermenind method for maching the charecters in a string, [0-9] defines a class that contains numbers from  0-9, the ^ indicates that the comparison must start at the end of the string, and the $ indicates that it must continue until the end, the part [0-9]{x} indikates that its only tru if it ran throug exaxtly x charecters and all of them was a number btween 0-9.
+            return (birthpart.matches("^[0-9]{6}$") && securitypart.matches("^[0-9]{4}$"));         //matches is a predetermenind method for maching the charecters in a string, [0-9] defines a class that contains numbers from  0-9, the ^ indicates that the comparison must start at the end of the string, and the $ indicates that it must continue until the end, the part [0-9]{x} indikates that its only tru if it ran throug exaxtly x charecters and all of them was a number btween 0-9.
                
             
-        } catch (Exception e) {     // to cathc array aout of bound exeptions and the like and return them as false cprNumbers
+        } catch (Exception e) {     // to cathc array out of bounds exeptions and the like, and return them as false cprNumbers
             return false;
         }   
-}
+    }
 }
