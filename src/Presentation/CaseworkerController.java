@@ -656,6 +656,11 @@ public class CaseworkerController implements Initializable {
     }
     @FXML
     private void newCase(ActionEvent event) {
+        
+        String problemDescription = descriptionTextAreaCase.getText();
+        
+        
+        
         business.newCase(problemDescription, inquierer, true, cprNumber, firstName, 
                 lastName, roadName, houseNumber, floor, 0, city, phoneNumber, 
                 responsibleCaseworker, true, true, consent, consentToInformationGathering, 
