@@ -32,6 +32,11 @@ public class LoginDatabaseManager {
 
     }
 
+    /**
+     * vreates a User in the Database, this is written based on the notion that the jobs and departments allready is created with the rigth atributes in the database.
+     * @param user
+     * @return 
+     */
     public boolean createUserInDB(IUser user) {
 
         String firstName = user.getFirstName();
@@ -43,19 +48,22 @@ public class LoginDatabaseManager {
         boolean active = user.getActive();
         Timestamp createdTime = user.getCreatedTime();
         Timestamp lastLoginTime = user.getLastLoginTime();
+        
+        int jobID = user.getJob().getID();
+        int departmentID = user.getJob().getDepartment().getDepartmentID();
 
         try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
 
             Class.forName("org.postgresql.Driver");
 
             //Query 1
-            PreparedStatement st1 = conn.prepareStatement("INSERT INTO login (brugernavn, kodeord, niveau, oprettet, sidste_login) "
+            PreparedStatement st1 = conn.prepareStatement("INSERT INTO login (brugernavn, kodeord, aktiv, oprettet, sidste_login) "
                     + "VALUES ('" + userName + "', '" + password + "', " + active + ", '" + createdTime + "', '" + lastLoginTime + "');");
 
             st1.executeUpdate();
 
             //Query 2
-            PreparedStatement st2 = conn.prepareStatement("INSERT INTO bruger(fornavn, efternavn, telefonnummer,mail) "
+            PreparedStatement st2 = conn.prepareStatement("INSERT INTO bruger(fornavn, efternavn, telefonnummer, mail) "
                     + "VALUES('" + firstName + "', '" + lastName + "', '" + phoneNumber + "', '" + mail + "');");
 
             st2.executeUpdate();
@@ -78,6 +86,18 @@ public class LoginDatabaseManager {
             PreparedStatement st4 = conn.prepareStatement("INSERT INTO holder_info VALUES('" + userName + "', " + userID + ");");
 
             st4.executeUpdate();
+            
+            //Query connect user with job
+            PreparedStatement st5 = conn.prepareStatement("INSERT INTO besidder VALUES('" + userID + "', " + jobID + ");");
+
+            st5.executeUpdate();
+            
+            
+            //Querry that connect user with department
+            PreparedStatement st6 = conn.prepareStatement("INSERT INTO tilhører VALUES('" + userID + "', " + departmentID + ");");
+
+            st6.executeUpdate();
+
 
             return true;
 

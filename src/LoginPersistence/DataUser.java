@@ -30,7 +30,7 @@ public class DataUser implements IUser, Serializable {
     private IJob job;
 
     /**
-     * for creating a new user in the system
+     * for creating a new user in the system.... is it needed?
      * @param userID
      * @param firstName
      * @param lastName
@@ -45,7 +45,7 @@ public class DataUser implements IUser, Serializable {
      * @param createdTime
      * @param lastLoginTime 
      */
-    public DataUser(int userID, String firstName, String lastName, String userName, String password, boolean active, String jobTitle, int jobID, int accessLevel, int departmentID, String departmentName, Timestamp createdTime, Timestamp lastLoginTime) {
+    public DataUser(String firstName, String lastName, String userName, String password, boolean active, String jobTitle, int jobID, int accessLevel, int departmentID, String departmentName, Timestamp createdTime, Timestamp lastLoginTime) {
         this.userID = 0;
         this.firstName = firstName;
         this.lastName = lastName;

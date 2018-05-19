@@ -14,6 +14,7 @@ import Acquaintance.IUser;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.util.Collection;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -135,10 +136,12 @@ public class AdminController implements Initializable {
         }
 
 //        Load listview
+        DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
         obsList = FXCollections.observableArrayList();
         userListview.setItems(obsList);
         for (IUser i : business.getUserList()) {
-            obsList.add(i.toString());
+            obsList.add(String.format("%1$-16s\t%2$s\t%3$s\t%4$s", i.getUserName(), i.getActive(), df.format(i.getCreatedTime()), df.format(i.getLastLoginTime())));
+//            obsList.add(String.format("%1$-16s\t%2$s\t%3$s\t%4$s", i.getUserName(), i.getActive(), i.getCreatedTime().toString(), i.getLastLoginTime().toString()));
         }
 //        obsList.addAll(business.getUserList().toString());
     }
@@ -151,7 +154,7 @@ public class AdminController implements Initializable {
         String password1 = password1Field.getText();
         String password2 = password2Field.getText();
         PresJob job = getJob(setJobChoicebox, setDepartmentChoiceBox);
-        PresDepartment dep = getDepartment(setJobChoicebox);
+        PresDepartment dep = getDepartment(setDepartmentChoiceBox);
 
         boolean createUserStatus = business.createUser(firstName, lastName, userName, password1, password2, job.getJobTitle(), job.getID(), job.getAccessLevel(), dep.departmentID, dep.getDepartmentName());
 
@@ -263,13 +266,13 @@ public class AdminController implements Initializable {
     }
 
     private PresDepartment getDepartment(ChoiceBox<String> choiceboxDepartment) {
-       PresDepartment dep = null;
-       for(IDepartment d : departmentList){
-           if(d.getDepartmentName().equalsIgnoreCase(choiceboxDepartment.getValue())){
-               dep = new PresDepartment(d.getDepartmentID(), d.getDepartmentName());
-           }
-       }
-       return dep;
+        PresDepartment dep = null;
+        for (IDepartment d : departmentList) {
+            if (d.getDepartmentName().equalsIgnoreCase(choiceboxDepartment.getValue())) {
+                dep = new PresDepartment(d.getDepartmentID(), d.getDepartmentName());
+            }
+        }
+        return dep;
     }
 
 }
