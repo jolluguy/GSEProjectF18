@@ -34,7 +34,8 @@ public class LoginManager {
     
     
     public int login(String userName, String pw) {
-        int access = -1;
+        int access = -1;        
+        if(facade.doesUserExist(userName)){
         IUser user = facade.getUser(userName); //Parsing User below due to IUser return
         Job job;
         String jobTitle = user.getJob().getJobTitle().toLowerCase();
@@ -60,7 +61,7 @@ public class LoginManager {
             facade.updateLastLoginTime(userOne);
             access = userOne.getJob().getAccessLevel();
             }
-        
+    }
         return access;
     }
     

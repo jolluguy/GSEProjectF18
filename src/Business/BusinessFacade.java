@@ -180,4 +180,8 @@ public class BusinessFacade implements IBusiness {
     public Collection<IDepartment> getdepartmentList() {
         return loginPersistence.getDepartmentList();
     }
+    
+    boolean doesUserExist(String userName){
+        return loginPersistence.doesUserExist(userName);
+    }
 }
