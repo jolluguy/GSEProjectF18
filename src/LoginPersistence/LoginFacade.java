@@ -99,4 +99,9 @@ public class LoginFacade implements ILoginPersistence, Serializable {
         return database.doesUserExist(userName);
     }
 
+    @Override
+    public IUser getUser(int userID) {
+        return database.getUser(userID);
+    }
+
 }

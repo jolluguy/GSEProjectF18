@@ -122,7 +122,7 @@ public class AdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        userOneLabel.setText(business.getUserOne().getUserName() + "");
+        userOneLabel.setText(business.getCurentUser().getUserName() + "");
 
         //filling choceboxes
         jobList = business.getJobList();
@@ -134,7 +134,11 @@ public class AdminController implements Initializable {
         for (IDepartment d : departmentList) {
             setDepartmentChoiceBox.getItems().add(d.getDepartmentName());
         }
-
+        
+        // setting a value in the chiceboxes so that empty dosent get chosen by acsident
+        setDepartmentChoiceBox.setValue(departmentList.iterator().next().getDepartmentName());
+        setJobChoicebox.setValue(jobList.iterator().next().getJobTitle());
+        
 //        Load listview
         obsList = FXCollections.observableArrayList();
         userListview.setItems(obsList);

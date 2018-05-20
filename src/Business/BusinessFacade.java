@@ -85,9 +85,9 @@ public class BusinessFacade implements IBusiness {
     public boolean changePassword(String oldPassword, String newPassword1, String newPassword2){
         return loginManager.changePassword(oldPassword, newPassword1, newPassword2);
     }
-    
-    public IUser getUserOne() {
-        return loginManager.getUserOne();
+     @Override
+    public IUser getCurentUser() {
+        return loginManager.getCurentUser();
     }
 
 //    @Override
@@ -101,15 +101,19 @@ public class BusinessFacade implements IBusiness {
     public IUser getUser(String userName) {
         return loginPersistence.getUser(userName);
     }
+    
+    public IUser getUser(int userID) {
+        return loginPersistence.getUser(userID);
+    }
 
     @Override
     public boolean createUser(String firstName, String lastName, String userName, String password1, String password2, String jobtitle, int jobID, int accessLevel, int departmentID, String departmentName) {
-        return loginManager.getUserOne().getJob().createUser(firstName, lastName, userName, password1, password2, jobtitle, jobID, accessLevel, departmentID, departmentName);
+        return loginManager.getCurentUser().getJob().createUser(firstName, lastName, userName, password1, password2, jobtitle, jobID, accessLevel, departmentID, departmentName);
     }
 
     @Override
     public boolean changeJob(String userName, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
-        return loginManager.getUserOne().getJob().changeJob(userName, jobTitle, ID, accessLevel, departmentID, departmentName);
+        return loginManager.getCurentUser().getJob().changeJob(userName, jobTitle, ID, accessLevel, departmentID, departmentName);
     }
 
     public boolean addUser(IUser user) {
@@ -130,8 +134,8 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public Collection<IUser> getUserList() {
-        System.out.println(loginManager.getUserOne().getJob());
-                return loginManager.getUserOne().getJob().getUserList();
+
+                return loginManager.getCurentUser().getJob().getUserList();
     }
 
     Collection<IUser> getAllUsers() {
@@ -183,5 +187,20 @@ public class BusinessFacade implements IBusiness {
     
     boolean doesUserExist(String userName){
         return loginPersistence.doesUserExist(userName);
+    }
+    
+    @Override
+    public String getCurrentUserDomainID(){
+        return loginManager.getCurrentUserDomainID();
+    }
+    
+    @Override
+    public String getdomainID(IUser user){
+        return loginManager.getdomainID(user);
+    }
+    
+    @Override
+    public IUser getUserFromDomainID(String domainID){
+        return loginManager.getUserFromDomainID(domainID);
     }
 }

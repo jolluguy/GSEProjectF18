@@ -37,4 +37,6 @@ public interface ILoginPersistence {
     public Collection<IDepartment> getDepartmentList();
 
     public boolean doesUserExist(String userName);
+
+    public IUser getUser(int userID);
 }

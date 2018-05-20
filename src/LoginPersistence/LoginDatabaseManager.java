@@ -343,4 +343,49 @@ public class LoginDatabaseManager {
         return depList;
     }
 
+    IUser getUser(int userID) {
+        DataUser user = null;
+
+        try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
+            Class.forName("org.postgresql.Driver");
+
+
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM bruger "
+                        + "INNER JOIN holder_info ON bruger.bruger_id = holder_info.bruger_id "
+                        + "INNER JOIN login ON holder_info.brugernavn = login.brugernavn "
+                        + "INNER JOIN tilhører ON bruger.bruger_id = tilhører.bruger_id "
+                        + "INNER JOIN afdeling ON tilhører.afdelings_id = afdeling.afdelings_id "
+                        + "INNER JOIN besidder ON bruger.bruger_id = besidder.bruger_id "
+                        + "INNER JOIN stilling ON besidder.stillings_id = stilling.stillings_id "
+                        + "WHERE bruger.bruger_id = '" + userID + "';";
+
+                ResultSet result = st.executeQuery(sql);
+
+                while (result.next()) {
+                    int tempUserID = result.getInt("bruger_id");
+                    String tempFirstName = result.getString("fornavn");
+                    String tempLastName = result.getString("efternavn");
+                    String tempPhone = result.getString("telefonnummer");
+                    String tempEmail = result.getString("mail");
+                    String tempUserName = result.getString("brugernavn");
+                    String tempPassword = result.getString("kodeord");
+                    boolean tempActive = result.getBoolean("aktiv");
+                    Timestamp tempCreatedTime = result.getTimestamp("oprettet");
+                    Timestamp tempLastLoginTime = result.getTimestamp("sidste_login");
+                    String tempJobTitle = result.getString("stillings_titel");
+                    int tempJobID = result.getInt("stillings_id");
+                    int tempAccess = result.getInt("adgangsniveau");
+                    int tempDepartmentID = result.getInt("afdelings_id");
+                    String tempDepartmentName = result.getString("afdelings_navn");
+
+                    user = new DataUser(tempUserID, tempFirstName, tempLastName, tempPhone, tempEmail, tempUserName, tempPassword, tempActive, tempCreatedTime, tempLastLoginTime, tempJobTitle, tempJobID, tempAccess, tempDepartmentID, tempDepartmentName);
+                }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
 }

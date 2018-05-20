@@ -29,7 +29,8 @@ public class Admin extends Job implements IAdmin {
     @Override
     public boolean createUser(String firstName, String lastName, String userName, String password1, String password2, String jobtitle, int jobID, int accessLevel, int departmentID, String departmentName) {
         if (password1.equals(password2)) {
-            return loginManeger.addUser(firstName, lastName, userName, password2, jobtitle, jobID, accessLevel, departmentID, departmentName);
+                    IUser user = new User(firstName, lastName, userName, password1, jobtitle, jobID, accessLevel, departmentID, departmentName);
+            return loginManeger.addUser(user);
         } else {
             return false;
         }
@@ -46,17 +47,9 @@ public class Admin extends Job implements IAdmin {
 
     @Override
     public Collection<IUser> getUserList() {
-        System.out.println("test");
         return loginManeger.getAllUsers();
         
-//        ArrayList<IUser> tempList = new ArrayList<>();
-//        for(IUser i : facade.getAllUsers()){
-//            tempList.add(new User(i.getUserName(), i.getPassword(), i.getActive(), i.getCreatedTime(), i.getLastLoginTime()));
-//        }
-//            
-//        return tempList;
     }
-
 
     
     

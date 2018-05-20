@@ -599,7 +599,7 @@ public class CaseworkerController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         
-        userOneLabel.setText(business.getUserOne().getUserName() + ""); //Quotes are only for casting IUser to a String.
+        userOneLabel.setText(business.getCurentUser().getUserName() + ""); //Quotes are only for casting IUser to a String.
     }
     
     @FXML

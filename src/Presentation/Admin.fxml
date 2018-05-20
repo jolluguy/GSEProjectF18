@@ -21,7 +21,7 @@
    <children>
       <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="751.0" prefWidth="911.0" style="-fx-background-color: white;" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Tilføj bruger">
+          <Tab fx:id="addNewUserTab" text="Tilføj bruger">
             <content>
               <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="722.0" prefWidth="1292.0" style="-fx-background-color: white;">
                      <children>
@@ -80,7 +80,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab text="Ændre bruger job">
+            <Tab fx:id="changeExistingUserTab" text="Ændre bruger job">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -92,24 +92,15 @@
                            <font>
                               <Font size="15.0" />
                            </font></Label>
-                        <TextField fx:id="jobUsernameField" layoutX="228.0" layoutY="52.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: F3F3F3; -fx-background-radius: 3;" />
+                        <TextField fx:id="changeJobUsernameField" layoutX="228.0" layoutY="52.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: F3F3F3; -fx-background-radius: 3;" />
                         <PasswordField fx:id="jobPasswordField" layoutX="228.0" layoutY="111.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: F3F3F3; -fx-background-radius: 3;" />
-                        <RadioButton fx:id="jobCaseRadio" layoutX="228.0" layoutY="182.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="133.0" text="Sagsbehandler">
+                        <RadioButton fx:id="jobInactiveRadio" layoutX="228.0" layoutY="251.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="133.0" text="Inaktiv">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
                            <toggleGroup>
                               <ToggleGroup fx:id="jobRadio" />
                            </toggleGroup>
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </RadioButton>
-                        <RadioButton fx:id="jobAdminRadio" layoutX="228.0" layoutY="217.0" mnemonicParsing="false" text="Admin" toggleGroup="$jobRadio">
-                           <font>
-                              <Font size="15.0" />
-                           </font></RadioButton>
-                        <RadioButton fx:id="jobInactiveRadio" layoutX="228.0" layoutY="251.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="133.0" text="Inaktiv" toggleGroup="$jobRadio">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
                         </RadioButton>
                         <Label fx:id="jobWarningLabel" layoutX="53.0" layoutY="628.0" prefHeight="21.0" prefWidth="484.0" />
                         <Button fx:id="jobSavechangeButton" layoutX="27.0" layoutY="661.0" mnemonicParsing="false" onAction="#changeJob" style="-fx-background-color: F3F3F3; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Gem ændringer">
@@ -122,6 +113,18 @@
                               <Font size="15.0" />
                            </font>
                         </Button>
+                        <Label layoutX="228.0" layoutY="161.0" text="Stilling">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="changeJobChoicebox" layoutX="229.0" layoutY="182.0" prefWidth="150.0" />
+                        <Label layoutX="406.0" layoutY="161.0" text="Afdeling">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="changeDepartmentChoicebox" layoutX="406.0" layoutY="182.0" prefWidth="150.0" />
                      </children></AnchorPane>
                </content>
             </Tab>
