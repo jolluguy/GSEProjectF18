@@ -299,7 +299,7 @@ public class AdminController implements Initializable {
             userlist.add(i);
         }
         for (IUser i : userlist) {
-            obsList.add(String.format("%1$-16s\t%2$s\t%3$s\t%4$s", i.getUserName(), i.getActive(), df.format(i.getCreatedTime()), df.format(i.getLastLoginTime())));
+            obsList.add(String.format("%1$-15s\t\t%5$-20s\t%2$-10s\t%3$s\t%4$s", i.getUserName(), i.getActive(), df.format(i.getCreatedTime()), df.format(i.getLastLoginTime()), i.getJob().getJobTitle()));
         }
     }
 
