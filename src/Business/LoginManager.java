@@ -36,14 +36,31 @@ public class LoginManager {
     public int login(String userName, String pw) {
         int access = -1;
         IUser user = facade.getUser(userName); //Parsing User below due to IUser return
-        User checkUser = new User(user.getUserName(), user.getPassword(), user.getActive(), user.getCreatedTime(), user.getLastLoginTime());
+        Job job;
+        String jobTitle = user.getJob().getJobTitle().toLowerCase();
+        
+        switch (jobTitle) {
+            case "admin":{
+                job = new Admin(user.getJob().getJobTitle(), user.getJob().getID(), user.getJob().getAccessLevel(), user.getJob().getDepartment().getDepartmentID(), user.getJob().getDepartment().getDepartmentName());
+                break;
+            }
+            case "sagsbehandler":{
+                job = new CaseWorker(user.getJob().getJobTitle(), user.getJob().getID(), user.getJob().getAccessLevel(), user.getJob().getDepartment().getDepartmentID(), user.getJob().getDepartment().getDepartmentName());
+                break;
+            }
+            default:{
+                throw new UnsupportedOperationException("jobTitle not recognised."); //To change body of generated methods, choose Tools | Templates.
+            }
+        }
+        User checkUser = new User(user.getUserName(), user.getPassword(), user.getCreatedTime(), user.getLastLoginTime(), user.getActive(), user.getFirstName(), user.getLastName(), user.getPhoneNumber(), user.getMail(), job);
 
         if (checkUser.checkPassword(pw)) {
             userOne = checkUser;
-            if (facade.updateLastLoginTime(userOne)) {
-                access = facade.getAccess(checkUser.getUserName());
+            userOne.setLastLoginTime();
+            facade.updateLastLoginTime(userOne);
+            access = userOne.getJob().getAccessLevel();
             }
-        }
+        
         return access;
     }
     
@@ -51,14 +68,14 @@ public class LoginManager {
         userOne = null;
     }
     
-    public boolean checkCredentials(String userName, String password) {
-        IUser user = facade.getUser(userName);
-        if (user.getPassword().equals(password)) {
-            return true;
-        }
-
-        return false;
-    }
+//    public boolean checkCredentials(String userName, String password) {
+//        IUser user = facade.getUser(userName);
+//        if (user.getPassword().equals(password)) {
+//            return true;
+//        }
+//
+//        return false;
+//    }
     
     public User getUserOne() {
         return userOne;

@@ -34,8 +34,8 @@ public interface IBusiness {
     boolean changePassword(String oldPassword, String newPassword1, String newPassword2);
     
     IUser getUserOne();
-    
-    boolean checkCredentials(String userName, String password);
+//    
+//    boolean checkCredentials(String userName, String password);
     
     public boolean createUser(String firstName, String lastName, String userName, String password1, String password2, String jobtitle, int jobID, int accessLevel, int departmentID, String departmentName);
 
@@ -58,5 +58,5 @@ public interface IBusiness {
                 String note, String caseWorkerID,
                 Map<Integer, String> serviceIDList,
                 Map<Integer, String> offerIDList);
-    public boolean validateCPR(String cpr);
+    public boolean validateCPR(String cprNumber);
 }

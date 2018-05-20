@@ -19,4 +19,19 @@ public class CaseWorker extends Job implements ICaseWorker {
         super(jobTitle, ID, accessLevel, departmentID, departmentName);
     }
 
+    @Override
+    Collection<IUser> getUserList() {
+        throw new UnsupportedOperationException("Not supported by this job.");
+    }
+
+    @Override
+    boolean createUser(String firstName, String lastName, String userName, String password1, String password2, String jobtitle, int jobID, int accessLevel, int departmentID, String departmentName) {
+        throw new UnsupportedOperationException("Not supported by this job.");
+    }
+
+    @Override
+    boolean changeJob(String userName, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
+        throw new UnsupportedOperationException("Not supported by this job.");
+    }
+
 }

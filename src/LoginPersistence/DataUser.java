@@ -17,6 +17,7 @@ import java.sql.Timestamp;
  */
 public class DataUser implements IUser, Serializable {
     
+    private int userID;
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -28,7 +29,24 @@ public class DataUser implements IUser, Serializable {
     private Timestamp lastLoginTime;
     private IJob job;
 
-    public DataUser(String firstName, String lastName, String userName, String password, boolean active, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName, Timestamp createdTime, Timestamp lastLoginTime) {
+    /**
+     * for creating a new user in the system
+     * @param userID
+     * @param firstName
+     * @param lastName
+     * @param userName
+     * @param password
+     * @param active
+     * @param jobTitle
+     * @param jobID
+     * @param accessLevel
+     * @param departmentID
+     * @param departmentName
+     * @param createdTime
+     * @param lastLoginTime 
+     */
+    public DataUser(int userID, String firstName, String lastName, String userName, String password, boolean active, String jobTitle, int jobID, int accessLevel, int departmentID, String departmentName, Timestamp createdTime, Timestamp lastLoginTime) {
+        this.userID = 0;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = "88888888"; //NB!! - TelefonNummer skal oprettes automatisk;
@@ -40,18 +58,43 @@ public class DataUser implements IUser, Serializable {
         this.lastLoginTime = new Timestamp(System.currentTimeMillis());
 
 
-            this.job = new DataJob(jobTitle, ID, accessLevel, departmentID, departmentName);
+            this.job = new DataJob(jobTitle, jobID, accessLevel, departmentID, departmentName);
 
     }
-    
-    public DataUser(String userName, String password, boolean active, Timestamp createdTime, Timestamp lastLoginTime) {
+
+    /**
+     * for getting a user from the database
+     * @param userID
+     * @param firstName
+     * @param lastName
+     * @param phoneNumber
+     * @param mail
+     * @param userName
+     * @param password
+     * @param active
+     * @param createdTime
+     * @param lastLoginTime
+     * @param jobTitle
+     * @param jobID
+     * @param accessLevel
+     * @param departmentID
+     * @param departmentName 
+     */
+    public DataUser(int userID, String firstName, String lastName, String phoneNumber, String mail, String userName, String password, boolean active, Timestamp createdTime, Timestamp lastLoginTime, String jobTitle, int jobID, int accessLevel, int departmentID, String departmentName) {
+        this.userID = userID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.mail = mail;
         this.userName = userName;
         this.password = password;
         this.active = active;
         this.createdTime = createdTime;
         this.lastLoginTime = lastLoginTime;
+        this.job =  this.job = new DataJob(jobTitle, jobID, accessLevel, departmentID, departmentName);
     }
     
+       
     
     @Override
     public String getFirstName(){
@@ -133,5 +176,10 @@ public class DataUser implements IUser, Serializable {
     public void setJob(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
         
             this.job = new DataJob(jobTitle, ID, accessLevel, departmentID, departmentName);
+    }
+
+    @Override
+    public int getUserID() {
+       return this.userID;
     }
 }

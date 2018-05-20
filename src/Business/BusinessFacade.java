@@ -90,10 +90,10 @@ public class BusinessFacade implements IBusiness {
         return loginManager.getUserOne();
     }
 
-    @Override
-    public boolean checkCredentials(String userName, String password) {
-        return loginManager.checkCredentials(userName, password);
-    }
+//    @Override
+//    public boolean checkCredentials(String userName, String password) {
+//        return loginManager.checkCredentials(userName, password);
+//    }
     
     public boolean getUserInfo(String userName) {
         return loginPersistence.getUserInfo(userName);
@@ -104,12 +104,12 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public boolean createUser(String firstName, String lastName, String userName, String password1, String password2, String jobtitle, int jobID, int accessLevel, int departmentID, String departmentName) {
-        return loginManager.getUserOne().getAdmin().createUser(firstName, lastName, userName, password1, password2, jobtitle, jobID, accessLevel, departmentID, departmentName);
+        return loginManager.getUserOne().getJob().createUser(firstName, lastName, userName, password1, password2, jobtitle, jobID, accessLevel, departmentID, departmentName);
     }
 
     @Override
     public boolean changeJob(String userName, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
-        return loginManager.getUserOne().getAdmin().changeJob(userName, jobTitle, ID, accessLevel, departmentID, departmentName);
+        return loginManager.getUserOne().getJob().changeJob(userName, jobTitle, ID, accessLevel, departmentID, departmentName);
     }
 
     public boolean addUser(IUser user) {
@@ -131,7 +131,7 @@ public class BusinessFacade implements IBusiness {
     @Override
     public Collection<IUser> getUserList() {
         System.out.println(loginManager.getUserOne().getJob());
-                return loginManager.getUserOne().getAdmin().getUserList();
+                return loginManager.getUserOne().getJob().getUserList();
     }
 
     Collection<IUser> getAllUsers() {
@@ -167,30 +167,27 @@ public class BusinessFacade implements IBusiness {
                 cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, 
                 city, phoneNumber, responsibleCaseworker, informedRightsBystander, 
                 informedRightsElectronicRegistration, consent, consentToInformationGathering, 
-                specialCircumstances, otherActingMunicipality, otherPayingMunicipality, 
-                meetingTime, attendingCasworkerIDList, meetingDescription, meetingLocation, 
-                cprNumberRep, firstNameRep, lastNameRep, roadNameRep, houseNumberRep, 
-                floorRep, postalCodeRep, cityRep, phoneNumberRep, representationType, 
-                note, caseWorkerID, serviceIDList, offerIDList);
-    }
-    
+                specialCircumstances, otherActingMunicipality, otherPayingMunicipality, meetingTime, 
+                attendingCasworkerIDList, meetingDescription, meetingLocation, cprNumberRep, 
+                firstNameRep, lastNameRep, roadNameRep, houseNumberRep, floorRep, postalCodeRep, 
+                cityRep, phoneNumberRep, representationType, note, caseWorkerID, serviceIDList, offerIDList);
+    }   
     boolean saveCase(ICase case1) {
         return dataPersistence.saveCase(case1);
     }
-
     @Override
     public Collection<IJob> getJobList(){
-        return loginPersistence.getJobList();
-        
+        return loginPersistence.getJobList();   
     }
-
     @Override
     public Collection<IDepartment> getdepartmentList() {
         return loginPersistence.getDepartmentList();
     }
+
     @Override
-    public boolean validateCPR(String cpr){
-        boolean result = caseManager.validateCPR(cpr);
+    public boolean validateCPR(String cprNumber) {
+        boolean result = caseManager.validateCPR(cprNumber);
         return result;
     }
+    
 }
