@@ -38,7 +38,7 @@ public interface IBusiness {
 
     public boolean createUser(String firstName, String lastName, String userName, String password1, String password2, String jobtitle, int jobID, int accessLevel, int departmentID, String departmentName);
 
-    boolean changeJob(String userName, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName);
+    public boolean changeJob(String userName, boolean active, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName);
 
     Collection<IUser> getUserList();
 
@@ -63,5 +63,7 @@ public interface IBusiness {
     String getdomainID(IUser user);
     
     IUser getUserFromDomainID(String domainID);
+    
+    boolean doesUserExist(String userName);
 
 }

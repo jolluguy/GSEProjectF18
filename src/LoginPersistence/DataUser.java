@@ -5,7 +5,6 @@
  */
 package LoginPersistence;
 
-import Acquaintance.IAdmin;
 import Acquaintance.IJob;
 import Acquaintance.IUser;
 import java.io.Serializable;

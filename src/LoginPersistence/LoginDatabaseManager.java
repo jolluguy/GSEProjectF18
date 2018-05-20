@@ -127,17 +127,28 @@ public class LoginDatabaseManager {
         }
 
     }
-
+    
+    /**
+     * updates alle parameters the concerens the users jobstatus, including the job, department and active status.
+     * @param user
+     * @return 
+     */
     public boolean updateJob(IUser user) {
-        String userName = user.getUserName();
-        boolean active = user.getActive();
-
+        
         try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
             Class.forName("org.postgresql.Driver");
 
-            PreparedStatement st = conn.prepareStatement("UPDATE login SET niveau = '" + active + "' WHERE brugernavn = '" + userName + "';");
+            PreparedStatement st1 = conn.prepareStatement("UPDATE login SET aktiv = '" + user.getActive() + "' WHERE brugernavn = '" + user.getUserName() + "';");
 
-            st.executeUpdate();
+            st1.executeUpdate();
+            
+            PreparedStatement st2 = conn.prepareStatement("UPDATE besidder SET stillings_id = '" + user.getJob().getID() + "' WHERE bruger_id = '" + user.getUserID() + "';");
+
+            st2.executeUpdate();
+            
+             PreparedStatement st3 = conn.prepareStatement("UPDATE tilhører SET afdelings_id = '" + user.getJob().getDepartment().getDepartmentID() + "' WHERE bruger_id = '" + user.getUserID() + "';");
+
+            st3.executeUpdate();
 
             return true;
 

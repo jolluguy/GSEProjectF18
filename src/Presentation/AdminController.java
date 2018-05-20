@@ -5,16 +5,14 @@
  */
 package Presentation;
 
-import Acquaintance.IAdmin;
 import Acquaintance.IBusiness;
-import Acquaintance.ICaseWorker;
 import Acquaintance.IDepartment;
 import Acquaintance.IJob;
 import Acquaintance.IUser;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Timestamp;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -33,6 +31,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
@@ -44,8 +43,9 @@ import javafx.stage.Stage;
  */
 public class AdminController implements Initializable {
 
-    Collection<IJob> jobList;
-    Collection<IDepartment> departmentList;
+    private Collection<IJob> jobList;
+    private Collection<IDepartment> departmentList;
+    private Collection<IUser> userlist;
 
     @FXML
     private Label usernameLabel;
@@ -73,17 +73,9 @@ public class AdminController implements Initializable {
     private Label warningLabel;
     @FXML
     private Label jobUsername;
-    @FXML
-    private Label jobPassword;
-    @FXML
     private TextField jobUsernameField;
-    @FXML
     private PasswordField jobPasswordField;
-    @FXML
     private RadioButton jobCaseRadio;
-    @FXML
-    private ToggleGroup jobRadio;
-    @FXML
     private RadioButton jobAdminRadio;
     @FXML
     private Button jobSavechangeButton;
@@ -115,6 +107,22 @@ public class AdminController implements Initializable {
     private ChoiceBox<String> setJobChoicebox;
     @FXML
     private ChoiceBox<String> setDepartmentChoiceBox;
+    @FXML
+    private Tab addNewUserTab;
+    @FXML
+    private Tab changeExistingUserTab;
+    @FXML
+    private TextField changeJobUsernameField;
+    @FXML
+    private ToggleGroup changeJobUserStatus;
+    @FXML
+    private ChoiceBox<String> changeJobChoicebox;
+    @FXML
+    private ChoiceBox<String> changeDepartmentChoicebox;
+    @FXML
+    private RadioButton jobActiveRadio;
+    @FXML
+    private RadioButton jobUnchangedRadio;
 
     /**
      * Initializes the controller class.
@@ -123,22 +131,29 @@ public class AdminController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         userOneLabel.setText(business.getCurentUser().getUserName() + "");
+        userlist = new ArrayList<>();
 
         //filling choceboxes
         jobList = business.getJobList();
         for (IJob j : jobList) {
             setJobChoicebox.getItems().add(j.getJobTitle());
+            changeJobChoicebox.getItems().add(j.getJobTitle());
             // inplementer noget til inactive
         }
         departmentList = business.getdepartmentList();
         for (IDepartment d : departmentList) {
             setDepartmentChoiceBox.getItems().add(d.getDepartmentName());
+            changeDepartmentChoicebox.getItems().add(d.getDepartmentName());
         }
-        
+
         // setting a value in the chiceboxes so that empty dosent get chosen by acsident
         setDepartmentChoiceBox.setValue(departmentList.iterator().next().getDepartmentName());
         setJobChoicebox.setValue(jobList.iterator().next().getJobTitle());
-        
+        changeJobChoicebox.getItems().add("Uændret");
+        changeDepartmentChoicebox.getItems().add("Uændret");
+        changeJobChoicebox.setValue("Uændret");
+        changeDepartmentChoicebox.setValue("Uændret");
+
 //        Load listview
         obsList = FXCollections.observableArrayList();
         userListview.setItems(obsList);
@@ -152,7 +167,7 @@ public class AdminController implements Initializable {
         String userName = usernameField.getText().toLowerCase();
         String password1 = password1Field.getText();
         String password2 = password2Field.getText();
-        PresJob job = getJob(setJobChoicebox, setDepartmentChoiceBox);
+        PresJob job = getJob(setJobChoicebox);
         PresDepartment dep = getDepartment(setDepartmentChoiceBox);
 
         boolean createUserStatus = business.createUser(firstName, lastName, userName, password1, password2, job.getJobTitle(), job.getID(), job.getAccessLevel(), dep.departmentID, dep.getDepartmentName());
@@ -196,47 +211,77 @@ public class AdminController implements Initializable {
 
     @FXML
     public void changeJob(ActionEvent event) {
-        String username = jobUsernameField.getText();
-        String password = jobPasswordField.getText();
-        String newJob = "";
+        String statusMessage = "";
+        jobWarningLabel.setText(statusMessage);
+        String username = changeJobUsernameField.getText();
+        if (business.doesUserExist(username)) {
+            if (changeJobChoicebox.getValue().equals("Uændret") && changeDepartmentChoicebox.getValue().equals("Uændret") && jobUnchangedRadio.isSelected()) {
+                statusMessage = "Der er ikke valgt nogle ændringer";
+            } else {
 
-        if (!(jobCaseRadio.isSelected() || jobAdminRadio.isSelected() || jobInactiveRadio.isSelected())) {
-            jobWarningLabel.setText("Et job skal vælges før en ændring kan foretages");
+                IJob newjob = null;
+                IDepartment newdepart = null;
+                boolean setUserActive = true;
+
+                if (!changeJobChoicebox.getValue().equals("Uændret")) {
+                    newjob = getJob(changeJobChoicebox);
+                } else {
+                    for (IUser i : userlist) {
+                        if (i.getUserName().equals(username)) {
+                            newjob = new PresJob(i.getJob().getJobTitle(), i.getJob().getID(), i.getJob().getAccessLevel());
+                            break;
+                        }
+                    }
+                }
+                if (!changeDepartmentChoicebox.getValue().equals("Uændret")) {
+                    newdepart = getDepartment(changeDepartmentChoicebox);
+                } else {
+                    for (IUser i : userlist) {
+                        if (i.getUserName().equals(username)) {
+                            newdepart = new PresDepartment(i.getJob().getDepartment().getDepartmentID(), i.getJob().getDepartment().getDepartmentName());
+                            break;
+                        }
+                    }
+                }
+                if (!jobUnchangedRadio.isSelected()) {
+                    if (jobInactiveRadio.isSelected()) {
+                        setUserActive = false;
+                    } else {
+                        setUserActive = true;
+                    }
+                } else {
+                    for (IUser i : userlist) {
+                        if (i.getUserName().equals(username)) {
+                            setUserActive = i.getActive();
+                            break;
+                        }
+                    }
+                }
+                if (business.changeJob(username, setUserActive, newjob.getJobTitle(), newjob.getID(), newjob.getAccessLevel(), newdepart.getDepartmentID(), newdepart.getDepartmentName())) {
+                    statusMessage = username + "'s job er blevet ændret";
+                } else {
+                    statusMessage = username + "'s job kunne ikke ændres";
+                }
+
+                changeJobUsernameField.clear();
+                changeJobChoicebox.setValue("Uændret");
+                changeDepartmentChoicebox.setValue("Uændret");
+                jobActiveRadio.setSelected(false);
+                jobInactiveRadio.setSelected(false);
+
+            }
         } else {
-            if (jobCaseRadio.isSelected()) {
-                newJob = "CaseWorker";
-            } else if (jobAdminRadio.isSelected()) {
-                newJob = "Admin";
-            } else if (jobInactiveRadio.isSelected()) {
-                newJob = null;
-            }
-            System.out.println("level is " + newJob);
-
-            String statusMessage = "";
-
-            boolean changeJob = business.changeJob(username, username, 0, 0, 0, username);
-            if (changeJob) {
-                statusMessage = username + "'s job er blevet ændret";
-            } else if (!changeJob) {
-                statusMessage = username + "'s job kunne ikke ændres";
-            }
-
-            jobWarningLabel.setText(statusMessage);
+            statusMessage = "Indtast korrekt brugernavn";
         }
-
-        jobUsernameField.clear();
-        jobPasswordField.clear();
-        jobAdminRadio.setSelected(false);
-        jobCaseRadio.setSelected(false);
-        jobInactiveRadio.setSelected(false);
+        jobWarningLabel.setText(statusMessage);
     }
 
     @FXML
     public void jobCancel(ActionEvent event) {
-        jobUsernameField.clear();
-        jobPasswordField.clear();
-        jobAdminRadio.setSelected(false);
-        jobCaseRadio.setSelected(false);
+        changeJobUsernameField.clear();
+        changeJobChoicebox.setValue("Uændret");
+        changeDepartmentChoicebox.setValue("Uændret");
+        jobActiveRadio.setSelected(false);
         jobInactiveRadio.setSelected(false);
         jobWarningLabel.setText("");
     }
@@ -246,20 +291,24 @@ public class AdminController implements Initializable {
         obsList.clear();
         fillUserList();
     }
-    
-    void fillUserList(){
+
+    void fillUserList() {
         DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
- for (IUser i : business.getUserList()) {
+        userlist.clear();
+        for (IUser i : business.getUserList()) {
+            userlist.add(i);
+        }
+        for (IUser i : userlist) {
             obsList.add(String.format("%1$-16s\t%2$s\t%3$s\t%4$s", i.getUserName(), i.getActive(), df.format(i.getCreatedTime()), df.format(i.getLastLoginTime())));
- }
- }
+        }
+    }
 
     /**
      *
      * @param choicebox
      * @return
      */
-    PresJob getJob(ChoiceBox<String> choiceboxJob, ChoiceBox<String> choiceboxDepartment) {
+    PresJob getJob(ChoiceBox<String> choiceboxJob) {
         PresJob job = null;
         for (IJob j : jobList) {
             if (j.getJobTitle().equalsIgnoreCase(choiceboxJob.getValue())) {

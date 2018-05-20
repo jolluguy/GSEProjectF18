@@ -88,18 +88,13 @@
                            <font>
                               <Font size="15.0" />
                            </font></Label>
-                        <Label fx:id="jobPassword" layoutX="59.0" layoutY="117.0" text="Password">
-                           <font>
-                              <Font size="15.0" />
-                           </font></Label>
                         <TextField fx:id="changeJobUsernameField" layoutX="228.0" layoutY="52.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: F3F3F3; -fx-background-radius: 3;" />
-                        <PasswordField fx:id="jobPasswordField" layoutX="228.0" layoutY="111.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: F3F3F3; -fx-background-radius: 3;" />
-                        <RadioButton fx:id="jobInactiveRadio" layoutX="228.0" layoutY="251.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="133.0" text="Inaktiv">
+                        <RadioButton fx:id="jobInactiveRadio" layoutX="226.0" layoutY="282.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="133.0" text="Inaktiv">
                            <font>
                               <Font size="15.0" />
                            </font>
                            <toggleGroup>
-                              <ToggleGroup fx:id="jobRadio" />
+                              <ToggleGroup fx:id="changeJobUserStatus" />
                            </toggleGroup>
                         </RadioButton>
                         <Label fx:id="jobWarningLabel" layoutX="53.0" layoutY="628.0" prefHeight="21.0" prefWidth="484.0" />
@@ -113,18 +108,33 @@
                               <Font size="15.0" />
                            </font>
                         </Button>
-                        <Label layoutX="228.0" layoutY="161.0" text="Stilling">
+                        <Label layoutX="228.0" layoutY="114.0" text="Stilling">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <ChoiceBox fx:id="changeJobChoicebox" layoutX="229.0" layoutY="182.0" prefWidth="150.0" />
-                        <Label layoutX="406.0" layoutY="161.0" text="Afdeling">
+                        <ChoiceBox fx:id="changeJobChoicebox" layoutX="229.0" layoutY="135.0" prefWidth="150.0" />
+                        <Label layoutX="406.0" layoutY="114.0" text="Afdeling">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <ChoiceBox fx:id="changeDepartmentChoicebox" layoutX="406.0" layoutY="182.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="changeDepartmentChoicebox" layoutX="406.0" layoutY="135.0" prefWidth="150.0" />
+                        <RadioButton fx:id="jobActiveRadio" layoutX="226.0" layoutY="249.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="133.0" text="Aktiv" toggleGroup="$changeJobUserStatus">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </RadioButton>
+                        <Label layoutX="225.0" layoutY="189.0" text="Ændre bruger status">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <RadioButton fx:id="jobUnchangedRadio" layoutX="226.0" layoutY="218.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="133.0" selected="true" text="Uændret" toggleGroup="$changeJobUserStatus">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </RadioButton>
                      </children></AnchorPane>
                </content>
             </Tab>

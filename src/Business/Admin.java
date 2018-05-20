@@ -5,18 +5,14 @@
  */
 package Business;
 
-import Acquaintance.IAdmin;
-import Acquaintance.IJob;
 import Acquaintance.IUser;
 import java.util.Collection;
-import java.sql.Timestamp;
-import java.util.ArrayList;
 
 /**
  *
  * @author Rasmus
  */
-public class Admin extends Job implements IAdmin {
+public class Admin extends Job{
 
     private LoginManager loginManeger = LoginManager.getInstance();
 
@@ -37,8 +33,9 @@ public class Admin extends Job implements IAdmin {
     }
     
     @Override
-    public boolean changeJob(String userName, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
+    public boolean changeJob(String userName,boolean active, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
         IUser user = loginManeger.getUser(userName);
+        user.setActive(active);
         user.setJob(jobTitle, ID, accessLevel, departmentID, departmentName); //Parsing IJob to job... Might give some problems.
         return loginManeger.updateJob(user);
     }

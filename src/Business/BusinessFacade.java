@@ -112,8 +112,8 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public boolean changeJob(String userName, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
-        return loginManager.getCurentUser().getJob().changeJob(userName, jobTitle, ID, accessLevel, departmentID, departmentName);
+    public boolean changeJob(String userName, boolean active, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
+        return loginManager.getCurentUser().getJob().changeJob(userName, active, jobTitle, ID, accessLevel, departmentID, departmentName);
     }
 
     public boolean addUser(IUser user) {
@@ -185,7 +185,9 @@ public class BusinessFacade implements IBusiness {
         return loginPersistence.getDepartmentList();
     }
     
-    boolean doesUserExist(String userName){
+    
+    @Override
+    public boolean doesUserExist(String userName){
         return loginPersistence.doesUserExist(userName);
     }
     

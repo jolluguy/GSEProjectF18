@@ -37,7 +37,7 @@ public class LoginManager {
             IUser user = facade.getUser(userName); //Parsing User below due to IUser return
             Job job;
             String jobTitle = user.getJob().getJobTitle().toLowerCase();
-
+            if(user.getActive()){
             switch (jobTitle) {
                 case "admin": {
                     job = new Admin(user.getJob().getJobTitle(), user.getJob().getID(), user.getJob().getAccessLevel(), user.getJob().getDepartment().getDepartmentID(), user.getJob().getDepartment().getDepartmentName());
@@ -58,6 +58,10 @@ public class LoginManager {
                 userOne.setLastLoginTime();
                 facade.updateLastLoginTime(userOne);
                 access = userOne.getJob().getAccessLevel();
+            }
+        }
+            else{
+                access = -2;
             }
         }
         return access;
@@ -96,7 +100,7 @@ public class LoginManager {
     }
 
     boolean updateJob(IUser user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return facade.updateJob(user);
     }
 
     boolean addUser(IUser user) {
@@ -104,7 +108,7 @@ public class LoginManager {
     }
 
     IUser getUser(String userName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return facade.getUser(userName);
     }
 
     String getCurrentUserDomainID() {
