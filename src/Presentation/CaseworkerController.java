@@ -24,6 +24,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -342,7 +344,8 @@ public class CaseworkerController implements Initializable {
     @FXML
     private TextField CPRBirthField;
     @FXML
-    private TextField CPRSecuityField;
+    private TextField CPRSecurityField;
+    @FXML
     private CheckBox treatmentSpecialDrCheckBox;    
     
     private Map<Integer, String> serviceMap;
@@ -384,9 +387,13 @@ public class CaseworkerController implements Initializable {
     @FXML
     private TextArea caseNoteTextArea;
     @FXML
-    private CheckBox treamentSpecialDrCheckBox;
-    @FXML
     private TextField caseCprField;
+    @FXML
+    private Tab inquiryTab;
+    @FXML
+    private Tab caseTab;
+    @FXML
+    private TabPane tabPane;
 
 
 
@@ -644,7 +651,7 @@ public class CaseworkerController implements Initializable {
     
     @FXML
     public void newInquiry(ActionEvent event) {
-        String cprNumber = CPRBirthField.getText() + CPRSecuityField.getText();
+        String cprNumber = CPRBirthField.getText() + "-" + CPRSecurityField.getText();
         String problemDescription = descriptionTextAreaInquiry.getText();
         String firstName = firstNameTextField.getText();
         String lastName = lastNameTextField.getText();
@@ -654,7 +661,8 @@ public class CaseworkerController implements Initializable {
         int postalCode = Integer.parseInt(postalCodeTextField.getText());
         String city = cityTextField.getText();
         String phoneNumber = phoneNumberPrefixTextField.getText() + phoneNumberTextField.getText();
-        String inquirer = inquiryOriginGroup.getSelectedToggle().toString();
+//        String inquirer = inquiryOriginGroup.getSelectedToggle().toString();
+        String inquirer = "Inquirer";
         boolean citizenAgreement = inquiryUnderstoodYesRadioButton.isSelected();
         
 
@@ -676,7 +684,7 @@ public class CaseworkerController implements Initializable {
         inquiryUnderstoodNoRadioButton.setSelected(false);
         inquiryUnderstoodYesRadioButton.setSelected(false);
         CPRBirthField.clear();
-        CPRSecuityField.clear();
+        CPRSecurityField.clear();
         descriptionTextAreaInquiry.clear();
         firstNameTextField.clear();
         lastNameTextField.clear();
@@ -694,7 +702,7 @@ public class CaseworkerController implements Initializable {
     }
     @FXML
     private void newCase(ActionEvent event) {
-        String cprNumber = CPRBirthField.getText() + CPRSecuityField.getText();
+        String cprNumber = CPRBirthField.getText() + "-" + CPRSecurityField.getText();
         String firstName = firstNameTextField.getText();
         String lastName = lastNameTextField.getText();
         String roadName = streetNameTextField.getText();
@@ -746,7 +754,7 @@ public class CaseworkerController implements Initializable {
         Timestamp meetingDate = Timestamp.valueOf(meetingDatePicker.getValue().atStartOfDay());
         String meetingDescription = agreedTextArea.getText();
         String meetingLocation = meetingLocationTextfield.getText();
-        String cprNumberRep = CPRBirthFieldRep.getText() + CPRSecuityFieldRep.getText();
+        String cprNumberRep = CPRBirthFieldRep.getText() + "-" + CPRSecuityFieldRep.getText();
         String firstNameRep = firstNameTextFieldRep.getText();
         String lastNameRep = lastNameTextFieldRep.getText();
         String roadNameRep = streetNameTextFieldRep.getText();
@@ -1235,18 +1243,18 @@ public class CaseworkerController implements Initializable {
 
     @FXML
     private void checkCPRValidity(KeyEvent event) {
-        String cpr = (CPRBirthField.getText() + "-" + CPRSecuityField.getText());
+        String cpr = (CPRBirthField.getText() + "-" + CPRSecurityField.getText());
         boolean result = business.validateCPR(cpr);
         if (result) {
             CPRBirthField.setStyle("-fx-text-fill: black;");
-            CPRSecuityField.setStyle("-fx-text-fill: black;");
+            CPRSecurityField.setStyle("-fx-text-fill: black;");
             cprSyntaxLabel.setDisable(true);
             newCaseButton.setDisable(false);
             archiveButton.setDisable(false);
         }
         else{
             CPRBirthField.setStyle("-fx-text-fill: red;");
-            CPRSecuityField.setStyle("-fx-text-fill: red;");
+            CPRSecurityField.setStyle("-fx-text-fill: red;");
             cprSyntaxLabel.setDisable(false);
             newCaseButton.setDisable(true);
             archiveButton.setDisable(true);
@@ -1255,6 +1263,10 @@ public class CaseworkerController implements Initializable {
 
     @FXML
     private void switchToCase(ActionEvent event) {
+        caseCprField.setText(CPRBirthField.getText() + "-" + CPRSecurityField.getText());
+        descriptionTextAreaCase.setText(descriptionTextAreaInquiry.getText());
+        
+        tabPane.getSelectionModel().select(caseTab);
         
     }
 }

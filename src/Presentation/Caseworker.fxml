@@ -22,9 +22,9 @@
 
 <AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.CaseworkerController">
    <children>
-      <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TabPane fx:id="tabPane" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
-          <Tab text="Henvendelse">
+          <Tab fx:id="inquiryTab" text="Henvendelse">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -84,7 +84,7 @@
                                        </font>
                                     </Label>
                                     <TextField fx:id="CPRBirthField" alignment="CENTER_RIGHT" layoutX="440.0" layoutY="229.0" onKeyReleased="#checkCPRValidity" prefHeight="31.0" prefWidth="200.0" />
-                                    <TextField fx:id="CPRSecuityField" layoutX="668.0" layoutY="230.0" onKeyReleased="#checkCPRValidity" prefHeight="31.0" prefWidth="73.0" />
+                                    <TextField fx:id="CPRSecurityField" layoutX="668.0" layoutY="230.0" onKeyReleased="#checkCPRValidity" prefHeight="31.0" prefWidth="73.0" />
                                     <TextField fx:id="firstNameTextField" layoutX="440.0" layoutY="281.0" prefHeight="31.0" prefWidth="300.0" />
                                     <TextField fx:id="lastNameTextField" layoutX="440.0" layoutY="333.0" prefHeight="31.0" prefWidth="300.0" />
                                     <TextField fx:id="streetNameTextField" layoutX="440.0" layoutY="388.0" prefHeight="31.0" prefWidth="235.0" />
@@ -165,11 +165,11 @@
                      </children></AnchorPane>
             </content>
           </Tab>
-            <Tab text="Opret sag">
+            <Tab fx:id="caseTab" text="Opret sag">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ScrollPane hmax="722.0" prefHeight="766.0" prefWidth="1300.0" vmax="5000.0">
+                        <ScrollPane hmax="722.0" prefHeight="766.0" prefWidth="1300.0" vmax="5000.0" vvalue="915.0">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="5049.0" prefWidth="1299.0">
                                  <children>
@@ -214,7 +214,7 @@
                                     <CheckBox fx:id="treatment141CheckBox" disable="true" layoutX="186.0" layoutY="1132.0" mnemonicParsing="false" text="Misbrugsbehandling (SUL §141)" />
                                     <CheckBox fx:id="treatmentTherapyCheckBox" disable="true" layoutX="186.0" layoutY="1162.0" mnemonicParsing="false" text="Terapi (§102)" />
                                     <CheckBox fx:id="treatmentPsykCheckBox" disable="true" layoutX="186.0" layoutY="1192.0" mnemonicParsing="false" text="Psykologisk behandling (§102)" />
-                                    <CheckBox fx:id="treamentSpecialDrCheckBox" disable="true" layoutX="186.0" layoutY="1221.0" mnemonicParsing="false" text="Speciallæge behandling (§102)" />
+                                    <CheckBox fx:id="treatmentSpecialDrCheckBox" disable="true" layoutX="186.0" layoutY="1221.0" mnemonicParsing="false" text="Speciallæge behandling (§102)" />
                                     <CheckBox fx:id="protectedEmploymentCheckBox" disable="true" layoutX="162.0" layoutY="1262.0" mnemonicParsing="false" text="Beskyttet beskæftigelsesydelse (§103)" />
                                     <CheckBox fx:id="dayReliefCheckBox" disable="true" layoutX="162.0" layoutY="1299.0" mnemonicParsing="false" text="Dagaflastning (§84)" />
                                     <CheckBox fx:id="cashBenefitCheckBox" disable="true" layoutX="162.0" layoutY="1335.0" mnemonicParsing="false" onAction="#updateCashBenefitStatus" text="Kontantydelse" />

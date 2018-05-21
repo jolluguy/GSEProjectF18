@@ -16,6 +16,7 @@ import Acquaintance.IDataPersistence;
 public class DataFacade implements IDataPersistence {
     
     private static DataFacade instance;
+    private CaseDatabaseManager caseDatabase = new CaseDatabaseManager();
     
     private DataFacade() {
         
@@ -30,13 +31,12 @@ public class DataFacade implements IDataPersistence {
     
     @Override
     public boolean saveInquiry(IInquiry inquiry) {
-        SaveInquiryCSV save = new SaveInquiryCSV(inquiry);
-        return save.saveInquiry();
+        return caseDatabase.saveInquiry(inquiry);
     }
     
     @Override
     public boolean saveCase(ICase case1) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return caseDatabase.saveCase(case1);
     }
     
 }
