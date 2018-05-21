@@ -389,6 +389,7 @@ public class CaseworkerController implements Initializable {
     @FXML
     private DatePicker meetingDatePicker;
     
+    //Has been moved from the "newInquiry" method, so that you can use the data in the "newCase" method
     String cprNumber = CPRBirthField.getText() + CPRSecuityField.getText();
     String problemDescription = descriptionTextAreaInquiry.getText();
     String firstName = firstNameTextField.getText();
@@ -726,11 +727,34 @@ public class CaseworkerController implements Initializable {
         boolean informedRightsElectronicRegistration = rightsYesOrNoGroup.getSelectedToggle().isSelected();
         String consent = consentGroup.getSelectedToggle().toString();
         
-        Collection<String> consentToInformationGathering;
-        for(Collection<String> string : ){
-            
+        //A whole lot of if statements to add the different checkboxes to its corresponding list
+        Collection<String> consentToInformationGathering = null;
+        if (ownDoctorCheckBox.isSelected()) {
+            consentToInformationGathering.add(ownDoctorCheckBox.getText());
         }
-        Collection<String> attendingCaseworkerIDList;
+        if (specialDoctorCheckBox.isSelected()) {
+            consentToInformationGathering.add(specialDoctorCheckBox.getText());
+        }
+        if (hospitalCheckBox.isSelected()) {
+            consentToInformationGathering.add(hospitalCheckBox.getText());
+        }
+        if (unemploymentBenefitsCheckBox.isSelected()) {
+            consentToInformationGathering.add(unemploymentBenefitsCheckBox.getText());
+        }
+        if (offerCheckBox.isSelected()) {
+            consentToInformationGathering.add(offerCheckBox.getText());
+        }
+        if (employerCheckBox.isSelected()) {
+            consentToInformationGathering.add(employerCheckBox.getText());
+        }
+        if (formerMunicipalityCheckBox.isSelected()) {
+            consentToInformationGathering.add(formerMunicipalityCheckBox.getText());
+        }
+        if (otherInstancesCheckBox.isSelected()) {
+            consentToInformationGathering.add(otherInstancesCheckBox.getText());
+        }
+        
+        Collection<String> attendingCaseworkerIDList = null;
         
         String specialCircumstances = specialCircumstancesTextArea.getText();
         String otherActingMunicipality = otherActingMunicipalityTextField.getText();
@@ -745,10 +769,12 @@ public class CaseworkerController implements Initializable {
         String houseNumberRep = streetNumberTextFieldRep.getText();
         String floorRep = floorTextFieldRep.getText();
         String postalCodeRep = postalCodeTextFieldRep.getText();
+        int postalCodeRepInt = Integer.parseInt(postalCodeRep);
         String cityRep = cityTextFieldRep.getText();
         String phoneNumberRep = phoneNumberTextFieldRep.getText();
         String representationType = guardianshipGroup.getSelectedToggle().toString();
         String note = caseNoteTextArea.getText();
+        String caseWorkerID = business.getCurrentUserDomainID();
         
         boolean result = business.newCase(problemDescription, inquierer, citizenAgreement, cprNumber, firstName, 
                 lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber, 
@@ -756,7 +782,7 @@ public class CaseworkerController implements Initializable {
                 specialCircumstances, otherActingMunicipality, otherPayingMunicipality, 
                 meetingDate, attendingCaseworkerIDList, meetingDescription, 
                 meetingLocation, cprNumberRep, firstNameRep, lastNameRep, roadNameRep, 
-                houseNumberRep, floorRep, postalCodeRep, cityRep, phoneNumberRep, representationType, 
+                houseNumberRep, floorRep, postalCodeRepInt, cityRep, phoneNumberRep, representationType, 
                 note, caseWorkerID, serviceMap, offerMap);
         
         if (result) {
