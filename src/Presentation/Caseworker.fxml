@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.CaseworkerController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.CaseworkerController">
    <children>
       <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
@@ -478,7 +478,7 @@
       <Label fx:id="userOneLabel" alignment="CENTER_RIGHT" layoutX="822.0" layoutY="7.0" prefHeight="17.0" prefWidth="365.0" />
       <MenuButton fx:id="menuBar" layoutX="1197.0" layoutY="4.0" mnemonicParsing="false" text="Funktioner">
         <items>
-          <MenuItem mnemonicParsing="false" text="Skift password" />
+          <MenuItem mnemonicParsing="false" onAction="#changePassword" text="Skift password" />
           <MenuItem fx:id="logOutButton" mnemonicParsing="false" onAction="#logout" text="Log ud" />
         </items>
       </MenuButton>

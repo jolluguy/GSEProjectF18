@@ -385,7 +385,7 @@ public class CaseworkerController implements Initializable {
     private DatePicker meetingDatePicker;
     
     //Has been moved from the "newInquiry" method, so that you can use the data in the "newCase" method
-    String cprNumber = CPRBirthField.getText() + CPRSecuityField.getText();
+    String cprNumber = (CPRBirthField.getText() + CPRSecuityField.getText() + "");
     String problemDescription = descriptionTextAreaInquiry.getText();
     String firstName = firstNameTextField.getText();
     String lastName = lastNameTextField.getText();
@@ -653,7 +653,7 @@ public class CaseworkerController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         
-        userOneLabel.setText(business.getUserOne().getUserName() + ""); //Quotes are only for casting IUser to a String.
+        userOneLabel.setText(String.format("%1$s%5$2s%2$s\t%3$s\t%4$s", business.getCurentUser().getFirstName(),business.getCurentUser().getLastName(), "-", business.getCurrentUserDomainID(), "" ));
     }
     
     @FXML
@@ -717,7 +717,7 @@ public class CaseworkerController implements Initializable {
         
         String problemDescription = descriptionTextAreaCase.getText();
         String inquierer = inquiryYesOrNoGroup.getSelectedToggle().toString();
-        String responsibleCaseworker = business.getUserOne().getUserName();
+        String responsibleCaseworker = business.getCurrentUserDomainID();
         boolean informedRightsBystander = rightsBystanderCheckBox.isSelected();
         boolean informedRightsElectronicRegistration = rightsYesOrNoGroup.getSelectedToggle().isSelected();
         String consent = consentGroup.getSelectedToggle().toString();
@@ -1251,6 +1251,16 @@ public class CaseworkerController implements Initializable {
             newCaseButton.setDisable(true);
             archiveButton.setDisable(true);
         }
+    }
+
+    @FXML
+    private void changePassword(ActionEvent event) throws IOException {
+        Parent pwScreen = FXMLLoader.load(getClass().getResource("ChangePassword.fxml"));
+
+        Scene newScene = new Scene(pwScreen);
+        Stage appstage = (Stage) menuBar.getScene().getWindow();
+        appstage.setScene(newScene);
+        appstage.show();
     }
     
     
