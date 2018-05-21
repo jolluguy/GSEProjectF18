@@ -82,8 +82,8 @@ public class BusinessFacade implements IBusiness {
     }
     
     @Override
-    public boolean changePassword(String oldPassword, String newPassword1, String newPassword2){
-        return loginManager.changePassword(oldPassword, newPassword1, newPassword2);
+    public boolean changePassword(String oldPassword, String newPassword){
+        return loginManager.changePassword(oldPassword, newPassword);
     }
      @Override
     public IUser getCurentUser() {
@@ -204,5 +204,9 @@ public class BusinessFacade implements IBusiness {
     @Override
     public IUser getUserFromDomainID(String domainID){
         return loginManager.getUserFromDomainID(domainID);
+    }
+
+    void updatePassword(IUser user) {
+        loginPersistence.updatePassword(user);
     }
 }

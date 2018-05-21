@@ -85,12 +85,11 @@ public class LoginManager {
         return userOne;
     }
 
-    public boolean changePassword(String oldPassword, String newPassword1, String newPassword2) {
+    public boolean changePassword(String oldPassword, String newPassword) {
         if (oldPassword.equals(userOne.getPassword())) {
-            if (newPassword1.equals(newPassword2)) {
-                userOne.changePassword(newPassword1);
+                userOne.changePassword(newPassword);
+                facade.updatePassword(userOne);
                 return true;
-            }
         }
         return false;
     }
@@ -125,4 +124,5 @@ public class LoginManager {
         DomainID dom = new DomainID();
         return facade.getUser(dom.getUserID(domainID));
     }
+
 }

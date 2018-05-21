@@ -30,7 +30,7 @@ public interface IBusiness {
 
     void logOut();
 
-    boolean changePassword(String oldPassword, String newPassword1, String newPassword2);
+   public boolean changePassword(String oldPassword, String newPassword);
 
     IUser getCurentUser();
 //    

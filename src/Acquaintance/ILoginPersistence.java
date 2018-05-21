@@ -39,4 +39,6 @@ public interface ILoginPersistence {
     public boolean doesUserExist(String userName);
 
     public IUser getUser(int userID);
+
+    public void updatePassword(IUser user);
 }

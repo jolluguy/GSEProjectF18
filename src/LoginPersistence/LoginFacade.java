@@ -104,4 +104,9 @@ public class LoginFacade implements ILoginPersistence, Serializable {
         return database.getUser(userID);
     }
 
+    @Override
+    public void updatePassword(IUser user) {
+        database.updatePassword(user);
+    }
+
 }

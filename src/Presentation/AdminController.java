@@ -123,6 +123,8 @@ public class AdminController implements Initializable {
     private RadioButton jobActiveRadio;
     @FXML
     private RadioButton jobUnchangedRadio;
+    @FXML
+    private MenuItem changeThisUserPWButton;
 
     /**
      * Initializes the controller class.
@@ -130,7 +132,7 @@ public class AdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        userOneLabel.setText(business.getCurentUser().getUserName() + "");
+        userOneLabel.setText(String.format("%1$s%5$2s%2$s\t%3$s\t%4$s", business.getCurentUser().getFirstName(),business.getCurentUser().getLastName(), "-", business.getCurrentUserDomainID(), "" ));
         userlist = new ArrayList<>();
 
         //filling choceboxes
@@ -326,6 +328,16 @@ public class AdminController implements Initializable {
             }
         }
         return dep;
+    }
+
+    @FXML
+    private void changeThisUserPW(ActionEvent event) throws IOException {
+        Parent pwScreen = FXMLLoader.load(getClass().getResource("ChangePassword.fxml"));
+
+        Scene newScene = new Scene(pwScreen);
+        Stage appstage = (Stage) menuBar.getScene().getWindow();
+        appstage.setScene(newScene);
+        appstage.show();
     }
 
 }
