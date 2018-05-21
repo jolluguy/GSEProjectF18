@@ -46,6 +46,8 @@ public class AdminController implements Initializable {
     private Collection<IJob> jobList;
     private Collection<IDepartment> departmentList;
     private Collection<IUser> userlist;
+    
+    private IBusiness business = GUIFacade.getInstance().getBusiness();
 
     @FXML
     private Label usernameLabel;
@@ -73,18 +75,12 @@ public class AdminController implements Initializable {
     private Label warningLabel;
     @FXML
     private Label jobUsername;
-    private TextField jobUsernameField;
-    private PasswordField jobPasswordField;
-    private RadioButton jobCaseRadio;
-    private RadioButton jobAdminRadio;
     @FXML
     private Button jobSavechangeButton;
     @FXML
     private Button jobCancelButton;
     @FXML
     private Label jobWarningLabel;
-
-    private IBusiness business = GUIFacade.getInstance().getBusiness();
     @FXML
     private RadioButton jobInactiveRadio;
     @FXML
