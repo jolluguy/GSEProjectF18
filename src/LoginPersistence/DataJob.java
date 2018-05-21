@@ -5,12 +5,8 @@
  */
 package LoginPersistence;
 
-import Acquaintance.IAdmin;
 import Acquaintance.IDepartment;
 import Acquaintance.IJob;
-import Acquaintance.IUser;
-import java.sql.Timestamp;
-import java.util.Collection;
 
 /**
  *

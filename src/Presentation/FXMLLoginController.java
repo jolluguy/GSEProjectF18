@@ -99,6 +99,11 @@ public class FXMLLoginController implements Initializable {
             switch (result) {
                 case -1:{
                     errorLabel.setText("Brugernavn eller password er forkert!");
+                    break;
+                }
+                case -2:{
+                   errorLabel.setText("Bruger har ikke retighed til at logge ind. Kontakt systemadministrator!"); 
+                   break;
                 }
                 case 1: {
                     Parent caseworkerScene = FXMLLoader.load(getClass().getResource("Caseworker.fxml"));

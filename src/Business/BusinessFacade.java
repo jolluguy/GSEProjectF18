@@ -1,9 +1,3 @@
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Business;
 
 import Acquaintance.IBusiness;
@@ -82,12 +76,12 @@ public class BusinessFacade implements IBusiness {
     }
     
     @Override
-    public boolean changePassword(String oldPassword, String newPassword1, String newPassword2){
-        return loginManager.changePassword(oldPassword, newPassword1, newPassword2);
+    public boolean changePassword(String oldPassword, String newPassword){
+        return loginManager.changePassword(oldPassword, newPassword);
     }
-    
-    public IUser getUserOne() {
-        return loginManager.getUserOne();
+     @Override
+    public IUser getCurentUser() {
+        return loginManager.getCurentUser();
     }
 
 //    @Override
@@ -101,15 +95,19 @@ public class BusinessFacade implements IBusiness {
     public IUser getUser(String userName) {
         return loginPersistence.getUser(userName);
     }
-
-    @Override
-    public boolean createUser(String firstName, String lastName, String userName, String password1, String password2, String jobtitle, int jobID, int accessLevel, int departmentID, String departmentName) {
-        return loginManager.getUserOne().getJob().createUser(firstName, lastName, userName, password1, password2, jobtitle, jobID, accessLevel, departmentID, departmentName);
+    
+    public IUser getUser(int userID) {
+        return loginPersistence.getUser(userID);
     }
 
     @Override
-    public boolean changeJob(String userName, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
-        return loginManager.getUserOne().getJob().changeJob(userName, jobTitle, ID, accessLevel, departmentID, departmentName);
+    public boolean createUser(String firstName, String lastName, String userName, String password1, String password2, String jobtitle, int jobID, int accessLevel, int departmentID, String departmentName) {
+        return loginManager.getCurentUser().getJob().createUser(firstName, lastName, userName, password1, password2, jobtitle, jobID, accessLevel, departmentID, departmentName);
+    }
+
+    @Override
+    public boolean changeJob(String userName, boolean active, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
+        return loginManager.getCurentUser().getJob().changeJob(userName, active, jobTitle, ID, accessLevel, departmentID, departmentName);
     }
 
     public boolean addUser(IUser user) {
@@ -130,8 +128,8 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public Collection<IUser> getUserList() {
-        System.out.println(loginManager.getUserOne().getJob());
-                return loginManager.getUserOne().getJob().getUserList();
+
+                return loginManager.getCurentUser().getJob().getUserList();
     }
 
     Collection<IUser> getAllUsers() {
@@ -163,31 +161,54 @@ public class BusinessFacade implements IBusiness {
                 String note, String caseWorkerID,
                 Map<Integer, String> serviceIDList,
                 Map<Integer, String> offerIDList){
-        return caseManager.createCase(problemDescription, inquirer, citizenAgreement, 
-                cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, 
-                city, phoneNumber, responsibleCaseworker, informedRightsBystander, 
-                informedRightsElectronicRegistration, consent, consentToInformationGathering, 
-                specialCircumstances, otherActingMunicipality, otherPayingMunicipality, meetingTime, 
-                attendingCasworkerIDList, meetingDescription, meetingLocation, cprNumberRep, 
-                firstNameRep, lastNameRep, roadNameRep, houseNumberRep, floorRep, postalCodeRep, 
-                cityRep, phoneNumberRep, representationType, note, caseWorkerID, serviceIDList, offerIDList);
-    }   
+        return caseManager.createCase(problemDescription, inquirer, citizenAgreement, cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber, responsibleCaseworker, informedRightsBystander, informedRightsElectronicRegistration, consent, consentToInformationGathering, specialCircumstances, otherActingMunicipality, otherPayingMunicipality, meetingTime, attendingCasworkerIDList, meetingDescription, meetingLocation, cprNumberRep, firstNameRep, lastNameRep, roadNameRep, houseNumberRep, floorRep, postalCodeRep, cityRep, phoneNumberRep, representationType, note, caseWorkerID, serviceIDList, offerIDList);
+    }
+    
     boolean saveCase(ICase case1) {
         return dataPersistence.saveCase(case1);
     }
+
     @Override
     public Collection<IJob> getJobList(){
-        return loginPersistence.getJobList();   
+        return loginPersistence.getJobList();
+        
     }
+
     @Override
     public Collection<IDepartment> getdepartmentList() {
         return loginPersistence.getDepartmentList();
     }
-
+    
+    
     @Override
+    public boolean doesUserExist(String userName){
+        return loginPersistence.doesUserExist(userName);
+    }
+    
+    @Override
+    public String getCurrentUserDomainID(){
+        return loginManager.getCurrentUserDomainID();
+    }
+    
+    @Override
+    public String getdomainID(IUser user){
+        return loginManager.getdomainID(user);
+    }
+    
+    @Override
+    public IUser getUserFromDomainID(String domainID){
+        return loginManager.getUserFromDomainID(domainID);
+    }
+
+    void updatePassword(IUser user) {
+        loginPersistence.updatePassword(user);
+    }
+  
+   @Override
     public boolean validateCPR(String cprNumber) {
         boolean result = caseManager.validateCPR(cprNumber);
         return result;
     }
     
+  
 }

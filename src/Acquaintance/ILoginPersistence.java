@@ -35,4 +35,10 @@ public interface ILoginPersistence {
     public Collection<IJob> getJobList();
 
     public Collection<IDepartment> getDepartmentList();
+
+    public boolean doesUserExist(String userName);
+
+    public IUser getUser(int userID);
+
+    public void updatePassword(IUser user);
 }

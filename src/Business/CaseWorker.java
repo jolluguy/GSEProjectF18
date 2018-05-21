@@ -5,7 +5,6 @@
  */
 package Business;
 
-import Acquaintance.ICaseWorker;
 import Acquaintance.IUser;
 import java.util.Collection;
 
@@ -13,7 +12,7 @@ import java.util.Collection;
  *
  * @author Rasmus
  */
-public class CaseWorker extends Job implements ICaseWorker {
+public class CaseWorker extends Job{
 
     public CaseWorker(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
         super(jobTitle, ID, accessLevel, departmentID, departmentName);
@@ -30,7 +29,7 @@ public class CaseWorker extends Job implements ICaseWorker {
     }
 
     @Override
-    boolean changeJob(String userName, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
+    boolean changeJob(String userName, boolean active, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
         throw new UnsupportedOperationException("Not supported by this job.");
     }
 

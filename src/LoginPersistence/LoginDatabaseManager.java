@@ -32,6 +32,14 @@ public class LoginDatabaseManager {
 
     }
 
+    /**
+     * vreates a User in the Database, this is written based on the notion that
+     * the jobs and departments allready is created with the rigth atributes in
+     * the database.
+     *
+     * @param user
+     * @return
+     */
     public boolean createUserInDB(IUser user) {
 
         String firstName = user.getFirstName();
@@ -44,18 +52,21 @@ public class LoginDatabaseManager {
         Timestamp createdTime = user.getCreatedTime();
         Timestamp lastLoginTime = user.getLastLoginTime();
 
+        int jobID = user.getJob().getID();
+        int departmentID = user.getJob().getDepartment().getDepartmentID();
+
         try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
 
             Class.forName("org.postgresql.Driver");
 
             //Query 1
-            PreparedStatement st1 = conn.prepareStatement("INSERT INTO login (brugernavn, kodeord, niveau, oprettet, sidste_login) "
+            PreparedStatement st1 = conn.prepareStatement("INSERT INTO login (brugernavn, kodeord, aktiv, oprettet, sidste_login) "
                     + "VALUES ('" + userName + "', '" + password + "', " + active + ", '" + createdTime + "', '" + lastLoginTime + "');");
 
             st1.executeUpdate();
 
             //Query 2
-            PreparedStatement st2 = conn.prepareStatement("INSERT INTO bruger(fornavn, efternavn, telefonnummer,mail) "
+            PreparedStatement st2 = conn.prepareStatement("INSERT INTO bruger(fornavn, efternavn, telefonnummer, mail) "
                     + "VALUES('" + firstName + "', '" + lastName + "', '" + phoneNumber + "', '" + mail + "');");
 
             st2.executeUpdate();
@@ -78,6 +89,16 @@ public class LoginDatabaseManager {
             PreparedStatement st4 = conn.prepareStatement("INSERT INTO holder_info VALUES('" + userName + "', " + userID + ");");
 
             st4.executeUpdate();
+
+            //Query connect user with job
+            PreparedStatement st5 = conn.prepareStatement("INSERT INTO besidder VALUES('" + userID + "', " + jobID + ");");
+
+            st5.executeUpdate();
+
+            //Querry that connect user with department
+            PreparedStatement st6 = conn.prepareStatement("INSERT INTO tilhører VALUES('" + userID + "', " + departmentID + ");");
+
+            st6.executeUpdate();
 
             return true;
 
@@ -108,16 +129,29 @@ public class LoginDatabaseManager {
 
     }
 
+    /**
+     * updates alle parameters the concerens the users jobstatus, including the
+     * job, department and active status.
+     *
+     * @param user
+     * @return
+     */
     public boolean updateJob(IUser user) {
-        String userName = user.getUserName();
-        boolean active = user.getActive();
 
         try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
             Class.forName("org.postgresql.Driver");
 
-            PreparedStatement st = conn.prepareStatement("UPDATE login SET niveau = '" + active + "' WHERE brugernavn = '" + userName + "';");
+            PreparedStatement st1 = conn.prepareStatement("UPDATE login SET aktiv = '" + user.getActive() + "' WHERE brugernavn = '" + user.getUserName() + "';");
 
-            st.executeUpdate();
+            st1.executeUpdate();
+
+            PreparedStatement st2 = conn.prepareStatement("UPDATE besidder SET stillings_id = '" + user.getJob().getID() + "' WHERE bruger_id = '" + user.getUserID() + "';");
+
+            st2.executeUpdate();
+
+            PreparedStatement st3 = conn.prepareStatement("UPDATE tilhører SET afdelings_id = '" + user.getJob().getDepartment().getDepartmentID() + "' WHERE bruger_id = '" + user.getUserID() + "';");
+
+            st3.executeUpdate();
 
             return true;
 
@@ -137,31 +171,31 @@ public class LoginDatabaseManager {
 
             Statement st = conn.createStatement();
             String sql = "SELECT * FROM login "
-                        + "INNER JOIN holder_info ON login.brugernavn = holder_info.brugernavn "
-                        + "INNER JOIN bruger ON holder_info.bruger_id = bruger.bruger_id "
-                        + "INNER JOIN tilhører ON bruger.bruger_id = tilhører.bruger_id "
-                        + "INNER JOIN afdeling ON tilhører.afdelings_id = afdeling.afdelings_id "
-                        + "INNER JOIN besidder ON bruger.bruger_id = besidder.bruger_id "
-                        + "INNER JOIN stilling ON besidder.stillings_id = stilling.stillings_id";
+                    + "INNER JOIN holder_info ON login.brugernavn = holder_info.brugernavn "
+                    + "INNER JOIN bruger ON holder_info.bruger_id = bruger.bruger_id "
+                    + "INNER JOIN tilhører ON bruger.bruger_id = tilhører.bruger_id "
+                    + "INNER JOIN afdeling ON tilhører.afdelings_id = afdeling.afdelings_id "
+                    + "INNER JOIN besidder ON bruger.bruger_id = besidder.bruger_id "
+                    + "INNER JOIN stilling ON besidder.stillings_id = stilling.stillings_id";
 
             ResultSet result = st.executeQuery(sql);
 
             while (result.next()) {
                 int tempUserID = result.getInt("bruger_id");
-                    String tempFirstName = result.getString("fornavn");
-                    String tempLastName = result.getString("efternavn");
-                    String tempPhone = result.getString("telefonnummer");
-                    String tempEmail = result.getString("mail");
-                    String tempUserName = result.getString("brugernavn");
-                    String tempPassword = result.getString("kodeord");
-                    boolean tempActive = result.getBoolean("aktiv");
-                    Timestamp tempCreatedTime = result.getTimestamp("oprettet");
-                    Timestamp tempLastLoginTime = result.getTimestamp("sidste_login");
-                    String tempJobTitle = result.getString("stillings_titel");
-                    int tempJobID = result.getInt("stillings_id");
-                    int tempAccess = result.getInt("adgangsniveau");
-                    int tempDepartmentID = result.getInt("afdelings_id");
-                    String tempDepartmentName = result.getString("afdelings_navn");
+                String tempFirstName = result.getString("fornavn");
+                String tempLastName = result.getString("efternavn");
+                String tempPhone = result.getString("telefonnummer");
+                String tempEmail = result.getString("mail");
+                String tempUserName = result.getString("brugernavn");
+                String tempPassword = result.getString("kodeord");
+                boolean tempActive = result.getBoolean("aktiv");
+                Timestamp tempCreatedTime = result.getTimestamp("oprettet");
+                Timestamp tempLastLoginTime = result.getTimestamp("sidste_login");
+                String tempJobTitle = result.getString("stillings_titel");
+                int tempJobID = result.getInt("stillings_id");
+                int tempAccess = result.getInt("adgangsniveau");
+                int tempDepartmentID = result.getInt("afdelings_id");
+                String tempDepartmentName = result.getString("afdelings_navn");
 
                 userList.add(new DataUser(tempUserID, tempFirstName, tempLastName, tempPhone, tempEmail, tempUserName, tempPassword, tempActive, tempCreatedTime, tempLastLoginTime, tempJobTitle, tempJobID, tempAccess, tempDepartmentID, tempDepartmentName));
             }
@@ -204,41 +238,36 @@ public class LoginDatabaseManager {
         try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
             Class.forName("org.postgresql.Driver");
 
-            if (doesUserExist(userName)) {
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM login "
-                        + "INNER JOIN holder_info ON login.brugernavn = holder_info.brugernavn "
-                        + "INNER JOIN bruger ON holder_info.bruger_id = bruger.bruger_id "
-                        + "INNER JOIN tilhører ON bruger.bruger_id = tilhører.bruger_id "
-                        + "INNER JOIN afdeling ON tilhører.afdelings_id = afdeling.afdelings_id "
-                        + "INNER JOIN besidder ON bruger.bruger_id = besidder.bruger_id "
-                        + "INNER JOIN stilling ON besidder.stillings_id = stilling.stillings_id "
-                        + "WHERE login.brugernavn = '" + userName + "';";
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM login "
+                    + "INNER JOIN holder_info ON login.brugernavn = holder_info.brugernavn "
+                    + "INNER JOIN bruger ON holder_info.bruger_id = bruger.bruger_id "
+                    + "INNER JOIN tilhører ON bruger.bruger_id = tilhører.bruger_id "
+                    + "INNER JOIN afdeling ON tilhører.afdelings_id = afdeling.afdelings_id "
+                    + "INNER JOIN besidder ON bruger.bruger_id = besidder.bruger_id "
+                    + "INNER JOIN stilling ON besidder.stillings_id = stilling.stillings_id "
+                    + "WHERE login.brugernavn = '" + userName + "';";
 
-                ResultSet result = st.executeQuery(sql);
+            ResultSet result = st.executeQuery(sql);
 
-                while (result.next()) {
-                    int tempUserID = result.getInt("bruger_id");
-                    String tempFirstName = result.getString("fornavn");
-                    String tempLastName = result.getString("efternavn");
-                    String tempPhone = result.getString("telefonnummer");
-                    String tempEmail = result.getString("mail");
-                    String tempUserName = result.getString("brugernavn");
-                    String tempPassword = result.getString("kodeord");
-                    boolean tempActive = result.getBoolean("aktiv");
-                    Timestamp tempCreatedTime = result.getTimestamp("oprettet");
-                    Timestamp tempLastLoginTime = result.getTimestamp("sidste_login");
-                    String tempJobTitle = result.getString("stillings_titel");
-                    int tempJobID = result.getInt("stillings_id");
-                    int tempAccess = result.getInt("adgangsniveau");
-                    int tempDepartmentID = result.getInt("afdelings_id");
-                    String tempDepartmentName = result.getString("afdelings_navn");
+            while (result.next()) {
+                int tempUserID = result.getInt("bruger_id");
+                String tempFirstName = result.getString("fornavn");
+                String tempLastName = result.getString("efternavn");
+                String tempPhone = result.getString("telefonnummer");
+                String tempEmail = result.getString("mail");
+                String tempUserName = result.getString("brugernavn");
+                String tempPassword = result.getString("kodeord");
+                boolean tempActive = result.getBoolean("aktiv");
+                Timestamp tempCreatedTime = result.getTimestamp("oprettet");
+                Timestamp tempLastLoginTime = result.getTimestamp("sidste_login");
+                String tempJobTitle = result.getString("stillings_titel");
+                int tempJobID = result.getInt("stillings_id");
+                int tempAccess = result.getInt("adgangsniveau");
+                int tempDepartmentID = result.getInt("afdelings_id");
+                String tempDepartmentName = result.getString("afdelings_navn");
 
-                    user = new DataUser(tempUserID, tempFirstName, tempLastName, tempPhone, tempEmail, tempUserName, tempPassword, tempActive, tempCreatedTime, tempLastLoginTime, tempJobTitle, tempJobID, tempAccess, tempDepartmentID, tempDepartmentName);
-                }
-            } else {
-                System.out.println("User does not exist");
-                return null;
+                user = new DataUser(tempUserID, tempFirstName, tempLastName, tempPhone, tempEmail, tempUserName, tempPassword, tempActive, tempCreatedTime, tempLastLoginTime, tempJobTitle, tempJobID, tempAccess, tempDepartmentID, tempDepartmentName);
             }
 
         } catch (Exception e) {
@@ -325,6 +354,64 @@ public class LoginDatabaseManager {
             e.printStackTrace();
         }
         return depList;
+    }
+
+    IUser getUser(int userID) {
+        DataUser user = null;
+
+        try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
+            Class.forName("org.postgresql.Driver");
+
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM bruger "
+                    + "INNER JOIN holder_info ON bruger.bruger_id = holder_info.bruger_id "
+                    + "INNER JOIN login ON holder_info.brugernavn = login.brugernavn "
+                    + "INNER JOIN tilhører ON bruger.bruger_id = tilhører.bruger_id "
+                    + "INNER JOIN afdeling ON tilhører.afdelings_id = afdeling.afdelings_id "
+                    + "INNER JOIN besidder ON bruger.bruger_id = besidder.bruger_id "
+                    + "INNER JOIN stilling ON besidder.stillings_id = stilling.stillings_id "
+                    + "WHERE bruger.bruger_id = '" + userID + "';";
+
+            ResultSet result = st.executeQuery(sql);
+
+            while (result.next()) {
+                int tempUserID = result.getInt("bruger_id");
+                String tempFirstName = result.getString("fornavn");
+                String tempLastName = result.getString("efternavn");
+                String tempPhone = result.getString("telefonnummer");
+                String tempEmail = result.getString("mail");
+                String tempUserName = result.getString("brugernavn");
+                String tempPassword = result.getString("kodeord");
+                boolean tempActive = result.getBoolean("aktiv");
+                Timestamp tempCreatedTime = result.getTimestamp("oprettet");
+                Timestamp tempLastLoginTime = result.getTimestamp("sidste_login");
+                String tempJobTitle = result.getString("stillings_titel");
+                int tempJobID = result.getInt("stillings_id");
+                int tempAccess = result.getInt("adgangsniveau");
+                int tempDepartmentID = result.getInt("afdelings_id");
+                String tempDepartmentName = result.getString("afdelings_navn");
+
+                user = new DataUser(tempUserID, tempFirstName, tempLastName, tempPhone, tempEmail, tempUserName, tempPassword, tempActive, tempCreatedTime, tempLastLoginTime, tempJobTitle, tempJobID, tempAccess, tempDepartmentID, tempDepartmentName);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    void updatePassword(IUser user) {
+        try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
+
+            Class.forName("org.postgresql.Driver");
+
+            PreparedStatement st = conn.prepareStatement("UPDATE login SET kodeord = '" + (user.getPassword()) + "' WHERE brugernavn = '" + user.getUserName() + "';");
+
+            st.executeUpdate();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
