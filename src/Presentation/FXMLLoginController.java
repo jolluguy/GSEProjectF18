@@ -6,7 +6,7 @@
 package Presentation;
 
 import Acquaintance.IBusiness;
-import Acquaintance.IUser;
+import java.awt.Color;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -22,8 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 /**
@@ -69,11 +68,13 @@ public class FXMLLoginController implements Initializable {
 
         @Override
         public void run() {
-            connectionWarningLabel.setText("Test");
+            connectionWarningLabel.setText("ForbindelsesStatus: Forbundet");
+            connectionWarningLabel.setTextFill(Paint.valueOf("GREEN"));
             try {
                 business.pingDatabase();
             } catch (SQLException e) {
-                connectionWarningLabel.setText("Ingen forbindelse til databasen.");
+                connectionWarningLabel.setText("ForbindelsesStatus: Ingen forbindelse");
+                connectionWarningLabel.setTextFill(Paint.valueOf("RED"));
             }
 
         }
