@@ -89,41 +89,44 @@ public class FXMLLoginController implements Initializable {
 //            connectionWarningLabel.setText("Ingen forbindelse til databasen.");
 //        }
 //    }
-
     @FXML
     public void login(ActionEvent event) throws IOException {
         String userName = usernameField.getText().toLowerCase();
         String password = passwordField.getText();
 
-        if (business.checkCredentials(userName, password) == false) {
-            errorLabel.setText("Brugernavn eller password er forkert!");
-        } else {
             int result = business.login(userName, password);
 
             switch (result) {
-                case 1:
-                    {
-                        Parent caseworkerScene = FXMLLoader.load(getClass().getResource("Caseworker.fxml"));
-                        Scene newScene = new Scene(caseworkerScene);
-                        Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        appStage.setScene(newScene);
-                        appStage.show();
-                        break;
-                    }
-                case 2:
-                    {
-                        Parent adminScene = FXMLLoader.load(getClass().getResource("Admin.fxml"));
-                        Scene newScene = new Scene(adminScene);
-                        Stage appstage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        appstage.setScene(newScene);
-                        appstage.show();
-                        break;
-                    }
-                case 0:
+                case -1:{
+                    errorLabel.setText("Brugernavn eller password er forkert!");
+                    break;
+                }
+                case -2:{
+                   errorLabel.setText("Bruger har ikke retighed til at logge ind. Kontakt systemadministrator!"); 
+                   break;
+                }
+                case 1: {
+                    Parent caseworkerScene = FXMLLoader.load(getClass().getResource("Caseworker.fxml"));
+                    Scene newScene = new Scene(caseworkerScene);
+                    Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    appStage.setScene(newScene);
+                    appStage.show();
+                    break;
+                }
+                case 2: {
+                    Parent adminScene = FXMLLoader.load(getClass().getResource("Admin.fxml"));
+                    Scene newScene = new Scene(adminScene);
+                    Stage appstage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    appstage.setScene(newScene);
+                    appstage.show();
+                    break;
+                }
+                case 0:{
                     errorLabel.setText("ADGANG NÆGTET! - Denne bruger er inaktiv!");
                     errorLabel2.setText("Kontakt IT-Support for hjælp");
                     break;
-                default:
+                }
+                default:{
                     break;
             }
 

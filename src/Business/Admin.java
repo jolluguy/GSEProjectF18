@@ -5,18 +5,14 @@
  */
 package Business;
 
-import Acquaintance.IAdmin;
-import Acquaintance.IJob;
 import Acquaintance.IUser;
 import java.util.Collection;
-import java.sql.Timestamp;
-import java.util.ArrayList;
 
 /**
  *
  * @author Rasmus
  */
-public class Admin extends Job implements IAdmin {
+public class Admin extends Job{
 
     private LoginManager loginManeger = LoginManager.getInstance();
 
@@ -26,36 +22,31 @@ public class Admin extends Job implements IAdmin {
     
     
     
-//    @Override
+    @Override
     public boolean createUser(String firstName, String lastName, String userName, String password1, String password2, String jobtitle, int jobID, int accessLevel, int departmentID, String departmentName) {
         if (password1.equals(password2)) {
-            return loginManeger.addUser(firstName, lastName, userName, password2, jobtitle, jobID, accessLevel, departmentID, departmentName);
+                    IUser user = new User(firstName, lastName, userName, password1, jobtitle, jobID, accessLevel, departmentID, departmentName);
+            return loginManeger.addUser(user);
         } else {
             return false;
         }
     }
     
     @Override
-    public boolean changeJob(String userName, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
+    public boolean changeJob(String userName,boolean active, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
         IUser user = loginManeger.getUser(userName);
+        user.setActive(active);
         user.setJob(jobTitle, ID, accessLevel, departmentID, departmentName); //Parsing IJob to job... Might give some problems.
         return loginManeger.updateJob(user);
     }
     
 
 
+    @Override
     public Collection<IUser> getUserList() {
-        System.out.println("test");
         return loginManeger.getAllUsers();
         
-//        ArrayList<IUser> tempList = new ArrayList<>();
-//        for(IUser i : facade.getAllUsers()){
-//            tempList.add(new User(i.getUserName(), i.getPassword(), i.getActive(), i.getCreatedTime(), i.getLastLoginTime()));
-//        }
-//            
-//        return tempList;
     }
-
 
     
     

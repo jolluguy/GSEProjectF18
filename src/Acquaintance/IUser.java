@@ -40,6 +40,7 @@ public interface IUser {
     Timestamp getLastLoginTime();
 
     public void setLastLoginTime();
+    int getUserID();
 
 //    public IAdmin getAdmin();
 

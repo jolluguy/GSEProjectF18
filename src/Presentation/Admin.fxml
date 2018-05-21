@@ -17,11 +17,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.AdminController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.AdminController">
    <children>
       <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="751.0" prefWidth="911.0" style="-fx-background-color: white;" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Tilføj bruger">
+          <Tab fx:id="addNewUserTab" text="Tilføj bruger">
             <content>
               <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="722.0" prefWidth="1292.0" style="-fx-background-color: white;">
                      <children>
@@ -80,7 +80,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab text="Ændre bruger job">
+            <Tab fx:id="changeExistingUserTab" text="Ændre bruger job">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -88,28 +88,14 @@
                            <font>
                               <Font size="15.0" />
                            </font></Label>
-                        <Label fx:id="jobPassword" layoutX="59.0" layoutY="117.0" text="Password">
+                        <TextField fx:id="changeJobUsernameField" layoutX="228.0" layoutY="52.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: F3F3F3; -fx-background-radius: 3;" />
+                        <RadioButton fx:id="jobInactiveRadio" layoutX="226.0" layoutY="282.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="133.0" text="Inaktiv">
                            <font>
                               <Font size="15.0" />
-                           </font></Label>
-                        <TextField fx:id="jobUsernameField" layoutX="228.0" layoutY="52.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: F3F3F3; -fx-background-radius: 3;" />
-                        <PasswordField fx:id="jobPasswordField" layoutX="228.0" layoutY="111.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: F3F3F3; -fx-background-radius: 3;" />
-                        <RadioButton fx:id="jobCaseRadio" layoutX="228.0" layoutY="182.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="133.0" text="Sagsbehandler">
+                           </font>
                            <toggleGroup>
-                              <ToggleGroup fx:id="jobRadio" />
+                              <ToggleGroup fx:id="changeJobUserStatus" />
                            </toggleGroup>
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </RadioButton>
-                        <RadioButton fx:id="jobAdminRadio" layoutX="228.0" layoutY="217.0" mnemonicParsing="false" text="Admin" toggleGroup="$jobRadio">
-                           <font>
-                              <Font size="15.0" />
-                           </font></RadioButton>
-                        <RadioButton fx:id="jobInactiveRadio" layoutX="228.0" layoutY="251.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="133.0" text="Inaktiv" toggleGroup="$jobRadio">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
                         </RadioButton>
                         <Label fx:id="jobWarningLabel" layoutX="53.0" layoutY="628.0" prefHeight="21.0" prefWidth="484.0" />
                         <Button fx:id="jobSavechangeButton" layoutX="27.0" layoutY="661.0" mnemonicParsing="false" onAction="#changeJob" style="-fx-background-color: F3F3F3; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Gem ændringer">
@@ -122,6 +108,33 @@
                               <Font size="15.0" />
                            </font>
                         </Button>
+                        <Label layoutX="228.0" layoutY="114.0" text="Stilling">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="changeJobChoicebox" layoutX="229.0" layoutY="135.0" prefWidth="150.0" />
+                        <Label layoutX="406.0" layoutY="114.0" text="Afdeling">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="changeDepartmentChoicebox" layoutX="406.0" layoutY="135.0" prefWidth="150.0" />
+                        <RadioButton fx:id="jobActiveRadio" layoutX="226.0" layoutY="249.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="133.0" text="Aktiv" toggleGroup="$changeJobUserStatus">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </RadioButton>
+                        <Label layoutX="225.0" layoutY="189.0" text="Ændre bruger status">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <RadioButton fx:id="jobUnchangedRadio" layoutX="226.0" layoutY="218.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="133.0" selected="true" text="Uændret" toggleGroup="$changeJobUserStatus">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </RadioButton>
                      </children></AnchorPane>
                </content>
             </Tab>
@@ -141,17 +154,18 @@
             <Image url="@../AssetsLibrary/SenSum_Logo.png" />
          </image>
       </ImageView>
-      <ListView fx:id="userListview" layoutX="911.0" layoutY="60.0" prefHeight="692.0" prefWidth="391.0" style="-fx-border-color: black;" />
+      <ListView fx:id="userListview" layoutX="911.0" layoutY="60.0" prefHeight="692.0" prefWidth="470.0" style="-fx-border-color: black;" />
       <Label layoutX="914.0" layoutY="39.0" text="Brugernavn" />
-      <Label layoutX="1012.0" layoutY="40.0" text="Job" />
-      <Label layoutX="1071.0" layoutY="40.0" text="Oprettet" />
-      <Label layoutX="1193.0" layoutY="40.0" text="Sidst aktiv" />
+      <Label layoutX="1030.0" layoutY="40.0" text="Job" />
+      <Label layoutX="1200.0" layoutY="40.0" text="Oprettet" />
+      <Label layoutX="1300.0" layoutY="40.0" text="Sidst aktiv" />
       <Label fx:id="userOneLabel" alignment="BASELINE_RIGHT" layoutX="536.0" layoutY="7.0" prefHeight="17.0" prefWidth="251.0" AnchorPane.leftAnchor="536.0" />
       <MenuButton fx:id="menuBar" layoutX="797.0" layoutY="4.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Funktioner">
         <items>
-          <MenuItem mnemonicParsing="false" text="Skift password" />
+          <MenuItem fx:id="changeThisUserPWButton" mnemonicParsing="false" onAction="#changeThisUserPW" text="Skift password" />
           <MenuItem fx:id="logoutButton" mnemonicParsing="false" onAction="#logout" text="Log ud" />
         </items>
       </MenuButton>
+      <Label layoutX="1120.0" layoutY="40.0" text="Aktiv" />
    </children>
 </AnchorPane>

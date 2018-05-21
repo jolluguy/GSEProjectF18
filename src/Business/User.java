@@ -5,8 +5,6 @@
  */
 package Business;
 
-import Acquaintance.IAdmin;
-import Acquaintance.IJob;
 import Acquaintance.IUser;
 import java.io.Serializable;
 import java.text.DateFormat;
@@ -64,24 +62,52 @@ public class User implements IUser, Serializable {
     }
 
     /**
-     * this i dont know what the fuck do
+     * Method for creating User with all parameters.
      * @param userName
      * @param password
-     * @param active
      * @param createdTime
-     * @param lastLoginTime 
+     * @param lastLoginTime
+     * @param active
+     * @param firstName
+     * @param lastName
+     * @param phoneNumber
+     * @param mail
+     * @param job 
      */
-    public User(String userName, String password, boolean active, Timestamp createdTime, Timestamp lastLoginTime) {
+    public User(String userName, String password, Timestamp createdTime, Timestamp lastLoginTime, boolean active, String firstName, String lastName, String phoneNumber, String mail, Job job) {
         this.userName = userName;
         this.password = password;
-        this.active = active;
         this.createdTime = createdTime;
         this.lastLoginTime = lastLoginTime;
+        this.active = active;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.mail = mail;
+        this.job = job;
     }
+    
+    
 
-    User(String firstName, String lastName, String userName, String password2, boolean active, String lastName0, int ID, int accessLevel, int ID0, String lastName1, Timestamp createdTime, Timestamp lastLoginTime) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//    /**
+//     * this i dont know what the fuck do
+//     * @param userName
+//     * @param password
+//     * @param active
+//     * @param createdTime
+//     * @param lastLoginTime 
+//     */
+//    public User(String userName, String password, boolean active, Timestamp createdTime, Timestamp lastLoginTime) {
+//        this.userName = userName;
+//        this.password = password;
+//        this.active = active;
+//        this.createdTime = createdTime;
+//        this.lastLoginTime = lastLoginTime;
+//    }
+
+//    User(String firstName, String lastName, String userName, String password2, boolean active, String lastName0, int ID, int accessLevel, int ID0, String lastName1, Timestamp createdTime, Timestamp lastLoginTime) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
     
     @Override
     public Job getJob() {
@@ -89,10 +115,10 @@ public class User implements IUser, Serializable {
     }
 
 //    @Override
-    Admin getAdmin() {
+    Job getAdmin() {
         
         if (this.getClass().getSimpleName().equalsIgnoreCase("admin")) {
-            return (Admin) this.job;
+            return this.job;
     }
         else {
             return null;
@@ -182,6 +208,11 @@ public class User implements IUser, Serializable {
     public String toString() {
         String str = String.format("%1$-16s\t%2$d\t%3$s\t%4$s", userName, active, df.format(createdTime), df.format(lastLoginTime));
         return str;
+    }
+
+    @Override
+    public int getUserID() {
+        return this.userID;
     }
 
 }

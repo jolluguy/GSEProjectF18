@@ -6,6 +6,8 @@
 package Business;
 
 import Acquaintance.IJob;
+import Acquaintance.IUser;
+import java.util.Collection;
 
 /**
  *
@@ -44,8 +46,13 @@ public abstract class Job implements IJob {
 }
 
     @Override
-    public Department getDepartment() {
+    public  Department getDepartment() {
         return department;
     }
-    
+
+    abstract Collection<IUser> getUserList();
+
+    abstract boolean createUser(String firstName, String lastName, String userName, String password1, String password2, String jobtitle, int jobID, int accessLevel, int departmentID, String departmentName);
+
+    abstract boolean changeJob(String userName,boolean active, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName);
 }
