@@ -1,9 +1,3 @@
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Business;
 
 import Acquaintance.IBusiness;
@@ -209,4 +203,12 @@ public class BusinessFacade implements IBusiness {
     void updatePassword(IUser user) {
         loginPersistence.updatePassword(user);
     }
+  
+   @Override
+    public boolean validateCPR(String cprNumber) {
+        boolean result = caseManager.validateCPR(cprNumber);
+        return result;
+    }
+    
+  
 }

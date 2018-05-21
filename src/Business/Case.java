@@ -75,8 +75,11 @@ public class Case implements ICase {
             String specialCircumstances,
             String otherActingMunicipality,
             String otherPayingMunicipality,
-            Timestamp meetingTime, Collection<String> attendingCasworkerIDList, String meetingDescription, String meetingLocation,
-            String cprNumber, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber, String representationType,
+            Timestamp meetingTime, Collection<String> attendingCasworkerIDList, 
+            String meetingDescription, String meetingLocation,
+            String cprNumber, String firstName, String lastName, String roadName, 
+            String houseNumber, String floor, int postalCode, String city, 
+            String phoneNumber, String representationType,
             String note, String caseWorkerID,
             Map<Integer, String> serviceIDMap,
             Map<Integer, String> offerIDMap) {
