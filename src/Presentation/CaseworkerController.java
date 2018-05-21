@@ -4,8 +4,6 @@ import Acquaintance.IBusiness;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
-import java.time.LocalDate;
-import static java.time.temporal.TemporalQueries.localDate;
 import java.util.Collection;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -93,7 +91,6 @@ public class CaseworkerController implements Initializable {
     private CheckBox treatmentTherapyCheckBox;
     @FXML
     private CheckBox treatmentPsykCheckBox;
-    private CheckBox treatmentSpecialDrCheckBox;
     @FXML
     private CheckBox protectedEmploymentCheckBox;
     @FXML
@@ -346,8 +343,7 @@ public class CaseworkerController implements Initializable {
     private TextField CPRBirthField;
     @FXML
     private TextField CPRSecuityField;
-    @FXML
-    private CheckBox treamentSpecialDrCheckBox;    
+    private CheckBox treatmentSpecialDrCheckBox;    
     
     private Map<Integer, String> serviceMap;
     private Map<Integer, String> offerMap;
@@ -383,24 +379,14 @@ public class CaseworkerController implements Initializable {
     private ChoiceBox<String> attendingCaseworkerSelector;
     @FXML
     private DatePicker meetingDatePicker;
-    
-    //Has been moved from the "newInquiry" method, so that you can use the data in the "newCase" method
-    String cprNumber = (CPRBirthField.getText() + CPRSecuityField.getText() + "");
-    String problemDescription = descriptionTextAreaInquiry.getText();
-    String firstName = firstNameTextField.getText();
-    String lastName = lastNameTextField.getText();
-    String roadName = streetNameTextField.getText();
-    String houseNumber = streetNumberTextField.getText();
-    String floor = floorTextField.getText();
-    int postalCode = Integer.parseInt(postalCodeTextField.getText());
-    String city = cityTextField.getText();
-    String phoneNumber = phoneNumberPrefixTextField.getText() + phoneNumberTextField.getText();
-    String inquirer = inquiryOriginGroup.getSelectedToggle().toString();
-    boolean citizenAgreement;
     @FXML
     private TextField meetingLocationTextfield;
     @FXML
     private TextArea caseNoteTextArea;
+    @FXML
+    private CheckBox treamentSpecialDrCheckBox;
+    @FXML
+    private TextField caseCprField;
 
 
 
@@ -658,24 +644,18 @@ public class CaseworkerController implements Initializable {
     
     @FXML
     public void newInquiry(ActionEvent event) {
-//        String cprNumber = CPRBirthField.getText() + CPRSecuityField.getText();
-//        String problemDescription = descriptionTextAreaInquiry.getText();
-//        String firstName = firstNameTextField.getText();
-//        String lastName = lastNameTextField.getText();
-//        String roadName = streetNameTextField.getText();
-//        String houseNumber = streetNumberTextField.getText();
-//        String floor = floorTextField.getText();
-//        int postalCode = Integer.parseInt(postalCodeTextField.getText());
-//        String city = cityTextField.getText();
-//        String phoneNumber = phoneNumberPrefixTextField.getText() + phoneNumberTextField.getText();
-//        String inquirer = inquiryOriginGroup.getSelectedToggle().toString();
-//        boolean citizenAgreement;
-        if (inquiryUnderstoodYesRadioButton.isSelected() == true) {
-            citizenAgreement = true;
-        }
-        else{
-            citizenAgreement = false;
-        }
+        String cprNumber = CPRBirthField.getText() + CPRSecuityField.getText();
+        String problemDescription = descriptionTextAreaInquiry.getText();
+        String firstName = firstNameTextField.getText();
+        String lastName = lastNameTextField.getText();
+        String roadName = streetNameTextField.getText();
+        String houseNumber = streetNumberTextField.getText();
+        String floor = floorTextField.getText();
+        int postalCode = Integer.parseInt(postalCodeTextField.getText());
+        String city = cityTextField.getText();
+        String phoneNumber = phoneNumberPrefixTextField.getText() + phoneNumberTextField.getText();
+        String inquirer = inquiryOriginGroup.getSelectedToggle().toString();
+        boolean citizenAgreement = inquiryUnderstoodYesRadioButton.isSelected();
         
 
         boolean inquiryMade = business.newInquiry(problemDescription, inquirer, 
@@ -714,9 +694,18 @@ public class CaseworkerController implements Initializable {
     }
     @FXML
     private void newCase(ActionEvent event) {
-        
+        String cprNumber = CPRBirthField.getText() + CPRSecuityField.getText();
+        String firstName = firstNameTextField.getText();
+        String lastName = lastNameTextField.getText();
+        String roadName = streetNameTextField.getText();
+        String houseNumber = streetNumberTextField.getText();
+        String floor = floorTextField.getText();
+        int postalCode = Integer.parseInt(postalCodeTextField.getText());
+        String city = cityTextField.getText();
+        String phoneNumber = phoneNumberPrefixTextField.getText() + phoneNumberTextField.getText();
+        boolean citizenAgreement = inquiryUnderstoodYesRadioButton.isSelected();
         String problemDescription = descriptionTextAreaCase.getText();
-        String inquierer = inquiryYesOrNoGroup.getSelectedToggle().toString();
+        String inquirer = inquiryOriginGroup.getSelectedToggle().toString();
         String responsibleCaseworker = business.getCurrentUserDomainID();
         boolean informedRightsBystander = rightsBystanderCheckBox.isSelected();
         boolean informedRightsElectronicRegistration = rightsYesOrNoGroup.getSelectedToggle().isSelected();
@@ -771,7 +760,7 @@ public class CaseworkerController implements Initializable {
         String note = caseNoteTextArea.getText();
         String caseWorkerID = business.getCurrentUserDomainID();
         
-        boolean result = business.newCase(problemDescription, inquierer, citizenAgreement, cprNumber, firstName, 
+        boolean result = business.newCase(problemDescription, inquirer, citizenAgreement, cprNumber, firstName, 
                 lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber, 
                 responsibleCaseworker, informedRightsBystander, informedRightsElectronicRegistration, consent, consentToInformationGathering, 
                 specialCircumstances, otherActingMunicipality, otherPayingMunicipality, 
@@ -1234,8 +1223,19 @@ public class CaseworkerController implements Initializable {
     }
 
     @FXML
+    private void changePassword(ActionEvent event) throws IOException {
+        Parent pwScreen = FXMLLoader.load(getClass().getResource("ChangePassword.fxml"));
+
+        Scene newScene = new Scene(pwScreen);
+        Stage appstage = (Stage) menuBar.getScene().getWindow();
+        appstage.setScene(newScene);
+        appstage.show();
+    }
+    
+
+    @FXML
     private void checkCPRValidity(KeyEvent event) {
-        String cpr = CPRBirthField.getText() + CPRSecuityField.getText();
+        String cpr = (CPRBirthField.getText() + "-" + CPRSecuityField.getText());
         boolean result = business.validateCPR(cpr);
         if (result) {
             CPRBirthField.setStyle("-fx-text-fill: black;");
@@ -1254,16 +1254,7 @@ public class CaseworkerController implements Initializable {
     }
 
     @FXML
-    private void changePassword(ActionEvent event) throws IOException {
-        Parent pwScreen = FXMLLoader.load(getClass().getResource("ChangePassword.fxml"));
-
-        Scene newScene = new Scene(pwScreen);
-        Stage appstage = (Stage) menuBar.getScene().getWindow();
-        appstage.setScene(newScene);
-        appstage.show();
+    private void switchToCase(ActionEvent event) {
+        
     }
-    
-    
-
-
 }
