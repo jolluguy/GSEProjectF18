@@ -39,7 +39,7 @@
       </ImageView>
       <Label fx:id="errorLabel" contentDisplay="CENTER" layoutX="279.0" layoutY="363.0" textFill="#f80505" />
       <Label fx:id="errorLabel2" alignment="CENTER" contentDisplay="CENTER" layoutX="316.0" layoutY="393.0" textFill="#fc0000" />
-      <Label fx:id="connectionWarningLabel" layoutX="245.0" layoutY="509.0" prefHeight="21.0" prefWidth="309.0" />
+      <Label fx:id="connectionWarningLabel" layoutX="479.0" layoutY="567.0" prefHeight="21.0" prefWidth="309.0" />
    </children>
    <cursor>
       <Cursor fx:constant="DEFAULT" />
