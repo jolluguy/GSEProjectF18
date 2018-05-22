@@ -16,7 +16,7 @@ import java.util.Map;
  *
  * @author Rasmus
  */
-public class Case implements ICase {
+class Case implements ICase {
 
     private String responsibleCaseworkerDomainID;
     private boolean informedRightsBystander;
@@ -65,7 +65,7 @@ public class Case implements ICase {
      * @param serviceIDMap
      * @param offerIDMap
      */
-    public Case(IInquiry inquiry,
+    Case(IInquiry inquiry,
             String responsibleCaseworkerDomainID,
             boolean informedRightsBystander,
             boolean informedRightsElectronicRegistration,
@@ -75,8 +75,8 @@ public class Case implements ICase {
             String otherActingMunicipality,
             String otherPayingMunicipality,
             Timestamp meetingTime, String meetingDescription, String meetingLocation,
-            String cprNumber, String firstName, String lastName, String roadName, 
-            String houseNumber, String floor, int postalCode, String city, 
+            String cprNumber, String firstName, String lastName, String roadName,
+            String houseNumber, String floor, int postalCode, String city,
             String phoneNumber, String representationType,
             String note,
             Map<Integer, String> serviceIDMap,
@@ -107,7 +107,6 @@ public class Case implements ICase {
         // creating a list of caseworkers who has ben affiliated with the case and adding the responsibleCaseworkerDomainID to the list
         this.affiliatedCaseworkers = new ArrayList<>();
         affiliatedCaseworkers.add(this.responsibleCaseworkerDomainID);
-
 
         //creates a list to hold meetings and adds the first meeting
         this.meetingList = new ArrayList<>();
@@ -233,27 +232,27 @@ public class Case implements ICase {
         return informedRightsBystander;
     }
 
-    public void setInformedRightsBystander(boolean informedRightsBystander) {
+    void setInformedRightsBystander(boolean informedRightsBystander) {
         this.informedRightsBystander = informedRightsBystander;
     }
 
-    public void setInformedRightsElectronicRegistration(boolean informedRightsElectronicRegistration) {
+    void setInformedRightsElectronicRegistration(boolean informedRightsElectronicRegistration) {
         this.informedRightsElectronicRegistration = informedRightsElectronicRegistration;
     }
 
-    public void setConsent(String consent) {
+    void setConsent(String consent) {
         this.consent = consent;
     }
 
-    public void setSpecialCircumstances(String specialCircumstances) {
+    void setSpecialCircumstances(String specialCircumstances) {
         this.specialCircumstances = specialCircumstances;
     }
 
-    public void setOtherActingMunicipality(String otherActingMunicipality) {
+    void setOtherActingMunicipality(String otherActingMunicipality) {
         this.otherActingMunicipality = otherActingMunicipality;
     }
 
-    public void setOtherPayingMunicipality(String otherPayingMunicipality) {
+    void setOtherPayingMunicipality(String otherPayingMunicipality) {
         this.otherPayingMunicipality = otherPayingMunicipality;
     }
 

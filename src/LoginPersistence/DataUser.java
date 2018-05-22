@@ -172,12 +172,6 @@ public class DataUser implements IUser, Serializable {
     }
 
     @Override
-    public void setJob(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
-        
-            this.job = new DataJob(jobTitle, ID, accessLevel, departmentID, departmentName);
-    }
-
-    @Override
     public int getUserID() {
        return this.userID;
     }

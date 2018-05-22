@@ -9,27 +9,26 @@ import java.util.Collection;
  *
  * @author Rasmus
  */
-public class Meeting implements IMeeting {
-   private Timestamp meetingTime;
-   private Collection<String> attendingCasworkerIDList;
-   private String meetingDescription;
-   private String meetingLocation;
+class Meeting implements IMeeting {
 
-    public Meeting(Timestamp meetingTime,String meetingDescription, String meetingLocation) {
+    private Timestamp meetingTime;
+    private Collection<String> attendingCasworkerIDList;
+    private String meetingDescription;
+    private String meetingLocation;
+
+    Meeting(Timestamp meetingTime, String meetingDescription, String meetingLocation) {
         this.meetingTime = meetingTime;
         this.meetingDescription = meetingDescription;
         this.meetingLocation = meetingLocation;
     }
-    
-    // skriv metode til at fjerne en caseworker fra et møde
 
+    // skriv metode til at fjerne en caseworker fra et møde
     @Override
     public Timestamp getMeetingTime() {
         return this.meetingTime;
     }
 
-    @Override
-    public void setMeetingTime(Timestamp time) {
+    void setMeetingTime(Timestamp time) {
         this.meetingTime = time;
     }
 
@@ -38,8 +37,7 @@ public class Meeting implements IMeeting {
         return this.attendingCasworkerIDList;
     }
 
-    @Override
-    public void removeAttendingCaseworkerID(String caseworkerID) {
+    void removeAttendingCaseworkerID(String caseworkerID) {
         this.attendingCasworkerIDList.remove(caseworkerID);
     }
 
@@ -48,8 +46,7 @@ public class Meeting implements IMeeting {
         return this.meetingDescription;
     }
 
-    @Override
-    public void setMeetingDescription(String description) {
+    void setMeetingDescription(String description) {
         this.meetingDescription = description;
     }
 
@@ -58,8 +55,7 @@ public class Meeting implements IMeeting {
         return this.meetingLocation;
     }
 
-    @Override
-    public void setMeetingLocation(String location) {
+    void setMeetingLocation(String location) {
         this.meetingLocation = location;
     }
 }

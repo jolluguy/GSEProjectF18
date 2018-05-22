@@ -14,7 +14,7 @@ import java.sql.Timestamp;
  *
  * @author erso
  */
-public class User implements IUser, Serializable {
+class User implements IUser, Serializable {
 
     
     private String userName;
@@ -74,7 +74,8 @@ public class User implements IUser, Serializable {
      * @param mail
      * @param job 
      */
-    User(String userName, String password, Timestamp createdTime, Timestamp lastLoginTime, boolean active, String firstName, String lastName, String phoneNumber, String mail, Job job) {
+    User(int userID, String userName, String password, Timestamp createdTime, Timestamp lastLoginTime, boolean active, String firstName, String lastName, String phoneNumber, String mail, Job job) {
+        this.userID = userID;
         this.userName = userName;
         this.password = password;
         this.createdTime = createdTime;
@@ -96,7 +97,7 @@ public class User implements IUser, Serializable {
     }
     
     
-    @Override
+//    @Override
     public void setJob(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
         if(jobTitle.equalsIgnoreCase("admin")){
             this.job = new Admin(jobTitle, ID, accessLevel, departmentID, departmentName);

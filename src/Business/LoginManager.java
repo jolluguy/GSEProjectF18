@@ -12,7 +12,7 @@ import java.util.Collection;
  *
  * @author Rol's studie PC
  */
-public class LoginManager {
+class LoginManager {
 
     private static BusinessFacade facade = BusinessFacade.getInstance();
 
@@ -24,14 +24,14 @@ public class LoginManager {
 
     }
 
-    public static LoginManager getInstance() {
+    static LoginManager getInstance() {
         if (instance == null) {
             instance = new LoginManager();
         }
         return instance;
     }
 
-    public int login(String userName, String pw) {
+    int login(String userName, String pw) {
         int access = -1;
         if (facade.doesUserExist(userName)) {
             IUser user = facade.getUser(userName); //Parsing User below due to IUser return
@@ -51,7 +51,7 @@ public class LoginManager {
                     throw new UnsupportedOperationException("jobTitle not recognised."); //To change body of generated methods, choose Tools | Templates.
                 }
             }
-            User checkUser = new User(user.getUserName(), user.getPassword(), user.getCreatedTime(), user.getLastLoginTime(), user.getActive(), user.getFirstName(), user.getLastName(), user.getPhoneNumber(), user.getMail(), job);
+            User checkUser = new User(user.getUserID(), user.getUserName(), user.getPassword(), user.getCreatedTime(), user.getLastLoginTime(), user.getActive(), user.getFirstName(), user.getLastName(), user.getPhoneNumber(), user.getMail(), job);
 
             if (checkUser.checkPassword(pw)) {
                 userOne = checkUser;
@@ -67,13 +67,13 @@ public class LoginManager {
         return access;
     }
 
-    public void logOut() {
+    void logOut() {
         userOne = null;
     }
 
     
 
-    public User getCurentUser() {
+    User getCurentUser() {
         return userOne;
     }
 

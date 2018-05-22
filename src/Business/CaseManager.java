@@ -11,7 +11,7 @@ import java.util.Map;
  *
  * @author goope
  */
-public class CaseManager {    
+class CaseManager {    
     
     BusinessFacade facade = BusinessFacade.getInstance();
     
@@ -21,7 +21,7 @@ public class CaseManager {
         
     }
     
-    public static CaseManager getInstance() {
+    static CaseManager getInstance() {
         if (instance == null) {
             instance = new CaseManager();
         }
@@ -42,7 +42,7 @@ public class CaseManager {
      * @param phoneNumber
      * @return 
      */
-    public boolean createInquiry(String problemDescription, String inquirer, boolean citizenAgreement, String cprNumber, String firstName, 
+    boolean createInquiry(String problemDescription, String inquirer, boolean citizenAgreement, String cprNumber, String firstName, 
             String lastName, String roadName, String houseNumber, String floor, 
             int postalCode, String city, String phoneNumber, String casworkerDomainId) {
         Inquiry inquiry = new Inquiry(problemDescription, inquirer, citizenAgreement, cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber, casworkerDomainId);
@@ -105,14 +105,14 @@ public class CaseManager {
      * @return 
      */
      boolean createCase(String problemDescription, String inquirer, boolean citizenAgreement, String cprNumber, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber,
-                String responsibleCaseworker, boolean informedRightsBystander, boolean informedRightsElectronicRegistration, String consent, Collection<String> consentToInformationGathering, String specialCircumstances, String otherActingMunicipality, String otherPayingMunicipality,
+                String responsibleCaseworkerDomainID, boolean informedRightsBystander, boolean informedRightsElectronicRegistration, String consent, Collection<String> consentToInformationGathering, String specialCircumstances, String otherActingMunicipality, String otherPayingMunicipality,
                 Timestamp meetingDate, String meetingDescription, String meetingLocation,
                 String cprNumberRep, String firstNameRep, String lastNameRep, String roadNameRep, String houseNumberRep, String floorRep, int postalCodeRep, String cityRep, String phoneNumberRep, String representationType,
-                String note, String caseWorkerID,
+                String note,
                 Map<Integer, String> serviceIDList,
                 Map<Integer, String> offerIDList){
-       IInquiry inquiry = new Inquiry(problemDescription, inquirer, citizenAgreement, cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber, responsibleCaseworker);
-       ICase case1 = new Case(inquiry, responsibleCaseworker,  informedRightsBystander,  informedRightsElectronicRegistration,  consent, consentToInformationGathering, specialCircumstances, otherActingMunicipality, otherPayingMunicipality, meetingDate, meetingDescription, meetingLocation, cprNumberRep, firstNameRep, lastNameRep, roadNameRep, houseNumberRep, floorRep, postalCodeRep, cityRep, phoneNumberRep, representationType, note, serviceIDList, offerIDList);
+       IInquiry inquiry = new Inquiry(problemDescription, inquirer, citizenAgreement, cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber, responsibleCaseworkerDomainID);
+       ICase case1 = new Case(inquiry, responsibleCaseworkerDomainID, informedRightsBystander, informedRightsElectronicRegistration, consent, consentToInformationGathering, specialCircumstances, otherActingMunicipality, otherPayingMunicipality, meetingDate, meetingDescription, meetingLocation, cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber, representationType, note, serviceIDList, offerIDList);
         
         return sendCaseToDB(case1);
        }
@@ -133,7 +133,7 @@ public class CaseManager {
         }
         return returnMessage;
     }
-    public boolean validateCPR(String cprNumber) {
+    boolean validateCPR(String cprNumber) {
         try {
             String parts[] = cprNumber.split("-");
             String birthpart = parts[0];

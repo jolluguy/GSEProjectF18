@@ -29,38 +29,18 @@ public class DataMeeting implements IMeeting {
         return this.meetingTime;
     }
 
-    @Override
-    public void setMeetingTime(Timestamp time) {
-        this.meetingTime = time;
-    }
-
-    @Override
+       @Override
     public Collection<String> getAttendingCaseworkerIDs() {
         return this.attendingCaseworkerIDList;
     }
 
-    @Override
-    public void removeAttendingCaseworkerID(String caseworkerID) {
-        this.attendingCaseworkerIDList.remove(caseworkerID);
-    }
-
-    @Override
+   @Override
     public String getMeetingDescription() {
         return this.meetingDescription;
     }
 
     @Override
-    public void setMeetingDescription(String description) {
-        this.meetingDescription = description;
-    }
-
-    @Override
     public String getMeetingLocation() {
         return this.meetingLocation;
-    }
-
-    @Override
-    public void setMeetingLocation(String location) {
-        this.meetingLocation = location;
     }
 }

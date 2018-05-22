@@ -28,77 +28,50 @@ class DataPerson implements IPerson {
         this.postalCode = postalCode;
         this.city = city;
         this.phoneNumber = phoneNumber;
-        
+
         this.cpr = new DataCPR(cprNumber);
     }
 
-    
-@Override
+    @Override
     public String getFirstName() {
         return firstName;
     }
-    @Override
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+
     @Override
     public String getLastName() {
         return lastName;
     }
-    @Override
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+
     @Override
     public String getRoadName() {
         return roadName;
     }
-    @Override
-    public void setRoadName(String roadName) {
-        this.roadName = roadName;
-    }
+
     @Override
     public String getHouseNumber() {
         return houseNumber;
     }
-    @Override
-    public void setHouseNumber(String houseNumber) {
-        this.houseNumber = houseNumber;
-    }
+
     @Override
     public String getFloor() {
         return floor;
     }
-    @Override
-    public void setFloor(String floor) {
-        this.floor = floor;
-    }
+
     @Override
     public int getPostalCode() {
         return postalCode;
     }
-    @Override
-    public void setPostalCode(int postalCode) {
-        this.postalCode = postalCode;
-    }
+
     @Override
     public String getCity() {
         return city;
     }
-    @Override
-    public void setCity(String city) {
-        this.city = city;
-    }
+
     @Override
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    @Override
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-    
     @Override
     public ICPR getCpr() {
         return this.cpr;

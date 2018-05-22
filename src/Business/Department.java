@@ -11,7 +11,7 @@ import Acquaintance.IDepartment;
  *
  * @author Rol's studie PC
  */
-public class Department implements IDepartment {
+class Department implements IDepartment {
     
     int departmentID;
     String departmentName;

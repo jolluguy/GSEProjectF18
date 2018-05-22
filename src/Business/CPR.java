@@ -12,7 +12,7 @@ import Acquaintance.ICPR;
  *
  * @author goope
  */
-public class CPR implements ICPR {
+class CPR implements ICPR {
     private String CPRNumber;
     
     CPR (String CPRNumber) {
