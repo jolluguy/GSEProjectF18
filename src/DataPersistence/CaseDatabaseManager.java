@@ -95,10 +95,27 @@ public class CaseDatabaseManager {
         try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
             Class.forName("org.postgresql.Driver");
             
+            int caseID = -1;
+            
+            //Statement 1 - Create case in database
+            Statement st1 = conn.createStatement();
+            
+            String sql1 = "INSERT INTO sag(sagsbehandler_domaene_id, samtykke_indsamling, samtykke, informeret_registrering, "
+                    + "informeret_bistand, saerlige_forhold, anden_betalingskommune, anden_handlekommune) "
+                    + "VALUES('" + case1.getResponsibleCaseworker() + "', " + case1.getConsent() + ", '" + case1.getConsentType() + "' " 
+                    + case1.isInformedRightsElectronicRegistration() + ", " + case1.isInformedRightsBystander() + ", '" + case1.getSpecialCircumstances() 
+                    + "', '" + case1.getOtherPayingMunicipality() + "', '" + case1.getOtherActingMunicipality() + "');";
+            
+            st1.executeUpdate(sql1);
+            
+            //Statement 2 - Get caseID from the new case in database
+            PreparedStatement st2 = conn.prepareStatement("SELECT sag.sags_id FROM sag WHERE ");
+            
             
             for(IInquiry inquiry : case1.getInquiryList()){
                 saveInquiry(inquiry);
             }
+            
 
             
 

@@ -10,10 +10,12 @@ import Acquaintance.IService;
 import java.util.Collection;
 
 class DataCase implements ICase {
+    
     private String responsibleCaseworker;
     private boolean informedRightsBystander;
     private boolean informedRightsElectronicRegistration;
-    private String consent;
+    private boolean consent;
+    private String consentType;
     private Collection<String> consentToInformationGathering;
     private String specialCircumstances;
     private String otherActingMunicipality;
@@ -29,12 +31,13 @@ class DataCase implements ICase {
 
     
     // Alle ting i collections tilføjes via add-metoderne, så vi kan iterere over dem
-    DataCase(String responsibleCw, boolean informedRightsBystander, boolean informedRightsElectronicRegistration, String consent, String specialCircumstances,
+    DataCase(String responsibleCw, boolean informedRightsBystander, boolean informedRightsElectronicRegistration, boolean consent, String consentType, String specialCircumstances,
             String otherActingMunicipality, String otherPayingMunicipality) {
         this.responsibleCaseworker = responsibleCw;
         this.informedRightsBystander = informedRightsBystander;
         this.informedRightsElectronicRegistration = informedRightsElectronicRegistration;
         this.consent = consent;
+        this.consentType = consentType;
         this.specialCircumstances = specialCircumstances;
         this.otherActingMunicipality = otherActingMunicipality;
         this.otherPayingMunicipality = otherPayingMunicipality;
@@ -131,8 +134,13 @@ class DataCase implements ICase {
     }
 
     @Override
-    public String getConsent() {
+    public boolean getConsent() {
         return this.consent;
+    }
+    
+    @Override
+    public String getConsentType(){
+        return consentType;
     }
 
     @Override
