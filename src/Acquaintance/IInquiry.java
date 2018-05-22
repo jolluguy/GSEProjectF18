@@ -26,4 +26,6 @@ public String getInquirer();
 public boolean getCitizenAgreement();
 
 public Timestamp getTime();
+
+public String getResponsibleCaseWorkerDomainID();
 }

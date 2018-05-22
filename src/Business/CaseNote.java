@@ -9,16 +9,16 @@ import Acquaintance.ICaseNote;
 public class CaseNote implements ICaseNote {
     private String note;
     private int noteID;
-    private String author;
+
     
     /**
      * for use when creating a new case, this dosent set the note id sice its given by the db
      * @param note
      * @param caseWorkerID 
      */
-    CaseNote(String note, String caseWorkerID){
+    CaseNote(String note){
         this.note = note;
-        this.author = caseWorkerID;
+
     }
 
     /**
@@ -27,9 +27,9 @@ public class CaseNote implements ICaseNote {
      * @param caseWorkerID
      * @param noteID 
      */
-CaseNote(String note, String caseWorkerID, int noteID){
+CaseNote(String note, int noteID){
         this.note = note;
-        this.author = caseWorkerID;
+
         this.noteID = noteID;
     }
 
@@ -41,11 +41,5 @@ CaseNote(String note, String caseWorkerID, int noteID){
     @Override
     public int getNoteID() {
         return this.noteID;
-    }
-
-    @Override
-    public String getAuthor() {
-        return this.author;
-    }
-    
+    }   
 }

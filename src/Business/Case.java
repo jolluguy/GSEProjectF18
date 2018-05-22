@@ -18,7 +18,7 @@ import java.util.Map;
  */
 public class Case implements ICase {
 
-    private String responsibleCaseworker;
+    private String responsibleCaseworkerDomainID;
     private boolean informedRightsBystander;
     private boolean informedRightsElectronicRegistration;
     private String consent;
@@ -39,7 +39,7 @@ public class Case implements ICase {
      * Constructor used when creating a new case.
      *
      * @param inquiry
-     * @param responsibleCaseworker
+     * @param responsibleCaseworkerDomainID
      * @param informedRightsBystander
      * @param informedRightsElectronicRegistration
      * @param consent
@@ -48,7 +48,6 @@ public class Case implements ICase {
      * @param otherActingMunicipality
      * @param otherPayingMunicipality
      * @param meetingTime
-     * @param attendingCasworkerIDList
      * @param meetingDescription
      * @param meetingLocation
      * @param cprNumber
@@ -67,7 +66,7 @@ public class Case implements ICase {
      * @param offerIDMap
      */
     public Case(IInquiry inquiry,
-            String responsibleCaseworker,
+            String responsibleCaseworkerDomainID,
             boolean informedRightsBystander,
             boolean informedRightsElectronicRegistration,
             String consent,
@@ -75,12 +74,11 @@ public class Case implements ICase {
             String specialCircumstances,
             String otherActingMunicipality,
             String otherPayingMunicipality,
-            Timestamp meetingTime, Collection<String> attendingCasworkerIDList, 
-            String meetingDescription, String meetingLocation,
+            Timestamp meetingTime, String meetingDescription, String meetingLocation,
             String cprNumber, String firstName, String lastName, String roadName, 
             String houseNumber, String floor, int postalCode, String city, 
             String phoneNumber, String representationType,
-            String note, String caseWorkerID,
+            String note,
             Map<Integer, String> serviceIDMap,
             Map<Integer, String> offerIDMap) {
 
@@ -89,7 +87,7 @@ public class Case implements ICase {
         inquiryList.add(inquiry);
 
         // seting the responsible caseworker
-        this.responsibleCaseworker = responsibleCaseworker;
+        this.responsibleCaseworkerDomainID = responsibleCaseworkerDomainID;
 
         this.informedRightsBystander = informedRightsBystander;
         this.informedRightsElectronicRegistration = informedRightsElectronicRegistration;
@@ -106,14 +104,14 @@ public class Case implements ICase {
         this.otherActingMunicipality = otherActingMunicipality;
         this.otherPayingMunicipality = otherPayingMunicipality;
 
-        // creating a list of caseworkers who has ben affiliated with the case and adding the responsibleCaseworker to the list
+        // creating a list of caseworkers who has ben affiliated with the case and adding the responsibleCaseworkerDomainID to the list
         this.affiliatedCaseworkers = new ArrayList<>();
-        affiliatedCaseworkers.add(this.responsibleCaseworker);
-        addAffiliatedCaseworker(attendingCasworkerIDList);
+        affiliatedCaseworkers.add(this.responsibleCaseworkerDomainID);
+
 
         //creates a list to hold meetings and adds the first meeting
         this.meetingList = new ArrayList<>();
-        meetingList.add(new Meeting(meetingTime, attendingCasworkerIDList, meetingDescription, meetingLocation));
+        meetingList.add(new Meeting(meetingTime, meetingDescription, meetingLocation));
 
         // creates a list to hold representants and ads the first representant if one such is added.
         this.representationList = new ArrayList<>();
@@ -124,7 +122,7 @@ public class Case implements ICase {
         // creates a list to hold casenotes and ads one if one such exist
         this.caseNoteList = new ArrayList<>();
         if (!note.isEmpty()) {
-            this.caseNoteList.add(new CaseNote(note, caseWorkerID));
+            this.caseNoteList.add(new CaseNote(note));
         }
 
         this.serviceList = new ArrayList<>();
@@ -166,13 +164,13 @@ public class Case implements ICase {
 
     @Override
     public String getResponsibleCaseworker() {
-        return responsibleCaseworker;
+        return responsibleCaseworkerDomainID;
     }
 
     @Override
     public void setResponsibleCaseworker(String responsibleCaseworkerID) {
-        this.responsibleCaseworker = responsibleCaseworkerID;
-        addAffiliatedCaseworker(responsibleCaseworkerID);
+        this.responsibleCaseworkerDomainID = responsibleCaseworkerID;
+//        addAffiliatedCaseworker(responsibleCaseworkerID);
     }
 
     @Override

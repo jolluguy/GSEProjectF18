@@ -15,15 +15,17 @@ public class Inquiry implements IInquiry{
     private boolean citizenAgreement;
     private Timestamp time;
     private ICitizen citizen;
+    private String responsibleCaseWorkerDomainID;
     
     public Inquiry (String problemDescription, String inquirer, boolean citizenAgreement, String cprNumber, String firstName, 
             String lastName, String roadName, String houseNumber, String floor, 
-            int postalCode, String city, String phoneNumber) {
+            int postalCode, String city, String phoneNumber, String casworkerDomainId) {
         
         this.problemDescription = problemDescription;
         this.inquirer = inquirer;
         this.citizenAgreement = citizenAgreement;
         this.time = new Timestamp(System.currentTimeMillis());
+        this.responsibleCaseWorkerDomainID = casworkerDomainId;
         
         this.citizen = new Citizen(cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
     }
@@ -62,5 +64,10 @@ public class Inquiry implements IInquiry{
     @Override
     public Timestamp getTime() {
         return this.time;
+    }
+
+    @Override
+    public String getResponsibleCaseWorkerDomainID() {
+        return responsibleCaseWorkerDomainID;
     }
 }

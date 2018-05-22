@@ -15,12 +15,8 @@ public class Meeting implements IMeeting {
    private String meetingDescription;
    private String meetingLocation;
 
-    public Meeting(Timestamp meetingTime, Collection<String> attendingCasworkerIDList, String meetingDescription, String meetingLocation) {
+    public Meeting(Timestamp meetingTime,String meetingDescription, String meetingLocation) {
         this.meetingTime = meetingTime;
-        this.attendingCasworkerIDList = new ArrayList<>();
-        for(String s: attendingCasworkerIDList){
-            this.attendingCasworkerIDList.add(s);
-        }
         this.meetingDescription = meetingDescription;
         this.meetingLocation = meetingLocation;
     }
