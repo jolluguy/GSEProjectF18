@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  *
  * @author Rasmus
  */
-public class DataInquiry implements IInquiry {
+class DataInquiry implements IInquiry {
 
     private String problemDescription;
     private String inquirer;
@@ -17,7 +17,7 @@ public class DataInquiry implements IInquiry {
     private ICitizen citizen;
     private String responsibleCaseworkerID;
 
-    public DataInquiry (String problemDescription, String inquirer, boolean citizenAgreement, String cprNumber, String firstName, 
+    DataInquiry (String problemDescription, String inquirer, boolean citizenAgreement, String cprNumber, String firstName, 
             String lastName, String roadName, String houseNumber, String floor, 
             int postalCode, String city, String phoneNumber, String responsibleCaseworkerID) {
         

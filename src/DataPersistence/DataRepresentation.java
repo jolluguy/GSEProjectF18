@@ -3,7 +3,7 @@ package DataPersistence;
 import Acquaintance.ICitizen;
 import Acquaintance.IRepresentation;
 
-public class DataRepresentation extends DataPerson implements IRepresentation {
+class DataRepresentation extends DataPerson implements IRepresentation {
 
     private String representationType;
 

@@ -2,7 +2,7 @@ package DataPersistence;
 
 import Acquaintance.IOffer;
 
-public class DataOffer implements IOffer {
+class DataOffer implements IOffer {
     private int offerID;
     private String offerDescription;
 

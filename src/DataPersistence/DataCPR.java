@@ -9,7 +9,7 @@ import Acquaintance.ICPR;
 class DataCPR implements ICPR {
      private String cprNumber;
      
-    public DataCPR(String cprNumber) {
+    DataCPR(String cprNumber) {
         this.cprNumber = cprNumber;
     }
     

@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class DataMeeting implements IMeeting {
+class DataMeeting implements IMeeting {
     private Timestamp meetingTime;
     private Collection<String> attendingCaseworkerIDList;
     private String meetingDescription;
@@ -13,12 +13,8 @@ public class DataMeeting implements IMeeting {
 
     
     // er lidt usikker på den her constructor
-    DataMeeting(Timestamp meetingTime, Collection<String> attendingCaseworkerIDList, String meetingDescription, String meetingLocation) {
+    DataMeeting(Timestamp meetingTime, String meetingDescription, String meetingLocation) {
         this.meetingTime = meetingTime;
-        this.attendingCaseworkerIDList = new ArrayList<>();
-        for(String s: attendingCaseworkerIDList){
-            this.attendingCaseworkerIDList.add(s);
-        }
         this.meetingDescription = meetingDescription;
         this.meetingLocation = meetingLocation;
     }

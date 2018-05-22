@@ -97,8 +97,8 @@ class User implements IUser, Serializable {
     }
     
     
-//    @Override
-    public void setJob(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
+
+    void setJob(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
         if(jobTitle.equalsIgnoreCase("admin")){
             this.job = new Admin(jobTitle, ID, accessLevel, departmentID, departmentName);
             
@@ -139,12 +139,11 @@ class User implements IUser, Serializable {
         return active;
     }
 
-    @Override
-    public void setActive(boolean active) {
+    void setActive(boolean active) {
         this.active = active;
     }
 
-    public boolean checkPassword(String password) {
+    boolean checkPassword(String password) {
         return this.password.equals(password);
     }
 
@@ -158,8 +157,7 @@ class User implements IUser, Serializable {
         return password;
     }
 
-    @Override
-    public void setLastLoginTime() {
+    void setLastLoginTime() {
         this.lastLoginTime = new Timestamp(System.currentTimeMillis());
     }
 

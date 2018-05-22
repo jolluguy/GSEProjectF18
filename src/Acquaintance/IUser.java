@@ -12,33 +12,29 @@ import java.sql.Timestamp;
  * @author Alexa
  */
 public interface IUser {
-    
+
     IJob getJob();
-    
+
     String getFirstName();
-    
+
     String getLastName();
 
     String getUserName();
-    
+
     String getPhoneNumber();
-    
+
     String getMail();
 
     boolean getActive();
 
-    void setActive(boolean active);
-
     void changePassword(String password);
-    
+
     String getPassword();
-    
+
     Timestamp getCreatedTime();
-    
+
     Timestamp getLastLoginTime();
 
-    public void setLastLoginTime();
-    
     int getUserID();
 
 }

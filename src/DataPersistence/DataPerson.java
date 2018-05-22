@@ -19,7 +19,7 @@ class DataPerson implements IPerson {
     private String phoneNumber;
     private ICPR cpr;
 
-    public DataPerson(String cprNumber, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber) {
+    DataPerson(String cprNumber, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.roadName = roadName;

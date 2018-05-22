@@ -2,7 +2,7 @@ package DataPersistence;
 
 import Acquaintance.IService;
 
-public class DataService implements IService {
+class DataService implements IService {
     private int serviceID;
     private String serviceDescription;
 

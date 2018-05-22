@@ -2,7 +2,7 @@ package DataPersistence;
 
 import Acquaintance.ICaseNote;
 
-public class DataCaseNote implements ICaseNote {
+class DataCaseNote implements ICaseNote {
     private String note;
     private int noteID;
 
