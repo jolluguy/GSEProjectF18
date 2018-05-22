@@ -82,8 +82,8 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="CPRBirthField" alignment="CENTER_RIGHT" layoutX="440.0" layoutY="229.0" onKeyReleased="#checkCPRValidity" prefHeight="31.0" prefWidth="200.0" />
-                                    <TextField fx:id="CPRSecurityField" layoutX="668.0" layoutY="230.0" onKeyReleased="#checkCPRValidity" prefHeight="31.0" prefWidth="73.0" />
+                                    <TextField fx:id="CPRBirthField" alignment="CENTER_RIGHT" layoutX="440.0" layoutY="229.0" onKeyReleased="#checkCPRValidityCitizen" prefHeight="31.0" prefWidth="200.0" />
+                                    <TextField fx:id="CPRSecurityField" layoutX="668.0" layoutY="230.0" onKeyReleased="#checkCPRValidityCitizen" prefHeight="31.0" prefWidth="73.0" />
                                     <TextField fx:id="firstNameTextField" layoutX="440.0" layoutY="281.0" prefHeight="31.0" prefWidth="300.0" />
                                     <TextField fx:id="lastNameTextField" layoutX="440.0" layoutY="333.0" prefHeight="31.0" prefWidth="300.0" />
                                     <TextField fx:id="streetNameTextField" layoutX="440.0" layoutY="388.0" prefHeight="31.0" prefWidth="235.0" />
@@ -168,7 +168,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ScrollPane hmax="722.0" prefHeight="766.0" prefWidth="1300.0" vmax="5000.0">
+                        <ScrollPane hmax="722.0" prefHeight="766.0" prefWidth="1300.0" vmax="5000.0" vvalue="2683.0">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="5049.0" prefWidth="1299.0">
                                  <children>
@@ -432,8 +432,8 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="CPRBirthFieldRep" alignment="CENTER_RIGHT" layoutX="300.0" layoutY="2722.0" onKeyTyped="#checkCPRValidity" prefHeight="31.0" prefWidth="200.0" />
-                                    <TextField fx:id="CPRSecuityFieldRep" layoutX="524.0" layoutY="2722.0" onKeyTyped="#checkCPRValidity" prefHeight="31.0" prefWidth="73.0" />
+                                    <TextField fx:id="CPRBirthFieldRep" alignment="CENTER_RIGHT" layoutX="300.0" layoutY="2722.0" onKeyReleased="#checkCPRValidityRep" prefHeight="31.0" prefWidth="200.0" />
+                                    <TextField fx:id="CPRSecuityFieldRep" layoutX="524.0" layoutY="2722.0" onKeyReleased="#checkCPRValidityRep" prefHeight="31.0" prefWidth="73.0" />
                                     <TextField fx:id="firstNameTextFieldRep" layoutX="299.0" layoutY="2773.0" prefHeight="31.0" prefWidth="300.0" />
                                     <TextField fx:id="lastNameTextFieldRep" layoutX="299.0" layoutY="2826.0" prefHeight="31.0" prefWidth="300.0" />
                                     <TextField fx:id="streetNameTextFieldRep" layoutX="299.0" layoutY="2873.0" prefHeight="31.0" prefWidth="235.0" />

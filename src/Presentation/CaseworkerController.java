@@ -1240,9 +1240,9 @@ public class CaseworkerController implements Initializable {
     
 
     @FXML
-    private void checkCPRValidity(KeyEvent event) {
-        String cpr = (CPRBirthField.getText() + "-" + CPRSecurityField.getText());
-        boolean result = business.validateCPR(cpr);
+    private void checkCPRValidityCitizen(KeyEvent event) {
+        String cprCitizen = (CPRBirthField.getText() + "-" + CPRSecurityField.getText());
+        boolean result = business.validateCPR(cprCitizen);
         if (result) {
             CPRBirthField.setStyle("-fx-text-fill: black;");
             CPRSecurityField.setStyle("-fx-text-fill: black;");
@@ -1256,6 +1256,22 @@ public class CaseworkerController implements Initializable {
             cprSyntaxLabel.setVisible(true);
             newCaseButton.setDisable(true);
             archiveButton.setDisable(true);
+        }
+    }
+    @FXML
+    private void checkCPRValidityRep(KeyEvent event){
+        String cprRep = (CPRBirthFieldRep.getText() + "-" + CPRSecuityFieldRep.getText());
+        boolean result2 = business.validateCPR(cprRep);        
+        
+        if (result2) {
+            CPRBirthFieldRep.setStyle("-fx-text-fill: black;");
+            CPRSecuityFieldRep.setStyle("-fx-text-fill: black;");
+            cprSyntaxLabel1.setVisible(false);            
+        }
+        else{
+            CPRBirthFieldRep.setStyle("-fx-text-fill: red;");
+            CPRSecuityFieldRep.setStyle("-fx-text-fill: red;");
+            cprSyntaxLabel1.setVisible(true);            
         }
     }
 
