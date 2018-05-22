@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
@@ -22,9 +21,9 @@
 
 <AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.CaseworkerController">
    <children>
-      <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TabPane fx:id="tabPane" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
-          <Tab text="Henvendelse">
+          <Tab fx:id="inquiryTab" text="Henvendelse">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -83,8 +82,8 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="CPRBirthField" alignment="CENTER_RIGHT" layoutX="440.0" layoutY="229.0" onKeyTyped="#checkCPRValidity" prefHeight="31.0" prefWidth="200.0" />
-                                    <TextField fx:id="CPRSecuityField" layoutX="668.0" layoutY="230.0" onKeyTyped="#checkCPRValidity" prefHeight="31.0" prefWidth="73.0" />
+                                    <TextField fx:id="CPRBirthField" alignment="CENTER_RIGHT" layoutX="440.0" layoutY="229.0" onKeyReleased="#checkCPRValidity" prefHeight="31.0" prefWidth="200.0" />
+                                    <TextField fx:id="CPRSecurityField" layoutX="668.0" layoutY="230.0" onKeyReleased="#checkCPRValidity" prefHeight="31.0" prefWidth="73.0" />
                                     <TextField fx:id="firstNameTextField" layoutX="440.0" layoutY="281.0" prefHeight="31.0" prefWidth="300.0" />
                                     <TextField fx:id="lastNameTextField" layoutX="440.0" layoutY="333.0" prefHeight="31.0" prefWidth="300.0" />
                                     <TextField fx:id="streetNameTextField" layoutX="440.0" layoutY="388.0" prefHeight="31.0" prefWidth="235.0" />
@@ -98,7 +97,7 @@
                                     <Label layoutX="532.0" layoutY="198.0" text="Eks: 123456-1234" textFill="#bfbfbf" />
                                     <TextArea fx:id="descriptionTextAreaInquiry" layoutX="125.0" layoutY="702.0" prefHeight="445.0" prefWidth="900.0" />
                                     <Button fx:id="archiveButton" layoutX="112.0" layoutY="1637.0" mnemonicParsing="false" onAction="#newInquiry" style="-fx-background-color: f3f3f3; -fx-background-radius: 3; -fx-border-color: black; -fx-border-radius: 3;" text="Arkiver" />
-                                    <Button fx:id="newCaseButton" layoutX="217.0" layoutY="1637.0" mnemonicParsing="false" onAction="#newCase" style="-fx-background-color: f3f3f3; -fx-background-radius: 3; -fx-border-color: black; -fx-border-radius: 3;" text="Opret ny sag" />
+                                    <Button fx:id="newCaseButton" layoutX="217.0" layoutY="1637.0" mnemonicParsing="false" onAction="#switchToCase" style="-fx-background-color: f3f3f3; -fx-background-radius: 3; -fx-border-color: black; -fx-border-radius: 3;" text="Opret ny sag" />
                                     <Label fx:id="inquiryStatusTextField" layoutX="125.0" layoutY="1187.0" prefWidth="900.0" />
                                     <Label alignment="CENTER" layoutX="641.0" layoutY="230.0" prefHeight="21.0" prefWidth="26.0" text="-">
                                        <font>
@@ -133,12 +132,12 @@
                                           <ToggleGroup fx:id="inquiryOriginGroup" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="inquiryOriginActiveOperationRadioButton" layoutX="125.0" layoutY="1404.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="148.0" text="Igangværende indsats">
+                                    <RadioButton fx:id="inquiryOriginActiveOperationRadioButton" layoutX="125.0" layoutY="1404.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="185.0" text="Igangværende indsats">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="inquiryOriginGroup" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="inquiryOriginOtherMunicipalityRadioButton" layoutX="125.0" layoutY="1442.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="129.0" text="Anden kommune">
+                                    <RadioButton fx:id="inquiryOriginOtherMunicipalityRadioButton" layoutX="125.0" layoutY="1442.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="167.0" text="Anden kommune">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="inquiryOriginGroup" />
                                        </toggleGroup>
@@ -165,7 +164,7 @@
                      </children></AnchorPane>
             </content>
           </Tab>
-            <Tab text="Opret sag">
+            <Tab fx:id="caseTab" text="Opret sag">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -183,7 +182,7 @@
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="287.0" layoutY="170.0" prefHeight="25.0" prefWidth="200.0" />
+                                    <TextField fx:id="caseCprField" layoutX="287.0" layoutY="170.0" prefHeight="25.0" prefWidth="200.0" />
                                     <Label layoutX="162.0" layoutY="242.0" text="Problembeskrivelse">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
@@ -214,7 +213,7 @@
                                     <CheckBox fx:id="treatment141CheckBox" disable="true" layoutX="186.0" layoutY="1132.0" mnemonicParsing="false" text="Misbrugsbehandling (SUL §141)" />
                                     <CheckBox fx:id="treatmentTherapyCheckBox" disable="true" layoutX="186.0" layoutY="1162.0" mnemonicParsing="false" text="Terapi (§102)" />
                                     <CheckBox fx:id="treatmentPsykCheckBox" disable="true" layoutX="186.0" layoutY="1192.0" mnemonicParsing="false" text="Psykologisk behandling (§102)" />
-                                    <CheckBox fx:id="treamentSpecialDrCheckBox" disable="true" layoutX="186.0" layoutY="1221.0" mnemonicParsing="false" text="Speciallæge behandling (§102)" />
+                                    <CheckBox fx:id="treatmentSpecialDrCheckBox" disable="true" layoutX="186.0" layoutY="1221.0" mnemonicParsing="false" text="Speciallæge behandling (§102)" />
                                     <CheckBox fx:id="protectedEmploymentCheckBox" disable="true" layoutX="162.0" layoutY="1262.0" mnemonicParsing="false" text="Beskyttet beskæftigelsesydelse (§103)" />
                                     <CheckBox fx:id="dayReliefCheckBox" disable="true" layoutX="162.0" layoutY="1299.0" mnemonicParsing="false" text="Dagaflastning (§84)" />
                                     <CheckBox fx:id="cashBenefitCheckBox" disable="true" layoutX="162.0" layoutY="1335.0" mnemonicParsing="false" onAction="#updateCashBenefitStatus" text="Kontantydelse" />
@@ -312,7 +311,7 @@
                                     <Label layoutX="175.0" layoutY="2605.0" text="Angiv hvis relevant" />
                                     <Label layoutX="585.0" layoutY="2579.0" text="Værgemål">
                                        <font>
-                                          <Font size="12.0" />
+                                          <Font size="14.0" />
                                        </font>
                                     </Label>
                                     <RadioButton fx:id="guardianShip5RadioButton" layoutX="589.0" layoutY="2616.0" mnemonicParsing="false" text="Værgemål (§5)">
@@ -395,9 +394,9 @@
                                     <CheckBox fx:id="otherPayingMunicipalityCheckBox" layoutX="578.0" layoutY="4647.0" mnemonicParsing="false" text="Anden betalingskommune" />
                                     <TextField fx:id="otherPayingMunicipalityTextField" layoutX="833.0" layoutY="4642.0" />
                                     <Separator layoutX="142.0" layoutY="4699.0" prefHeight="1.0" prefWidth="900.0" style="-fx-background-color: black;" />
-                                    <Button fx:id="makeCaseButton" layoutX="619.0" layoutY="5013.0" mnemonicParsing="false" onAction="#newCase" text="Opret Sag" />
-                                    <DatePicker fx:id="meetingDatePicker" layoutX="233.0" layoutY="3625.0" />
-                                    <TextField fx:id="meetingLocationTextfield" layoutX="547.0" layoutY="3625.0" />
+                                    <Button fx:id="makeCaseButton" layoutX="953.0" layoutY="5000.0" mnemonicParsing="false" onAction="#newCase" text="Opret Sag" />
+                                    <DatePicker fx:id="meetingDatePicker" layoutX="326.0" layoutY="3623.0" />
+                                    <TextField fx:id="meetingLocationTextfield" layoutX="773.0" layoutY="3623.0" />
                                     <Label layoutX="158.0" layoutY="2724.0" text="CPR">
                                        <font>
                                           <Font size="18.0" />
@@ -451,10 +450,8 @@
                                        </font>
                                     </Label>
                                     <Label fx:id="cprSyntaxLabel1" disable="true" layoutX="346.0" layoutY="2753.0" text="Does not match CPR syntax" textFill="RED" visible="false" />
-                                    <Label layoutX="166.0" layoutY="3629.0" text="Møde dato" />
-                                    <Label layoutX="460.0" layoutY="3629.0" text="Møde lokation" />
-                                    <ChoiceBox fx:id="attendingCaseworkerSelector" layoutX="860.0" layoutY="3625.0" prefWidth="150.0" />
-                                    <Label layoutX="733.0" layoutY="3629.0" text="Andre Sagsbehandlere" />
+                                    <Label layoutX="243.0" layoutY="3627.0" text="Møde dato" />
+                                    <Label layoutX="667.0" layoutY="3627.0" text="Møde lokation" />
                                     <Label layoutX="157.0" layoutY="4743.0" text="Sagsnotater">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
@@ -476,7 +473,7 @@
          </image>
       </ImageView>
       <Label fx:id="userOneLabel" alignment="CENTER_RIGHT" layoutX="822.0" layoutY="7.0" prefHeight="17.0" prefWidth="365.0" />
-      <MenuButton fx:id="menuBar" layoutX="1197.0" layoutY="4.0" mnemonicParsing="false" text="Funktioner">
+      <MenuButton fx:id="menuBar" layoutX="1171.0" layoutY="4.0" mnemonicParsing="false" text="Funktioner">
         <items>
           <MenuItem mnemonicParsing="false" onAction="#changePassword" text="Skift password" />
           <MenuItem fx:id="logOutButton" mnemonicParsing="false" onAction="#logout" text="Log ud" />

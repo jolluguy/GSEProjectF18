@@ -160,7 +160,7 @@
       <Label layoutX="1200.0" layoutY="40.0" text="Oprettet" />
       <Label layoutX="1300.0" layoutY="40.0" text="Sidst aktiv" />
       <Label fx:id="userOneLabel" alignment="BASELINE_RIGHT" layoutX="536.0" layoutY="7.0" prefHeight="17.0" prefWidth="251.0" AnchorPane.leftAnchor="536.0" />
-      <MenuButton fx:id="menuBar" layoutX="797.0" layoutY="4.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Funktioner">
+      <MenuButton fx:id="menuBar" layoutX="785.0" layoutY="4.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="116.0" text="Funktioner">
         <items>
           <MenuItem fx:id="changeThisUserPWButton" mnemonicParsing="false" onAction="#changeThisUserPW" text="Skift password" />
           <MenuItem fx:id="logoutButton" mnemonicParsing="false" onAction="#logout" text="Log ud" />

@@ -206,8 +206,7 @@ public class BusinessFacade implements IBusiness {
   
    @Override
     public boolean validateCPR(String cprNumber) {
-        boolean result = caseManager.validateCPR(cprNumber);
-        return result;
+        return caseManager.validateCPR(cprNumber);
     }
     
   

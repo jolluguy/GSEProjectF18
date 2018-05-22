@@ -4,8 +4,6 @@ import Acquaintance.IBusiness;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
-import java.time.LocalDate;
-import static java.time.temporal.TemporalQueries.localDate;
 import java.util.Collection;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -26,6 +24,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -93,7 +93,6 @@ public class CaseworkerController implements Initializable {
     private CheckBox treatmentTherapyCheckBox;
     @FXML
     private CheckBox treatmentPsykCheckBox;
-    private CheckBox treatmentSpecialDrCheckBox;
     @FXML
     private CheckBox protectedEmploymentCheckBox;
     @FXML
@@ -345,9 +344,9 @@ public class CaseworkerController implements Initializable {
     @FXML
     private TextField CPRBirthField;
     @FXML
-    private TextField CPRSecuityField;
+    private TextField CPRSecurityField;
     @FXML
-    private CheckBox treamentSpecialDrCheckBox;    
+    private CheckBox treatmentSpecialDrCheckBox;    
     
     private Map<Integer, String> serviceMap;
     private Map<Integer, String> offerMap;
@@ -383,24 +382,18 @@ public class CaseworkerController implements Initializable {
     private ChoiceBox<String> attendingCaseworkerSelector;
     @FXML
     private DatePicker meetingDatePicker;
-    
-    //Has been moved from the "newInquiry" method, so that you can use the data in the "newCase" method
-    String cprNumber = (CPRBirthField.getText() + CPRSecuityField.getText() + "");
-    String problemDescription = descriptionTextAreaInquiry.getText();
-    String firstName = firstNameTextField.getText();
-    String lastName = lastNameTextField.getText();
-    String roadName = streetNameTextField.getText();
-    String houseNumber = streetNumberTextField.getText();
-    String floor = floorTextField.getText();
-    int postalCode = Integer.parseInt(postalCodeTextField.getText());
-    String city = cityTextField.getText();
-    String phoneNumber = phoneNumberPrefixTextField.getText() + phoneNumberTextField.getText();
-    String inquirer = inquiryOriginGroup.getSelectedToggle().toString();
-    boolean citizenAgreement;
     @FXML
     private TextField meetingLocationTextfield;
     @FXML
     private TextArea caseNoteTextArea;
+    @FXML
+    private TextField caseCprField;
+    @FXML
+    private Tab inquiryTab;
+    @FXML
+    private Tab caseTab;
+    @FXML
+    private TabPane tabPane;
 
 
 
@@ -658,24 +651,19 @@ public class CaseworkerController implements Initializable {
     
     @FXML
     public void newInquiry(ActionEvent event) {
-//        String cprNumber = CPRBirthField.getText() + CPRSecuityField.getText();
-//        String problemDescription = descriptionTextAreaInquiry.getText();
-//        String firstName = firstNameTextField.getText();
-//        String lastName = lastNameTextField.getText();
-//        String roadName = streetNameTextField.getText();
-//        String houseNumber = streetNumberTextField.getText();
-//        String floor = floorTextField.getText();
-//        int postalCode = Integer.parseInt(postalCodeTextField.getText());
-//        String city = cityTextField.getText();
-//        String phoneNumber = phoneNumberPrefixTextField.getText() + phoneNumberTextField.getText();
+        String cprNumber = CPRBirthField.getText() + "-" + CPRSecurityField.getText();
+        String problemDescription = descriptionTextAreaInquiry.getText();
+        String firstName = firstNameTextField.getText();
+        String lastName = lastNameTextField.getText();
+        String roadName = streetNameTextField.getText();
+        String houseNumber = streetNumberTextField.getText();
+        String floor = floorTextField.getText();
+        int postalCode = Integer.parseInt(postalCodeTextField.getText());
+        String city = cityTextField.getText();
+        String phoneNumber = phoneNumberPrefixTextField.getText() + phoneNumberTextField.getText();
 //        String inquirer = inquiryOriginGroup.getSelectedToggle().toString();
-//        boolean citizenAgreement;
-        if (inquiryUnderstoodYesRadioButton.isSelected() == true) {
-            citizenAgreement = true;
-        }
-        else{
-            citizenAgreement = false;
-        }
+        String inquirer = "Inquirer";
+        boolean citizenAgreement = inquiryUnderstoodYesRadioButton.isSelected();
         
 
         boolean inquiryMade = business.newInquiry(problemDescription, inquirer, 
@@ -696,7 +684,7 @@ public class CaseworkerController implements Initializable {
         inquiryUnderstoodNoRadioButton.setSelected(false);
         inquiryUnderstoodYesRadioButton.setSelected(false);
         CPRBirthField.clear();
-        CPRSecuityField.clear();
+        CPRSecurityField.clear();
         descriptionTextAreaInquiry.clear();
         firstNameTextField.clear();
         lastNameTextField.clear();
@@ -714,9 +702,18 @@ public class CaseworkerController implements Initializable {
     }
     @FXML
     private void newCase(ActionEvent event) {
-        
+        String cprNumber = CPRBirthField.getText() + "-" + CPRSecurityField.getText();
+        String firstName = firstNameTextField.getText();
+        String lastName = lastNameTextField.getText();
+        String roadName = streetNameTextField.getText();
+        String houseNumber = streetNumberTextField.getText();
+        String floor = floorTextField.getText();
+        int postalCode = Integer.parseInt(postalCodeTextField.getText());
+        String city = cityTextField.getText();
+        String phoneNumber = phoneNumberPrefixTextField.getText() + phoneNumberTextField.getText();
+        boolean citizenAgreement = inquiryUnderstoodYesRadioButton.isSelected();
         String problemDescription = descriptionTextAreaCase.getText();
-        String inquierer = inquiryYesOrNoGroup.getSelectedToggle().toString();
+        String inquirer = inquiryOriginGroup.getSelectedToggle().toString();
         String responsibleCaseworker = business.getCurrentUserDomainID();
         boolean informedRightsBystander = rightsBystanderCheckBox.isSelected();
         boolean informedRightsElectronicRegistration = rightsYesOrNoGroup.getSelectedToggle().isSelected();
@@ -757,7 +754,7 @@ public class CaseworkerController implements Initializable {
         Timestamp meetingDate = Timestamp.valueOf(meetingDatePicker.getValue().atStartOfDay());
         String meetingDescription = agreedTextArea.getText();
         String meetingLocation = meetingLocationTextfield.getText();
-        String cprNumberRep = CPRBirthFieldRep.getText() + CPRSecuityFieldRep.getText();
+        String cprNumberRep = CPRBirthFieldRep.getText() + "-" + CPRSecuityFieldRep.getText();
         String firstNameRep = firstNameTextFieldRep.getText();
         String lastNameRep = lastNameTextFieldRep.getText();
         String roadNameRep = streetNameTextFieldRep.getText();
@@ -771,7 +768,7 @@ public class CaseworkerController implements Initializable {
         String note = caseNoteTextArea.getText();
         String caseWorkerID = business.getCurrentUserDomainID();
         
-        boolean result = business.newCase(problemDescription, inquierer, citizenAgreement, cprNumber, firstName, 
+        boolean result = business.newCase(problemDescription, inquirer, citizenAgreement, cprNumber, firstName, 
                 lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber, 
                 responsibleCaseworker, informedRightsBystander, informedRightsElectronicRegistration, consent, consentToInformationGathering, 
                 specialCircumstances, otherActingMunicipality, otherPayingMunicipality, 
@@ -1234,26 +1231,6 @@ public class CaseworkerController implements Initializable {
     }
 
     @FXML
-    private void checkCPRValidity(KeyEvent event) {
-        String cpr = CPRBirthField.getText() + CPRSecuityField.getText();
-        boolean result = business.validateCPR(cpr);
-        if (result) {
-            CPRBirthField.setStyle("-fx-text-fill: black;");
-            CPRSecuityField.setStyle("-fx-text-fill: black;");
-            cprSyntaxLabel.setDisable(true);
-            newCaseButton.setDisable(false);
-            archiveButton.setDisable(false);
-        }
-        else{
-            CPRBirthField.setStyle("-fx-text-fill: red;");
-            CPRSecuityField.setStyle("-fx-text-fill: red;");
-            cprSyntaxLabel.setDisable(false);
-            newCaseButton.setDisable(true);
-            archiveButton.setDisable(true);
-        }
-    }
-
-    @FXML
     private void changePassword(ActionEvent event) throws IOException {
         Parent pwScreen = FXMLLoader.load(getClass().getResource("ChangePassword.fxml"));
 
@@ -1263,7 +1240,33 @@ public class CaseworkerController implements Initializable {
         appstage.show();
     }
     
-    
 
+    @FXML
+    private void checkCPRValidity(KeyEvent event) {
+        String cpr = (CPRBirthField.getText() + "-" + CPRSecurityField.getText());
+        boolean result = business.validateCPR(cpr);
+        if (result) {
+            CPRBirthField.setStyle("-fx-text-fill: black;");
+            CPRSecurityField.setStyle("-fx-text-fill: black;");
+            cprSyntaxLabel.setDisable(true);
+            newCaseButton.setDisable(false);
+            archiveButton.setDisable(false);
+        }
+        else{
+            CPRBirthField.setStyle("-fx-text-fill: red;");
+            CPRSecurityField.setStyle("-fx-text-fill: red;");
+            cprSyntaxLabel.setDisable(false);
+            newCaseButton.setDisable(true);
+            archiveButton.setDisable(true);
+        }
+    }
 
+    @FXML
+    private void switchToCase(ActionEvent event) {
+        caseCprField.setText(CPRBirthField.getText() + "-" + CPRSecurityField.getText());
+        descriptionTextAreaCase.setText(descriptionTextAreaInquiry.getText());
+        
+        tabPane.getSelectionModel().select(caseTab);
+        
+    }
 }
