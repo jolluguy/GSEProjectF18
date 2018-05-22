@@ -1,14 +1,12 @@
 package Business;
 
-
 import Acquaintance.IRepresentation;
 
 /**
  *
  * @author Rasmus
  */
-class Representation extends Person implements IRepresentation{
-
+class Representation extends Person implements IRepresentation {
 
     private String representationType;
 
@@ -16,11 +14,6 @@ class Representation extends Person implements IRepresentation{
         super(cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
         this.representationType = representationType;
     }
-    
-    
-    //implementer get og set representationstype
-
-   
 
     @Override
     public String getRepresentationType() {
