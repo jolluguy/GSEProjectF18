@@ -346,10 +346,7 @@ public class CaseworkerController implements Initializable {
     @FXML
     private TextField CPRSecurityField;
     @FXML
-    private CheckBox treatmentSpecialDrCheckBox;    
-    
-    private Map<Integer, String> serviceMap;
-    private Map<Integer, String> offerMap;
+    private CheckBox treatmentSpecialDrCheckBox;
     @FXML
     private Label cprSyntaxLabel;
     @FXML
@@ -397,7 +394,9 @@ public class CaseworkerController implements Initializable {
 
 
 
-    private void fillServiceMap() {
+    private Map<Integer,String> fillServiceMap() {
+        Map<Integer, String> serviceMap = null;
+        
         if (activity104CheckBox.isSelected()) {
             serviceMap.put(1, activity104CheckBox.getText());
         }
@@ -581,8 +580,12 @@ public class CaseworkerController implements Initializable {
         if (supportOrContactPersonCheckBox.isSelected()) {
             serviceMap.put(60, supportOrContactPersonCheckBox.getText());
         }
+        
+        return serviceMap;
     }
-    private void fillOfferMap() {
+    private Map<Integer,String> fillOfferMap() {
+        Map<Integer, String> offerMap = null;
+        
         if(adultMedicalTreatmentCheckBox.isSelected()) {
             offerMap.put(1, adultMedicalTreatmentCheckBox.getText());
         }
@@ -636,7 +639,9 @@ public class CaseworkerController implements Initializable {
         }
         if (governmentApprovedOfferCheckBox.isSelected()) {
             offerMap.put(18, governmentApprovedOfferCheckBox.getText());
-        }    
+        }
+        
+        return offerMap;
     }  
     
     /**
@@ -661,10 +666,36 @@ public class CaseworkerController implements Initializable {
         int postalCode = Integer.parseInt(postalCodeTextField.getText());
         String city = cityTextField.getText();
         String phoneNumber = phoneNumberPrefixTextField.getText() + phoneNumberTextField.getText();
-        String inquirer = inquiryOriginGroup.getSelectedToggle().toString();
+//        String inquirer = inquiryOriginGroup.getSelectedToggle().toString();
 //        String inquirer = "Inquirer";
         boolean citizenAgreement = inquiryUnderstoodYesRadioButton.isSelected();
         String caseworkerDomainID = business.getCurrentUserDomainID();
+        
+        String inquirer = "";
+        if (inquiryOriginCitizenRadioButton.isSelected()) {
+            inquirer = "Borger";
+        }
+        if (inquiryOriginNextOfKinRadioButton.isSelected()) {
+            inquirer = "Pårørende";
+        }
+        if (inquiryOriginDoctorRadioButton.isSelected()) {
+            inquirer = "Læge";
+        }
+        if (inquiryOriginHospitalRadioButton.isSelected()) {
+            inquirer = "Hospital";
+        }
+        if (inquiryOriginOtherRadioButton.isSelected()) {
+            inquirer = "Andre";
+        }
+        if (inquiryOriginActiveOperationRadioButton.isSelected()) {
+            inquirer = "Igangværende indsats";
+        }
+        if (inquiryOriginOtherMunicipalityRadioButton.isSelected()) {
+            inquirer = "Anden kommune";
+        }
+        if (inquiryOriginOtherInstanceRadioButton.isSelected()) {
+            inquirer = "Anden forvaltning";
+        }
         
 
         boolean inquiryMade = business.newInquiry(problemDescription, inquirer, 
@@ -718,7 +749,7 @@ public class CaseworkerController implements Initializable {
         String responsibleCaseworkerDomainID = business.getCurrentUserDomainID();
         boolean informedRightsBystander = rightsBystanderCheckBox.isSelected();
         boolean informedRightsElectronicRegistration = rightsYesOrNoGroup.getSelectedToggle().isSelected();
-        String consent = consentGroup.getSelectedToggle().toString();
+        String consent = consentGroup.getSelectedToggle().toString(); // Jeg tænker at denne også giver nullpointer?
         
         //A whole lot of if statements to add the different checkboxes to its corresponding list
         Collection<String> consentToInformationGathering = null;
@@ -765,6 +796,9 @@ public class CaseworkerController implements Initializable {
         String phoneNumberRep = phoneNumberTextFieldRep.getText();
         String representationType = guardianshipGroup.getSelectedToggle().toString();
         String note = caseNoteTextArea.getText();
+        
+        Map<Integer,String> serviceMap = fillServiceMap();
+        Map<Integer,String> offerMap = fillOfferMap();
         
         boolean result = business.newCase(problemDescription, inquirer, citizenAgreement, cprNumber, firstName, 
                 lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber, 
