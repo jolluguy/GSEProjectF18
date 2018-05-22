@@ -43,10 +43,6 @@ public class LoginFacade implements ILoginPersistence, Serializable {
         }
         return instance;
     }
-    
-    public int getAccess(String userName){
-        return database.getAccess(userName);
-    }
 
     @Override
     public IUser getUser(String userName) {
@@ -76,12 +72,6 @@ public class LoginFacade implements ILoginPersistence, Serializable {
     public Collection<IUser> getAllUsers() {
 
         return database.getAllUsers();
-    }
-
-    @Override
-    public boolean getUserInfo(String userName) {
-
-        return database.doesUserExist(userName);
     }
 
     @Override

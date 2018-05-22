@@ -71,21 +71,13 @@ public class LoginManager {
         userOne = null;
     }
 
-//    public boolean checkCredentials(String userName, String password) {
-//        IUser user = facade.getUser(userName);
-//        if (user.getPassword().equals(password)) {
-//            return true;
-//        }
-//
-//        return false;
-//    }
     
-    // overvej at returnere en bruger som ikke har pw med?
+
     public User getCurentUser() {
         return userOne;
     }
 
-    public boolean changePassword(String oldPassword, String newPassword) {
+    boolean changePassword(String oldPassword, String newPassword) {
         if (oldPassword.equals(userOne.getPassword())) {
                 userOne.changePassword(newPassword);
                 facade.updatePassword(userOne);

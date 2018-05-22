@@ -38,6 +38,7 @@ public class BusinessFacade implements IBusiness {
         return instance;
     }
     
+    @Override
     public void pingDatabase() throws SQLException {
         loginPersistence.pingDatabase();
     }
@@ -64,11 +65,6 @@ public class BusinessFacade implements IBusiness {
     public int login(String userName, String password) {
         return loginManager.login(userName, password);
     }
-    
-    @Override
-    public int getAccess(String userName) {
-        return loginPersistence.getAccess(userName);
-    }
 
     @Override
     public void logOut() { //later: Need to return true before scenechange
@@ -83,15 +79,7 @@ public class BusinessFacade implements IBusiness {
     public IUser getCurentUser() {
         return loginManager.getCurentUser();
     }
-
-//    @Override
-//    public boolean checkCredentials(String userName, String password) {
-//        return loginManager.checkCredentials(userName, password);
-//    }
     
-    public boolean getUserInfo(String userName) {
-        return loginPersistence.getUserInfo(userName);
-    }
     public IUser getUser(String userName) {
         return loginPersistence.getUser(userName);
     }
@@ -113,10 +101,6 @@ public class BusinessFacade implements IBusiness {
     public boolean addUser(IUser user) {
         return loginPersistence.addUser(user);
     }
-
-//    public boolean updateUser(IUser user) {
-//        return loginPersistence.updateUser(user);
-//    }
     
     public boolean updateLastLoginTime(IUser user){
         return loginPersistence.updateLastLoginTime(user);
@@ -149,7 +133,7 @@ public class BusinessFacade implements IBusiness {
 //        return caseManager.sendInqToDB(inquiry); // kaldt fra GUI
 //    }
 
-    public boolean saveInq(IInquiry inquiry) {
+    boolean saveInq(IInquiry inquiry) {
         return dataPersistence.saveInquiry(inquiry); // kaldt fra Controller
     }
     

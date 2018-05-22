@@ -41,7 +41,7 @@ public class User implements IUser, Serializable {
      * @param departmentID
      * @param departmentName 
      */
-    public User(String firstName, String lastName, String userName, String password, String jobTitle, int jobID, int accessLevel, int departmentID, String departmentName) {
+    User(String firstName, String lastName, String userName, String password, String jobTitle, int jobID, int accessLevel, int departmentID, String departmentName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = "88888888"; //NB!! - TelefonNummer skal oprettes automatisk;
@@ -74,7 +74,7 @@ public class User implements IUser, Serializable {
      * @param mail
      * @param job 
      */
-    public User(String userName, String password, Timestamp createdTime, Timestamp lastLoginTime, boolean active, String firstName, String lastName, String phoneNumber, String mail, Job job) {
+    User(String userName, String password, Timestamp createdTime, Timestamp lastLoginTime, boolean active, String firstName, String lastName, String phoneNumber, String mail, Job job) {
         this.userName = userName;
         this.password = password;
         this.createdTime = createdTime;
@@ -89,40 +89,10 @@ public class User implements IUser, Serializable {
     
     
 
-//    /**
-//     * this i dont know what the fuck do
-//     * @param userName
-//     * @param password
-//     * @param active
-//     * @param createdTime
-//     * @param lastLoginTime 
-//     */
-//    public User(String userName, String password, boolean active, Timestamp createdTime, Timestamp lastLoginTime) {
-//        this.userName = userName;
-//        this.password = password;
-//        this.active = active;
-//        this.createdTime = createdTime;
-//        this.lastLoginTime = lastLoginTime;
-//    }
-
-//    User(String firstName, String lastName, String userName, String password2, boolean active, String lastName0, int ID, int accessLevel, int ID0, String lastName1, Timestamp createdTime, Timestamp lastLoginTime) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-    
+  
     @Override
     public Job getJob() {
         return this.job;
-    }
-
-//    @Override
-    Job getAdmin() {
-        
-        if (this.getClass().getSimpleName().equalsIgnoreCase("admin")) {
-            return this.job;
-    }
-        else {
-            return null;
-        }
     }
     
     
@@ -200,14 +170,6 @@ public class User implements IUser, Serializable {
     @Override
     public Timestamp getLastLoginTime() {
         return lastLoginTime;
-    }
-
-    DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
-
-    @Override
-    public String toString() {
-        String str = String.format("%1$-16s\t%2$d\t%3$s\t%4$s", userName, active, df.format(createdTime), df.format(lastLoginTime));
-        return str;
     }
 
     @Override
