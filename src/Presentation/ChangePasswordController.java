@@ -61,7 +61,7 @@ public class ChangePasswordController implements Initializable {
     }
 
     @FXML
-    public void changePassword(ActionEvent event) {
+    void changePassword(ActionEvent event) {
         validatePWLabel.setText("");
         String oldPassword = oldPasswordField.getText();
         String newPassword1 = newPasswordField.getText();

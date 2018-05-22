@@ -58,13 +58,13 @@ public class FXMLLoginController implements Initializable {
     }
 
     @FXML
-    public void quit(ActionEvent event) {
+    void quit(ActionEvent event) {
         usernameField.clear();
         passwordField.clear();
         System.exit(0);
     }
 
-    public class Pinger implements Runnable {
+    class Pinger implements Runnable {
 
         @Override
         public void run() {
@@ -91,7 +91,7 @@ public class FXMLLoginController implements Initializable {
 //        }
 //    }
     @FXML
-    public void login(ActionEvent event) throws IOException {
+    void login(ActionEvent event) throws IOException {
         String userName = usernameField.getText().toLowerCase();
         String password = passwordField.getText();
 

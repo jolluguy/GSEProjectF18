@@ -650,7 +650,7 @@ public class CaseworkerController implements Initializable {
     }
     
     @FXML
-    public void newInquiry(ActionEvent event) {
+    void newInquiry(ActionEvent event) {
         String cprNumber = CPRBirthField.getText() + "-" + CPRSecurityField.getText();
         String problemDescription = descriptionTextAreaInquiry.getText();
         String firstName = firstNameTextField.getText();
@@ -784,7 +784,7 @@ public class CaseworkerController implements Initializable {
     }
 
     @FXML
-    public void logout(ActionEvent event) throws IOException {
+    void logout(ActionEvent event) throws IOException {
         Parent loginScreen = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
 
         Scene newScene = new Scene(loginScreen);
@@ -796,7 +796,7 @@ public class CaseworkerController implements Initializable {
     }
 
     @FXML
-    public void updateYesNoStatus(ActionEvent event) {
+    void updateYesNoStatus(ActionEvent event) {
         if (inquiryYesRadioButton.isSelected()) {
 
             //Remove disable
@@ -953,7 +953,7 @@ public class CaseworkerController implements Initializable {
     }
 
     @FXML
-    public void updateCarriageStatus(ActionEvent event) {
+    void updateCarriageStatus(ActionEvent event) {
         if (carriageCheckBox.isSelected()) {
             carriage105CheckBox.setDisable(false);
             carriage25CheckBox.setDisable(false);
@@ -983,7 +983,7 @@ public class CaseworkerController implements Initializable {
     }
 
     @FXML
-    public void updateTreatmentStatus(ActionEvent event) {
+    void updateTreatmentStatus(ActionEvent event) {
         if (treatmentCheckBox.isSelected()) {
             treatment101CheckBox.setDisable(false);
             treatment141CheckBox.setDisable(false);
@@ -1008,7 +1008,7 @@ public class CaseworkerController implements Initializable {
     }
 
     @FXML
-    public void updateCashBenefitStatus(ActionEvent event) {
+    void updateCashBenefitStatus(ActionEvent event) {
         if (cashBenefitCheckBox.isSelected()) {
             remunerationCheckBox.setDisable(false);
             additionalCostCheckBox.setDisable(false);
@@ -1024,7 +1024,7 @@ public class CaseworkerController implements Initializable {
     }
 
     @FXML
-    public void updateControlStatus(ActionEvent event) {
+    void updateControlStatus(ActionEvent event) {
         if (controlCheckBox.isSelected()) {
 
             control126CheckBox.setDisable(false);
@@ -1047,7 +1047,7 @@ public class CaseworkerController implements Initializable {
     }
 
     @FXML
-    public void updateInstitutioningStatus(ActionEvent event) {
+    void updateInstitutioningStatus(ActionEvent event) {
         if (institutioningCheckBox.isSelected()) {
             _24HourReliefCheckBox.setDisable(false);
             longInstitutionalisingCheckBox.setDisable(false);
@@ -1075,7 +1075,7 @@ public class CaseworkerController implements Initializable {
     }
 
     @FXML
-    public void updateEducationStatus(ActionEvent event) {
+    void updateEducationStatus(ActionEvent event) {
         if (educationCheckBox.isSelected()) {
 
             compensatingSpecialEducationCheckBox.setDisable(false);
@@ -1091,7 +1091,7 @@ public class CaseworkerController implements Initializable {
     }
 
     @FXML
-    public void updateSocialSupportStatus(ActionEvent event) {
+    void updateSocialSupportStatus(ActionEvent event) {
         if (socialSupportCheckBox.isSelected()) {
             administrationSupportCheckBox.setDisable(false);
             shoppingSupportCheckBox.setDisable(false);
@@ -1126,7 +1126,7 @@ public class CaseworkerController implements Initializable {
     }
 
     @FXML
-    public void updateSupportPersonStatus(ActionEvent event) {
+    void updateSupportPersonStatus(ActionEvent event) {
         if (supportPersonCheckBox.isSelected()) {
             //Enables checkboxes
             temporaryReplacement84CheckBox.setDisable(false);
@@ -1159,7 +1159,7 @@ public class CaseworkerController implements Initializable {
     }
 
     @FXML
-    public void updateSupportToolStatus(ActionEvent event) {
+    void updateSupportToolStatus(ActionEvent event) {
         if (supportToolCheckBox.isSelected()) {
 
             aidCheckBox.setDisable(false);
@@ -1182,7 +1182,7 @@ public class CaseworkerController implements Initializable {
     }
 
     @FXML
-    public void updateTrainingStatus(ActionEvent event) {
+    void updateTrainingStatus(ActionEvent event) {
         if (trainingCheckBox.isSelected()) {
 
             rehabilitation85CheckBox.setDisable(false);
@@ -1211,7 +1211,7 @@ public class CaseworkerController implements Initializable {
     }
 
     @FXML
-    public void updateNonSearchedServicesStatus(ActionEvent event) {
+    void updateNonSearchedServicesStatus(ActionEvent event) {
         if (nonSearchedServicesCheckBox.isSelected()) {
 
             counselingCheckBox.setDisable(false);

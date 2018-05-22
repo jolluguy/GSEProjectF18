@@ -159,7 +159,7 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    public void createUser(ActionEvent event) {
+    void createUser(ActionEvent event) {
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         String userName = usernameField.getText().toLowerCase();
@@ -188,7 +188,7 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    public void userCreationClearFields(ActionEvent event) {
+    void userCreationClearFields(ActionEvent event) {
         usernameField.clear();
         password1Field.clear();
         password2Field.clear();
@@ -196,7 +196,7 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    public void logout(ActionEvent event) throws IOException {
+    void logout(ActionEvent event) throws IOException {
         Parent loginScreen = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
 
         Scene newScene = new Scene(loginScreen);
@@ -208,7 +208,7 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    public void changeJob(ActionEvent event) {
+    void changeJob(ActionEvent event) {
         String statusMessage = "";
         jobWarningLabel.setText(statusMessage);
         String username = changeJobUsernameField.getText();
@@ -275,7 +275,7 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    public void jobCancel(ActionEvent event) {
+    void jobCancel(ActionEvent event) {
         changeJobUsernameField.clear();
         changeJobChoicebox.setValue("Uændret");
         changeDepartmentChoicebox.setValue("Uændret");
@@ -285,7 +285,7 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    public void refreshListview(ActionEvent event) {
+    void refreshListview(ActionEvent event) {
         obsList.clear();
         fillUserList();
     }

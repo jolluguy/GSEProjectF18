@@ -14,23 +14,21 @@ import java.util.Collection;
  *
  * @author Rasmus
  */
-public class PresJob implements IJob {
-    
+class PresJob implements IJob {
+
     private int ID;
     private int accessLevel;
     private IDepartment department;
     private String jobTitle;
 
-    public PresJob(String jobTitle, int ID, int accessLevel) {
+    PresJob(String jobTitle, int ID, int accessLevel) {
         this.jobTitle = jobTitle;
         this.ID = ID;
         this.accessLevel = accessLevel;
         this.department = null;
-        
+
     }
-    
-    
-    
+
     @Override
     public int getID() {
         return this.ID;
@@ -41,15 +39,14 @@ public class PresJob implements IJob {
         return this.accessLevel;
     }
 
-    
     @Override
-    public String getJobTitle(){
+    public String getJobTitle() {
         return this.jobTitle;
-    
-}
+
+    }
 
     @Override
     public IDepartment getDepartment() {
-       return this.department;
+        return this.department;
     }
 }

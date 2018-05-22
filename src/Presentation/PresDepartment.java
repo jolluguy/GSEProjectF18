@@ -11,12 +11,12 @@ import Acquaintance.IDepartment;
  *
  * @author Rasmus
  */
-public class PresDepartment implements IDepartment{
+class PresDepartment implements IDepartment{
 
-     int departmentID;
+    int departmentID;
     String departmentName;
 
-    public PresDepartment(int departmentID, String departmentName) {
+    PresDepartment(int departmentID, String departmentName) {
         this.departmentID = departmentID;
         this.departmentName = departmentName;
     }
