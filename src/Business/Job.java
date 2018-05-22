@@ -13,7 +13,7 @@ import java.util.Collection;
  *
  * @author Rasmus
  */
-public abstract class Job implements IJob {
+abstract class Job implements IJob {
 
     private int ID;
     private int accessLevel;

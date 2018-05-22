@@ -11,7 +11,7 @@ import Acquaintance.IUser;
  *
  * @author Rasmus
  */
-public class DomainID {
+class DomainID {
 
     String domainID;
     String userIDpart;

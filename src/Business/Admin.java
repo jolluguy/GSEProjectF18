@@ -12,7 +12,7 @@ import java.util.Collection;
  *
  * @author Rasmus
  */
-public class Admin extends Job{
+class Admin extends Job{
 
     private LoginManager loginManeger = LoginManager.getInstance();
 
@@ -34,7 +34,8 @@ public class Admin extends Job{
     
     @Override
     boolean changeJob(String userName,boolean active, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
-        IUser user = loginManeger.getUser(userName);
+        IUser iuser = loginManeger.getUser(userName);
+        User user = new User(iuser.getUserID(), iuser.getUserName(), iuser.getPassword(), iuser.getCreatedTime(), iuser.getLastLoginTime(), iuser.getActive(), iuser.getFirstName(), iuser.getLastName(), iuser.getPhoneNumber(), iuser.getMail(), null);
         user.setActive(active);
         user.setJob(jobTitle, ID, accessLevel, departmentID, departmentName); //Parsing IJob to job... Might give some problems.
         return loginManeger.updateJob(user);

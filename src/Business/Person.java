@@ -82,43 +82,35 @@ abstract class Person implements IPerson{
         return cpr;
     }
 
-    @Override
-    public void setFirstName(String firstName) {
+    void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    @Override
-    public void setLastName(String lastName) {
+    void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    @Override
-    public void setRoadName(String roadName) {
+    void setRoadName(String roadName) {
         this.roadName = roadName;
     }
 
-    @Override
-    public void setHouseNumber(String houseNumber) {
+    void setHouseNumber(String houseNumber) {
         this.houseNumber = houseNumber;
     }
 
-    @Override
-    public void setFloor(String floor) {
+    void setFloor(String floor) {
         this.floor = floor;
     }
 
-    @Override
-    public void setPostalCode(int postalCode) {
+    void setPostalCode(int postalCode) {
         this.postalCode = postalCode;
     }
 
-    @Override
-    public void setCity(String city) {
+    void setCity(String city) {
         this.city = city;
     }
 
-    @Override
-    public void setPhoneNumber(String phoneNumber) {
+    void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 }

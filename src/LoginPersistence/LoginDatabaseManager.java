@@ -13,14 +13,14 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class LoginDatabaseManager {
+class LoginDatabaseManager {
 
     Connection conn;
     String url = "jdbc:postgresql://pellefant.db.elephantsql.com:5432/ciouhfgp";
     String dbUsername = "ciouhfgp";
     String dbPassword = "z0qIbACfFzXvrWfMqNV8ThVbgfyV8k76";
 
-    public void pingDatabase() throws SQLException {
+    void pingDatabase() throws SQLException {
         try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
             Class.forName("org.postgresql.Driver");
             if (!conn.isValid(0)) {
@@ -40,7 +40,7 @@ public class LoginDatabaseManager {
      * @param user
      * @return
      */
-    public boolean createUserInDB(IUser user) {
+    boolean createUserInDB(IUser user) {
 
         String firstName = user.getFirstName();
         String lastName = user.getLastName();
@@ -109,7 +109,7 @@ public class LoginDatabaseManager {
 
     }
 
-    public boolean updateLastLogin(IUser user) {
+    boolean updateLastLogin(IUser user) {
         String userName = user.getUserName();
 
         try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
@@ -136,7 +136,7 @@ public class LoginDatabaseManager {
      * @param user
      * @return
      */
-    public boolean updateJob(IUser user) {
+    boolean updateJob(IUser user) {
 
         try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
             Class.forName("org.postgresql.Driver");
@@ -207,7 +207,7 @@ public class LoginDatabaseManager {
         return userList;
     }
 
-    public boolean doesUserExist(String userName) {
+    boolean doesUserExist(String userName) {
         int matches = -1;
         try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
             Class.forName("org.postgresql.Driver");
@@ -232,7 +232,7 @@ public class LoginDatabaseManager {
         return false;
     }
 
-    public IUser getUser(String userName) {
+    IUser getUser(String userName) {
         DataUser user = null;
 
         try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {

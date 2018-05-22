@@ -12,9 +12,9 @@ import java.util.Collection;
  *
  * @author Rasmus
  */
-public class CaseWorker extends Job{
+class CaseWorker extends Job{
 
-    public CaseWorker(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
+    CaseWorker(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
         super(jobTitle, ID, accessLevel, departmentID, departmentName);
     }
 

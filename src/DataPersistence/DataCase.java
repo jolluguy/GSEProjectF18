@@ -9,7 +9,7 @@ import Acquaintance.IRepresentation;
 import Acquaintance.IService;
 import java.util.Collection;
 
-public class DataCase implements ICase {
+class DataCase implements ICase {
     private String responsibleCaseworker;
     private boolean informedRightsBystander;
     private boolean informedRightsElectronicRegistration;

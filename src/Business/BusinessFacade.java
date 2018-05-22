@@ -123,8 +123,8 @@ public class BusinessFacade implements IBusiness {
     @Override
     public boolean newInquiry(String problemDescription, String inquirer, boolean citizenAgreement, String cprNumber, String firstName, 
             String lastName, String roadName, String houseNumber, String floor, 
-            int postalCode, String city, String phoneNumber) {
-        return caseManager.createInquiry(problemDescription, inquirer, citizenAgreement, cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
+            int postalCode, String city, String phoneNumber, String casworkerDomainId) {
+        return caseManager.createInquiry(problemDescription, inquirer, citizenAgreement, cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber, casworkerDomainId);
     }
 
 //    // dette kald er forkert og bliver ivaretaget internt i casemanager
@@ -140,12 +140,12 @@ public class BusinessFacade implements IBusiness {
     @Override
     public boolean newCase(String problemDescription, String inquirer, boolean citizenAgreement, String cprNumber, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber,
                 String responsibleCaseworker, boolean informedRightsBystander, boolean informedRightsElectronicRegistration, String consent, Collection<String> consentToInformationGathering, String specialCircumstances, String otherActingMunicipality, String otherPayingMunicipality,
-                Timestamp meetingTime, Collection<String> attendingCasworkerIDList, String meetingDescription, String meetingLocation,
+                Timestamp meetingDate, String meetingDescription, String meetingLocation,
                 String cprNumberRep, String firstNameRep, String lastNameRep, String roadNameRep, String houseNumberRep, String floorRep, int postalCodeRep, String cityRep, String phoneNumberRep, String representationType,
-                String note, String caseWorkerID,
+                String note,
                 Map<Integer, String> serviceIDList,
                 Map<Integer, String> offerIDList){
-        return caseManager.createCase(problemDescription, inquirer, citizenAgreement, cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber, responsibleCaseworker, informedRightsBystander, informedRightsElectronicRegistration, consent, consentToInformationGathering, specialCircumstances, otherActingMunicipality, otherPayingMunicipality, meetingTime, attendingCasworkerIDList, meetingDescription, meetingLocation, cprNumberRep, firstNameRep, lastNameRep, roadNameRep, houseNumberRep, floorRep, postalCodeRep, cityRep, phoneNumberRep, representationType, note, caseWorkerID, serviceIDList, offerIDList);
+        return caseManager.createCase(problemDescription, inquirer, citizenAgreement, cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber, responsibleCaseworker, informedRightsBystander, informedRightsElectronicRegistration, consent, consentToInformationGathering, specialCircumstances, otherActingMunicipality, otherPayingMunicipality, meetingDate, meetingDescription, meetingLocation, cprNumberRep, firstNameRep, lastNameRep, roadNameRep, houseNumberRep, floorRep, postalCodeRep, cityRep, phoneNumberRep, representationType, note, serviceIDList, offerIDList);
     }
     
     boolean saveCase(ICase case1) {

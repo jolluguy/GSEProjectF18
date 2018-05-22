@@ -661,15 +661,16 @@ public class CaseworkerController implements Initializable {
         int postalCode = Integer.parseInt(postalCodeTextField.getText());
         String city = cityTextField.getText();
         String phoneNumber = phoneNumberPrefixTextField.getText() + phoneNumberTextField.getText();
-//        String inquirer = inquiryOriginGroup.getSelectedToggle().toString();
-        String inquirer = "Inquirer";
+        String inquirer = inquiryOriginGroup.getSelectedToggle().toString();
+//        String inquirer = "Inquirer";
         boolean citizenAgreement = inquiryUnderstoodYesRadioButton.isSelected();
+        String caseworkerDomainID = business.getCurrentUserDomainID();
         
 
         boolean inquiryMade = business.newInquiry(problemDescription, inquirer, 
                 citizenAgreement, cprNumber, firstName, 
                 lastName, roadName, houseNumber, floor, 
-                postalCode, city, phoneNumber);
+                postalCode, city, phoneNumber, caseworkerDomainID);
 
         if(inquiryMade) {
             System.out.println("Inquiry Made");
@@ -714,7 +715,7 @@ public class CaseworkerController implements Initializable {
         boolean citizenAgreement = inquiryUnderstoodYesRadioButton.isSelected();
         String problemDescription = descriptionTextAreaCase.getText();
         String inquirer = inquiryOriginGroup.getSelectedToggle().toString();
-        String responsibleCaseworker = business.getCurrentUserDomainID();
+        String responsibleCaseworkerDomainID = business.getCurrentUserDomainID();
         boolean informedRightsBystander = rightsBystanderCheckBox.isSelected();
         boolean informedRightsElectronicRegistration = rightsYesOrNoGroup.getSelectedToggle().isSelected();
         String consent = consentGroup.getSelectedToggle().toString();
@@ -746,8 +747,6 @@ public class CaseworkerController implements Initializable {
             consentToInformationGathering.add(otherInstancesCheckBox.getText());
         }
         
-        Collection<String> attendingCaseworkerIDList = null;
-        
         String specialCircumstances = specialCircumstancesTextArea.getText();
         String otherActingMunicipality = otherActingMunicipalityTextField.getText();
         String otherPayingMunicipality = otherPayingMunicipalityTextField.getText();
@@ -766,16 +765,15 @@ public class CaseworkerController implements Initializable {
         String phoneNumberRep = phoneNumberTextFieldRep.getText();
         String representationType = guardianshipGroup.getSelectedToggle().toString();
         String note = caseNoteTextArea.getText();
-        String caseWorkerID = business.getCurrentUserDomainID();
         
         boolean result = business.newCase(problemDescription, inquirer, citizenAgreement, cprNumber, firstName, 
                 lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber, 
-                responsibleCaseworker, informedRightsBystander, informedRightsElectronicRegistration, consent, consentToInformationGathering, 
+                responsibleCaseworkerDomainID, informedRightsBystander, informedRightsElectronicRegistration, consent, consentToInformationGathering, 
                 specialCircumstances, otherActingMunicipality, otherPayingMunicipality, 
-                meetingDate, attendingCaseworkerIDList, meetingDescription, 
+                meetingDate, meetingDescription, 
                 meetingLocation, cprNumberRep, firstNameRep, lastNameRep, roadNameRep, 
                 houseNumberRep, floorRep, postalCodeRepInt, cityRep, phoneNumberRep, representationType, 
-                note, caseWorkerID, serviceMap, offerMap);
+                note, serviceMap, offerMap);
         
         if (result) {
             System.out.println("Case has been made.");
@@ -1248,14 +1246,14 @@ public class CaseworkerController implements Initializable {
         if (result) {
             CPRBirthField.setStyle("-fx-text-fill: black;");
             CPRSecurityField.setStyle("-fx-text-fill: black;");
-            cprSyntaxLabel.setDisable(true);
+            cprSyntaxLabel.setVisible(false);
             newCaseButton.setDisable(false);
             archiveButton.setDisable(false);
         }
         else{
             CPRBirthField.setStyle("-fx-text-fill: red;");
             CPRSecurityField.setStyle("-fx-text-fill: red;");
-            cprSyntaxLabel.setDisable(false);
+            cprSyntaxLabel.setVisible(true);
             newCaseButton.setDisable(true);
             archiveButton.setDisable(true);
         }

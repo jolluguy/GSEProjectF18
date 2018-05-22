@@ -8,22 +8,24 @@ import java.sql.Timestamp;
  *
  * @author Rasmus
  */
-public class DataInquiry implements IInquiry {
+class DataInquiry implements IInquiry {
 
     private String problemDescription;
     private String inquirer;
     private boolean citizenAgreement;
     private Timestamp time;
     private ICitizen citizen;
+    private String responsibleCaseworkerID;
 
-    public DataInquiry (String problemDescription, String inquirer, boolean citizenAgreement, String cprNumber, String firstName, 
+    DataInquiry (String problemDescription, String inquirer, boolean citizenAgreement, String cprNumber, String firstName, 
             String lastName, String roadName, String houseNumber, String floor, 
-            int postalCode, String city, String phoneNumber) {
+            int postalCode, String city, String phoneNumber, String responsibleCaseworkerID) {
         
         this.problemDescription = problemDescription;
         this.inquirer = inquirer;
         this.citizenAgreement = citizenAgreement;
         this.time = new Timestamp(System.currentTimeMillis());
+        this.responsibleCaseworkerID = responsibleCaseworkerID;
         
         this.citizen = new DataCitizen(cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber);
     }
@@ -61,5 +63,10 @@ public class DataInquiry implements IInquiry {
     @Override
     public Timestamp getTime() {
         return this.time;
+    }
+
+    @Override
+    public String getResponsibleCaseWorkerDomainID() {
+       return this.responsibleCaseworkerID;
     }
 }

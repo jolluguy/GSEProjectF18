@@ -126,11 +126,6 @@ public class DataUser implements IUser, Serializable {
     }
 
     @Override
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    @Override
     public void changePassword(String pw) {
         this.password = pw;
     }
@@ -162,19 +157,8 @@ public class DataUser implements IUser, Serializable {
     }
 
     @Override
-    public void setLastLoginTime() {
-        this.lastLoginTime = new Timestamp(System.currentTimeMillis());
-    }
-
-    @Override
     public IJob getJob() {
         return job;
-    }
-
-    @Override
-    public void setJob(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
-        
-            this.job = new DataJob(jobTitle, ID, accessLevel, departmentID, departmentName);
     }
 
     @Override

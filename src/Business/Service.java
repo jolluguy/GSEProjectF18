@@ -6,12 +6,12 @@ import Acquaintance.IService;
  *
  * @author Rasmus
  */
-public class Service implements IService {
+class Service implements IService {
     
     int serviceID;
     String serviceDescription;
 
-    public Service(int serviceID, String serviceString) {
+    Service(int serviceID, String serviceString) {
         this.serviceID = serviceID;
         this.serviceDescription = serviceString;
     }

@@ -12,7 +12,7 @@ import Acquaintance.IJob;
  *
  * @author Rol's studie PC
  */
-public class DataJob implements IJob {
+class DataJob implements IJob {
     
     private LoginDatabaseManager loginDatabase;
     private String JobTitle;
@@ -29,7 +29,7 @@ public class DataJob implements IJob {
      * @param departmentID
      * @param departmentName 
      */
-    public DataJob(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
+    DataJob(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
         this.JobTitle = jobTitle;
         this.ID = ID;
         this.accessLevel = accessLevel;
@@ -42,7 +42,7 @@ public class DataJob implements IJob {
      * @param ID
      * @param accessLevel 
      */
-    public DataJob(String jobTitle, int ID, int accessLevel) {
+    DataJob(String jobTitle, int ID, int accessLevel) {
         this.JobTitle = jobTitle;
         this.ID = ID;
         this.accessLevel = accessLevel;
@@ -59,31 +59,6 @@ public class DataJob implements IJob {
     public int getAccessLevel() {
         return accessLevel;
     }
-
-//    public boolean createUser(String firstName, String lastName, String userName, String password1, String password2, boolean active, Timestamp createdTime, Timestamp lastLoginTime) {
-//        if (password1.equals(password2)) {
-//            return loginDatabase.createUserInDB(new DataUser(firstName, lastName, userName, password2, active, lastName, ID, accessLevel, ID, lastName, createdTime, lastLoginTime));
-//        } else {
-//            return false;
-//        }
-//    }
-//    
-//    @Override
-//    public boolean changeJob(String userName, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName){
-//        IUser user = loginDatabase.getUser(userName);
-//        user.setJob(jobTitle, ID, accessLevel, departmentID, departmentName);
-//        return loginDatabase.updateJob(user);
-//    }
-//
-//    @Override
-//    public Collection<IUser> getUserList() {
-//        return loginDatabase.getAllUsers();
-//    }
-
-//    @Override
-//    public String getJob() {
-//        this.jobTitle;
-//    }
 
     @Override
     public String getJobTitle() {
