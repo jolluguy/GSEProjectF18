@@ -276,37 +276,6 @@ public class LoginDatabaseManager {
         return user;
     }
 
-    public int getAccess(String userName) {
-        int access = -1;
-
-        try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
-            Class.forName("org.postgresql.Driver");
-
-            if (doesUserExist(userName)) {
-                Statement st = conn.createStatement();
-                String sql = "SELECT login.brugernavn, stilling.adgangsniveau from login "
-                        + "INNER JOIN holder_info on login.brugernavn = holder_info.brugernavn "
-                        + "INNER JOIN bruger on holder_info.bruger_id = bruger.bruger_id "
-                        + "INNER JOIN besidder on bruger.bruger_id = besidder.bruger_id "
-                        + "INNER JOIN Stilling on besidder.stillings_id = stilling.stillings_id "
-                        + "WHERE login.brugernavn = '" + userName + "';";
-
-                ResultSet result = st.executeQuery(sql);
-
-                while (result.next()) {
-                    String tempUserName = result.getString("brugernavn");
-                    access = result.getInt("adgangsniveau");
-                }
-            } else {
-                return access; //returns -1
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return access; //returns access level for the user
-    }
-
     Collection<IJob> getJobList() {
         Collection<IJob> joblist = new ArrayList<>();
 

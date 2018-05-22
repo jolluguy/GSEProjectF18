@@ -21,8 +21,6 @@ public interface IBusiness {
 
     int login(String name, String pw);
 
-    int getAccess(String userName);
-
     void logOut();
 
    public boolean changePassword(String oldPassword, String newPassword);

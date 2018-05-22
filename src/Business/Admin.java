@@ -16,14 +16,14 @@ public class Admin extends Job{
 
     private LoginManager loginManeger = LoginManager.getInstance();
 
-    public Admin(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
+    Admin(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
         super(jobTitle, ID, accessLevel, departmentID, departmentName);
     }
     
     
     
     @Override
-    public boolean createUser(String firstName, String lastName, String userName, String password1, String password2, String jobtitle, int jobID, int accessLevel, int departmentID, String departmentName) {
+    boolean createUser(String firstName, String lastName, String userName, String password1, String password2, String jobtitle, int jobID, int accessLevel, int departmentID, String departmentName) {
         if (password1.equals(password2)) {
                     IUser user = new User(firstName, lastName, userName, password1, jobtitle, jobID, accessLevel, departmentID, departmentName);
             return loginManeger.addUser(user);
@@ -33,7 +33,7 @@ public class Admin extends Job{
     }
     
     @Override
-    public boolean changeJob(String userName,boolean active, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
+    boolean changeJob(String userName,boolean active, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
         IUser user = loginManeger.getUser(userName);
         user.setActive(active);
         user.setJob(jobTitle, ID, accessLevel, departmentID, departmentName); //Parsing IJob to job... Might give some problems.
@@ -43,7 +43,7 @@ public class Admin extends Job{
 
 
     @Override
-    public Collection<IUser> getUserList() {
+    Collection<IUser> getUserList() {
         return loginManeger.getAllUsers();
         
     }

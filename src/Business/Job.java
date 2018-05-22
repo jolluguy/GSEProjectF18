@@ -21,7 +21,7 @@ public abstract class Job implements IJob {
     private String jobTitle;
     
 
-    public Job(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
+    Job(String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
         this.jobTitle = jobTitle;
         this.ID = ID;
         this.accessLevel = accessLevel;
