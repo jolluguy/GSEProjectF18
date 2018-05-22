@@ -7,13 +7,11 @@ package DataPersistence;
 
 import Acquaintance.ICase;
 import Acquaintance.IInquiry;
-import Acquaintance.IPerson;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Collection;
 
 /**
  *
@@ -96,6 +94,11 @@ public class CaseDatabaseManager {
     public boolean saveCase(ICase case1) {
         try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
             Class.forName("org.postgresql.Driver");
+            
+            
+            for(IInquiry inquiry : case1.getInquiryList()){
+                saveInquiry(inquiry);
+            }
 
             
 
