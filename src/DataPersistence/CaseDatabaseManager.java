@@ -7,6 +7,7 @@ package DataPersistence;
 
 import Acquaintance.ICase;
 import Acquaintance.IInquiry;
+import Acquaintance.IMeeting;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -95,26 +96,96 @@ public class CaseDatabaseManager {
         try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
             Class.forName("org.postgresql.Driver");
             
+            DataInquiry tempInquiry = null;
+            DataMeeting tempMeeting = null;
+            int tempCaseID = -1;
+            int tempPersonID = -1;
+            int meetingID = -1;
+            
+            for(IInquiry inquiry : case1.getInquiryList()){
+                tempInquiry = new DataInquiry(inquiry.getProblemDescription(), inquiry.getInquirer(), inquiry.getCitizenAgreement(), inquiry.getCitizen().getCprNumber(), inquiry.getCitizen().getFirstName(), 
+                        inquiry.getCitizen().getLastName(), inquiry.getCitizen().getRoadName(), inquiry.getCitizen().getHouseNumber(), inquiry.getCitizen().getFloor(), inquiry.getCitizen().getPostalCode(), 
+                        inquiry.getCitizen().getCity(), inquiry.getCitizen().getPhoneNumber(), inquiry.getResponsibleCaseWorkerDomainID());
+            }
+            
+            for(IMeeting meeting : case1.getMeetingList()){
+                tempMeeting = new DataMeeting(meeting.getMeetingTime(), meeting.getMeetingDescription(), meeting.getMeetingLocation());
+            }
+            
             int caseID = -1;
             
-            //Statement 1 - Create case in database
-            Statement st1 = conn.createStatement();
+            //Statement 1 - create inquiry for the new case
+            for(IInquiry inquiry : case1.getInquiryList()){
+                saveInquiry(inquiry);
+            }
             
-            String sql1 = "INSERT INTO sag(sagsbehandler_domaene_id, samtykke_indsamling, samtykke, informeret_registrering, "
+            //Statement 2 - Create case in database
+            Statement st2 = conn.createStatement();
+            
+            String sql2 = "INSERT INTO sag(sagsbehandler_domaene_id, samtykke_indsamling, samtykke, informeret_registrering, "
                     + "informeret_bistand, saerlige_forhold, anden_betalingskommune, anden_handlekommune) "
                     + "VALUES('" + case1.getResponsibleCaseworker() + "', " + case1.getConsent() + ", " 
                     + case1.isInformedRightsElectronicRegistration() + ", " + case1.isInformedRightsBystander() + ", '" + case1.getSpecialCircumstances() 
                     + "', '" + case1.getOtherPayingMunicipality() + "', '" + case1.getOtherActingMunicipality() + "');";
             
-            st1.executeUpdate(sql1);
+            st2.executeUpdate(sql2);
             
-            //Statement 2 - Get caseID from the new case in database
-            PreparedStatement st2 = conn.prepareStatement("SELECT sag.sags_id FROM sag WHERE ");
+            //Statement 3 - Get caseID from case
+            PreparedStatement st3 = conn.prepareStatement("SELECT MAX(sags_id) FROM sag;");
             
+            ResultSet result3 = st3.executeQuery();
             
-            for(IInquiry inquiry : case1.getInquiryList()){
-                saveInquiry(inquiry);
+            while(result3.next()){
+                tempCaseID = result3.getInt("max");
             }
+            
+            //Statement 4 - Get personID from person
+            PreparedStatement st4 = conn.prepareStatement("SELECT person.person_id FROM person "
+                    + "WHERE person.cpr = '" + tempInquiry.getCitizen().getCprNumber() + "';");
+            
+            ResultSet result4 = st4.executeQuery();
+            
+            while(result4.next()){
+                tempPersonID = result4.getInt("person_id");
+            }
+            
+            //Statement 5 - create relation  "drejer_sig_om"
+            Statement st5 = conn.createStatement();
+            
+            
+            String sql5 = "INSERT INTO drejer_sig_om(person_id, sags_id) "
+                    + "VALUES('" + tempPersonID + "', " + tempCaseID + ");";
+            
+            st5.executeUpdate(sql5);
+            
+            //Statement 6 - create meeting
+            Statement st6 = conn.createStatement();
+            
+            String sql6 = "INSERT INTO aftale(dato, lokation, beskrivelse) "
+                    + "VALUES(" + tempMeeting.getMeetingTime() + ", '" + tempMeeting.getMeetingLocation() + "', '" + tempMeeting.getMeetingDescription() + "';)";
+            
+            st6.executeUpdate(sql6);
+            
+            //Statement 7 - Get "aftale_id"
+            PreparedStatement st7 = conn.prepareStatement("SELECT MAX(aftale_id) FROM aftale");
+            
+            ResultSet result7 = st7.executeQuery();
+            
+            while(result7.next()){
+                meetingID = result3.getInt("max");
+            }
+            
+            //Statement 8 - Create relation in "relaterer_til"
+            Statement st8 = conn.createStatement();
+            
+            String sql8 = "INSERT INTO relaterer_til(sags_id, aftale_id) "
+                    + "VALUES(" + caseID + ", " + meetingID + ");";
+            
+            st8.executeUpdate(sql8);
+            
+            
+            
+            
             
 
             
