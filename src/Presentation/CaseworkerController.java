@@ -4,7 +4,9 @@ import Acquaintance.IBusiness;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -38,7 +40,7 @@ import javafx.scene.input.KeyEvent;
  * @author Alexa
  */
 public class CaseworkerController implements Initializable {
-    
+
     private IBusiness business = GUIFacade.getInstance().getBusiness();
 
     //private TextField cprTextField;
@@ -346,10 +348,8 @@ public class CaseworkerController implements Initializable {
     @FXML
     private TextField CPRSecurityField;
     @FXML
-    private CheckBox treatmentSpecialDrCheckBox;    
-    
-    private Map<Integer, String> serviceMap;
-    private Map<Integer, String> offerMap;
+    private CheckBox treatmentSpecialDrCheckBox;
+
     @FXML
     private Label cprSyntaxLabel;
     @FXML
@@ -379,8 +379,6 @@ public class CaseworkerController implements Initializable {
     @FXML
     private Label cprSyntaxLabel1;
     @FXML
-    private ChoiceBox<String> attendingCaseworkerSelector;
-    @FXML
     private DatePicker meetingDatePicker;
     @FXML
     private TextField meetingLocationTextfield;
@@ -395,9 +393,8 @@ public class CaseworkerController implements Initializable {
     @FXML
     private TabPane tabPane;
 
-
-
-    private void fillServiceMap() {
+    private Map<Integer,String> fillServiceMap() {
+         Map<Integer,String> serviceMap = new HashMap<>();
         if (activity104CheckBox.isSelected()) {
             serviceMap.put(1, activity104CheckBox.getText());
         }
@@ -447,208 +444,210 @@ public class CaseworkerController implements Initializable {
             serviceMap.put(16, remunerationCheckBox.getText());
         }
         if (additionalCostCheckBox.isSelected()) {
-            serviceMap.put(16, additionalCostCheckBox.getText());
+            serviceMap.put(17, additionalCostCheckBox.getText());
         }
         if (control126CheckBox.isSelected()) {
-            serviceMap.put(17, control126CheckBox.getText());
+            serviceMap.put(18, control126CheckBox.getText());
         }
         if (control127CheckBox.isSelected()) {
-            serviceMap.put(18, control127CheckBox.getText());
+            serviceMap.put(19, control127CheckBox.getText());
         }
         if (control128CheckBox.isSelected()) {
-            serviceMap.put(19, control128CheckBox.getText());
+            serviceMap.put(20, control128CheckBox.getText());
         }
         if (control125CheckBox.isSelected()) {
-            serviceMap.put(20, control125CheckBox.getText());
+            serviceMap.put(21, control125CheckBox.getText());
         }
         if (_24HourReliefCheckBox.isSelected()) {
-            serviceMap.put(21, _24HourReliefCheckBox.getText());
+            serviceMap.put(22, _24HourReliefCheckBox.getText());
         }
         if (longInstitutionalisingCheckBox.isSelected()) {
-            serviceMap.put(22, longInstitutionalisingCheckBox.getText());
+            serviceMap.put(23, longInstitutionalisingCheckBox.getText());
         }
         if (temporaryInstitutionalising80CheckBox.isSelected()) {
-            serviceMap.put(23, temporaryInstitutionalising80CheckBox.getText());
+            serviceMap.put(24, temporaryInstitutionalising80CheckBox.getText());
         }
         if (temporaryInstitutionalising107CheckBox.isSelected()) {
-            serviceMap.put(24, temporaryInstitutionalising107CheckBox.getText());
+            serviceMap.put(25, temporaryInstitutionalising107CheckBox.getText());
         }
         if (temporaryInstitutionalising109CheckBox.isSelected()) {
-            serviceMap.put(25, temporaryInstitutionalising109CheckBox.getText());
+            serviceMap.put(27, temporaryInstitutionalising109CheckBox.getText());
         }
+        
         if (personalHelp83CheckBox.isSelected()) {
-            serviceMap.put(26, personalHelp83CheckBox.getText());
+            serviceMap.put(31, personalHelp83CheckBox.getText());
         }
         if (personalHelp95CheckBox.isSelected()) {
-            serviceMap.put(27, personalHelp95CheckBox.getText());
+            serviceMap.put(32, personalHelp95CheckBox.getText());
         }
         if (practicalHelp83CheckBox.isSelected()) {
-            serviceMap.put(28, practicalHelp83CheckBox.getText());
+            serviceMap.put(33, practicalHelp83CheckBox.getText());
         }
         if (practicalhelp95CheckBox.isSelected()) {
-            serviceMap.put(29, practicalhelp95CheckBox.getText());
+            serviceMap.put(34, practicalhelp95CheckBox.getText());
         }
         if (administrationSupportCheckBox.isSelected()) {
-            serviceMap.put(30, administrationSupportCheckBox.getText());
+            serviceMap.put(35, administrationSupportCheckBox.getText());
         }
         if (temporaryInstitutionalising110CheckBox.isSelected()) {
-            serviceMap.put(31, temporaryInstitutionalising110CheckBox.getText());
+            serviceMap.put(28, temporaryInstitutionalising110CheckBox.getText());
         }
         if (shoppingSupportCheckBox.isSelected()) {
-            serviceMap.put(32, shoppingSupportCheckBox.getText());
+            serviceMap.put(36, shoppingSupportCheckBox.getText());
         }
         if (contactSupportCheckBox.isSelected()) {
-            serviceMap.put(33, contactSupportCheckBox.getText());
+            serviceMap.put(37, contactSupportCheckBox.getText());
         }
         if (medicinalSupportCheckBox.isSelected()) {
-            serviceMap.put(34, medicinalSupportCheckBox.getText());
+            serviceMap.put(38, medicinalSupportCheckBox.getText());
         }
         if (personalCareCheckBox.isSelected()) {
-            serviceMap.put(35, personalCareCheckBox.getText());
+            serviceMap.put(39, personalCareCheckBox.getText());
         }
         if (practicalSupportCheckBox.isSelected()) {
-            serviceMap.put(36, practicalSupportCheckBox.getText());
+            serviceMap.put(40, practicalSupportCheckBox.getText());
         }
         if (educationSupportCheckBox.isSelected()) {
-            serviceMap.put(37, educationSupportCheckBox.getText());
+            serviceMap.put(41, educationSupportCheckBox.getText());
         }
         if (parentingSupportCheckBox.isSelected()) {
-            serviceMap.put(38, parentingSupportCheckBox.getText());
-        }
-        if (supportPersonCheckBox.isSelected()) {
-            serviceMap.put(39, supportPersonCheckBox.getText());
+            serviceMap.put(42, parentingSupportCheckBox.getText());
         }
         if (temporaryReplacement84CheckBox.isSelected()) {
-            serviceMap.put(40, temporaryReplacement84CheckBox.getText());
+            serviceMap.put(43, temporaryReplacement84CheckBox.getText());
         }
         if (temporaryReplacement95CheckBox.isSelected()) {
-            serviceMap.put(41, temporaryReplacement95CheckBox.getText());
+            serviceMap.put(44, temporaryReplacement95CheckBox.getText());
         }
         if (personalAssistanceCheckBox.isSelected()) {
-            serviceMap.put(42, personalAssistanceCheckBox.getText());
+            serviceMap.put(45, personalAssistanceCheckBox.getText());
         }
         if (contactForDeafblindCheckBox.isSelected()) {
-            serviceMap.put(43, contactForDeafblindCheckBox.getText());
+            serviceMap.put(46, contactForDeafblindCheckBox.getText());
         }
         if (companionCheckBox.isSelected()) {
-            serviceMap.put(44, companionCheckBox.getText());
+            serviceMap.put(47, companionCheckBox.getText());
         }
         if (kinCare118CheckBox.isSelected()) {
-            serviceMap.put(45, kinCare118CheckBox.getText());
+            serviceMap.put(48, kinCare118CheckBox.getText());
         }
         if (kinCare119CheckBox.isSelected()) {
-            serviceMap.put(46, kinCare119CheckBox.getText());
+            serviceMap.put(49, kinCare119CheckBox.getText());
         }
         if (aidCheckBox.isSelected()) {
-            serviceMap.put(47, aidCheckBox.getText());
+            serviceMap.put(50, aidCheckBox.getText());
         }
         if (carAidCheckBox.isSelected()) {
-            serviceMap.put(48, carAidCheckBox.getText());
+            serviceMap.put(51, carAidCheckBox.getText());
         }
         if (furnishingAidCheckBox.isSelected()) {
-            serviceMap.put(49, furnishingAidCheckBox.getText());
+            serviceMap.put(54, furnishingAidCheckBox.getText());
         }
         if (goodsAidCheckBox.isSelected()) {
-            serviceMap.put(50, goodsAidCheckBox.getText());
+            serviceMap.put(55, goodsAidCheckBox.getText());
         }
         if (rehabilitation85CheckBox.isSelected()) {
-            serviceMap.put(51, rehabilitation85CheckBox.getText());
+            serviceMap.put(56, rehabilitation85CheckBox.getText());
         }
         if (rehabilitation86CheckBox.isSelected()) {
-            serviceMap.put(52, rehabilitation86CheckBox.getText());
+            serviceMap.put(57, rehabilitation86CheckBox.getText());
         }
         if (rehabilitation102CheckBox.isSelected()) {
-            serviceMap.put(53, rehabilitation102CheckBox.getText());
+            serviceMap.put(58, rehabilitation102CheckBox.getText());
         }
         if (maintainingAbility85CheckBox.isSelected()) {
-            serviceMap.put(54, maintainingAbility85CheckBox.getText());
+            serviceMap.put(59, maintainingAbility85CheckBox.getText());
         }
         if (maintainingAbility86CheckBox.isSelected()) {
-            serviceMap.put(55, maintainingAbility86CheckBox.getText());
+            serviceMap.put(60, maintainingAbility86CheckBox.getText());
         }
         if (maintainingAbility102CheckBox.isSelected()) {
-            serviceMap.put(56, rehabilitation102CheckBox.getText());
+            serviceMap.put(61, rehabilitation102CheckBox.getText());
         }
         if (compensatingSpecialEducationCheckBox.isSelected()) {
-            serviceMap.put(57, compensatingSpecialEducationCheckBox.getText());
+            serviceMap.put(29, compensatingSpecialEducationCheckBox.getText());
         }
         if (youthEducationSpecialNeedsCheckBox.isSelected()) {
-            serviceMap.put(58, youthEducationSpecialNeedsCheckBox.getText());
+            serviceMap.put(30, youthEducationSpecialNeedsCheckBox.getText());
         }
         if (counselingCheckBox.isSelected()) {
-            serviceMap.put(59, counselingCheckBox.getText());
+            serviceMap.put(62, counselingCheckBox.getText());
         }
         if (supportOrContactPersonCheckBox.isSelected()) {
-            serviceMap.put(60, supportOrContactPersonCheckBox.getText());
+            serviceMap.put(63, supportOrContactPersonCheckBox.getText());
         }
+        return serviceMap;
     }
-    private void fillOfferMap() {
-        if(adultMedicalTreatmentCheckBox.isSelected()) {
+
+    private Map<Integer, String> fillOfferMap() {
+        Map<Integer,String> offerMap = new HashMap<>();
+        if (adultMedicalTreatmentCheckBox.isSelected()) {
             offerMap.put(1, adultMedicalTreatmentCheckBox.getText());
         }
-        if(activityAndSocialOfferCheckBox.isSelected()) {
+        if (activityAndSocialOfferCheckBox.isSelected()) {
             offerMap.put(2, activityAndSocialOfferCheckBox.getText());
         }
-        if(protectedEmploymentOfferCheckBox.isSelected()) {
+        if (protectedEmploymentOfferCheckBox.isSelected()) {
             offerMap.put(3, protectedEmploymentOfferCheckBox.getText());
         }
-        if(adultDailyTreatmentCheckBoc.isSelected()) {
+        if (adultDailyTreatmentCheckBoc.isSelected()) {
             offerMap.put(4, adultDailyTreatmentCheckBoc.getText());
         }
-        if(educationOfferCheckBox.isSelected()) {
+        if (educationOfferCheckBox.isSelected()) {
             offerMap.put(5, educationOfferCheckBox.getText());
         }
-        if(standardCareHomeCheckBox.isSelected()) {
+        if (standardCareHomeCheckBox.isSelected()) {
             offerMap.put(6, standardCareHomeCheckBox.getText());
         }
-        if(standardElderCareHomeCheckBox.isSelected()) {
+        if (standardElderCareHomeCheckBox.isSelected()) {
             offerMap.put(7, standardElderCareHomeCheckBox.getText());
         }
-        if(communityHomeCheckBox.isSelected()) {
+        if (communityHomeCheckBox.isSelected()) {
             offerMap.put(8, communityHomeCheckBox.getText());
         }
-        if(adultDayCareCheckBox.isSelected()) {
+        if (adultDayCareCheckBox.isSelected()) {
             offerMap.put(9, adultDayCareCheckBox.getText());
         }
-        if(hostelryCheckBox.isSelected()) {
+        if (hostelryCheckBox.isSelected()) {
             offerMap.put(10, hostelryCheckBox.getText());
         }
-        if(crisisCenterCheckBox.isSelected()) {
+        if (crisisCenterCheckBox.isSelected()) {
             offerMap.put(11, crisisCenterCheckBox.getText());
         }
-        if(safeHousingCheckBox.isSelected()) {
+        if (safeHousingCheckBox.isSelected()) {
             offerMap.put(12, safeHousingCheckBox.getText());
         }
-        if(longTermSafeHousingCheckBox.isSelected()) {
+        if (longTermSafeHousingCheckBox.isSelected()) {
             offerMap.put(13, longTermSafeHousingCheckBox.getText());
         }
-        if(temporaryHousingCheckBox.isSelected()) {
+        if (temporaryHousingCheckBox.isSelected()) {
             offerMap.put(14, temporaryHousingCheckBox.getText());
         }
-        if(nursingHomeCheckBox.isSelected()) {
+        if (nursingHomeCheckBox.isSelected()) {
             offerMap.put(15, nursingHomeCheckBox.getText());
         }
-        if(rehabilitationgOfferCheckBox.isSelected()) {
+        if (rehabilitationgOfferCheckBox.isSelected()) {
             offerMap.put(16, rehabilitationgOfferCheckBox.getText());
         }
-        if(adultOutboundOffersCheckBox.isSelected()) {
+        if (adultOutboundOffersCheckBox.isSelected()) {
             offerMap.put(17, adultOutboundOffersCheckBox.getText());
         }
         if (governmentApprovedOfferCheckBox.isSelected()) {
             offerMap.put(18, governmentApprovedOfferCheckBox.getText());
-        }    
-    }  
-    
+        }
+        return offerMap;
+    }
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
-        userOneLabel.setText(String.format("%1$s%5$2s%2$s\t%3$s\t%4$s", business.getCurentUser().getFirstName(),business.getCurentUser().getLastName(), "-", business.getCurrentUserDomainID(), "" ));
+
+        userOneLabel.setText(String.format("%1$s%5$2s%2$s\t%3$s\t%4$s", business.getCurentUser().getFirstName(), business.getCurentUser().getLastName(), "-", business.getCurrentUserDomainID(), ""));
     }
-    
+
     @FXML
     void newInquiry(ActionEvent event) {
         String cprNumber = CPRBirthField.getText() + "-" + CPRSecurityField.getText();
@@ -661,46 +660,71 @@ public class CaseworkerController implements Initializable {
         int postalCode = Integer.parseInt(postalCodeTextField.getText());
         String city = cityTextField.getText();
         String phoneNumber = phoneNumberPrefixTextField.getText() + phoneNumberTextField.getText();
-        String inquirer = inquiryOriginGroup.getSelectedToggle().toString();
-//        String inquirer = "Inquirer";
+
+        String inquirer = "";
+        if (inquiryOriginCitizenRadioButton.isSelected()) {
+            inquirer = inquiryOriginCitizenRadioButton.getText();
+        }
+        if (inquiryOriginNextOfKinRadioButton.isSelected()) {
+            inquirer = inquiryOriginNextOfKinRadioButton.getText();
+        }
+        if (inquiryOriginDoctorRadioButton.isSelected()) {
+            inquirer = inquiryOriginDoctorRadioButton.getText();
+        }
+        if (inquiryOriginHospitalRadioButton.isSelected()) {
+            inquirer = inquiryOriginHospitalRadioButton.getText();
+        }
+        if (inquiryOriginOtherRadioButton.isSelected()) {
+            inquirer = inquiryOriginOtherRadioButton.getText();
+        }
+        if (inquiryOriginActiveOperationRadioButton.isSelected()) {
+            inquirer = inquiryOriginActiveOperationRadioButton.getText();
+        }
+        if (inquiryOriginOtherMunicipalityRadioButton.isSelected()) {
+            inquirer = inquiryOriginOtherMunicipalityRadioButton.getText();
+        }
+        if (inquiryOriginOtherInstanceRadioButton.isSelected()) {
+            inquirer = inquiryOriginOtherInstanceRadioButton.getText();
+        }
+        
         boolean citizenAgreement = inquiryUnderstoodYesRadioButton.isSelected();
         String caseworkerDomainID = business.getCurrentUserDomainID();
-        
 
-        boolean inquiryMade = business.newInquiry(problemDescription, inquirer, 
-                citizenAgreement, cprNumber, firstName, 
-                lastName, roadName, houseNumber, floor, 
+        boolean inquiryMade = business.newInquiry(problemDescription, inquirer,
+                citizenAgreement, cprNumber, firstName,
+                lastName, roadName, houseNumber, floor,
                 postalCode, city, phoneNumber, caseworkerDomainID);
 
-        if(inquiryMade) {
+        if (inquiryMade) {
             System.out.println("Inquiry Made");
             inquiryStatusTextField.setText("Henvendelse er arkiveret med succes.");
-            
+
             try {
                 Thread.sleep(500);
             } catch (InterruptedException ex) {
                 Logger.getLogger(CaseworkerController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-        inquiryUnderstoodNoRadioButton.setSelected(false);
-        inquiryUnderstoodYesRadioButton.setSelected(false);
-        CPRBirthField.clear();
-        CPRSecurityField.clear();
-        descriptionTextAreaInquiry.clear();
-        firstNameTextField.clear();
-        lastNameTextField.clear();
-        streetNameTextField.clear();
-        streetNumberTextField.clear();
-        floorTextField.clear();
-        postalCodeTextField.clear();
-        cityTextField.clear();
-        phoneNumberTextField.clear();
-        inquiryOriginGroup.getSelectedToggle().setSelected(false);
-                
-        } else if(!inquiryMade) {
+
+            inquiryUnderstoodNoRadioButton.setSelected(false);
+            inquiryUnderstoodYesRadioButton.setSelected(false);
+            CPRBirthField.clear();
+            CPRSecurityField.clear();
+            descriptionTextAreaInquiry.clear();
+            firstNameTextField.clear();
+            lastNameTextField.clear();
+            streetNameTextField.clear();
+            streetNumberTextField.clear();
+            floorTextField.clear();
+            postalCodeTextField.clear();
+            cityTextField.clear();
+            phoneNumberTextField.clear();
+            inquiryOriginGroup.getSelectedToggle().setSelected(false);
+
+        } else if (!inquiryMade) {
             System.out.println("Inquiry failed");
         }
     }
+
     @FXML
     private void newCase(ActionEvent event) {
         String cprNumber = CPRBirthField.getText() + "-" + CPRSecurityField.getText();
@@ -714,14 +738,47 @@ public class CaseworkerController implements Initializable {
         String phoneNumber = phoneNumberPrefixTextField.getText() + phoneNumberTextField.getText();
         boolean citizenAgreement = inquiryUnderstoodYesRadioButton.isSelected();
         String problemDescription = descriptionTextAreaCase.getText();
-        String inquirer = inquiryOriginGroup.getSelectedToggle().toString();
+
+        String inquirer = "";
+        if (inquiryOriginCitizenRadioButton.isSelected()) {
+            inquirer = inquiryOriginCitizenRadioButton.getText();
+        }
+        if (inquiryOriginNextOfKinRadioButton.isSelected()) {
+            inquirer = inquiryOriginNextOfKinRadioButton.getText();
+        }
+        if (inquiryOriginDoctorRadioButton.isSelected()) {
+            inquirer = inquiryOriginDoctorRadioButton.getText();
+        }
+        if (inquiryOriginHospitalRadioButton.isSelected()) {
+            inquirer = inquiryOriginHospitalRadioButton.getText();
+        }
+        if (inquiryOriginOtherRadioButton.isSelected()) {
+            inquirer = inquiryOriginOtherRadioButton.getText();
+        }
+        if (inquiryOriginActiveOperationRadioButton.isSelected()) {
+            inquirer = inquiryOriginActiveOperationRadioButton.getText();
+        }
+        if (inquiryOriginOtherMunicipalityRadioButton.isSelected()) {
+            inquirer = inquiryOriginOtherMunicipalityRadioButton.getText();
+        }
+        if (inquiryOriginOtherInstanceRadioButton.isSelected()) {
+            inquirer = inquiryOriginOtherInstanceRadioButton.getText();
+        }
+        
         String responsibleCaseworkerDomainID = business.getCurrentUserDomainID();
         boolean informedRightsBystander = rightsBystanderCheckBox.isSelected();
         boolean informedRightsElectronicRegistration = rightsYesOrNoGroup.getSelectedToggle().isSelected();
-        String consent = consentGroup.getSelectedToggle().toString();
-        
+        String consent = consentNoRadioButton.getText();
+        //getting value for consent string
+        if (!oralConsentRadioButton.isDisabled()) {
+            if(oralConsentRadioButton.isSelected()){
+                consent = oralConsentRadioButton.getText();                
+            } if(writtenConsentRadioButton.isSelected()){
+                consent = writtenConsentRadioButton.getText();
+            }
+        }
         //A whole lot of if statements to add the different checkboxes to its corresponding list
-        Collection<String> consentToInformationGathering = null;
+        Collection<String> consentToInformationGathering = new ArrayList<>();
         if (ownDoctorCheckBox.isSelected()) {
             consentToInformationGathering.add(ownDoctorCheckBox.getText());
         }
@@ -746,7 +803,7 @@ public class CaseworkerController implements Initializable {
         if (otherInstancesCheckBox.isSelected()) {
             consentToInformationGathering.add(otherInstancesCheckBox.getText());
         }
-        
+
         String specialCircumstances = specialCircumstancesTextArea.getText();
         String otherActingMunicipality = otherActingMunicipalityTextField.getText();
         String otherPayingMunicipality = otherPayingMunicipalityTextField.getText();
@@ -765,20 +822,19 @@ public class CaseworkerController implements Initializable {
         String phoneNumberRep = phoneNumberTextFieldRep.getText();
         String representationType = guardianshipGroup.getSelectedToggle().toString();
         String note = caseNoteTextArea.getText();
-        
-        boolean result = business.newCase(problemDescription, inquirer, citizenAgreement, cprNumber, firstName, 
-                lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber, 
-                responsibleCaseworkerDomainID, informedRightsBystander, informedRightsElectronicRegistration, consent, consentToInformationGathering, 
-                specialCircumstances, otherActingMunicipality, otherPayingMunicipality, 
-                meetingDate, meetingDescription, 
-                meetingLocation, cprNumberRep, firstNameRep, lastNameRep, roadNameRep, 
-                houseNumberRep, floorRep, postalCodeRepInt, cityRep, phoneNumberRep, representationType, 
-                note, serviceMap, offerMap);
-        
+
+        boolean result = business.newCase(problemDescription, inquirer, citizenAgreement, cprNumber, firstName,
+                lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber,
+                responsibleCaseworkerDomainID, informedRightsBystander, informedRightsElectronicRegistration, consent, consentToInformationGathering,
+                specialCircumstances, otherActingMunicipality, otherPayingMunicipality,
+                meetingDate, meetingDescription,
+                meetingLocation, cprNumberRep, firstNameRep, lastNameRep, roadNameRep,
+                houseNumberRep, floorRep, postalCodeRepInt, cityRep, phoneNumberRep, representationType,
+                note, fillServiceMap(), fillOfferMap());
+
         if (result) {
             System.out.println("Case has been made.");
-        }
-        else{
+        } else {
             System.out.println("Case couldn't be made.");
         }
     }
@@ -791,7 +847,7 @@ public class CaseworkerController implements Initializable {
         Stage appstage = (Stage) ((Node) menuBar).getScene().getWindow();
         appstage.setScene(newScene);
         appstage.show();
-        
+
         business.logOut();
     }
 
@@ -1237,7 +1293,6 @@ public class CaseworkerController implements Initializable {
         appstage.setScene(newScene);
         appstage.show();
     }
-    
 
     @FXML
     private void checkCPRValidityCitizen(KeyEvent event) {
@@ -1249,8 +1304,7 @@ public class CaseworkerController implements Initializable {
             cprSyntaxLabel.setVisible(false);
             newCaseButton.setDisable(false);
             archiveButton.setDisable(false);
-        }
-        else{
+        } else {
             CPRBirthField.setStyle("-fx-text-fill: red;");
             CPRSecurityField.setStyle("-fx-text-fill: red;");
             cprSyntaxLabel.setVisible(true);
@@ -1258,20 +1312,20 @@ public class CaseworkerController implements Initializable {
             archiveButton.setDisable(true);
         }
     }
+
     @FXML
-    private void checkCPRValidityRep(KeyEvent event){
+    private void checkCPRValidityRep(KeyEvent event) {
         String cprRep = (CPRBirthFieldRep.getText() + "-" + CPRSecuityFieldRep.getText());
-        boolean result2 = business.validateCPR(cprRep);        
-        
+        boolean result2 = business.validateCPR(cprRep);
+
         if (result2) {
             CPRBirthFieldRep.setStyle("-fx-text-fill: black;");
             CPRSecuityFieldRep.setStyle("-fx-text-fill: black;");
-            cprSyntaxLabel1.setVisible(false);            
-        }
-        else{
+            cprSyntaxLabel1.setVisible(false);
+        } else {
             CPRBirthFieldRep.setStyle("-fx-text-fill: red;");
             CPRSecuityFieldRep.setStyle("-fx-text-fill: red;");
-            cprSyntaxLabel1.setVisible(true);            
+            cprSyntaxLabel1.setVisible(true);
         }
     }
 
@@ -1279,8 +1333,20 @@ public class CaseworkerController implements Initializable {
     private void switchToCase(ActionEvent event) {
         caseCprField.setText(CPRBirthField.getText() + "-" + CPRSecurityField.getText());
         descriptionTextAreaCase.setText(descriptionTextAreaInquiry.getText());
-        
+
         tabPane.getSelectionModel().select(caseTab);
-        
+
+    }
+
+    @FXML
+    private void consentEnable(ActionEvent event) {
+        oralConsentRadioButton.setDisable(false);
+        writtenConsentRadioButton.setDisable(false);
+    }
+
+    @FXML
+    private void consentDiable(ActionEvent event) {
+        oralConsentRadioButton.setDisable(true);
+        writtenConsentRadioButton.setDisable(true);
     }
 }
