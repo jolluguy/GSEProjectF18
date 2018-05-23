@@ -9,8 +9,7 @@ import java.util.Collection;
 public interface ICase {
     public boolean isInformedRightsBystander();
     public boolean isInformedRightsElectronicRegistration();
-    public boolean getConsent();
-    public String getConsentType();
+    public String getConsent();
     public String getSpecialCircumstances();
     public String getOtherActingMunicipality();
     public String getOtherPayingMunicipality();

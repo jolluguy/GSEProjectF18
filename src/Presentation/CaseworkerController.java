@@ -718,12 +718,7 @@ public class CaseworkerController implements Initializable {
         String responsibleCaseworkerDomainID = business.getCurrentUserDomainID();
         boolean informedRightsBystander = rightsBystanderCheckBox.isSelected();
         boolean informedRightsElectronicRegistration = rightsYesOrNoGroup.getSelectedToggle().isSelected();
-        boolean consent = false;
-        if(consentYesRadioButton.isSelected()){
-            consent = true;
-        } else if(consentNoRadioButton.isSelected()){
-            consent = false;
-        }
+        String consent = "nej";
         String consentType = "";
         if(oralConsentRadioButton.isSelected()){
             consentType = oralConsentRadioButton.getText();

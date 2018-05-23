@@ -21,8 +21,7 @@ class Case implements ICase {
     private String responsibleCaseworkerDomainID;
     private boolean informedRightsBystander;
     private boolean informedRightsElectronicRegistration;
-    private boolean consent;
-    private String consentType;
+    private String consent;
     private Collection<String> consentToInformationGathering;
     private String specialCircumstances;
     private String otherActingMunicipality;
@@ -70,8 +69,7 @@ class Case implements ICase {
             String responsibleCaseworkerDomainID,
             boolean informedRightsBystander,
             boolean informedRightsElectronicRegistration,
-            boolean consent,
-            String consentType,
+            String consent,
             Collection<String> consentToInformationGathering,
             String specialCircumstances,
             String otherActingMunicipality,
@@ -94,8 +92,6 @@ class Case implements ICase {
         this.informedRightsBystander = informedRightsBystander;
         this.informedRightsElectronicRegistration = informedRightsElectronicRegistration;
         this.consent = consent;
-        
-        this.consentType = consentType;
 
         this.consentToInformationGathering = new ArrayList<>();
         if (!consentToInformationGathering.isEmpty()) {
@@ -240,13 +236,8 @@ class Case implements ICase {
         this.informedRightsBystander = informedRightsBystander;
     }
 
-    void setConsent(boolean consent) {
+    void setConsent(String consent) {
         this.consent = consent;
-    }
-    
-    @Override
-    public String getConsentType(){
-        return consentType;
     }
 
     void setSpecialCircumstances(String specialCircumstances) {
@@ -267,7 +258,7 @@ class Case implements ICase {
     }
 
     @Override
-    public boolean getConsent() {
+    public String getConsent() {
         return consent;
     }
 

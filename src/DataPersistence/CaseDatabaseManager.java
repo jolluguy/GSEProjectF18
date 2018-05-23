@@ -102,7 +102,7 @@ public class CaseDatabaseManager {
             
             String sql1 = "INSERT INTO sag(sagsbehandler_domaene_id, samtykke_indsamling, samtykke, informeret_registrering, "
                     + "informeret_bistand, saerlige_forhold, anden_betalingskommune, anden_handlekommune) "
-                    + "VALUES('" + case1.getResponsibleCaseworker() + "', " + case1.getConsent() + ", '" + case1.getConsentType() + "' " 
+                    + "VALUES('" + case1.getResponsibleCaseworker() + "', " + case1.getConsent() + ", " 
                     + case1.isInformedRightsElectronicRegistration() + ", " + case1.isInformedRightsBystander() + ", '" + case1.getSpecialCircumstances() 
                     + "', '" + case1.getOtherPayingMunicipality() + "', '" + case1.getOtherActingMunicipality() + "');";
             
