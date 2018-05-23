@@ -8,11 +8,13 @@ package DataPersistence;
 import Acquaintance.ICase;
 import Acquaintance.IInquiry;
 import Acquaintance.IMeeting;
+import Acquaintance.IService;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -96,23 +98,11 @@ public class CaseDatabaseManager {
         try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
             Class.forName("org.postgresql.Driver");
             
-            DataInquiry tempInquiry = null;
-            DataMeeting tempMeeting = null;
             int tempCaseID = -1;
             int tempPersonID = -1;
             int meetingID = -1;
+            int caseID = -1;           
             
-            for(IInquiry inquiry : case1.getInquiryList()){
-                tempInquiry = new DataInquiry(inquiry.getProblemDescription(), inquiry.getInquirer(), inquiry.getCitizenAgreement(), inquiry.getCitizen().getCprNumber(), inquiry.getCitizen().getFirstName(), 
-                        inquiry.getCitizen().getLastName(), inquiry.getCitizen().getRoadName(), inquiry.getCitizen().getHouseNumber(), inquiry.getCitizen().getFloor(), inquiry.getCitizen().getPostalCode(), 
-                        inquiry.getCitizen().getCity(), inquiry.getCitizen().getPhoneNumber(), inquiry.getResponsibleCaseWorkerDomainID());
-            }
-            
-            for(IMeeting meeting : case1.getMeetingList()){
-                tempMeeting = new DataMeeting(meeting.getMeetingTime(), meeting.getMeetingDescription(), meeting.getMeetingLocation());
-            }
-            
-            int caseID = -1;
             
             //Statement 1 - create inquiry for the new case
             for(IInquiry inquiry : case1.getInquiryList()){
@@ -140,13 +130,16 @@ public class CaseDatabaseManager {
             }
             
             //Statement 4 - Get personID from person
+            for(IInquiry inquiry : case1.getInquiryList()){
             PreparedStatement st4 = conn.prepareStatement("SELECT person.person_id FROM person "
-                    + "WHERE person.cpr = '" + tempInquiry.getCitizen().getCprNumber() + "';");
+                    + "WHERE person.cpr = '" + inquiry.getCitizen().getCprNumber() + "';");
             
             ResultSet result4 = st4.executeQuery();
             
             while(result4.next()){
                 tempPersonID = result4.getInt("person_id");
+            }
+            
             }
             
             //Statement 5 - create relation  "drejer_sig_om"
@@ -159,12 +152,15 @@ public class CaseDatabaseManager {
             st5.executeUpdate(sql5);
             
             //Statement 6 - create meeting
+            for(IMeeting meeting : case1.getMeetingList()){
             Statement st6 = conn.createStatement();
             
             String sql6 = "INSERT INTO aftale(dato, lokation, beskrivelse) "
-                    + "VALUES(" + tempMeeting.getMeetingTime() + ", '" + tempMeeting.getMeetingLocation() + "', '" + tempMeeting.getMeetingDescription() + "';)";
+                    + "VALUES(" + meeting.getMeetingTime() + ", '" + meeting.getMeetingLocation() + "', '" + meeting.getMeetingDescription() + "';)";
             
             st6.executeUpdate(sql6);
+            
+            }
             
             //Statement 7 - Get "aftale_id"
             PreparedStatement st7 = conn.prepareStatement("SELECT MAX(aftale_id) FROM aftale");
@@ -183,12 +179,17 @@ public class CaseDatabaseManager {
             
             st8.executeUpdate(sql8);
             
+            //Statement 9 - Create relation in "giver"
             
-            
-            
-            
-
-            
+            for(IService service : case1.getServiceList()){
+                Statement st9 = conn.createStatement();
+                
+                String sql9 = "INSERT INTO giver(tilbuds_id, sags_id) "
+                        + "VALUES(" + service.getServiceID() + ", " + caseID + ");";
+                
+                st9.executeQuery(sql9);
+            }
+                        
 
         } catch (Exception ex) {
             ex.printStackTrace();
