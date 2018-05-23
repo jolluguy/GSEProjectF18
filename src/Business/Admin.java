@@ -35,9 +35,16 @@ class Admin extends Job{
     @Override
     boolean changeJob(String userName,boolean active, String jobTitle, int ID, int accessLevel, int departmentID, String departmentName) {
         IUser iuser = loginManeger.getUser(userName);
-        User user = new User(iuser.getUserID(), iuser.getUserName(), iuser.getPassword(), iuser.getCreatedTime(), iuser.getLastLoginTime(), iuser.getActive(), iuser.getFirstName(), iuser.getLastName(), iuser.getPhoneNumber(), iuser.getMail(), null);
+        Job job;
+         if(jobTitle.equalsIgnoreCase("admin")){
+            job = new Admin(jobTitle, ID, accessLevel, departmentID, departmentName);
+            
+        } else{
+            job = new CaseWorker(jobTitle, ID, accessLevel, departmentID, departmentName);
+        }
+        User user = new User(iuser.getUserID(), iuser.getUserName(), iuser.getPassword(), iuser.getCreatedTime(), iuser.getLastLoginTime(), iuser.getActive(), iuser.getFirstName(), iuser.getLastName(), iuser.getPhoneNumber(), iuser.getMail(), job);
         user.setActive(active);
-        user.setJob(jobTitle, ID, accessLevel, departmentID, departmentName); //Parsing IJob to job... Might give some problems.
+
         return loginManeger.updateJob(user);
     }
     

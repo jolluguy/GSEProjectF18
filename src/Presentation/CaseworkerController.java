@@ -38,7 +38,7 @@ import javafx.scene.input.KeyEvent;
  * @author Alexa
  */
 public class CaseworkerController implements Initializable {
-    
+
     private IBusiness business = GUIFacade.getInstance().getBusiness();
 
     //private TextField cprTextField;
@@ -346,8 +346,8 @@ public class CaseworkerController implements Initializable {
     @FXML
     private TextField CPRSecurityField;
     @FXML
-    private CheckBox treatmentSpecialDrCheckBox;    
-    
+    private CheckBox treatmentSpecialDrCheckBox;
+
     private Map<Integer, String> serviceMap;
     private Map<Integer, String> offerMap;
     @FXML
@@ -379,8 +379,6 @@ public class CaseworkerController implements Initializable {
     @FXML
     private Label cprSyntaxLabel1;
     @FXML
-    private ChoiceBox<String> attendingCaseworkerSelector;
-    @FXML
     private DatePicker meetingDatePicker;
     @FXML
     private TextField meetingLocationTextfield;
@@ -394,8 +392,6 @@ public class CaseworkerController implements Initializable {
     private Tab caseTab;
     @FXML
     private TabPane tabPane;
-
-
 
     private void fillServiceMap() {
         if (activity104CheckBox.isSelected()) {
@@ -582,73 +578,74 @@ public class CaseworkerController implements Initializable {
             serviceMap.put(60, supportOrContactPersonCheckBox.getText());
         }
     }
+
     private void fillOfferMap() {
-        if(adultMedicalTreatmentCheckBox.isSelected()) {
+        if (adultMedicalTreatmentCheckBox.isSelected()) {
             offerMap.put(1, adultMedicalTreatmentCheckBox.getText());
         }
-        if(activityAndSocialOfferCheckBox.isSelected()) {
+        if (activityAndSocialOfferCheckBox.isSelected()) {
             offerMap.put(2, activityAndSocialOfferCheckBox.getText());
         }
-        if(protectedEmploymentOfferCheckBox.isSelected()) {
+        if (protectedEmploymentOfferCheckBox.isSelected()) {
             offerMap.put(3, protectedEmploymentOfferCheckBox.getText());
         }
-        if(adultDailyTreatmentCheckBoc.isSelected()) {
+        if (adultDailyTreatmentCheckBoc.isSelected()) {
             offerMap.put(4, adultDailyTreatmentCheckBoc.getText());
         }
-        if(educationOfferCheckBox.isSelected()) {
+        if (educationOfferCheckBox.isSelected()) {
             offerMap.put(5, educationOfferCheckBox.getText());
         }
-        if(standardCareHomeCheckBox.isSelected()) {
+        if (standardCareHomeCheckBox.isSelected()) {
             offerMap.put(6, standardCareHomeCheckBox.getText());
         }
-        if(standardElderCareHomeCheckBox.isSelected()) {
+        if (standardElderCareHomeCheckBox.isSelected()) {
             offerMap.put(7, standardElderCareHomeCheckBox.getText());
         }
-        if(communityHomeCheckBox.isSelected()) {
+        if (communityHomeCheckBox.isSelected()) {
             offerMap.put(8, communityHomeCheckBox.getText());
         }
-        if(adultDayCareCheckBox.isSelected()) {
+        if (adultDayCareCheckBox.isSelected()) {
             offerMap.put(9, adultDayCareCheckBox.getText());
         }
-        if(hostelryCheckBox.isSelected()) {
+        if (hostelryCheckBox.isSelected()) {
             offerMap.put(10, hostelryCheckBox.getText());
         }
-        if(crisisCenterCheckBox.isSelected()) {
+        if (crisisCenterCheckBox.isSelected()) {
             offerMap.put(11, crisisCenterCheckBox.getText());
         }
-        if(safeHousingCheckBox.isSelected()) {
+        if (safeHousingCheckBox.isSelected()) {
             offerMap.put(12, safeHousingCheckBox.getText());
         }
-        if(longTermSafeHousingCheckBox.isSelected()) {
+        if (longTermSafeHousingCheckBox.isSelected()) {
             offerMap.put(13, longTermSafeHousingCheckBox.getText());
         }
-        if(temporaryHousingCheckBox.isSelected()) {
+        if (temporaryHousingCheckBox.isSelected()) {
             offerMap.put(14, temporaryHousingCheckBox.getText());
         }
-        if(nursingHomeCheckBox.isSelected()) {
+        if (nursingHomeCheckBox.isSelected()) {
             offerMap.put(15, nursingHomeCheckBox.getText());
         }
-        if(rehabilitationgOfferCheckBox.isSelected()) {
+        if (rehabilitationgOfferCheckBox.isSelected()) {
             offerMap.put(16, rehabilitationgOfferCheckBox.getText());
         }
-        if(adultOutboundOffersCheckBox.isSelected()) {
+        if (adultOutboundOffersCheckBox.isSelected()) {
             offerMap.put(17, adultOutboundOffersCheckBox.getText());
         }
         if (governmentApprovedOfferCheckBox.isSelected()) {
             offerMap.put(18, governmentApprovedOfferCheckBox.getText());
-        }    
-    }  
-    
+        }
+    }
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
-        userOneLabel.setText(String.format("%1$s%5$2s%2$s\t%3$s\t%4$s", business.getCurentUser().getFirstName(),business.getCurentUser().getLastName(), "-", business.getCurrentUserDomainID(), "" ));
+
+        userOneLabel.setText(String.format("%1$s%5$2s%2$s\t%3$s\t%4$s", business.getCurentUser().getFirstName(), business.getCurentUser().getLastName(), "-", business.getCurrentUserDomainID(), ""));
     }
-    
+
     @FXML
     void newInquiry(ActionEvent event) {
         String cprNumber = CPRBirthField.getText() + "-" + CPRSecurityField.getText();
@@ -665,42 +662,42 @@ public class CaseworkerController implements Initializable {
 //        String inquirer = "Inquirer";
         boolean citizenAgreement = inquiryUnderstoodYesRadioButton.isSelected();
         String caseworkerDomainID = business.getCurrentUserDomainID();
-        
 
-        boolean inquiryMade = business.newInquiry(problemDescription, inquirer, 
-                citizenAgreement, cprNumber, firstName, 
-                lastName, roadName, houseNumber, floor, 
+        boolean inquiryMade = business.newInquiry(problemDescription, inquirer,
+                citizenAgreement, cprNumber, firstName,
+                lastName, roadName, houseNumber, floor,
                 postalCode, city, phoneNumber, caseworkerDomainID);
 
-        if(inquiryMade) {
+        if (inquiryMade) {
             System.out.println("Inquiry Made");
             inquiryStatusTextField.setText("Henvendelse er arkiveret med succes.");
-            
+
             try {
                 Thread.sleep(500);
             } catch (InterruptedException ex) {
                 Logger.getLogger(CaseworkerController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-        inquiryUnderstoodNoRadioButton.setSelected(false);
-        inquiryUnderstoodYesRadioButton.setSelected(false);
-        CPRBirthField.clear();
-        CPRSecurityField.clear();
-        descriptionTextAreaInquiry.clear();
-        firstNameTextField.clear();
-        lastNameTextField.clear();
-        streetNameTextField.clear();
-        streetNumberTextField.clear();
-        floorTextField.clear();
-        postalCodeTextField.clear();
-        cityTextField.clear();
-        phoneNumberTextField.clear();
-        inquiryOriginGroup.getSelectedToggle().setSelected(false);
-                
-        } else if(!inquiryMade) {
+
+            inquiryUnderstoodNoRadioButton.setSelected(false);
+            inquiryUnderstoodYesRadioButton.setSelected(false);
+            CPRBirthField.clear();
+            CPRSecurityField.clear();
+            descriptionTextAreaInquiry.clear();
+            firstNameTextField.clear();
+            lastNameTextField.clear();
+            streetNameTextField.clear();
+            streetNumberTextField.clear();
+            floorTextField.clear();
+            postalCodeTextField.clear();
+            cityTextField.clear();
+            phoneNumberTextField.clear();
+            inquiryOriginGroup.getSelectedToggle().setSelected(false);
+
+        } else if (!inquiryMade) {
             System.out.println("Inquiry failed");
         }
     }
+
     @FXML
     private void newCase(ActionEvent event) {
         String cprNumber = CPRBirthField.getText() + "-" + CPRSecurityField.getText();
@@ -718,8 +715,13 @@ public class CaseworkerController implements Initializable {
         String responsibleCaseworkerDomainID = business.getCurrentUserDomainID();
         boolean informedRightsBystander = rightsBystanderCheckBox.isSelected();
         boolean informedRightsElectronicRegistration = rightsYesOrNoGroup.getSelectedToggle().isSelected();
+
+        //getting value for consent string
+        if (!consentNoRadioButton.isSelected()) {
+
+        }
         String consent = consentGroup.getSelectedToggle().toString();
-        
+
         //A whole lot of if statements to add the different checkboxes to its corresponding list
         Collection<String> consentToInformationGathering = null;
         if (ownDoctorCheckBox.isSelected()) {
@@ -746,7 +748,7 @@ public class CaseworkerController implements Initializable {
         if (otherInstancesCheckBox.isSelected()) {
             consentToInformationGathering.add(otherInstancesCheckBox.getText());
         }
-        
+
         String specialCircumstances = specialCircumstancesTextArea.getText();
         String otherActingMunicipality = otherActingMunicipalityTextField.getText();
         String otherPayingMunicipality = otherPayingMunicipalityTextField.getText();
@@ -765,20 +767,19 @@ public class CaseworkerController implements Initializable {
         String phoneNumberRep = phoneNumberTextFieldRep.getText();
         String representationType = guardianshipGroup.getSelectedToggle().toString();
         String note = caseNoteTextArea.getText();
-        
-        boolean result = business.newCase(problemDescription, inquirer, citizenAgreement, cprNumber, firstName, 
-                lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber, 
-                responsibleCaseworkerDomainID, informedRightsBystander, informedRightsElectronicRegistration, consent, consentToInformationGathering, 
-                specialCircumstances, otherActingMunicipality, otherPayingMunicipality, 
-                meetingDate, meetingDescription, 
-                meetingLocation, cprNumberRep, firstNameRep, lastNameRep, roadNameRep, 
-                houseNumberRep, floorRep, postalCodeRepInt, cityRep, phoneNumberRep, representationType, 
+
+        boolean result = business.newCase(problemDescription, inquirer, citizenAgreement, cprNumber, firstName,
+                lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber,
+                responsibleCaseworkerDomainID, informedRightsBystander, informedRightsElectronicRegistration, consent, consentToInformationGathering,
+                specialCircumstances, otherActingMunicipality, otherPayingMunicipality,
+                meetingDate, meetingDescription,
+                meetingLocation, cprNumberRep, firstNameRep, lastNameRep, roadNameRep,
+                houseNumberRep, floorRep, postalCodeRepInt, cityRep, phoneNumberRep, representationType,
                 note, serviceMap, offerMap);
-        
+
         if (result) {
             System.out.println("Case has been made.");
-        }
-        else{
+        } else {
             System.out.println("Case couldn't be made.");
         }
     }
@@ -791,7 +792,7 @@ public class CaseworkerController implements Initializable {
         Stage appstage = (Stage) ((Node) menuBar).getScene().getWindow();
         appstage.setScene(newScene);
         appstage.show();
-        
+
         business.logOut();
     }
 
@@ -1237,7 +1238,6 @@ public class CaseworkerController implements Initializable {
         appstage.setScene(newScene);
         appstage.show();
     }
-    
 
     @FXML
     private void checkCPRValidityCitizen(KeyEvent event) {
@@ -1249,8 +1249,7 @@ public class CaseworkerController implements Initializable {
             cprSyntaxLabel.setVisible(false);
             newCaseButton.setDisable(false);
             archiveButton.setDisable(false);
-        }
-        else{
+        } else {
             CPRBirthField.setStyle("-fx-text-fill: red;");
             CPRSecurityField.setStyle("-fx-text-fill: red;");
             cprSyntaxLabel.setVisible(true);
@@ -1258,20 +1257,20 @@ public class CaseworkerController implements Initializable {
             archiveButton.setDisable(true);
         }
     }
+
     @FXML
-    private void checkCPRValidityRep(KeyEvent event){
+    private void checkCPRValidityRep(KeyEvent event) {
         String cprRep = (CPRBirthFieldRep.getText() + "-" + CPRSecuityFieldRep.getText());
-        boolean result2 = business.validateCPR(cprRep);        
-        
+        boolean result2 = business.validateCPR(cprRep);
+
         if (result2) {
             CPRBirthFieldRep.setStyle("-fx-text-fill: black;");
             CPRSecuityFieldRep.setStyle("-fx-text-fill: black;");
-            cprSyntaxLabel1.setVisible(false);            
-        }
-        else{
+            cprSyntaxLabel1.setVisible(false);
+        } else {
             CPRBirthFieldRep.setStyle("-fx-text-fill: red;");
             CPRSecuityFieldRep.setStyle("-fx-text-fill: red;");
-            cprSyntaxLabel1.setVisible(true);            
+            cprSyntaxLabel1.setVisible(true);
         }
     }
 
@@ -1279,8 +1278,20 @@ public class CaseworkerController implements Initializable {
     private void switchToCase(ActionEvent event) {
         caseCprField.setText(CPRBirthField.getText() + "-" + CPRSecurityField.getText());
         descriptionTextAreaCase.setText(descriptionTextAreaInquiry.getText());
-        
+
         tabPane.getSelectionModel().select(caseTab);
-        
+
+    }
+
+    @FXML
+    private void consentEnable(ActionEvent event) {
+        oralConsentRadioButton.setDisable(false);
+        writtenConsentRadioButton.setDisable(false);
+    }
+
+    @FXML
+    private void consentDiable(ActionEvent event) {
+        oralConsentRadioButton.setDisable(true);
+        writtenConsentRadioButton.setDisable(true);
     }
 }
