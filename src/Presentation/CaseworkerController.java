@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -395,7 +396,7 @@ public class CaseworkerController implements Initializable {
 
 
     private Map<Integer,String> fillServiceMap() {
-        Map<Integer, String> serviceMap = null;
+        Map<Integer, String> serviceMap = new HashMap<>();;
         
         if (activity104CheckBox.isSelected()) {
             serviceMap.put(1, activity104CheckBox.getText());
@@ -584,7 +585,7 @@ public class CaseworkerController implements Initializable {
         return serviceMap;
     }
     private Map<Integer,String> fillOfferMap() {
-        Map<Integer, String> offerMap = null;
+        Map<Integer, String> offerMap = new HashMap<>();
         
         if(adultMedicalTreatmentCheckBox.isSelected()) {
             offerMap.put(1, adultMedicalTreatmentCheckBox.getText());
@@ -673,28 +674,28 @@ public class CaseworkerController implements Initializable {
         
         String inquirer = "";
         if (inquiryOriginCitizenRadioButton.isSelected()) {
-            inquirer = "Borger";
+            inquirer = inquiryOriginCitizenRadioButton.getText();
         }
         if (inquiryOriginNextOfKinRadioButton.isSelected()) {
-            inquirer = "Pårørende";
+            inquirer = inquiryOriginNextOfKinRadioButton.getText();
         }
         if (inquiryOriginDoctorRadioButton.isSelected()) {
-            inquirer = "Læge";
+            inquirer = inquiryOriginDoctorRadioButton.getText();
         }
         if (inquiryOriginHospitalRadioButton.isSelected()) {
-            inquirer = "Hospital";
+            inquirer = inquiryOriginHospitalRadioButton.getText();
         }
         if (inquiryOriginOtherRadioButton.isSelected()) {
-            inquirer = "Andre";
+            inquirer = inquiryOriginOtherRadioButton.getText();
         }
         if (inquiryOriginActiveOperationRadioButton.isSelected()) {
-            inquirer = "Igangværende indsats";
+            inquirer = inquiryOriginActiveOperationRadioButton.getText();
         }
         if (inquiryOriginOtherMunicipalityRadioButton.isSelected()) {
-            inquirer = "Anden kommune";
+            inquirer = inquiryOriginOtherMunicipalityRadioButton.getText();
         }
         if (inquiryOriginOtherInstanceRadioButton.isSelected()) {
-            inquirer = "Anden forvaltning";
+            inquirer = inquiryOriginOtherInstanceRadioButton.getText();
         }
         
 
