@@ -4,6 +4,7 @@ import Acquaintance.IBusiness;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -715,15 +716,17 @@ public class CaseworkerController implements Initializable {
         String responsibleCaseworkerDomainID = business.getCurrentUserDomainID();
         boolean informedRightsBystander = rightsBystanderCheckBox.isSelected();
         boolean informedRightsElectronicRegistration = rightsYesOrNoGroup.getSelectedToggle().isSelected();
-
+        String consent = consentNoRadioButton.getText();
         //getting value for consent string
-        if (!consentNoRadioButton.isSelected()) {
-
+        if (!oralConsentRadioButton.isDisabled()) {
+            if(oralConsentRadioButton.isSelected()){
+                consent = oralConsentRadioButton.getText();                
+            } if(writtenConsentRadioButton.isSelected()){
+                consent = writtenConsentRadioButton.getText();
+            }
         }
-        String consent = consentGroup.getSelectedToggle().toString();
-
         //A whole lot of if statements to add the different checkboxes to its corresponding list
-        Collection<String> consentToInformationGathering = null;
+        Collection<String> consentToInformationGathering = new ArrayList<>();
         if (ownDoctorCheckBox.isSelected()) {
             consentToInformationGathering.add(ownDoctorCheckBox.getText());
         }
