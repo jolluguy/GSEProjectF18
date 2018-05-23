@@ -6,6 +6,7 @@ import java.net.URL;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -349,8 +350,6 @@ public class CaseworkerController implements Initializable {
     @FXML
     private CheckBox treatmentSpecialDrCheckBox;
 
-    private Map<Integer, String> serviceMap;
-    private Map<Integer, String> offerMap;
     @FXML
     private Label cprSyntaxLabel;
     @FXML
@@ -394,7 +393,8 @@ public class CaseworkerController implements Initializable {
     @FXML
     private TabPane tabPane;
 
-    private void fillServiceMap() {
+    private Map<Integer,String> fillServiceMap() {
+         Map<Integer,String> serviceMap = new HashMap<>();
         if (activity104CheckBox.isSelected()) {
             serviceMap.put(1, activity104CheckBox.getText());
         }
@@ -576,9 +576,11 @@ public class CaseworkerController implements Initializable {
         if (supportOrContactPersonCheckBox.isSelected()) {
             serviceMap.put(63, supportOrContactPersonCheckBox.getText());
         }
+        return serviceMap;
     }
 
-    private void fillOfferMap() {
+    private Map<Integer, String> fillOfferMap() {
+        Map<Integer,String> offerMap = new HashMap<>();
         if (adultMedicalTreatmentCheckBox.isSelected()) {
             offerMap.put(1, adultMedicalTreatmentCheckBox.getText());
         }
@@ -633,6 +635,7 @@ public class CaseworkerController implements Initializable {
         if (governmentApprovedOfferCheckBox.isSelected()) {
             offerMap.put(18, governmentApprovedOfferCheckBox.getText());
         }
+        return offerMap;
     }
 
     /**
@@ -657,8 +660,33 @@ public class CaseworkerController implements Initializable {
         int postalCode = Integer.parseInt(postalCodeTextField.getText());
         String city = cityTextField.getText();
         String phoneNumber = phoneNumberPrefixTextField.getText() + phoneNumberTextField.getText();
-        String inquirer = inquiryOriginGroup.getSelectedToggle().toString();
-//        String inquirer = "Inquirer";
+
+        String inquirer = "";
+        if (inquiryOriginCitizenRadioButton.isSelected()) {
+            inquirer = inquiryOriginCitizenRadioButton.getText();
+        }
+        if (inquiryOriginNextOfKinRadioButton.isSelected()) {
+            inquirer = inquiryOriginNextOfKinRadioButton.getText();
+        }
+        if (inquiryOriginDoctorRadioButton.isSelected()) {
+            inquirer = inquiryOriginDoctorRadioButton.getText();
+        }
+        if (inquiryOriginHospitalRadioButton.isSelected()) {
+            inquirer = inquiryOriginHospitalRadioButton.getText();
+        }
+        if (inquiryOriginOtherRadioButton.isSelected()) {
+            inquirer = inquiryOriginOtherRadioButton.getText();
+        }
+        if (inquiryOriginActiveOperationRadioButton.isSelected()) {
+            inquirer = inquiryOriginActiveOperationRadioButton.getText();
+        }
+        if (inquiryOriginOtherMunicipalityRadioButton.isSelected()) {
+            inquirer = inquiryOriginOtherMunicipalityRadioButton.getText();
+        }
+        if (inquiryOriginOtherInstanceRadioButton.isSelected()) {
+            inquirer = inquiryOriginOtherInstanceRadioButton.getText();
+        }
+        
         boolean citizenAgreement = inquiryUnderstoodYesRadioButton.isSelected();
         String caseworkerDomainID = business.getCurrentUserDomainID();
 
@@ -710,7 +738,33 @@ public class CaseworkerController implements Initializable {
         String phoneNumber = phoneNumberPrefixTextField.getText() + phoneNumberTextField.getText();
         boolean citizenAgreement = inquiryUnderstoodYesRadioButton.isSelected();
         String problemDescription = descriptionTextAreaCase.getText();
-        String inquirer = inquiryOriginGroup.getSelectedToggle().toString();
+
+        String inquirer = "";
+        if (inquiryOriginCitizenRadioButton.isSelected()) {
+            inquirer = inquiryOriginCitizenRadioButton.getText();
+        }
+        if (inquiryOriginNextOfKinRadioButton.isSelected()) {
+            inquirer = inquiryOriginNextOfKinRadioButton.getText();
+        }
+        if (inquiryOriginDoctorRadioButton.isSelected()) {
+            inquirer = inquiryOriginDoctorRadioButton.getText();
+        }
+        if (inquiryOriginHospitalRadioButton.isSelected()) {
+            inquirer = inquiryOriginHospitalRadioButton.getText();
+        }
+        if (inquiryOriginOtherRadioButton.isSelected()) {
+            inquirer = inquiryOriginOtherRadioButton.getText();
+        }
+        if (inquiryOriginActiveOperationRadioButton.isSelected()) {
+            inquirer = inquiryOriginActiveOperationRadioButton.getText();
+        }
+        if (inquiryOriginOtherMunicipalityRadioButton.isSelected()) {
+            inquirer = inquiryOriginOtherMunicipalityRadioButton.getText();
+        }
+        if (inquiryOriginOtherInstanceRadioButton.isSelected()) {
+            inquirer = inquiryOriginOtherInstanceRadioButton.getText();
+        }
+        
         String responsibleCaseworkerDomainID = business.getCurrentUserDomainID();
         boolean informedRightsBystander = rightsBystanderCheckBox.isSelected();
         boolean informedRightsElectronicRegistration = rightsYesOrNoGroup.getSelectedToggle().isSelected();
@@ -776,7 +830,7 @@ public class CaseworkerController implements Initializable {
                 meetingDate, meetingDescription,
                 meetingLocation, cprNumberRep, firstNameRep, lastNameRep, roadNameRep,
                 houseNumberRep, floorRep, postalCodeRepInt, cityRep, phoneNumberRep, representationType,
-                note, serviceMap, offerMap);
+                note, fillServiceMap(), fillOfferMap());
 
         if (result) {
             System.out.println("Case has been made.");
