@@ -6,6 +6,7 @@
 package DataPersistence;
 
 import Acquaintance.ICase;
+import Acquaintance.ICaseNote;
 import Acquaintance.IInformationGathering;
 import Acquaintance.IInquiry;
 import Acquaintance.IMeeting;
@@ -99,6 +100,7 @@ public class CaseDatabaseManager {
             int meetingID = -1;
             int caseID = -1;
             int tempRepresentationID = -1;
+            int tempCaseNoteID = -1;
 
             //Statement 1 - create inquiry for the new case
             for (IInquiry inquiry : case1.getInquiryList()) {
@@ -192,41 +194,64 @@ public class CaseDatabaseManager {
             //Statement 12 - Create person for representative
             for (IRepresentation representation : case1.getRepresentationList()) {
                 String address = representation.getPerson().getRoadName() + " " + representation.getPerson().getHouseNumber() + ", " + representation.getPerson().getPostalCode() + " " + representation.getPerson().getCity();
-                
+
                 PreparedStatement st12 = conn.prepareStatement("INSERT INTO person(cpr, fornavn, efternavn, adresse, telefonnummer) "
-                        + "VALUES('" + representation.getPerson().getCpr() + "', '" + representation.getPerson().getFirstName() + "', '" 
+                        + "VALUES('" + representation.getPerson().getCpr() + "', '" + representation.getPerson().getFirstName() + "', '"
                         + representation.getPerson().getLastName() + "', '" + address + "', '" + representation.getPerson().getPhoneNumber() + "');");
-                        
+
                 st12.executeQuery();
             }
-            
+
             //Statement 13 - Get RepresentationID            
             Statement st13 = conn.createStatement();
-            
+
             String sql13 = "SELECT MAX(person_id FROM person";
-            
+
             ResultSet result13 = st13.executeQuery(sql13);
-            
-            while (result13.next()){
+
+            while (result13.next()) {
                 tempRepresentationID = result13.getInt("max");
             }
-            
+
             //Statement 14 - Create "repræsentant"
-            for(IRepresentation representation : case1.getRepresentationList()) {
+            for (IRepresentation representation : case1.getRepresentationList()) {
                 PreparedStatement st14 = conn.prepareStatement("INSERT INTO repræsentant(person_id, repraesentant_type) "
                         + "VALUES(" + tempRepresentationID + ", '" + representation.getRepresentationType() + "');");
-                
+
                 st14.executeUpdate();
             }
-            
+
             //Statement 15 - Create relation in "er_knyttet_til"
             PreparedStatement st15 = conn.prepareStatement("INSERT INTO er_knyttet_til(person_id, sags_id) "
                     + "VALUES(" + tempRepresentationID + ", " + tempCaseID + ");");
-            
+
             st15.executeUpdate();
+
+            //Statement 16 - Create caseNote
+            for (ICaseNote caseNote : case1.getCaseNoteList()) {
+                PreparedStatement st16 = conn.prepareStatement("INSERT INTO sagsnotat(notat_beskrivelse "
+                        + "VALUES('" + caseNote.getNote() + "');");
+                
+                st16.executeUpdate();
+            }
             
+            //Statement 17 - Get caseNoteID
+            Statement st17 = conn.createStatement();
             
+            String sql17 = "SELECT MAX(notat_id) FROM sagsnotat";
             
+            ResultSet result17 = st17.executeQuery(sql17);
+            
+            while(result17.next()){
+                tempCaseNoteID = result17.getInt("max");
+            }
+            
+            //Statement 18 - Create relation in "vedrører"
+            PreparedStatement st18 = conn.prepareStatement("INSERT INTO vedrører(notat_id, sags_id) "
+                    + "VALUES(" + tempCaseNoteID + ", " + tempCaseID + ");");
+            
+            st18.executeUpdate();
+
         } catch (Exception ex) {
             ex.printStackTrace();
             return false;
