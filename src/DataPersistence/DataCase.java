@@ -16,7 +16,6 @@ class DataCase implements ICase {
     private boolean informedRightsBystander;
     private boolean informedRightsElectronicRegistration;
     private String consent;
-    private Collection<String> consentToInformationGathering;
     private String specialCircumstances;
     private String otherActingMunicipality;
     private String otherPayingMunicipality;
@@ -26,7 +25,7 @@ class DataCase implements ICase {
     private Collection<IMeeting> meetingList;
     private Collection<IRepresentation> representationList;
     private Collection<ICaseNote> caseNoteList;
-    private Collection<IInformationGathering> consentToInformationGatheringList;
+    private Collection<IInformationGathering> informationGatheringList;
     private Collection<IService> serviceList;
     private Collection<IOffer> offerList;
 
@@ -155,11 +154,11 @@ class DataCase implements ICase {
 
     @Override
     public Collection<IInformationGathering> getConsentToInformationGatheringList() {
-        return this.consentToInformationGatheringList;
+        return this.informationGatheringList;
     }
 
     @Override
-    public void addConsentToInformationGathering(String consentToInformationGathering) {
-        this.consentToInformationGathering.add(consentToInformationGathering);
+    public void addConsentToInformationGathering(IInformationGathering informationGathering) {
+        this.informationGatheringList.add(informationGathering);
     }
 }

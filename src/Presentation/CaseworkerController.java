@@ -350,6 +350,8 @@ public class CaseworkerController implements Initializable {
 
     private Map<Integer, String> serviceMap;
     private Map<Integer, String> offerMap;
+    private Map<Integer, String> informationGatheringMap;
+    
     @FXML
     private Label cprSyntaxLabel;
     @FXML
@@ -637,6 +639,34 @@ public class CaseworkerController implements Initializable {
             offerMap.put(18, governmentApprovedOfferCheckBox.getText());
         }
     }
+        
+        private void informationGatheringMap(){
+            if(ownDoctorCheckBox.isSelected()) {
+                informationGatheringMap.put(1, ownDoctorCheckBox.getText());
+            }
+            if(specialDoctorCheckBox.isSelected()){
+                informationGatheringMap.put(2, ownDoctorCheckBox.getText());
+            }
+            if(hospitalCheckBox.isSelected()){
+                informationGatheringMap.put(3, hospitalCheckBox.getText());
+            }
+            if(unemploymentBenefitsCheckBox.isSelected()){
+                informationGatheringMap.put(4, unemploymentBenefitsCheckBox.getText());
+            }
+            if(offerCheckBox.isSelected()){
+                informationGatheringMap.put(5, offerCheckBox.getText());
+            }
+            if(employerCheckBox.isSelected()){
+                informationGatheringMap.put(6, employerCheckBox.getText());
+            }
+            if(formerMunicipalityCheckBox.isSelected()){
+                informationGatheringMap.put(7, formerMunicipalityCheckBox.getText());
+            }
+            if(otherInstancesCheckBox.isSelected()){
+                informationGatheringMap.put(8, otherInstancesCheckBox.getText());
+            }
+        }
+    
 
     /**
      * Initializes the controller class.
@@ -777,12 +807,12 @@ public class CaseworkerController implements Initializable {
 
         boolean result = business.newCase(problemDescription, inquirer, citizenAgreement, cprNumber, firstName,
                 lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber,
-                responsibleCaseworkerDomainID, informedRightsBystander, informedRightsElectronicRegistration, consent, consentToInformationGathering,
+                responsibleCaseworkerDomainID, informedRightsBystander, informedRightsElectronicRegistration, consent,
                 specialCircumstances, otherActingMunicipality, otherPayingMunicipality,
                 meetingDate, meetingDescription,
                 meetingLocation, cprNumberRep, firstNameRep, lastNameRep, roadNameRep,
                 houseNumberRep, floorRep, postalCodeRepInt, cityRep, phoneNumberRep, representationType,
-                note, serviceMap, offerMap);
+                note, informationGatheringMap, serviceMap, offerMap);
 
         if (result) {
             System.out.println("Case has been made.");

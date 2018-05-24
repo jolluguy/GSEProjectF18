@@ -139,13 +139,21 @@ public class BusinessFacade implements IBusiness {
     
     @Override
     public boolean newCase(String problemDescription, String inquirer, boolean citizenAgreement, String cprNumber, String firstName, String lastName, String roadName, String houseNumber, String floor, int postalCode, String city, String phoneNumber,
-                String responsibleCaseworker, boolean informedRightsBystander, boolean informedRightsElectronicRegistration, String consent, Collection<String> consentToInformationGathering, String specialCircumstances, String otherActingMunicipality, String otherPayingMunicipality,
+                String responsibleCaseworker, boolean informedRightsBystander, boolean informedRightsElectronicRegistration, String consent, String specialCircumstances, String otherActingMunicipality, String otherPayingMunicipality,
                 Timestamp meetingDate, String meetingDescription, String meetingLocation,
                 String cprNumberRep, String firstNameRep, String lastNameRep, String roadNameRep, String houseNumberRep, String floorRep, int postalCodeRep, String cityRep, String phoneNumberRep, String representationType,
                 String note,
+                Map<Integer, String> infomationGatheringIDList,
                 Map<Integer, String> serviceIDList,
                 Map<Integer, String> offerIDList){
-        return caseManager.createCase(problemDescription, inquirer, citizenAgreement, cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber, responsibleCaseworker, informedRightsBystander, informedRightsElectronicRegistration, consent, consentToInformationGathering, specialCircumstances, otherActingMunicipality, otherPayingMunicipality, meetingDate, meetingDescription, meetingLocation, cprNumberRep, firstNameRep, lastNameRep, roadNameRep, houseNumberRep, floorRep, postalCodeRep, cityRep, phoneNumberRep, representationType, note, serviceIDList, offerIDList);
+        return caseManager.createCase(problemDescription, inquirer, citizenAgreement, cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber,
+                responsibleCaseworker, informedRightsBystander, informedRightsElectronicRegistration, consent, specialCircumstances, otherActingMunicipality, otherPayingMunicipality,
+                meetingDate, meetingDescription, meetingLocation,
+                cprNumberRep, firstNameRep, lastNameRep, roadNameRep, houseNumberRep, floorRep, postalCodeRep, cityRep, phoneNumberRep, representationType,
+                note,
+                infomationGatheringIDList,
+                serviceIDList,
+                offerIDList);
     }
     
     boolean saveCase(ICase case1) {

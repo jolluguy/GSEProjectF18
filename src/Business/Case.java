@@ -23,7 +23,6 @@ class Case implements ICase {
     private boolean informedRightsBystander;
     private boolean informedRightsElectronicRegistration;
     private String consent;
-    private Collection<String> consentToInformationGathering;
     private String specialCircumstances;
     private String otherActingMunicipality;
     private String otherPayingMunicipality;
@@ -81,7 +80,7 @@ class Case implements ICase {
             String houseNumber, String floor, int postalCode, String city,
             String phoneNumber, String representationType,
             String note,
-            Map<Integer, String> consentToInformationGatheringMap,
+            Map<Integer, String> infomationGatheringIDList,
             Map<Integer, String> serviceIDMap,
             Map<Integer, String> offerIDMap) {
 
@@ -95,16 +94,9 @@ class Case implements ICase {
         this.informedRightsBystander = informedRightsBystander;
         this.informedRightsElectronicRegistration = informedRightsElectronicRegistration;
         this.consent = consent;
-
-        this.consentToInformationGathering = new ArrayList<>();
-        if (!consentToInformationGathering.isEmpty()) {
-            for (String s : consentToInformationGathering) {
-                this.consentToInformationGathering.add(s);
-            }
-        }
         
         this.infomationGatheringList = new ArrayList<>();
-        for(Map.Entry<Integer, String> entry : consentToInformationGatheringMap.entrySet()) {
+        for(Map.Entry<Integer, String> entry : infomationGatheringIDList.entrySet()) {
             this.infomationGatheringList.add(new InformationGathering(entry.getKey(), entry.getValue()));
         }
 
@@ -291,8 +283,8 @@ class Case implements ICase {
     }
 
     @Override
-    public void addConsentToInformationGathering(String consentToInformationGathering) {
-        this.consentToInformationGathering.add(consentToInformationGathering);
+    public void addConsentToInformationGathering(IInformationGathering informationGathering) {
+        this.infomationGatheringList.add(informationGathering);
     }
 
 }
