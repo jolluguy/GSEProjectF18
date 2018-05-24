@@ -126,7 +126,7 @@ public class CaseDatabaseManager {
             //Statement 2 - Create case in database
             PreparedStatement st2 = conn.prepareStatement("INSERT INTO sag(sagsbehandler_domaene_id, samtykke_indsamling, informeret_registrering, informeret_bistand, "
                     + "saerlige_forhold, anden_betalingskommune, anden_handlekommune) "
-                    + "VALUES('" + case1.getResponsibleCaseworker() + "', '" + case1.getConsent() + "', " + case1.isInformedRightsBystander() + ", '"
+                    + "VALUES('" + case1.getResponsibleCaseworker() + "', '" + case1.getConsent() + "', " + case1.isInformedRightsElectronicRegistration() + ", " + case1.isInformedRightsBystander() + ", '"
                     + case1.getSpecialCircumstances() + "', '" + case1.getOtherPayingMunicipality() + "', '" + case1.getOtherActingMunicipality() + "');");
 
             st2.executeUpdate();
@@ -161,20 +161,20 @@ public class CaseDatabaseManager {
 
             //Statement 6 - create meeting
             for (IMeeting meeting : case1.getMeetingList()) {
-                PreparedStatement st6 = conn.prepareStatement("INSERT INTO aftale(dato, lokation, beskrivelse) "
-                        + "VALUES('" + meeting.getMeetingTime() + "', '" + meeting.getMeetingLocation() + "', '" + meeting.getMeetingDescription() + "';)");
+                PreparedStatement st6 = conn.prepareStatement("INSERT INTO aftale(tidspunkt, lokation, beskrivelse) "
+                        + "VALUES('" + meeting.getMeetingTime() + "', '" + meeting.getMeetingLocation() + "', '" + meeting.getMeetingDescription() + "');");
 
                 st6.executeUpdate();
 
             }
 
             //Statement 7 - Get "aftale_id"
-            PreparedStatement st7 = conn.prepareStatement("SELECT MAX(aftale_id) FROM aftale");
+            PreparedStatement st7 = conn.prepareStatement("SELECT MAX(aftale_id) FROM aftale;");
 
             ResultSet result7 = st7.executeQuery();
 
             while (result7.next()) {
-                meetingID = result3.getInt("max");
+                meetingID = result7.getInt("max");
             }
 
             //Statement 8 - Create relation in "relaterer_til"
@@ -188,15 +188,15 @@ public class CaseDatabaseManager {
                 PreparedStatement st9 = conn.prepareStatement("INSERT INTO giver(tilbuds_id, sags_id) "
                         + "VALUES(" + service.getServiceID() + ", " + caseID + ");");
 
-                st9.executeQuery();
+                st9.executeUpdate();
             }
 
             //Statement 10 - Create relation in "bevilger!
             for (IOffer offer : case1.getOfferList()) {
-                PreparedStatement st10 = conn.prepareStatement("INSER INTO bevilger(ydelses_id, sags_id) "
+                PreparedStatement st10 = conn.prepareStatement("INSERT INTO bevilger(ydelses_id, sags_id) "
                         + "VALUES(" + offer.getOfferID() + ", " + caseID + ");");
 
-                st10.executeQuery();
+                st10.executeUpdate();
             }
 
             //Statement 11 - Create relation in "gives_i"
@@ -204,7 +204,7 @@ public class CaseDatabaseManager {
                 PreparedStatement st11 = conn.prepareStatement("INSERT INTO gives_i(samtykke_id, sags_id) "
                         + "VALUES(" + infoGathering.getInfoGatheringID() + ", " + caseID + ");");
 
-                st11.executeQuery();
+                st11.executeUpdate();
             }
 
             //Statement 12 - Create person for representative
@@ -215,7 +215,7 @@ public class CaseDatabaseManager {
                         + "VALUES('" + representation.getPerson().getCpr() + "', '" + representation.getPerson().getFirstName() + "', '"
                         + representation.getPerson().getLastName() + "', '" + address + "', '" + representation.getPerson().getPhoneNumber() + "');");
 
-                st12.executeQuery();
+                st12.executeUpdate();
             }
 
             //Statement 13 - Get RepresentationID            
