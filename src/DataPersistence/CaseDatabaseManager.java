@@ -38,17 +38,6 @@ public class CaseDatabaseManager {
 
         try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
             
-            System.out.println("citizenCpr = " + inq.getCitizen().getCprNumber());
-            System.out.println("citizenName = " + inq.getCitizen().getFirstName());
-            System.out.println("citizenLastName = " + inq.getCitizen().getLastName());
-            System.out.println("citizen adress = " + address);
-            System.out.println("citizen phone = " + inq.getCitizen().getPhoneNumber());
-            System.out.println("save inq responsible caseworker = " + inq.getResponsibleCaseWorkerDomainID());
-            System.out.println("citizenAgreement = " + inq.getCitizenAgreement());
-            System.out.println("description = " + inq.getProblemDescription());
-            System.out.println("save inq inquirer = " + inq.getInquirer());
-            System.out.println("inq time = " + inq.getTime());
-            
             Class.forName("org.postgresql.Driver");
 
             // Statement 1 - create person
