@@ -28,7 +28,7 @@
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
 
-                        <ScrollPane hmax="722.0" prefHeight="762.0" prefViewportHeight="1000.0" prefViewportWidth="771.0" prefWidth="1300.0" style="-fx-background-color: f3f3f3;" vmax="1500.0">
+                        <ScrollPane hmax="722.0" prefHeight="762.0" prefViewportHeight="1000.0" prefViewportWidth="771.0" prefWidth="1300.0" style="-fx-background-color: f3f3f3;" vmax="1500.0" vvalue="1500.0">
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1674.0" prefWidth="1299.0">
                                  <children>
@@ -109,54 +109,22 @@
                                     <Label layoutX="125.0" layoutY="1527.0" text="Er borgeren indforstået med henvendelsen?" />
                                     <RadioButton fx:id="inquiryOriginCitizenRadioButton" layoutX="125.0" layoutY="1227.0" mnemonicParsing="false" text="Borger">
                                        <toggleGroup>
-                                          <ToggleGroup fx:id="inquiryOriginGroup" />
+                                          <ToggleGroup fx:id="inquiryOriginGroup2" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="inquiryOriginNextOfKinRadioButton" layoutX="125.0" layoutY="1261.0" mnemonicParsing="false" text="Pårørende">
-                                       <toggleGroup>
-                                          <ToggleGroup fx:id="inquiryOriginGroup" />
-                                       </toggleGroup>
-                                    </RadioButton>
-                                    <RadioButton fx:id="inquiryOriginDoctorRadioButton" layoutX="125.0" layoutY="1296.0" mnemonicParsing="false" text="Læge">
-                                       <toggleGroup>
-                                          <ToggleGroup fx:id="inquiryOriginGroup" />
-                                       </toggleGroup>
-                                    </RadioButton>
-                                    <RadioButton fx:id="inquiryOriginHospitalRadioButton" layoutX="125.0" layoutY="1332.0" mnemonicParsing="false" text="Hospital">
-                                       <toggleGroup>
-                                          <ToggleGroup fx:id="inquiryOriginGroup" />
-                                       </toggleGroup>
-                                    </RadioButton>
-                                    <RadioButton fx:id="inquiryOriginOtherInstanceRadioButton" layoutX="125.0" layoutY="1479.0" mnemonicParsing="false" text="Anden forvaltning">
-                                       <toggleGroup>
-                                          <ToggleGroup fx:id="inquiryOriginGroup" />
-                                       </toggleGroup>
-                                    </RadioButton>
-                                    <RadioButton fx:id="inquiryOriginActiveOperationRadioButton" layoutX="125.0" layoutY="1404.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="185.0" text="Igangværende indsats">
-                                       <toggleGroup>
-                                          <ToggleGroup fx:id="inquiryOriginGroup" />
-                                       </toggleGroup>
-                                    </RadioButton>
-                                    <RadioButton fx:id="inquiryOriginOtherMunicipalityRadioButton" layoutX="125.0" layoutY="1442.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="167.0" text="Anden kommune">
-                                       <toggleGroup>
-                                          <ToggleGroup fx:id="inquiryOriginGroup" />
-                                       </toggleGroup>
-                                    </RadioButton>
-                                    <RadioButton fx:id="inquiryOriginOtherRadioButton" layoutX="125.0" layoutY="1367.0" mnemonicParsing="false" text="Andre">
-                                       <toggleGroup>
-                                          <ToggleGroup fx:id="inquiryOriginGroup" />
-                                       </toggleGroup>
-                                    </RadioButton>
+                                    <RadioButton fx:id="inquiryOriginNextOfKinRadioButton" layoutX="125.0" layoutY="1261.0" mnemonicParsing="false" text="Pårørende" toggleGroup="$inquiryOriginGroup2" />
+                                    <RadioButton fx:id="inquiryOriginDoctorRadioButton" layoutX="125.0" layoutY="1296.0" mnemonicParsing="false" text="Læge" toggleGroup="$inquiryOriginGroup2" />
+                                    <RadioButton fx:id="inquiryOriginHospitalRadioButton" layoutX="125.0" layoutY="1332.0" mnemonicParsing="false" text="Hospital" toggleGroup="$inquiryOriginGroup2" />
+                                    <RadioButton fx:id="inquiryOriginOtherInstanceRadioButton" layoutX="125.0" layoutY="1479.0" mnemonicParsing="false" text="Anden forvaltning" toggleGroup="$inquiryOriginGroup2" />
+                                    <RadioButton fx:id="inquiryOriginActiveOperationRadioButton" layoutX="125.0" layoutY="1404.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="185.0" text="Igangværende indsats" toggleGroup="$inquiryOriginGroup2" />
+                                    <RadioButton fx:id="inquiryOriginOtherMunicipalityRadioButton" layoutX="125.0" layoutY="1442.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="167.0" text="Anden kommune" toggleGroup="$inquiryOriginGroup2" />
+                                    <RadioButton fx:id="inquiryOriginOtherRadioButton" layoutX="125.0" layoutY="1367.0" mnemonicParsing="false" text="Andre" toggleGroup="$inquiryOriginGroup2" />
                                     <RadioButton fx:id="inquiryUnderstoodYesRadioButton" layoutX="125.0" layoutY="1590.0" mnemonicParsing="false" text="Ja">
                                        <toggleGroup>
-                                          <ToggleGroup fx:id="inquiryYesOrNoGroup" />
+                                          <ToggleGroup fx:id="inquiryYesOrNoGroup2" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="inquiryUnderstoodNoRadioButton" layoutX="125.0" layoutY="1560.0" mnemonicParsing="false" text="Nej">
-                                       <toggleGroup>
-                                          <ToggleGroup fx:id="inquiryYesOrNoGroup" />
-                                       </toggleGroup>
-                                    </RadioButton>
+                                    <RadioButton fx:id="inquiryUnderstoodNoRadioButton" layoutX="125.0" layoutY="1560.0" mnemonicParsing="false" text="Nej" toggleGroup="$inquiryYesOrNoGroup2" />
                                     <Separator layoutX="125.0" layoutY="1174.0" prefHeight="1.0" prefWidth="900.0" style="-fx-background-color: black;" />
                                  </children></AnchorPane>
                           </content>
