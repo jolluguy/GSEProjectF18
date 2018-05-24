@@ -112,7 +112,7 @@ class CaseManager {
                 Map<Integer, String> serviceIDList,
                 Map<Integer, String> offerIDList){
        IInquiry inquiry = new Inquiry(problemDescription, inquirer, citizenAgreement, cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber, responsibleCaseworkerDomainID);
-       ICase case1 = new Case(inquiry, responsibleCaseworkerDomainID, informedRightsBystander, informedRightsElectronicRegistration, consent, specialCircumstances, otherActingMunicipality, otherPayingMunicipality, meetingDate, meetingDescription, meetingLocation, cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber, representationType, note, infomationGatheringIDList, serviceIDList, offerIDList);
+       ICase case1 = new Case(inquiry, responsibleCaseworkerDomainID, informedRightsBystander, informedRightsElectronicRegistration, consent, specialCircumstances, otherActingMunicipality, otherPayingMunicipality, meetingDate, meetingDescription, meetingLocation, cprNumberRep, firstNameRep, lastNameRep, roadNameRep, houseNumberRep, floorRep, postalCodeRep, cityRep, phoneNumberRep, representationType, note, infomationGatheringIDList, serviceIDList, offerIDList);
         
         return sendCaseToDB(case1);
        }
