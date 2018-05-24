@@ -37,24 +37,39 @@ public class CaseDatabaseManager {
         int inquiryID = -1;
 
         try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
+            
+            System.out.println("citizenCpr = " + inq.getCitizen().getCprNumber());
+            System.out.println("citizenName = " + inq.getCitizen().getFirstName());
+            System.out.println("citizenLastName = " + inq.getCitizen().getLastName());
+            System.out.println("citizen adress = " + address);
+            System.out.println("citizen phone = " + inq.getCitizen().getPhoneNumber());
+            System.out.println("save inq responsible caseworker = " + inq.getResponsibleCaseWorkerDomainID());
+            System.out.println("citizenAgreement = " + inq.getCitizenAgreement());
+            System.out.println("description = " + inq.getProblemDescription());
+            System.out.println("save inq inquirer = " + inq.getInquirer());
+            System.out.println("inq time = " + inq.getTime());
+            
             Class.forName("org.postgresql.Driver");
 
             // Statement 1 - create person
             PreparedStatement st = conn.prepareStatement("INSERT INTO person(cpr, fornavn, efternavn, adresse, telefonnummer) "
-                    + "VALUES(" + inq.getCitizen().getCpr() + ", " + inq.getCitizen().getFirstName() + ", " + inq.getCitizen().getLastName() + ", " + address + ", " + inq.getCitizen().getPhoneNumber() + ");");
+                    + "VALUES('" + inq.getCitizen().getCprNumber() + "', '" + inq.getCitizen().getFirstName() + "', '" + inq.getCitizen().getLastName() + "', '" + address + "', '" 
+                    + inq.getCitizen().getPhoneNumber() + "');");
 
             st.executeUpdate();
 
             //Statement 2 - create inquiry
-            PreparedStatement st2 = conn.prepareStatement("INSERT INTO henvendelse (sagsbehandler_domaene_id, henvendelse.indforstået, henvendelse.problembeskrivelse, henvendelse.henvender, henvendelse.henvendelses_dato)"
-                    + "VALUES ('" + inq.getResponsibleCaseWorkerDomainID() + ", " + inq.getCitizenAgreement() + "', '" + inq.getProblemDescription() + "', '" + inq.getInquirer() + "', '" + inq.getTime() + "');");
+            PreparedStatement st2 = conn.prepareStatement("INSERT INTO henvendelse(sagsbehandler_domaene_id, indforstaaet, problembeskrivelse, "
+                    + "henvender, tidspunkt)"
+                    + "VALUES ('" + inq.getResponsibleCaseWorkerDomainID() + "', '" + inq.getCitizenAgreement() + "', '" + inq.getProblemDescription() + "', '" + inq.getInquirer() 
+                    + "', '" + inq.getTime() + "');");
 
             st2.executeUpdate();
 
             // Statement 3 - Get personID from person for later use
             Statement st3 = conn.createStatement();
 
-            String sql = "SELECT person.person_id FROM person WHERE person.cpr = '" + inq.getCitizen().getCpr() + "';";
+            String sql = "SELECT person.person_id FROM person WHERE person.cpr = '" + inq.getCitizen().getCprNumber()+ "';";
 
             ResultSet result = st3.executeQuery(sql);
 
@@ -65,7 +80,8 @@ public class CaseDatabaseManager {
             //Statement 4 - Get inquiryID from henveldelse for later use
             Statement st4 = conn.createStatement();
 
-            String sql2 = "SELECT henvendelse.henvendelses_id FROM henvendelse WHERE tidspunkt = '" + inq.getTime() + "' AND sagsbehandler_domaene_id = '" + inq.getResponsibleCaseWorkerDomainID() + "';";
+            String sql2 = "SELECT henvendelse.henvendelses_id FROM henvendelse WHERE tidspunkt = '" + inq.getTime() + "' AND sagsbehandler_domaene_id = '" 
+                    + inq.getResponsibleCaseWorkerDomainID() + "';";
 
             ResultSet result2 = st4.executeQuery(sql2);
 
@@ -74,13 +90,13 @@ public class CaseDatabaseManager {
             }
 
             //Statement 5 - Create a "borger" with a personID
-            PreparedStatement st5 = conn.prepareStatement("INSERT INTO borger(person_id) VALUES('" + personID + "';");
+            PreparedStatement st5 = conn.prepareStatement("INSERT INTO borger(person_id) VALUES('" + personID + "');");
 
             st5.executeUpdate();
 
             //Statement 6 - create relation between borger and henvendelse
             PreparedStatement st6 = conn.prepareStatement("INSERT INTO omhandler(person_id, henvendelses_id) "
-                    + "VALUES('" + personID + "', " + inquiryID + "');");
+                    + "VALUES('" + personID + "', '" + inquiryID + "');");
 
             st6.executeUpdate();
 
