@@ -868,7 +868,7 @@ public class CaseworkerController implements Initializable {
                 meetingDate, meetingDescription,
                 meetingLocation, cprNumberRep, firstNameRep, lastNameRep, roadNameRep,
                 houseNumberRep, floorRep, postalCodeRepInt, cityRep, phoneNumberRep, representationType,
-                note, fillInformationGatheringMap()fillServiceMap(), fillOfferMap());
+                note, fillInformationGatheringMap(),fillServiceMap(), fillOfferMap());
 
 
         if (result) {
