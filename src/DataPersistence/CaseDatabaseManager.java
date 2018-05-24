@@ -37,24 +37,39 @@ public class CaseDatabaseManager {
         int inquiryID = -1;
 
         try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
+            
+            System.out.println("citizenCpr = " + inq.getCitizen().getCprNumber());
+            System.out.println("citizenName = " + inq.getCitizen().getFirstName());
+            System.out.println("citizenLastName = " + inq.getCitizen().getLastName());
+            System.out.println("citizen adress = " + address);
+            System.out.println("citizen phone = " + inq.getCitizen().getPhoneNumber());
+            System.out.println("save inq responsible caseworker = " + inq.getResponsibleCaseWorkerDomainID());
+            System.out.println("citizenAgreement = " + inq.getCitizenAgreement());
+            System.out.println("description = " + inq.getProblemDescription());
+            System.out.println("save inq inquirer = " + inq.getInquirer());
+            System.out.println("inq time = " + inq.getTime());
+            
             Class.forName("org.postgresql.Driver");
 
             // Statement 1 - create person
             PreparedStatement st = conn.prepareStatement("INSERT INTO person(cpr, fornavn, efternavn, adresse, telefonnummer) "
-                    + "VALUES(" + inq.getCitizen().getCpr() + ", " + inq.getCitizen().getFirstName() + ", " + inq.getCitizen().getLastName() + ", " + address + ", " + inq.getCitizen().getPhoneNumber() + ");");
+                    + "VALUES('" + inq.getCitizen().getCprNumber() + "', '" + inq.getCitizen().getFirstName() + "', '" + inq.getCitizen().getLastName() + "', '" + address + "', '" 
+                    + inq.getCitizen().getPhoneNumber() + "');");
 
             st.executeUpdate();
 
             //Statement 2 - create inquiry
-            PreparedStatement st2 = conn.prepareStatement("INSERT INTO henvendelse (sagsbehandler_domaene_id, henvendelse.indforstået, henvendelse.problembeskrivelse, henvendelse.henvender, henvendelse.henvendelses_dato)"
-                    + "VALUES ('" + inq.getResponsibleCaseWorkerDomainID() + ", " + inq.getCitizenAgreement() + "', '" + inq.getProblemDescription() + "', '" + inq.getInquirer() + "', '" + inq.getTime() + "');");
+            PreparedStatement st2 = conn.prepareStatement("INSERT INTO henvendelse(sagsbehandler_domaene_id, indforstaaet, problembeskrivelse, "
+                    + "henvender, tidspunkt)"
+                    + "VALUES ('" + inq.getResponsibleCaseWorkerDomainID() + "', '" + inq.getCitizenAgreement() + "', '" + inq.getProblemDescription() + "', '" + inq.getInquirer() 
+                    + "', '" + inq.getTime() + "');");
 
             st2.executeUpdate();
 
             // Statement 3 - Get personID from person for later use
             Statement st3 = conn.createStatement();
 
-            String sql = "SELECT person.person_id FROM person WHERE person.cpr = '" + inq.getCitizen().getCpr() + "';";
+            String sql = "SELECT person.person_id FROM person WHERE person.cpr = '" + inq.getCitizen().getCprNumber()+ "';";
 
             ResultSet result = st3.executeQuery(sql);
 
@@ -65,7 +80,8 @@ public class CaseDatabaseManager {
             //Statement 4 - Get inquiryID from henveldelse for later use
             Statement st4 = conn.createStatement();
 
-            String sql2 = "SELECT henvendelse.henvendelses_id FROM henvendelse WHERE tidspunkt = '" + inq.getTime() + "' AND sagsbehandler_domaene_id = '" + inq.getResponsibleCaseWorkerDomainID() + "';";
+            String sql2 = "SELECT henvendelse.henvendelses_id FROM henvendelse WHERE tidspunkt = '" + inq.getTime() + "' AND sagsbehandler_domaene_id = '" 
+                    + inq.getResponsibleCaseWorkerDomainID() + "';";
 
             ResultSet result2 = st4.executeQuery(sql2);
 
@@ -74,13 +90,13 @@ public class CaseDatabaseManager {
             }
 
             //Statement 5 - Create a "borger" with a personID
-            PreparedStatement st5 = conn.prepareStatement("INSERT INTO borger(person_id) VALUES('" + personID + "';");
+            PreparedStatement st5 = conn.prepareStatement("INSERT INTO borger(person_id) VALUES('" + personID + "');");
 
             st5.executeUpdate();
 
             //Statement 6 - create relation between borger and henvendelse
             PreparedStatement st6 = conn.prepareStatement("INSERT INTO omhandler(person_id, henvendelses_id) "
-                    + "VALUES('" + personID + "', " + inquiryID + "');");
+                    + "VALUES('" + personID + "', '" + inquiryID + "');");
 
             st6.executeUpdate();
 
@@ -110,7 +126,7 @@ public class CaseDatabaseManager {
             //Statement 2 - Create case in database
             PreparedStatement st2 = conn.prepareStatement("INSERT INTO sag(sagsbehandler_domaene_id, samtykke_indsamling, informeret_registrering, informeret_bistand, "
                     + "saerlige_forhold, anden_betalingskommune, anden_handlekommune) "
-                    + "VALUES('" + case1.getResponsibleCaseworker() + "', '" + case1.getConsent() + "', " + case1.isInformedRightsBystander() + ", '"
+                    + "VALUES('" + case1.getResponsibleCaseworker() + "', '" + case1.getConsent() + "', " + case1.isInformedRightsElectronicRegistration() + ", " + case1.isInformedRightsBystander() + ", '"
                     + case1.getSpecialCircumstances() + "', '" + case1.getOtherPayingMunicipality() + "', '" + case1.getOtherActingMunicipality() + "');");
 
             st2.executeUpdate();
@@ -139,26 +155,26 @@ public class CaseDatabaseManager {
 
             //Statement 5 - create relation  "drejer_sig_om"
             PreparedStatement st5 = conn.prepareStatement("INSERT INTO drejer_sig_om(person_id, sags_id) "
-                    + "VALUES('" + tempPersonID + "', " + tempCaseID + ");");
+                    + "VALUES(" + tempPersonID + ", " + tempCaseID + ");");
 
             st5.executeUpdate();
 
             //Statement 6 - create meeting
             for (IMeeting meeting : case1.getMeetingList()) {
-                PreparedStatement st6 = conn.prepareStatement("INSERT INTO aftale(dato, lokation, beskrivelse) "
-                        + "VALUES(" + meeting.getMeetingTime() + ", '" + meeting.getMeetingLocation() + "', '" + meeting.getMeetingDescription() + "';)");
+                PreparedStatement st6 = conn.prepareStatement("INSERT INTO aftale(tidspunkt, lokation, beskrivelse) "
+                        + "VALUES('" + meeting.getMeetingTime() + "', '" + meeting.getMeetingLocation() + "', '" + meeting.getMeetingDescription() + "');");
 
                 st6.executeUpdate();
 
             }
 
             //Statement 7 - Get "aftale_id"
-            PreparedStatement st7 = conn.prepareStatement("SELECT MAX(aftale_id) FROM aftale");
+            PreparedStatement st7 = conn.prepareStatement("SELECT MAX(aftale_id) FROM aftale;");
 
             ResultSet result7 = st7.executeQuery();
 
             while (result7.next()) {
-                meetingID = result3.getInt("max");
+                meetingID = result7.getInt("max");
             }
 
             //Statement 8 - Create relation in "relaterer_til"
@@ -172,15 +188,15 @@ public class CaseDatabaseManager {
                 PreparedStatement st9 = conn.prepareStatement("INSERT INTO giver(tilbuds_id, sags_id) "
                         + "VALUES(" + service.getServiceID() + ", " + caseID + ");");
 
-                st9.executeQuery();
+                st9.executeUpdate();
             }
 
             //Statement 10 - Create relation in "bevilger!
             for (IOffer offer : case1.getOfferList()) {
-                PreparedStatement st10 = conn.prepareStatement("INSER INTO bevilger(ydelses_id, sags_id) "
+                PreparedStatement st10 = conn.prepareStatement("INSERT INTO bevilger(ydelses_id, sags_id) "
                         + "VALUES(" + offer.getOfferID() + ", " + caseID + ");");
 
-                st10.executeQuery();
+                st10.executeUpdate();
             }
 
             //Statement 11 - Create relation in "gives_i"
@@ -188,7 +204,7 @@ public class CaseDatabaseManager {
                 PreparedStatement st11 = conn.prepareStatement("INSERT INTO gives_i(samtykke_id, sags_id) "
                         + "VALUES(" + infoGathering.getInfoGatheringID() + ", " + caseID + ");");
 
-                st11.executeQuery();
+                st11.executeUpdate();
             }
 
             //Statement 12 - Create person for representative
@@ -199,13 +215,13 @@ public class CaseDatabaseManager {
                         + "VALUES('" + representation.getPerson().getCpr() + "', '" + representation.getPerson().getFirstName() + "', '"
                         + representation.getPerson().getLastName() + "', '" + address + "', '" + representation.getPerson().getPhoneNumber() + "');");
 
-                st12.executeQuery();
+                st12.executeUpdate();
             }
 
             //Statement 13 - Get RepresentationID            
             Statement st13 = conn.createStatement();
 
-            String sql13 = "SELECT MAX(person_id FROM person";
+            String sql13 = "SELECT MAX(person_id) FROM person";
 
             ResultSet result13 = st13.executeQuery(sql13);
 
@@ -229,7 +245,7 @@ public class CaseDatabaseManager {
 
             //Statement 16 - Create caseNote
             for (ICaseNote caseNote : case1.getCaseNoteList()) {
-                PreparedStatement st16 = conn.prepareStatement("INSERT INTO sagsnotat(notat_beskrivelse "
+                PreparedStatement st16 = conn.prepareStatement("INSERT INTO sagsnotat(notat_beskrivelse) "
                         + "VALUES('" + caseNote.getNote() + "');");
                 
                 st16.executeUpdate();
@@ -238,7 +254,7 @@ public class CaseDatabaseManager {
             //Statement 17 - Get caseNoteID
             Statement st17 = conn.createStatement();
             
-            String sql17 = "SELECT MAX(notat_id) FROM sagsnotat";
+            String sql17 = "SELECT MAX(notat_id) FROM sagsnotat;";
             
             ResultSet result17 = st17.executeQuery(sql17);
             
