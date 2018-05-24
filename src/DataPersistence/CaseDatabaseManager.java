@@ -10,6 +10,7 @@ import Acquaintance.IInformationGathering;
 import Acquaintance.IInquiry;
 import Acquaintance.IMeeting;
 import Acquaintance.IOffer;
+import Acquaintance.IRepresentation;
 import Acquaintance.IService;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -97,6 +98,7 @@ public class CaseDatabaseManager {
             int tempPersonID = -1;
             int meetingID = -1;
             int caseID = -1;
+            int tempRepresentationID = -1;
 
             //Statement 1 - create inquiry for the new case
             for (IInquiry inquiry : case1.getInquiryList()) {
@@ -104,14 +106,12 @@ public class CaseDatabaseManager {
             }
 
             //Statement 2 - Create case in database
-            Statement st2 = conn.createStatement();
-
-            String sql2 = "INSERT INTO sag(sagsbehandler_domaene_id, samtykke_indsamling, informeret_registrering, informeret_bistand, saerlige_forhold, anden_betalingskommune, "
-                    + "anden_handlekommune) "
+            PreparedStatement st2 = conn.prepareStatement("INSERT INTO sag(sagsbehandler_domaene_id, samtykke_indsamling, informeret_registrering, informeret_bistand, "
+                    + "saerlige_forhold, anden_betalingskommune, anden_handlekommune) "
                     + "VALUES('" + case1.getResponsibleCaseworker() + "', '" + case1.getConsent() + "', " + case1.isInformedRightsBystander() + ", '"
-                    + case1.getSpecialCircumstances() + "', '" + case1.getOtherPayingMunicipality() + "', '" + case1.getOtherActingMunicipality() + "');";
+                    + case1.getSpecialCircumstances() + "', '" + case1.getOtherPayingMunicipality() + "', '" + case1.getOtherActingMunicipality() + "');");
 
-            st2.executeUpdate(sql2);
+            st2.executeUpdate();
 
             //Statement 3 - Get caseID from case
             PreparedStatement st3 = conn.prepareStatement("SELECT MAX(sags_id) FROM sag;");
@@ -136,21 +136,17 @@ public class CaseDatabaseManager {
             }
 
             //Statement 5 - create relation  "drejer_sig_om"
-            Statement st5 = conn.createStatement();
+            PreparedStatement st5 = conn.prepareStatement("INSERT INTO drejer_sig_om(person_id, sags_id) "
+                    + "VALUES('" + tempPersonID + "', " + tempCaseID + ");");
 
-            String sql5 = "INSERT INTO drejer_sig_om(person_id, sags_id) "
-                    + "VALUES('" + tempPersonID + "', " + tempCaseID + ");";
-
-            st5.executeUpdate(sql5);
+            st5.executeUpdate();
 
             //Statement 6 - create meeting
             for (IMeeting meeting : case1.getMeetingList()) {
-                Statement st6 = conn.createStatement();
+                PreparedStatement st6 = conn.prepareStatement("INSERT INTO aftale(dato, lokation, beskrivelse) "
+                        + "VALUES(" + meeting.getMeetingTime() + ", '" + meeting.getMeetingLocation() + "', '" + meeting.getMeetingDescription() + "';)");
 
-                String sql6 = "INSERT INTO aftale(dato, lokation, beskrivelse) "
-                        + "VALUES(" + meeting.getMeetingTime() + ", '" + meeting.getMeetingLocation() + "', '" + meeting.getMeetingDescription() + "';)";
-
-                st6.executeUpdate(sql6);
+                st6.executeUpdate();
 
             }
 
@@ -164,45 +160,73 @@ public class CaseDatabaseManager {
             }
 
             //Statement 8 - Create relation in "relaterer_til"
-            Statement st8 = conn.createStatement();
+            PreparedStatement st8 = conn.prepareStatement("INSERT INTO relaterer_til(sags_id, aftale_id) "
+                    + "VALUES(" + caseID + ", " + meetingID + ");");
 
-            String sql8 = "INSERT INTO relaterer_til(sags_id, aftale_id) "
-                    + "VALUES(" + caseID + ", " + meetingID + ");";
-
-            st8.executeUpdate(sql8);
+            st8.executeUpdate();
 
             //Statement 9 - Create relation in "giver"
             for (IService service : case1.getServiceList()) {
-                Statement st9 = conn.createStatement();
+                PreparedStatement st9 = conn.prepareStatement("INSERT INTO giver(tilbuds_id, sags_id) "
+                        + "VALUES(" + service.getServiceID() + ", " + caseID + ");");
 
-                String sql9 = "INSERT INTO giver(tilbuds_id, sags_id) "
-                        + "VALUES(" + service.getServiceID() + ", " + caseID + ");";
-
-                st9.executeQuery(sql9);
+                st9.executeQuery();
             }
-            
+
             //Statement 10 - Create relation in "bevilger!
-            for(IOffer offer : case1.getOfferList()){
-                Statement st10 = conn.createStatement();
-                
-                String sql10 = "INSER INTO bevilger(ydelses_id, sags_id) "
-                        + "VALUES(" + offer.getOfferID() + ", " + caseID + ");";
-                
-                st10.executeQuery(sql10);
-            }
-            
-            //Statement 11 - Create relation in "gives_i"
-            for(IInformationGathering infoGathering : case1.getConsentToInformationGatheringList()){
-                Statement st11 = conn.createStatement();
-                
-                String sql11 = "INSERT INTO gives_i(samtykke_id, sags_id) "
-                        + "VALUES(" + infoGathering.getInfoGatheringID() + ", " + caseID + ");";
-                
-                st11.executeQuery(sql11);
-            }
-            
-            
+            for (IOffer offer : case1.getOfferList()) {
+                PreparedStatement st10 = conn.prepareStatement("INSER INTO bevilger(ydelses_id, sags_id) "
+                        + "VALUES(" + offer.getOfferID() + ", " + caseID + ");");
 
+                st10.executeQuery();
+            }
+
+            //Statement 11 - Create relation in "gives_i"
+            for (IInformationGathering infoGathering : case1.getConsentToInformationGatheringList()) {
+                PreparedStatement st11 = conn.prepareStatement("INSERT INTO gives_i(samtykke_id, sags_id) "
+                        + "VALUES(" + infoGathering.getInfoGatheringID() + ", " + caseID + ");");
+
+                st11.executeQuery();
+            }
+
+            //Statement 12 - Create person for representative
+            for (IRepresentation representation : case1.getRepresentationList()) {
+                String address = representation.getPerson().getRoadName() + " " + representation.getPerson().getHouseNumber() + ", " + representation.getPerson().getPostalCode() + " " + representation.getPerson().getCity();
+                
+                PreparedStatement st12 = conn.prepareStatement("INSERT INTO person(cpr, fornavn, efternavn, adresse, telefonnummer) "
+                        + "VALUES('" + representation.getPerson().getCpr() + "', '" + representation.getPerson().getFirstName() + "', '" 
+                        + representation.getPerson().getLastName() + "', '" + address + "', '" + representation.getPerson().getPhoneNumber() + "');");
+                        
+                st12.executeQuery();
+            }
+            
+            //Statement 13 - Get RepresentationID            
+            Statement st13 = conn.createStatement();
+            
+            String sql13 = "SELECT MAX(person_id FROM person";
+            
+            ResultSet result13 = st13.executeQuery(sql13);
+            
+            while (result13.next()){
+                tempRepresentationID = result13.getInt("max");
+            }
+            
+            //Statement 14 - Create "repræsentant"
+            for(IRepresentation representation : case1.getRepresentationList()) {
+                PreparedStatement st14 = conn.prepareStatement("INSERT INTO repræsentant(person_id, repraesentant_type) "
+                        + "VALUES(" + tempRepresentationID + ", '" + representation.getRepresentationType() + "');");
+                
+                st14.executeUpdate();
+            }
+            
+            //Statement 15 - Create relation in "er_knyttet_til"
+            PreparedStatement st15 = conn.prepareStatement("INSERT INTO er_knyttet_til(person_id, sags_id) "
+                    + "VALUES(" + tempRepresentationID + ", " + tempCaseID + ");");
+            
+            st15.executeUpdate();
+            
+            
+            
         } catch (Exception ex) {
             ex.printStackTrace();
             return false;

@@ -2,6 +2,7 @@ package DataPersistence;
 
 import Acquaintance.ICase;
 import Acquaintance.ICaseNote;
+import Acquaintance.IInformationGathering;
 import Acquaintance.IInquiry;
 import Acquaintance.IMeeting;
 import Acquaintance.IOffer;
@@ -25,6 +26,7 @@ class DataCase implements ICase {
     private Collection<IMeeting> meetingList;
     private Collection<IRepresentation> representationList;
     private Collection<ICaseNote> caseNoteList;
+    private Collection<IInformationGathering> consentToInformationGatheringList;
     private Collection<IService> serviceList;
     private Collection<IOffer> offerList;
 
@@ -152,8 +154,8 @@ class DataCase implements ICase {
     }
 
     @Override
-    public Collection<String> getConsentToInformationGathering() {
-        return this.consentToInformationGathering;
+    public Collection<IInformationGathering> getConsentToInformationGatheringList() {
+        return this.consentToInformationGatheringList;
     }
 
     @Override

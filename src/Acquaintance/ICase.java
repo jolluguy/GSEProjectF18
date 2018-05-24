@@ -14,7 +14,7 @@ public interface ICase {
     public String getOtherActingMunicipality();
     public String getOtherPayingMunicipality();
     
-    public Collection<IInformationGathering> getConsentToInformationGathering();
+    public Collection<IInformationGathering> getConsentToInformationGatheringList();
     public void addConsentToInformationGathering(String consentToInformationGathering);
     
     public Collection<IInquiry> getInquiryList();
