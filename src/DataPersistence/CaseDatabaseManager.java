@@ -113,8 +113,7 @@ public class CaseDatabaseManager {
 
             int tempCaseID = -1;
             int tempPersonID = -1;
-            int meetingID = -1;
-            int caseID = -1;
+            int tempMeetingID = -1;
             int tempRepresentationID = -1;
             int tempCaseNoteID = -1;
 
@@ -174,19 +173,19 @@ public class CaseDatabaseManager {
             ResultSet result7 = st7.executeQuery();
 
             while (result7.next()) {
-                meetingID = result7.getInt("max");
+                tempMeetingID = result7.getInt("max");
             }
 
             //Statement 8 - Create relation in "relaterer_til"
             PreparedStatement st8 = conn.prepareStatement("INSERT INTO relaterer_til(sags_id, aftale_id) "
-                    + "VALUES(" + caseID + ", " + meetingID + ");");
+                    + "VALUES(" + tempCaseID + ", " + tempMeetingID + ");");
 
             st8.executeUpdate();
 
             //Statement 9 - Create relation in "giver"
             for (IService service : case1.getServiceList()) {
                 PreparedStatement st9 = conn.prepareStatement("INSERT INTO giver(tilbuds_id, sags_id) "
-                        + "VALUES(" + service.getServiceID() + ", " + caseID + ");");
+                        + "VALUES(" + service.getServiceID() + ", " + tempCaseID + ");");
 
                 st9.executeUpdate();
             }
@@ -194,7 +193,7 @@ public class CaseDatabaseManager {
             //Statement 10 - Create relation in "bevilger!
             for (IOffer offer : case1.getOfferList()) {
                 PreparedStatement st10 = conn.prepareStatement("INSERT INTO bevilger(ydelses_id, sags_id) "
-                        + "VALUES(" + offer.getOfferID() + ", " + caseID + ");");
+                        + "VALUES(" + offer.getOfferID() + ", " + tempCaseID + ");");
 
                 st10.executeUpdate();
             }
@@ -202,7 +201,7 @@ public class CaseDatabaseManager {
             //Statement 11 - Create relation in "gives_i"
             for (IInformationGathering infoGathering : case1.getConsentToInformationGatheringList()) {
                 PreparedStatement st11 = conn.prepareStatement("INSERT INTO gives_i(samtykke_id, sags_id) "
-                        + "VALUES(" + infoGathering.getInfoGatheringID() + ", " + caseID + ");");
+                        + "VALUES(" + infoGathering.getInfoGatheringID() + ", " + tempCaseID + ");");
 
                 st11.executeUpdate();
             }
@@ -212,7 +211,7 @@ public class CaseDatabaseManager {
                 String address = representation.getPerson().getRoadName() + " " + representation.getPerson().getHouseNumber() + ", " + representation.getPerson().getPostalCode() + " " + representation.getPerson().getCity();
 
                 PreparedStatement st12 = conn.prepareStatement("INSERT INTO person(cpr, fornavn, efternavn, adresse, telefonnummer) "
-                        + "VALUES('" + representation.getPerson().getCpr() + "', '" + representation.getPerson().getFirstName() + "', '"
+                        + "VALUES('" + representation.getPerson().getCprNumber() + "', '" + representation.getPerson().getFirstName() + "', '"
                         + representation.getPerson().getLastName() + "', '" + address + "', '" + representation.getPerson().getPhoneNumber() + "');");
 
                 st12.executeUpdate();
