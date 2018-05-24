@@ -2,6 +2,7 @@ package Business;
 
 import Acquaintance.ICase;
 import Acquaintance.ICaseNote;
+import Acquaintance.IInformationGathering;
 import Acquaintance.IInquiry;
 import Acquaintance.IMeeting;
 import Acquaintance.IOffer;
@@ -32,6 +33,7 @@ class Case implements ICase {
     private Collection<IMeeting> meetingList;
     private Collection<IRepresentation> representationList;
     private Collection<ICaseNote> caseNoteList;
+    private Collection<IInformationGathering> infomationGatheringList;
     private Collection<IService> serviceList;
     private Collection<IOffer> offerList;
 
@@ -70,7 +72,7 @@ class Case implements ICase {
             boolean informedRightsBystander,
             boolean informedRightsElectronicRegistration,
             String consent,
-            Collection<String> consentToInformationGathering,
+           
             String specialCircumstances,
             String otherActingMunicipality,
             String otherPayingMunicipality,
@@ -79,6 +81,7 @@ class Case implements ICase {
             String houseNumber, String floor, int postalCode, String city,
             String phoneNumber, String representationType,
             String note,
+            Map<Integer, String> consentToInformationGatheringMap,
             Map<Integer, String> serviceIDMap,
             Map<Integer, String> offerIDMap) {
 
@@ -98,6 +101,11 @@ class Case implements ICase {
             for (String s : consentToInformationGathering) {
                 this.consentToInformationGathering.add(s);
             }
+        }
+        
+        this.infomationGatheringList = new ArrayList<>();
+        for(Map.Entry<Integer, String> entry : consentToInformationGatheringMap.entrySet()) {
+            this.infomationGatheringList.add(new InformationGathering(entry.getKey(), entry.getValue()));
         }
 
         this.specialCircumstances = specialCircumstances;
@@ -263,8 +271,8 @@ class Case implements ICase {
     }
 
     @Override
-    public Collection<String> getConsentToInformationGathering() {
-        return consentToInformationGathering;
+    public Collection<IInformationGathering> getConsentToInformationGatheringList() {
+        return infomationGatheringList;
     }
 
     @Override
