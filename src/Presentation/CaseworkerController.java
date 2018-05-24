@@ -843,6 +843,16 @@ public class CaseworkerController implements Initializable {
         }
         */
 
+        String representationType = "";
+        if(guardianShip5RadioButton.isSelected()){
+            representationType = guardianShip5RadioButton.getText();
+        } else if(guardianShip6RadioButton.isSelected()){
+            representationType = guardianShip6RadioButton.getText();
+        } else if(guardianShip7RadioButton.isSelected()){
+            representationType = guardianShip7RadioButton.getText();
+        }
+        
+        
         String specialCircumstances = specialCircumstancesTextArea.getText();
         String otherActingMunicipality = otherActingMunicipalityTextField.getText();
         String otherPayingMunicipality = otherPayingMunicipalityTextField.getText();
@@ -859,7 +869,6 @@ public class CaseworkerController implements Initializable {
         int postalCodeRepInt = Integer.parseInt(postalCodeRep);
         String cityRep = cityTextFieldRep.getText();
         String phoneNumberRep = phoneNumberTextFieldRep.getText();
-        String representationType = guardianshipGroup.getSelectedToggle().toString();
         String note = caseNoteTextArea.getText();
 
         boolean result = business.newCase(problemDescription, inquirer, citizenAgreement, cprNumber, firstName,

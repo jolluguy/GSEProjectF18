@@ -238,7 +238,7 @@ public class CaseDatabaseManager {
             }
 
             //Statement 15 - Create relation in "er_knyttet_til"
-            PreparedStatement st15 = conn.prepareStatement("INSERT INTO er_knyttet_til(person_id, sags_id) "
+            PreparedStatement st15 = conn.prepareStatement("INSERT INTO er_tilknyttet_til(person_id, sags_id) "
                     + "VALUES(" + tempRepresentationID + ", " + tempCaseID + ");");
 
             st15.executeUpdate();
