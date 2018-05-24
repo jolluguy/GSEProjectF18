@@ -4,7 +4,9 @@ import Acquaintance.IBusiness;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -348,10 +350,7 @@ public class CaseworkerController implements Initializable {
     @FXML
     private CheckBox treatmentSpecialDrCheckBox;
 
-    private Map<Integer, String> serviceMap;
-    private Map<Integer, String> offerMap;
-    private Map<Integer, String> informationGatheringMap;
-    
+
     @FXML
     private Label cprSyntaxLabel;
     @FXML
@@ -381,8 +380,6 @@ public class CaseworkerController implements Initializable {
     @FXML
     private Label cprSyntaxLabel1;
     @FXML
-    private ChoiceBox<String> attendingCaseworkerSelector;
-    @FXML
     private DatePicker meetingDatePicker;
     @FXML
     private TextField meetingLocationTextfield;
@@ -397,7 +394,10 @@ public class CaseworkerController implements Initializable {
     @FXML
     private TabPane tabPane;
 
-    private void fillServiceMap() {
+
+    private Map<Integer,String> fillServiceMap() {
+         Map<Integer,String> serviceMap = new HashMap<>();
+
         if (activity104CheckBox.isSelected()) {
             serviceMap.put(1, activity104CheckBox.getText());
         }
@@ -447,143 +447,145 @@ public class CaseworkerController implements Initializable {
             serviceMap.put(16, remunerationCheckBox.getText());
         }
         if (additionalCostCheckBox.isSelected()) {
-            serviceMap.put(16, additionalCostCheckBox.getText());
+            serviceMap.put(17, additionalCostCheckBox.getText());
         }
         if (control126CheckBox.isSelected()) {
-            serviceMap.put(17, control126CheckBox.getText());
+            serviceMap.put(18, control126CheckBox.getText());
         }
         if (control127CheckBox.isSelected()) {
-            serviceMap.put(18, control127CheckBox.getText());
+            serviceMap.put(19, control127CheckBox.getText());
         }
         if (control128CheckBox.isSelected()) {
-            serviceMap.put(19, control128CheckBox.getText());
+            serviceMap.put(20, control128CheckBox.getText());
         }
         if (control125CheckBox.isSelected()) {
-            serviceMap.put(20, control125CheckBox.getText());
+            serviceMap.put(21, control125CheckBox.getText());
         }
         if (_24HourReliefCheckBox.isSelected()) {
-            serviceMap.put(21, _24HourReliefCheckBox.getText());
+            serviceMap.put(22, _24HourReliefCheckBox.getText());
         }
         if (longInstitutionalisingCheckBox.isSelected()) {
-            serviceMap.put(22, longInstitutionalisingCheckBox.getText());
+            serviceMap.put(23, longInstitutionalisingCheckBox.getText());
         }
         if (temporaryInstitutionalising80CheckBox.isSelected()) {
-            serviceMap.put(23, temporaryInstitutionalising80CheckBox.getText());
+            serviceMap.put(24, temporaryInstitutionalising80CheckBox.getText());
         }
         if (temporaryInstitutionalising107CheckBox.isSelected()) {
-            serviceMap.put(24, temporaryInstitutionalising107CheckBox.getText());
+            serviceMap.put(25, temporaryInstitutionalising107CheckBox.getText());
         }
         if (temporaryInstitutionalising109CheckBox.isSelected()) {
-            serviceMap.put(25, temporaryInstitutionalising109CheckBox.getText());
+            serviceMap.put(27, temporaryInstitutionalising109CheckBox.getText());
         }
+        
         if (personalHelp83CheckBox.isSelected()) {
-            serviceMap.put(26, personalHelp83CheckBox.getText());
+            serviceMap.put(31, personalHelp83CheckBox.getText());
         }
         if (personalHelp95CheckBox.isSelected()) {
-            serviceMap.put(27, personalHelp95CheckBox.getText());
+            serviceMap.put(32, personalHelp95CheckBox.getText());
         }
         if (practicalHelp83CheckBox.isSelected()) {
-            serviceMap.put(28, practicalHelp83CheckBox.getText());
+            serviceMap.put(33, practicalHelp83CheckBox.getText());
         }
         if (practicalhelp95CheckBox.isSelected()) {
-            serviceMap.put(29, practicalhelp95CheckBox.getText());
+            serviceMap.put(34, practicalhelp95CheckBox.getText());
         }
         if (administrationSupportCheckBox.isSelected()) {
-            serviceMap.put(30, administrationSupportCheckBox.getText());
+            serviceMap.put(35, administrationSupportCheckBox.getText());
         }
         if (temporaryInstitutionalising110CheckBox.isSelected()) {
-            serviceMap.put(31, temporaryInstitutionalising110CheckBox.getText());
+            serviceMap.put(28, temporaryInstitutionalising110CheckBox.getText());
         }
         if (shoppingSupportCheckBox.isSelected()) {
-            serviceMap.put(32, shoppingSupportCheckBox.getText());
+            serviceMap.put(36, shoppingSupportCheckBox.getText());
         }
         if (contactSupportCheckBox.isSelected()) {
-            serviceMap.put(33, contactSupportCheckBox.getText());
+            serviceMap.put(37, contactSupportCheckBox.getText());
         }
         if (medicinalSupportCheckBox.isSelected()) {
-            serviceMap.put(34, medicinalSupportCheckBox.getText());
+            serviceMap.put(38, medicinalSupportCheckBox.getText());
         }
         if (personalCareCheckBox.isSelected()) {
-            serviceMap.put(35, personalCareCheckBox.getText());
+            serviceMap.put(39, personalCareCheckBox.getText());
         }
         if (practicalSupportCheckBox.isSelected()) {
-            serviceMap.put(36, practicalSupportCheckBox.getText());
+            serviceMap.put(40, practicalSupportCheckBox.getText());
         }
         if (educationSupportCheckBox.isSelected()) {
-            serviceMap.put(37, educationSupportCheckBox.getText());
+            serviceMap.put(41, educationSupportCheckBox.getText());
         }
         if (parentingSupportCheckBox.isSelected()) {
-            serviceMap.put(38, parentingSupportCheckBox.getText());
-        }
-        if (supportPersonCheckBox.isSelected()) {
-            serviceMap.put(39, supportPersonCheckBox.getText());
+            serviceMap.put(42, parentingSupportCheckBox.getText());
         }
         if (temporaryReplacement84CheckBox.isSelected()) {
-            serviceMap.put(40, temporaryReplacement84CheckBox.getText());
+            serviceMap.put(43, temporaryReplacement84CheckBox.getText());
         }
         if (temporaryReplacement95CheckBox.isSelected()) {
-            serviceMap.put(41, temporaryReplacement95CheckBox.getText());
+            serviceMap.put(44, temporaryReplacement95CheckBox.getText());
         }
         if (personalAssistanceCheckBox.isSelected()) {
-            serviceMap.put(42, personalAssistanceCheckBox.getText());
+            serviceMap.put(45, personalAssistanceCheckBox.getText());
         }
         if (contactForDeafblindCheckBox.isSelected()) {
-            serviceMap.put(43, contactForDeafblindCheckBox.getText());
+            serviceMap.put(46, contactForDeafblindCheckBox.getText());
         }
         if (companionCheckBox.isSelected()) {
-            serviceMap.put(44, companionCheckBox.getText());
+            serviceMap.put(47, companionCheckBox.getText());
         }
         if (kinCare118CheckBox.isSelected()) {
-            serviceMap.put(45, kinCare118CheckBox.getText());
+            serviceMap.put(48, kinCare118CheckBox.getText());
         }
         if (kinCare119CheckBox.isSelected()) {
-            serviceMap.put(46, kinCare119CheckBox.getText());
+            serviceMap.put(49, kinCare119CheckBox.getText());
         }
         if (aidCheckBox.isSelected()) {
-            serviceMap.put(47, aidCheckBox.getText());
+            serviceMap.put(50, aidCheckBox.getText());
         }
         if (carAidCheckBox.isSelected()) {
-            serviceMap.put(48, carAidCheckBox.getText());
+            serviceMap.put(51, carAidCheckBox.getText());
         }
         if (furnishingAidCheckBox.isSelected()) {
-            serviceMap.put(49, furnishingAidCheckBox.getText());
+            serviceMap.put(54, furnishingAidCheckBox.getText());
         }
         if (goodsAidCheckBox.isSelected()) {
-            serviceMap.put(50, goodsAidCheckBox.getText());
+            serviceMap.put(55, goodsAidCheckBox.getText());
         }
         if (rehabilitation85CheckBox.isSelected()) {
-            serviceMap.put(51, rehabilitation85CheckBox.getText());
+            serviceMap.put(56, rehabilitation85CheckBox.getText());
         }
         if (rehabilitation86CheckBox.isSelected()) {
-            serviceMap.put(52, rehabilitation86CheckBox.getText());
+            serviceMap.put(57, rehabilitation86CheckBox.getText());
         }
         if (rehabilitation102CheckBox.isSelected()) {
-            serviceMap.put(53, rehabilitation102CheckBox.getText());
+            serviceMap.put(58, rehabilitation102CheckBox.getText());
         }
         if (maintainingAbility85CheckBox.isSelected()) {
-            serviceMap.put(54, maintainingAbility85CheckBox.getText());
+            serviceMap.put(59, maintainingAbility85CheckBox.getText());
         }
         if (maintainingAbility86CheckBox.isSelected()) {
-            serviceMap.put(55, maintainingAbility86CheckBox.getText());
+            serviceMap.put(60, maintainingAbility86CheckBox.getText());
         }
         if (maintainingAbility102CheckBox.isSelected()) {
-            serviceMap.put(56, rehabilitation102CheckBox.getText());
+            serviceMap.put(61, rehabilitation102CheckBox.getText());
         }
         if (compensatingSpecialEducationCheckBox.isSelected()) {
-            serviceMap.put(57, compensatingSpecialEducationCheckBox.getText());
+            serviceMap.put(29, compensatingSpecialEducationCheckBox.getText());
         }
         if (youthEducationSpecialNeedsCheckBox.isSelected()) {
-            serviceMap.put(58, youthEducationSpecialNeedsCheckBox.getText());
+            serviceMap.put(30, youthEducationSpecialNeedsCheckBox.getText());
         }
         if (counselingCheckBox.isSelected()) {
-            serviceMap.put(59, counselingCheckBox.getText());
+            serviceMap.put(62, counselingCheckBox.getText());
         }
         if (supportOrContactPersonCheckBox.isSelected()) {
-            serviceMap.put(60, supportOrContactPersonCheckBox.getText());
+            serviceMap.put(63, supportOrContactPersonCheckBox.getText());
         }
+        return serviceMap;
     }
 
-    private void fillOfferMap() {
+
+    private Map<Integer, String> fillOfferMap() {
+        Map<Integer,String> offerMap = new HashMap<>();
+
         if (adultMedicalTreatmentCheckBox.isSelected()) {
             offerMap.put(1, adultMedicalTreatmentCheckBox.getText());
         }
@@ -638,9 +640,11 @@ public class CaseworkerController implements Initializable {
         if (governmentApprovedOfferCheckBox.isSelected()) {
             offerMap.put(18, governmentApprovedOfferCheckBox.getText());
         }
+        return offerMap;
     }
         
-        private void informationGatheringMap(){
+        private Map<Integer, String> fillInformationGatheringMap(){
+          Map<Integer,String> informationGatheringMap = new HashMap<>();
             if(ownDoctorCheckBox.isSelected()) {
                 informationGatheringMap.put(1, ownDoctorCheckBox.getText());
             }
@@ -665,6 +669,7 @@ public class CaseworkerController implements Initializable {
             if(otherInstancesCheckBox.isSelected()){
                 informationGatheringMap.put(8, otherInstancesCheckBox.getText());
             }
+          return informationGatheringMap;
         }
     
 
@@ -690,8 +695,33 @@ public class CaseworkerController implements Initializable {
         int postalCode = Integer.parseInt(postalCodeTextField.getText());
         String city = cityTextField.getText();
         String phoneNumber = phoneNumberPrefixTextField.getText() + phoneNumberTextField.getText();
-        String inquirer = inquiryOriginGroup.getSelectedToggle().toString();
-//        String inquirer = "Inquirer";
+
+        String inquirer = "";
+        if (inquiryOriginCitizenRadioButton.isSelected()) {
+            inquirer = inquiryOriginCitizenRadioButton.getText();
+        }
+        if (inquiryOriginNextOfKinRadioButton.isSelected()) {
+            inquirer = inquiryOriginNextOfKinRadioButton.getText();
+        }
+        if (inquiryOriginDoctorRadioButton.isSelected()) {
+            inquirer = inquiryOriginDoctorRadioButton.getText();
+        }
+        if (inquiryOriginHospitalRadioButton.isSelected()) {
+            inquirer = inquiryOriginHospitalRadioButton.getText();
+        }
+        if (inquiryOriginOtherRadioButton.isSelected()) {
+            inquirer = inquiryOriginOtherRadioButton.getText();
+        }
+        if (inquiryOriginActiveOperationRadioButton.isSelected()) {
+            inquirer = inquiryOriginActiveOperationRadioButton.getText();
+        }
+        if (inquiryOriginOtherMunicipalityRadioButton.isSelected()) {
+            inquirer = inquiryOriginOtherMunicipalityRadioButton.getText();
+        }
+        if (inquiryOriginOtherInstanceRadioButton.isSelected()) {
+            inquirer = inquiryOriginOtherInstanceRadioButton.getText();
+        }
+        
         boolean citizenAgreement = inquiryUnderstoodYesRadioButton.isSelected();
         String caseworkerDomainID = business.getCurrentUserDomainID();
 
@@ -743,24 +773,49 @@ public class CaseworkerController implements Initializable {
         String phoneNumber = phoneNumberPrefixTextField.getText() + phoneNumberTextField.getText();
         boolean citizenAgreement = inquiryUnderstoodYesRadioButton.isSelected();
         String problemDescription = descriptionTextAreaCase.getText();
-        String inquirer = inquiryOriginGroup.getSelectedToggle().toString();
+
+        String inquirer = "";
+        if (inquiryOriginCitizenRadioButton.isSelected()) {
+            inquirer = inquiryOriginCitizenRadioButton.getText();
+        }
+        if (inquiryOriginNextOfKinRadioButton.isSelected()) {
+            inquirer = inquiryOriginNextOfKinRadioButton.getText();
+        }
+        if (inquiryOriginDoctorRadioButton.isSelected()) {
+            inquirer = inquiryOriginDoctorRadioButton.getText();
+        }
+        if (inquiryOriginHospitalRadioButton.isSelected()) {
+            inquirer = inquiryOriginHospitalRadioButton.getText();
+        }
+        if (inquiryOriginOtherRadioButton.isSelected()) {
+            inquirer = inquiryOriginOtherRadioButton.getText();
+        }
+        if (inquiryOriginActiveOperationRadioButton.isSelected()) {
+            inquirer = inquiryOriginActiveOperationRadioButton.getText();
+        }
+        if (inquiryOriginOtherMunicipalityRadioButton.isSelected()) {
+            inquirer = inquiryOriginOtherMunicipalityRadioButton.getText();
+        }
+        if (inquiryOriginOtherInstanceRadioButton.isSelected()) {
+            inquirer = inquiryOriginOtherInstanceRadioButton.getText();
+        }
+        
         String responsibleCaseworkerDomainID = business.getCurrentUserDomainID();
         boolean informedRightsBystander = rightsBystanderCheckBox.isSelected();
         boolean informedRightsElectronicRegistration = rightsYesOrNoGroup.getSelectedToggle().isSelected();
-        String consent = "nej";
 
-        if (consentYesRadioButton.isSelected()) {
-            if (oralConsentRadioButton.isSelected()) {
-                consent = oralConsentRadioButton.getText();
-            } else if (writtenConsentRadioButton.isSelected()) {
+        String consent = consentNoRadioButton.getText();
+        //getting value for consent string
+        if (!oralConsentRadioButton.isDisabled()) {
+            if(oralConsentRadioButton.isSelected()){
+                consent = oralConsentRadioButton.getText();                
+            } if(writtenConsentRadioButton.isSelected()){
                 consent = writtenConsentRadioButton.getText();
             }
-        } else if(consentNoRadioButton.isSelected()){
-            consent = "Nej";
         }
-
+/*
         //A whole lot of if statements to add the different checkboxes to its corresponding list
-        Collection<String> consentToInformationGathering = null;
+        Collection<String> consentToInformationGathering = new ArrayList<>();
         if (ownDoctorCheckBox.isSelected()) {
             consentToInformationGathering.add(ownDoctorCheckBox.getText());
         }
@@ -785,6 +840,7 @@ public class CaseworkerController implements Initializable {
         if (otherInstancesCheckBox.isSelected()) {
             consentToInformationGathering.add(otherInstancesCheckBox.getText());
         }
+        */
 
         String specialCircumstances = specialCircumstancesTextArea.getText();
         String otherActingMunicipality = otherActingMunicipalityTextField.getText();
@@ -812,7 +868,8 @@ public class CaseworkerController implements Initializable {
                 meetingDate, meetingDescription,
                 meetingLocation, cprNumberRep, firstNameRep, lastNameRep, roadNameRep,
                 houseNumberRep, floorRep, postalCodeRepInt, cityRep, phoneNumberRep, representationType,
-                note, informationGatheringMap, serviceMap, offerMap);
+                note, fillInformationGatheringMap()fillServiceMap(), fillOfferMap());
+
 
         if (result) {
             System.out.println("Case has been made.");
@@ -1318,5 +1375,18 @@ public class CaseworkerController implements Initializable {
 
         tabPane.getSelectionModel().select(caseTab);
 
+
+    }
+
+    @FXML
+    private void consentEnable(ActionEvent event) {
+        oralConsentRadioButton.setDisable(false);
+        writtenConsentRadioButton.setDisable(false);
+    }
+
+    @FXML
+    private void consentDiable(ActionEvent event) {
+        oralConsentRadioButton.setDisable(true);
+        writtenConsentRadioButton.setDisable(true);
     }
 }

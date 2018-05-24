@@ -1,6 +1,5 @@
 package Business;
 
-
 import Acquaintance.IPerson;
 import Acquaintance.IRepresentation;
 
@@ -8,8 +7,7 @@ import Acquaintance.IRepresentation;
  *
  * @author Rasmus
  */
-class Representation extends Person implements IRepresentation{
-
+class Representation extends Person implements IRepresentation {
 
     private String representationType;
     private IPerson person;
@@ -20,16 +18,12 @@ class Representation extends Person implements IRepresentation{
         
         this.person = new Person(cprNumber, firstName, lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber) {};
     }
-    
-    
-    //implementer get og set representationstype
-
-   
 
     @Override
     public String getRepresentationType() {
         return this.representationType;
     }
+
     
     @Override
     public IPerson getPerson(){
@@ -38,3 +32,4 @@ class Representation extends Person implements IRepresentation{
     
     
 }
+

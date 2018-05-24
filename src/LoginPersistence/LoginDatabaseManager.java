@@ -144,7 +144,6 @@ class LoginDatabaseManager {
             PreparedStatement st1 = conn.prepareStatement("UPDATE login SET aktiv = '" + user.getActive() + "' WHERE brugernavn = '" + user.getUserName() + "';");
 
             st1.executeUpdate();
-
             PreparedStatement st2 = conn.prepareStatement("UPDATE besidder SET stillings_id = '" + user.getJob().getID() + "' WHERE bruger_id = '" + user.getUserID() + "';");
 
             st2.executeUpdate();
