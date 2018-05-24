@@ -350,6 +350,7 @@ public class CaseworkerController implements Initializable {
     @FXML
     private CheckBox treatmentSpecialDrCheckBox;
 
+
     @FXML
     private Label cprSyntaxLabel;
     @FXML
@@ -393,8 +394,10 @@ public class CaseworkerController implements Initializable {
     @FXML
     private TabPane tabPane;
 
+
     private Map<Integer,String> fillServiceMap() {
          Map<Integer,String> serviceMap = new HashMap<>();
+
         if (activity104CheckBox.isSelected()) {
             serviceMap.put(1, activity104CheckBox.getText());
         }
@@ -579,8 +582,10 @@ public class CaseworkerController implements Initializable {
         return serviceMap;
     }
 
+
     private Map<Integer, String> fillOfferMap() {
         Map<Integer,String> offerMap = new HashMap<>();
+
         if (adultMedicalTreatmentCheckBox.isSelected()) {
             offerMap.put(1, adultMedicalTreatmentCheckBox.getText());
         }
@@ -637,6 +642,36 @@ public class CaseworkerController implements Initializable {
         }
         return offerMap;
     }
+        
+        private Map<Integer, String> fillInformationGatheringMap(){
+          Map<Integer,String> informationGatheringMap = new HashMap<>();
+            if(ownDoctorCheckBox.isSelected()) {
+                informationGatheringMap.put(1, ownDoctorCheckBox.getText());
+            }
+            if(specialDoctorCheckBox.isSelected()){
+                informationGatheringMap.put(2, ownDoctorCheckBox.getText());
+            }
+            if(hospitalCheckBox.isSelected()){
+                informationGatheringMap.put(3, hospitalCheckBox.getText());
+            }
+            if(unemploymentBenefitsCheckBox.isSelected()){
+                informationGatheringMap.put(4, unemploymentBenefitsCheckBox.getText());
+            }
+            if(offerCheckBox.isSelected()){
+                informationGatheringMap.put(5, offerCheckBox.getText());
+            }
+            if(employerCheckBox.isSelected()){
+                informationGatheringMap.put(6, employerCheckBox.getText());
+            }
+            if(formerMunicipalityCheckBox.isSelected()){
+                informationGatheringMap.put(7, formerMunicipalityCheckBox.getText());
+            }
+            if(otherInstancesCheckBox.isSelected()){
+                informationGatheringMap.put(8, otherInstancesCheckBox.getText());
+            }
+          return informationGatheringMap;
+        }
+    
 
     /**
      * Initializes the controller class.
@@ -768,6 +803,7 @@ public class CaseworkerController implements Initializable {
         String responsibleCaseworkerDomainID = business.getCurrentUserDomainID();
         boolean informedRightsBystander = rightsBystanderCheckBox.isSelected();
         boolean informedRightsElectronicRegistration = rightsYesOrNoGroup.getSelectedToggle().isSelected();
+
         String consent = consentNoRadioButton.getText();
         //getting value for consent string
         if (!oralConsentRadioButton.isDisabled()) {
@@ -777,6 +813,7 @@ public class CaseworkerController implements Initializable {
                 consent = writtenConsentRadioButton.getText();
             }
         }
+/*
         //A whole lot of if statements to add the different checkboxes to its corresponding list
         Collection<String> consentToInformationGathering = new ArrayList<>();
         if (ownDoctorCheckBox.isSelected()) {
@@ -803,6 +840,7 @@ public class CaseworkerController implements Initializable {
         if (otherInstancesCheckBox.isSelected()) {
             consentToInformationGathering.add(otherInstancesCheckBox.getText());
         }
+        */
 
         String specialCircumstances = specialCircumstancesTextArea.getText();
         String otherActingMunicipality = otherActingMunicipalityTextField.getText();
@@ -825,12 +863,13 @@ public class CaseworkerController implements Initializable {
 
         boolean result = business.newCase(problemDescription, inquirer, citizenAgreement, cprNumber, firstName,
                 lastName, roadName, houseNumber, floor, postalCode, city, phoneNumber,
-                responsibleCaseworkerDomainID, informedRightsBystander, informedRightsElectronicRegistration, consent, consentToInformationGathering,
+                responsibleCaseworkerDomainID, informedRightsBystander, informedRightsElectronicRegistration, consent,
                 specialCircumstances, otherActingMunicipality, otherPayingMunicipality,
                 meetingDate, meetingDescription,
                 meetingLocation, cprNumberRep, firstNameRep, lastNameRep, roadNameRep,
                 houseNumberRep, floorRep, postalCodeRepInt, cityRep, phoneNumberRep, representationType,
-                note, fillServiceMap(), fillOfferMap());
+                note, fillInformationGatheringMap()fillServiceMap(), fillOfferMap());
+
 
         if (result) {
             System.out.println("Case has been made.");
@@ -1335,6 +1374,7 @@ public class CaseworkerController implements Initializable {
         descriptionTextAreaCase.setText(descriptionTextAreaInquiry.getText());
 
         tabPane.getSelectionModel().select(caseTab);
+
 
     }
 

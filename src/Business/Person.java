@@ -30,7 +30,8 @@ abstract class Person implements IPerson{
         this.phoneNumber = phoneNumber;
         
         cpr = new CPR(cprNumber);
-    }
+    }    
+    
 
     @Override
     public String getCprNumber() {

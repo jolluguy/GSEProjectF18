@@ -7,4 +7,6 @@ package Acquaintance;
 public interface IRepresentation {
     
     public String getRepresentationType();
+    
+    public IPerson getPerson();
 }

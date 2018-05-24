@@ -2,6 +2,7 @@ package DataPersistence;
 
 import Acquaintance.ICase;
 import Acquaintance.ICaseNote;
+import Acquaintance.IInformationGathering;
 import Acquaintance.IInquiry;
 import Acquaintance.IMeeting;
 import Acquaintance.IOffer;
@@ -10,11 +11,11 @@ import Acquaintance.IService;
 import java.util.Collection;
 
 class DataCase implements ICase {
+    
     private String responsibleCaseworker;
     private boolean informedRightsBystander;
     private boolean informedRightsElectronicRegistration;
     private String consent;
-    private Collection<String> consentToInformationGathering;
     private String specialCircumstances;
     private String otherActingMunicipality;
     private String otherPayingMunicipality;
@@ -24,6 +25,7 @@ class DataCase implements ICase {
     private Collection<IMeeting> meetingList;
     private Collection<IRepresentation> representationList;
     private Collection<ICaseNote> caseNoteList;
+    private Collection<IInformationGathering> informationGatheringList;
     private Collection<IService> serviceList;
     private Collection<IOffer> offerList;
 
@@ -151,12 +153,12 @@ class DataCase implements ICase {
     }
 
     @Override
-    public Collection<String> getConsentToInformationGathering() {
-        return this.consentToInformationGathering;
+    public Collection<IInformationGathering> getConsentToInformationGatheringList() {
+        return this.informationGatheringList;
     }
 
     @Override
-    public void addConsentToInformationGathering(String consentToInformationGathering) {
-        this.consentToInformationGathering.add(consentToInformationGathering);
+    public void addConsentToInformationGathering(IInformationGathering informationGathering) {
+        this.informationGatheringList.add(informationGathering);
     }
 }
