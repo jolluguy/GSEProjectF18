@@ -155,14 +155,14 @@ public class CaseDatabaseManager {
 
             //Statement 5 - create relation  "drejer_sig_om"
             PreparedStatement st5 = conn.prepareStatement("INSERT INTO drejer_sig_om(person_id, sags_id) "
-                    + "VALUES('" + tempPersonID + "', " + tempCaseID + ");");
+                    + "VALUES(" + tempPersonID + ", " + tempCaseID + ");");
 
             st5.executeUpdate();
 
             //Statement 6 - create meeting
             for (IMeeting meeting : case1.getMeetingList()) {
                 PreparedStatement st6 = conn.prepareStatement("INSERT INTO aftale(dato, lokation, beskrivelse) "
-                        + "VALUES(" + meeting.getMeetingTime() + ", '" + meeting.getMeetingLocation() + "', '" + meeting.getMeetingDescription() + "';)");
+                        + "VALUES('" + meeting.getMeetingTime() + "', '" + meeting.getMeetingLocation() + "', '" + meeting.getMeetingDescription() + "';)");
 
                 st6.executeUpdate();
 
@@ -221,7 +221,7 @@ public class CaseDatabaseManager {
             //Statement 13 - Get RepresentationID            
             Statement st13 = conn.createStatement();
 
-            String sql13 = "SELECT MAX(person_id FROM person";
+            String sql13 = "SELECT MAX(person_id) FROM person";
 
             ResultSet result13 = st13.executeQuery(sql13);
 
@@ -245,7 +245,7 @@ public class CaseDatabaseManager {
 
             //Statement 16 - Create caseNote
             for (ICaseNote caseNote : case1.getCaseNoteList()) {
-                PreparedStatement st16 = conn.prepareStatement("INSERT INTO sagsnotat(notat_beskrivelse "
+                PreparedStatement st16 = conn.prepareStatement("INSERT INTO sagsnotat(notat_beskrivelse) "
                         + "VALUES('" + caseNote.getNote() + "');");
                 
                 st16.executeUpdate();
@@ -254,7 +254,7 @@ public class CaseDatabaseManager {
             //Statement 17 - Get caseNoteID
             Statement st17 = conn.createStatement();
             
-            String sql17 = "SELECT MAX(notat_id) FROM sagsnotat";
+            String sql17 = "SELECT MAX(notat_id) FROM sagsnotat;";
             
             ResultSet result17 = st17.executeQuery(sql17);
             
