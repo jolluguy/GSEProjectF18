@@ -754,7 +754,25 @@ public class CaseworkerController implements Initializable {
             postalCodeTextField.clear();
             cityTextField.clear();
             phoneNumberTextField.clear();
-            inquiryOriginGroup.getSelectedToggle().setSelected(false);
+            
+            if(inquiryOriginCitizenRadioButton.isSelected()){
+                inquiryOriginCitizenRadioButton.setSelected(false);
+            } else if(inquiryOriginNextOfKinRadioButton.isSelected()){
+                inquiryOriginNextOfKinRadioButton.setSelected(false);
+            } else if(inquiryOriginDoctorRadioButton.isSelected()){
+                inquiryOriginDoctorRadioButton.setSelected(false);
+            } else if(inquiryOriginHospitalRadioButton.isSelected()){
+                inquiryOriginHospitalRadioButton.setSelected(false);
+            } else if(inquiryOriginOtherRadioButton.isSelected()){
+                inquiryOriginOtherRadioButton.setSelected(false);
+            } else if(inquiryOriginActiveOperationRadioButton.isSelected()){
+                inquiryOriginActiveOperationRadioButton.setSelected(false);
+            } else if(inquiryOriginOtherMunicipalityRadioButton.isSelected()){
+                inquiryOriginOtherMunicipalityRadioButton.setSelected(false);
+            } else if(inquiryOriginOtherInstanceRadioButton.isSelected()){
+                inquiryOriginOtherInstanceRadioButton.setSelected(false);
+            }
+//            inquiryOriginGroup.getSelectedToggle().setSelected(false);
 
         } else if (!inquiryMade) {
             System.out.println("Inquiry failed");
