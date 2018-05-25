@@ -253,6 +253,7 @@ public class CaseworkerController implements Initializable {
     private TextArea descriptionTextAreaInquiry;
     @FXML
     private TextArea descriptionTextAreaCase;
+    @FXML
     private ToggleGroup inquiryOriginGroup;
     @FXML
     private ToggleGroup guardianshipGroup;
@@ -391,9 +392,7 @@ public class CaseworkerController implements Initializable {
     @FXML
     private TabPane tabPane;
     @FXML
-    private ToggleGroup inquiryOriginGroup2;
-    @FXML
-    private ToggleGroup inquiryYesOrNoGroup2;
+    private ToggleGroup inquiryYesOrNoGroup;
 
 
     private Map<Integer,String> fillServiceMap() {

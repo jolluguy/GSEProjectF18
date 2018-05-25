@@ -387,17 +387,17 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="152.0" layoutY="2968.0" text="Evt. etage">
+                                    <Label layoutX="152.0" layoutY="2924.0" text="Evt. etage">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="150.0" layoutY="2923.0" text="Postnummer &amp; by">
+                                    <Label layoutX="152.0" layoutY="2969.0" text="Postnummer &amp; by">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="155.0" layoutY="3014.0" text="Telefonnummer">
+                                    <Label layoutX="153.0" layoutY="3014.0" text="Telefonnummer">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -408,10 +408,10 @@
                                     <TextField fx:id="lastNameTextFieldRep" layoutX="299.0" layoutY="2826.0" prefHeight="31.0" prefWidth="300.0" />
                                     <TextField fx:id="streetNameTextFieldRep" layoutX="299.0" layoutY="2873.0" prefHeight="31.0" prefWidth="235.0" />
                                     <TextField fx:id="streetNumberTextFieldRep" layoutX="554.0" layoutY="2873.0" prefHeight="31.0" prefWidth="45.0" />
-                                    <TextField fx:id="floorTextFieldRep" layoutX="301.0" layoutY="2966.0" prefHeight="31.0" prefWidth="300.0" />
-                                    <TextField fx:id="postalCodeTextFieldRep" layoutX="300.0" layoutY="2921.0" prefHeight="31.0" prefWidth="74.0" />
-                                    <TextField fx:id="cityTextFieldRep" layoutX="407.0" layoutY="2921.0" prefHeight="31.0" prefWidth="195.0" />
-                                    <TextField fx:id="phoneNumberPrefixTextFieldRep" layoutX="302.0" layoutY="3012.0" prefHeight="31.0" prefWidth="45.0" text="+45" />
+                                    <TextField fx:id="floorTextFieldRep" layoutX="300.0" layoutY="2922.0" prefHeight="31.0" prefWidth="300.0" />
+                                    <TextField fx:id="postalCodeTextFieldRep" layoutX="300.0" layoutY="2967.0" prefHeight="31.0" prefWidth="74.0" />
+                                    <TextField fx:id="cityTextFieldRep" layoutX="405.0" layoutY="2967.0" prefHeight="31.0" prefWidth="195.0" />
+                                    <TextField fx:id="phoneNumberPrefixTextFieldRep" layoutX="301.0" layoutY="3012.0" prefHeight="31.0" prefWidth="45.0" text="+45" />
                                     <TextField fx:id="phoneNumberTextFieldRep" layoutX="366.0" layoutY="3012.0" prefHeight="31.0" prefWidth="235.0" />
                                     <Label layoutX="361.0" layoutY="2693.0" text="Eks: 123456-1234" textFill="#bfbfbf" />
                                     <Label alignment="CENTER" layoutX="499.0" layoutY="2724.0" prefHeight="21.0" prefWidth="26.0" text="-">
