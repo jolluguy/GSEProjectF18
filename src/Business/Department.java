@@ -13,8 +13,8 @@ import Acquaintance.IDepartment;
  */
 class Department implements IDepartment {
     
-    int departmentID;
-    String departmentName;
+    private int departmentID;
+    private String departmentName;
 
     public Department(int departmentID, String departmentName) {
         this.departmentID = departmentID;
