@@ -16,7 +16,7 @@ public class InformationGathering implements IInformationGathering{
     int infoGatheringID;
     String infoGatheringDescription;
 
-    public InformationGathering(int infoGatheringID, String infoGatheringDescription) {
+    InformationGathering(int infoGatheringID, String infoGatheringDescription) {
         this.infoGatheringID = infoGatheringID;
         this.infoGatheringDescription = infoGatheringDescription;
     }
