@@ -13,8 +13,8 @@ import Acquaintance.IInformationGathering;
  */
 public class InformationGathering implements IInformationGathering{
     
-    int infoGatheringID;
-    String infoGatheringDescription;
+    private int infoGatheringID;
+    private String infoGatheringDescription;
 
     InformationGathering(int infoGatheringID, String infoGatheringDescription) {
         this.infoGatheringID = infoGatheringID;

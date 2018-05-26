@@ -8,8 +8,8 @@ import Acquaintance.IService;
  */
 class Service implements IService {
     
-    int serviceID;
-    String serviceDescription;
+    private int serviceID;
+    private String serviceDescription;
 
     Service(int serviceID, String serviceString) {
         this.serviceID = serviceID;
